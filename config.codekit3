@@ -23,17 +23,29 @@
 		"oAP": "/build/.gitignore",
 		"oF": 0
 		},
-	"/_ASSET_STORAGE": {
-		"ft": 65536,
-		"oA": 1,
-		"oAP": "/build/_ASSET_STORAGE",
-		"oF": 0
-		},
 	"/build": {
 		"ft": 65536,
 		"oA": 1,
 		"oAP": "/build/build",
 		"oF": 0
+		},
+	"/README.md": {
+		"cB": 0,
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "/build/README.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
 		},
 	"/source/_includes/_modules/info-text.html": {
 		"cB": 0,
@@ -7501,7 +7513,7 @@
 	"creationDate": 542192780,
 	"displayValue": "ScriptUI Dialog Builder",
 	"displayValueWasSetByUser": 1,
-	"iconImageName": "/_ASSET_STORAGE/1x/dialog-builder-logo-circle-3.png",
+	"iconImageName": "meme-lotr",
 	"iconImageWasSetByUser": 0,
 	"lastBuiltDate": 563885095.07372999
 	},

@@ -5,9 +5,6 @@ The purpose of this tool is to easily design and export Adobe Script UI dialogs.
 
 This is designed to work in modern browsers, such as Chrome or Firefox and not so much Internet Explorer. Dialog data is saved locally by your browser. So if you refresh the page or come back later with the same browser your dialog should still be there. Maybe don’t push your luck though, because there’s always the off chance that an error of some kind wipes it clean. If you’re browsing in incognito mode, your browser will forget this data as soon as you close the tab or window.
 
-[Github](#)
-[Gitter](https://gitter.im/ScriptUI-Dialog-Builder/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
-
 ### General ScriptUI resources
 
 *   [Peter Kahrel’s ScriptUI for dummies](http://www.kahrel.plus.com/indesign/scriptui.html)
