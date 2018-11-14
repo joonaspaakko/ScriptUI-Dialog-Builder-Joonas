@@ -1,0 +1,67 @@
+
+/*
+	Container
+*/
+.custom-cursor {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 0;
+	left: 0px;
+	z-index: 1;
+	border-radius: 99999px;
+	overflow: hidden;
+	background-clip: padding-box;
+	display: flex;
+	text-align: center;
+	align-content: center;
+	justify-content: center;
+}
+/*
+	Mask - That's a spicy meat a ball!
+*/
+.custom-cursor > div {
+	opacity: 0;
+	animation-name: cursor-in-and-out;
+	animation-duration: 1000ms;
+	align-self: center;
+	width: 100%;
+	height: 100%;
+	-webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 70%);
+}
+.custom-cursor.fade-out {
+	// A bit more agressive fadeOut when you stop moving the mouse
+	// transition: all 450ms !important;
+	// opacity: 0 !important;
+}
+/*
+	Background image
+*/
+.custom-cursor > div > div {
+	width: 100%;
+	height: 100%;
+	opacity: .4;
+	opacity: .14;
+	background: url('/assets/images/cursor-bg-white-checker.png') 0 0 repeat;
+	// Can't decide which one I like better....
+	// background: url('/assets/images/cursor-bg-white-grey-checker.png') 0 0 repeat;
+	background-attachment: fixed;
+}
+
+@keyframes cursor-in-and-out {
+	0% {
+		opacity: .3;
+		width  : 0%;
+		height : 0%;
+	}
+	40% {
+		opacity: 1;
+		width  : 100%;
+		height : 100%;
+	}
+	100% {
+		opacity: 0;
+		width  : 0%;
+		height : 0%;
+	}
+}

@@ -1,0 +1,56 @@
+
+$import-bg: $color-bg;
+/* $import-bg: #ff4242; */
+
+#reset-box {
+  text-align: center;
+  color: #fff;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 300;
+  .arrow {
+    // display: none;
+    position: absolute;
+    z-index: -1;
+    top: -8px;
+    left: 50%;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 9px 10px;
+    border-color: transparent transparent $import-bg transparent;
+  }
+  div {
+    border-radius: 300px;
+    overflow: hidden;
+  }
+	
+  .text {
+    display: block;
+    padding: 20px 50px 30px;
+  }
+	
+  .no, .yes {
+    width: 50%;
+    float: left;
+    cursor: pointer;
+    padding: 10px 0;
+		font-weight: bold;
+    text-transform: uppercase;
+  }
+  .no {
+    background: rgba( #fff, .07);
+    &:hover {
+      background: rgba( #fff, .1);
+    }
+  }
+  .yes {
+    border-radius: 0 0 0 5px;
+    background: lighten(red,15);
+    &:hover {
+      background: lighten(red,18);
+    }
+  }
+}

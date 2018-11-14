@@ -1,0 +1,141 @@
+#bottom-left-toolbar {
+	position: absolute;
+  z-index: 999;
+  left: 0px;
+  bottom: 0px;
+  
+  > a,
+  > div {
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #fff; a { color: #fff; }
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    width : 33px;
+    height: 33px;
+    background: rgba( #000, .10 );
+    box-shadow: 0 0 3px rgba( #000, .10 ), 0 2px 5px rgba( #000, .10 );
+    border-radius: 50%;
+    border: 1px solid rgba( #000, .1 );
+    &:hover {
+      background: rgba( #fff, .10 );
+    }
+  }
+  
+  .icon img {
+    position: relative;
+    top: 1.5px;
+    width: 23px;
+  }
+
+  .grey-out-active {
+    background: rgba( #fff, .1 );
+    border: 1px solid rgba( #fff, .4 );
+    color: #fff;
+    &:hover {
+      background: rgba( #fff, .20 );
+      color: #fff;
+    }
+    &.off {
+      border: 1px solid rgba( #000, .1 );
+      background: rgba( #000, .6 );
+      color: rgba( #fff, .5 );
+      &:hover { color: #fff19d; }
+    }
+  }
+	
+	> div .content {
+		display: none;
+	}
+	.github {
+		font-size: 18px;
+	}
+}
+
+
+// INFO
+#modal-window {
+  
+  .information-desk {
+    .container {
+      text-align: left;
+      max-width: 500px;
+      padding: 0 25px 10px;
+      // padding: 15px 40px;
+      font-weight: 100;
+      line-height: 20px;
+      
+      a {
+        text-decoration: underline;
+        color: #fff;
+      }
+      
+      ul {
+        padding-left: 18px;
+      }
+      ol {
+        padding-left: 14px;
+      }
+      
+      li {
+        padding-bottom: 4px;
+      }
+      
+      h3 {
+        color: $color-accent;
+        &:first-child {
+          margin-top: 0px;
+        }
+      }
+      
+      .icons {
+        font-size: 0px;
+        a {
+          display: inline-block;
+          margin-left: 10px;
+          &:first-child {
+            margin-left: 0px;
+          }
+        }
+        i {
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 14px;
+          text-align: center;
+          border: 2px solid rgba( #fff, .3 );
+          background: rgba( #fff, .07 );
+        }
+      }
+      
+      // #info-menu {
+      //   &, ul, li {
+      //     display: inline-block;
+      //     list-style: none;
+      //     margin: 0px;
+      //     padding: 0px;
+      //   }
+      //   li {
+      //     padding: 4px 9px;
+      //     background: $color-accent;
+      //     color: #fff;
+      //     font-weight: bold;
+      //     margin: 0 4px 4px 0;
+      //     border-radius: 4px;
+      //     a {
+      //       text-decoration: none;
+      //     }
+      //   }
+      // }
+      
+    }
+  }
+
+}

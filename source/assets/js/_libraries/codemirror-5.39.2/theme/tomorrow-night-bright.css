@@ -1,0 +1,50 @@
+.cm-s-tomorrow-night-bright {
+	font-size: 1em;
+	line-height: 1.5em;
+	font-family: inconsolata, monospace;
+	letter-spacing: 0.3px;
+	word-spacing: 1px;
+	background: #000000;
+	color: #DEDEDE;
+}
+.cm-s-tomorrow-night-bright .CodeMirror-lines {
+	padding: 8px 0;
+}
+.cm-s-tomorrow-night-bright .CodeMirror-gutters {
+	box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+	background-color: #000000;
+	padding-right: 10px;
+	z-index: 3;
+	border: none;
+}
+.cm-s-tomorrow-night-bright div.CodeMirror-cursor {
+	border-left: 3px solid #DEDEDE;
+}
+.cm-s-tomorrow-night-bright .CodeMirror-activeline-background {
+	background: #2A2A2A;
+}
+.cm-s-tomorrow-night-bright .CodeMirror-selected {
+	background: #424242;
+}
+.cm-s-tomorrow-night-bright .cm-comment {
+	color: #969896;
+}
+.cm-s-tomorrow-night-bright .cm-property {
+	color: null;
+}
+.cm-s-tomorrow-night-bright .cm-atom {
+	color: null;
+}
+.cm-s-tomorrow-night-bright .cm-number {
+	color: null;
+}
+.cm-s-tomorrow-night-bright .cm-keyword {
+	color: null;
+}
+.cm-s-tomorrow-night-bright .cm-operator {
+	color: null;
+}
+.cm-s-tomorrow-night-bright .CodeMirror-linenumber {
+	color: #969896;
+}

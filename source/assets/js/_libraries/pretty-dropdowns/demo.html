@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<title>jQuery Pretty Dropdowns Demo</title>
+<meta name="author" content="T. H. Doan">
+<meta name="description" content="This is a live demo of the jQuery Pretty Dropdowns plugin.">
+<link rel="stylesheet" href="css/prettydropdowns.css">
+<style>
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  margin: 2rem;
+  text-align: center;
+}
+a[role=button], button {
+  background: #000;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 1rem 3rem;
+  text-decoration: none;
+}
+a[role=button]:hover, button:hover {
+  opacity: 0.7;
+}
+a[role=button]:active, button:active {
+  box-shadow: 0 0 3px #666;
+  outline: none;;
+}
+hr {
+  max-width: 640px;
+  height: 1px;
+  background: #a9a9a9;
+  border: none;
+  margin: 2rem auto;
+}
+label {
+  display: inline-block;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+select {
+  visibility: hidden; /* Prevent FOUC */
+}
+
+/* Glyphicon Halflings (BS3) */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot');
+  src: url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+       url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.woff') format('woff'),
+       url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+       url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font: normal normal 16px/1 'Glyphicons Halflings';
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin-right: 4px;
+}
+.glyphicon-fire:before {
+  content: '\e104';
+}
+.glyphicon-eye-open:before {
+  content: '\e105';
+}
+
+/* Prettify overrides */
+pre.prettyprint {
+  width: 100% !important;
+  height: 100%;
+  background: #002b36 !important; /* Solarized $base03 */
+  border: none !important;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+  overflow: auto;
+  white-space: pre !important;
+}
+
+/* Pretty Dropdowns overrides */
+body.show-selects select {
+  height: inherit !important;
+  margin-top: 60px;
+  visibility: visible !important;
+}
+body.show-selects #rating {
+  margin-top: 40px;
+  visibility: visible !important;
+}
+.prettydropdown > ul > li > small {
+  margin-left: 6px;
+  opacity: 0.5;
+}
+
+/* View Source overlay */
+.overlay {
+  position: fixed;
+  visibility: hidden; /* Prevent FOUC */
+  z-index: 1;
+}
+#overlay-dialog {
+  top: 50%;
+  left: 50%;
+  max-width: 80%;
+  max-height: 80%;
+  border: 8px solid #073642; /* Solarized $base02 */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 -1px 0 rgba(0,0,0,0.02); /* Google Maps */
+  box-sizing: border-box;
+  opacity: 0.9;
+  text-align: left;
+  transform: translate(-50%, -50%);
+}
+#overlay-dialog > button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 36px;
+  background: #d9534f; /* BS4 .bg-danger */
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+}
+#overlay-dialog > button:focus {
+  outline: none;
+}
+#overlay-dialog > button:hover > span {
+  opacity: 0.8;
+}
+#overlay-dialog > button:active > span {
+  opacity: 0.6;
+}
+#overlay-shadow {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.8;
+}
+</style>
+<!--
+NOTE: Generally, <script> can be placed immediately before the closing </body>
+tag to prevent parser blocking, but it's placed here because inline jQuery is
+used for the demo's "view source" functionality. Also, you would normally
+execute $('.pretty').prettyDropdown() just once, but it's being executed
+repeatedly here for the "view source" functionality.
+-->
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<![endif]-->
+<!--[if IE 9]><!-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!--<![endif]-->
+</head>
+<body>
+<h1>jQuery Pretty Dropdowns Demo</h1>
+
+<p>Try navigating with the keyboard also. You can go directly to an option by typing its text.</p>
+<p><button id="toggle-selects" type="button" onclick="toggleSelects()">Show<code> &lt;select&gt;</code></button></p>
+<hr>
+
+<form>
+  <section>
+    <label for="size">With event handler:</label><br>
+    <select id="size" name="size" class="pretty" onchange="alert('You selected ' + value)">
+      <option>32</option>
+      <option>33</option>
+      <option>34</option>
+      <option>35</option>
+      <option>36</option>
+      <option>37</option>
+      <option>38</option>
+      <option>39</option>
+      <option>40</option>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('.pretty').prettyDropdown();
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+  <section>
+    <label for="sort">With tooltips:</label><br>
+    <select id="sort" name="sort" class="pretty">
+      <option value="position" title="Sort by Most Popular">Most Popular</option>
+      <option value="name" title="Sort by Name" selected>Name</option>
+      <option value="price_desc" title="Sort by Highest Price First">Price (High to Low)</option>
+      <option value="price" title="Sort by Lowest Price First">Price (Low to High)</option>
+      <option value="date" title="Sort by Newest First">Newest</option>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('.pretty').prettyDropdown();
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+  <a id="example3"></a>
+  <section>
+    <label for="spell">With prefix/suffix:</label><br>
+    <select id="spell" name="spell" title="Select your spell">
+      <option data-prefix="<span aria-hidden='true' class='glyphicon glyphicon-eye-open'></span>"
+              data-suffix="<small>petrification</small>">Eye of Medusa</option>
+      <option data-prefix="<span aria-hidden='true' class='glyphicon glyphicon-fire'></span>"
+              data-suffix="<small>area damage</small>">Rain of Fire</option>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('#spell').prettyDropdown({
+        afterLoad: function() {
+          console.log('Spells are ready!');
+        }
+      });
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+  <section>
+    <label for="rating">Alternative style:</label><br>
+    <select id="rating" name="rating" class="pretty-alt">
+      <option value="1">&#9733;</option>
+      <option value="2">&#9733;&#9733;</option>
+      <option value="3">&#9733;&#9733;&#9733;</option>
+      <option value="4">&#9733;&#9733;&#9733;&#9733;</option>
+      <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('.pretty-alt').prettyDropdown({
+        customClass: 'arrow triangle small',
+        height: 30
+      });
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+  <section>
+    <label for="qty">Classic behavior:</label><br>
+    <select id="qty" name="qty" title="Menu items don't get rearranged" class="pretty-classic">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('.pretty-classic').prettyDropdown({
+        classic: true,
+        customClass: 'arrow triangle',
+      });
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+  <section>
+    <label for="colors">Multiple selection:</label><br>
+    <select id="colors" name="colors" size="3" title="Colors" class="pretty" multiple>
+      <option value="red" selected>Red</option>
+      <option value="green">Green</option>
+      <option value="blue" selected>Blue</option>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('.pretty').prettyDropdown();
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+  <section>
+    <label for="games">Option groups:</label><br>
+    <select id="games" name="games" title="What do you want to play?" class="pretty">
+      <optgroup label="Arcade">
+        <option>Asteroids</option>
+        <option>Donkey Kong</option>
+        <option>Pac-Man</option>
+      </optgroup>
+      <optgroup label="Casual">
+        <option>Angry Birds</option>
+        <option>Candy Crush Saga</option>
+        <option>Clash of Clans</option>
+      </optgroup>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('.pretty').prettyDropdown();
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+  <section>
+    <label for="lego">Disabled options:</label><br>
+    <select id="lego" name="lego" class="pretty">
+      <option value="21103">LEGO&reg; 21103 The DeLorean Time Machine</option>
+      <option value="21303">LEGO&reg; 21303 WALL&bull;E</option>
+      <option value="76023" title="Out of Stock" disabled>LEGO&reg; 76023 The Tumbler</option>
+    </select>
+    <script>
+    $(document).ready(function() {
+      // Initiate Pretty Dropdowns
+      $('.pretty').prettyDropdown();
+    });
+    </script>
+  </section>
+  <p><small>[<a href="javascript:;">view source</a>]</small></p>
+</form>
+
+<hr>
+<p><a href="/pretty-dropdowns/" title="Go back to the main page" role="button"><span aria-hidden="true">&laquo;</span> Back</a></p>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/e9fae9a0/src/run_prettify.js?autorun=false&skin=sunburst"></script>
+<script src="js/jquery.prettydropdowns.js"></script>
+<script>
+function closeOverlay(e) {
+  if (e.which===27) $('#overlay-dialog > button').click();
+}
+
+function toggleSelects() {
+  $('body').toggleClass('show-selects');
+  $('#toggle-selects').html(($('body').hasClass('show-selects') ? 'Hide' : 'Show') + '<code> &lt;select&gt;</code>');
+}
+
+// @param Event or String (id)
+function viewSource(e) {
+  var $this, $dialog, $overlay, $shadow;
+  if (typeof e==='string') $this = $('#' + e);
+  else if (e && e.target) $this = $(this).closest('p').prev('section');
+  $('body').append(
+    '<div id="overlay-shadow" class="overlay"></div>' +
+    '<div id="overlay-dialog" class="overlay">' +
+    '  <button type="button" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+    '  <pre class="prettyprint">' + $this.data('origCode') + '</pre>' +
+    '</div>'
+  );
+  PR.prettyPrint(); // Syntax highlighting
+  $dialog = $('#overlay-dialog');
+  $shadow = $('#overlay-shadow');
+  $overlay = $dialog.add($shadow);
+  // Set heights
+  $dialog.height($('pre', $dialog).outerHeight());
+  // Show when everything's ready
+  $overlay.css('visibility', 'visible');
+  // Hook up event handlers to close overlay
+  $('button', $dialog).add($shadow).one('click', function() {
+    $overlay.remove();
+    $(window).off('keydown', closeOverlay);
+  });
+  $(window).on('keydown', closeOverlay);
+}
+
+// Save original code for "view source"
+$('form > section').each(function() {
+  $(this).data('origCode', $.trim($(this).html()).replace(/[<>]/g, function(sMatch) {
+    return {
+      '<': '&lt;',
+      '>': '&gt;'
+    }[sMatch];
+  }).replace(/\n    /g, '\n').replace(/=""/g, ''));
+});
+
+// Hook up "view source" event handler
+$('small > a').click(viewSource);
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-2843793-6', 'auto');
+ga('send', 'pageview');
+</script>
+</body>
+</html>

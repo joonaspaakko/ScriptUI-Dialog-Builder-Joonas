@@ -1,0 +1,211 @@
+
+#panel-tree-view-wrap {
+	font-weight: 400;
+  z-index: 11;
+} // #panel-tree-view-wrap
+
+#tree-view-contents {
+  
+	.sort-temp-item {
+		display: none;
+	}
+	
+  .tree-root > ul {
+    /* padding-top: 4px; */
+  }
+  
+  ul, li {
+    display: block;
+    margin: 0px;
+    padding-left: 0px;
+  }
+  
+  li {
+    padding: 1px 0px 1px 20px;
+    line-height: 16px;
+  }
+	.item-text .txt {
+		display: inline-block;
+		vertical-align: middle;
+		max-width: 140px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	
+  .item-text {
+    cursor: pointer;
+    .type {
+      
+    }
+    .txt {
+      color: #999;
+    }
+  }
+  
+	
+  .tree-dialog,
+  .tree-root {
+    padding: 0px;
+  }
+  .tree-dialog {
+    padding-top: 5px;
+  }
+	
+  .remove-item {
+    display: inline-block;
+    font-size: 10px;
+    vertical-align: middle;
+    margin-right: 5px;
+    &:hover {
+      color: rgb(233,30,79);
+    }
+  }
+  
+  // Light up all parents of the item you hover over + the item itself...
+  // NO NO NO NO!!! I really wanted this, but there are too many things that just don't work
+  // li:hover > .item-text {
+  //   color: #fff;
+  //   color: $color-accent-2;
+  //   font-weight: 900;
+  // }
+  // // Item name below the cursor
+  // span.item-text:hover {
+  //   color: saturate( $color-accent-3 ,20) /* !important */;
+  // }
+  //  #Z6VNn9pww3u9
+  // li.active {
+  li.active > .item-text {
+    color: $color-accent;
+    > .remove-item,
+    li {
+      color: #dadada;
+    }
+    > .remove-item:hover {
+      color: rgb(233,30,79);
+    }
+  }
+  
+	// INDENT GUIDES
+  $indent-guide-bg-size: 20px 26px;
+  .tree-root {
+    ul {
+      background: url('../images/indent-guides/indent-guide.svg') repeat-y top left;
+      background-size: $indent-guide-bg-size;
+    }
+    li {
+      background: url('../images/indent-guides/indent-guide-t-junction.svg') no-repeat left -4px;
+      background-size: $indent-guide-bg-size;
+    }
+    li:last-child {
+      background: url('../images/indent-guides/indent-guide-last.svg') no-repeat left -4px;
+      background-size: $indent-guide-bg-size;
+      background-color: rgba(83,83,83, .80);
+    }
+  }
+  
+  .active {
+    > ul {
+      background: url('../images/indent-guides/indent-guide-active.svg') repeat-y top left;
+      background-size: $indent-guide-bg-size;
+    }
+
+    > ul > li {
+      background: url('../images/indent-guides/indent-guide-active-t-junction.svg') no-repeat left -4px;
+      background-size: $indent-guide-bg-size;
+    }
+    > ul > li:last-child {
+      background: url('../images/indent-guides/indent-guide-active-last.svg') no-repeat left -4px;
+      background-size: $indent-guide-bg-size;
+      background-color: rgba(83,83,83, .80);
+    }
+  }
+    
+} // #tree-view-contents
+
+
+// DRAG STYLE
+#tree-view-contents {
+  
+  // Style for dragged items when sorting. Dragging new elements or duplicating elements looks different.
+  .dragged {
+    position: absolute;
+    opacity: .9;
+    z-index: 2000;
+    border: 1px solid $color-accent;
+		margin: 5px 0 0 15px;
+    box-shadow: 2px 4px 20px rgba(0,0,0,.4);
+    background: $color-bg !important;
+    padding: 3px 0px 0px 9px !important;
+    ul {
+      padding-bottom: 0px !important;
+      margin: 0px !important;
+    }
+    li[data-parent="true"] {
+      margin-bottom: 0px !important;
+    }
+
+  }
+  
+  li.placeholder {
+    position: relative;
+    border: 1px solid #777777;
+    height: 0px;
+    padding: 0px;
+    &:before { // A little disc that at least in theory gives a better idea of the current branch level when dragging things.
+      content:"";
+      position: absolute;
+      top: -4px;
+      left: -1px;
+      width: 5px;
+      height: 5px;
+      border-radius: 900px;
+      background: $color-bg;
+      border: 1px solid $color-accent;
+      box-shadow: 0 0 0px 0px rgba( $color-bg, 1 );
+    }
+  }
+
+  .item-crash-and-burn {
+    display: block;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,121,115,0) 0%,rgba(255,91,69,1) 50%,rgba(255,121,115,0) 100%);
+    box-shadow: 0 0 18px 1px rgb(227,31,31);
+    position: relative;
+    z-index: 99999;
+  }
+	.duplicate-parent,
+  .duplicate-parent .item-text,
+  .duplicate-parent > ul,
+  .duplicate-parent > ul > li {
+		color: rgba( #fff, .5 ) !important;
+	}
+	
+} // #tree-view-contents
+
+
+// DRAGGING
+body.dragging, body.dragging * {
+  cursor: grab !important;
+}
+// DUPLICATING
+body.dragging.duplicate-item, body.dragging.duplicate-item * {
+	cursor: copy !important;
+}
+
+body.dragging #tree-view-contents .tree-dialog ul {
+  // padding-bottom: 2px;
+  padding-bottom: 4px;
+}
+// This creates a gap between parent items so that you can more easily drag items between them.
+body.dragging #tree-view-contents li[data-parent="true"] {
+  margin-bottom: 4px;
+}
+
+// DRAGGING TAB
+body.dragging.dragging-tab #panel-tree-view-wrap .tab {
+  margin-bottom: 0px;
+	 > ul:empty {
+     display: none;
+   }
+}

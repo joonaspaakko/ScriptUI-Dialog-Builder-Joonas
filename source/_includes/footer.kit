@@ -1,0 +1,26 @@
+	
+	<link  href="assets/css/dialog.builder.css" rel="stylesheet">
+	<link  href="assets/css/libraries.css" rel="stylesheet">
+	<script>
+	// Emergency services.
+	// Ctrl + Alt + L (4x) — Clears local_storage from dialog data refreshes the page.
+	var crisis_counter = 0;
+	document.addEventListener('keydown', function ( e ) {
+
+		var keycode = e.keyCode ? e.keyCode : e.which;
+		var ctrl_alt_l = keycode == 76 && e.altKey && e.ctrlKey;
+		if ( ctrl_alt_l ) {
+			crisis_counter += 1;
+			if ( crisis_counter >= 4 ) {
+				localStorage.removeItem( 'dialog' );
+				location.reload();
+			}
+		}
+		
+	});
+</script>
+	<script src="assets/js/libraries.js"></script>
+	<script src="assets/js/dialog.builder.js"></script>
+
+</body>
+</html>

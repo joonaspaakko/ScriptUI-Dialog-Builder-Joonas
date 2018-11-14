@@ -1,0 +1,51 @@
+.cm-s-cobalt {
+	font-size: 1em;
+	line-height: 1.5em;
+	font-family: inconsolata, monospace;
+	letter-spacing: 0.3px;
+	word-spacing: 1px;
+	background: #002240;
+	color: #FFFFFF;
+}
+.cm-s-cobalt .CodeMirror-lines {
+	padding: 8px 0;
+}
+.cm-s-cobalt .CodeMirror-gutters {
+	box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
+	background-color: #002240;
+	padding-right: 10px;
+	z-index: 3;
+	border: none;
+}
+.cm-s-cobalt div.CodeMirror-cursor {
+	border-left: 3px solid #FFFFFF;
+}
+.cm-s-cobalt .CodeMirror-activeline-background {
+	background: #00000059;
+}
+.cm-s-cobalt .CodeMirror-selected {
+	background: #B36539BF;
+}
+.cm-s-cobalt .cm-keyword {
+	color: #FF9D00;
+}
+.cm-s-cobalt .cm-comment {
+	font-style: italic;
+	color: #0088FF;
+}
+.cm-s-cobalt .cm-property {
+	color: #FFB054;
+}
+.cm-s-cobalt .cm-atom {
+	color: #FFB054;
+}
+.cm-s-cobalt .cm-number {
+	color: #FFB054;
+}
+.cm-s-cobalt .cm-operator {
+	color: #FF9D00;
+}
+.cm-s-cobalt .CodeMirror-linenumber {
+	color: italic;
+}

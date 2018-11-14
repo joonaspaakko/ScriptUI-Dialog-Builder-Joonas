@@ -1,0 +1,146 @@
+
+#panel-new-item-wrap {
+  z-index: 12;
+
+} // panel-new-item-wrap
+
+#panel-new-item-wrap .contents {
+	  
+  ul, li {
+    display: block;
+  }
+  
+  ul {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    margin: 0px;
+    padding: 0px;
+    .group,
+    .panel,
+		.tabbedpanel,
+    .tab,
+		.treeview,
+    .treeviewitem {
+      font-weight: 400;
+      color: #fff;
+    }
+  }
+  li {
+    position: relative;
+    cursor: pointer;
+    padding: 5px 15px 5px 10px;
+    &:hover {
+      background: rgba(255,255,255, .09);
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: 40;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+    		width: 0;
+    		height: 0;
+    		border-style: solid;
+    		border-width: 12.5px 0px 12.5px 5px;
+    		border-color: #535354 #535354 #535354 #636363;
+      }
+    }
+		
+		i {
+			width: 20px;
+      text-align: center;
+		}
+
+		.failure-is-an-option {
+			display: none;
+      animation: fiao-cycle-colors 300ms infinite alternate;
+      @keyframes fiao-cycle-colors {
+        0%   { color: #fff; }
+        100% { color: #ff6086; }
+      }
+      animation-iteration-count: 6;
+		}
+
+    // .failure-info {
+    //   i {
+    //     font-size: 12px;
+    //     color: #fff;
+    //     position: absolute;
+    //     top: 6px;
+    //     left: -10px;
+    //     animation: fi-cycle-colors 300ms infinite alternate;
+    //     @keyframes fi-cycle-colors {
+    //       0%   { color: #fff; }
+    //       100% { color: #ff6086; }
+    //     }
+    //     animation-iteration-count: 6;
+    //   }
+    //   .description {
+    //     // display: none;
+    //     position: absolute;
+    //     top: 6px;
+    //     left: -10px;
+    //     padding: 3px 6px;
+    //     word-spacing: normal;
+    //     width: 100px;
+		//
+    //   }
+    //   &:hover .description {
+    //     display: block;
+    //   }
+    // }
+		
+  }
+  
+  .enabled {
+    z-index: 2 !important;
+  }
+  &.show-disabled-overlay .disabled-overlay {
+    cursor: not-allowed;
+    background: rgba( $color-bg, .75 ) !important;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+	
+	.dragged {
+		cursor: copy !important;
+    // display: none;
+		position: fixed;
+    opacity: .6;
+    z-index: 2000;
+    padding: 10px 0 0 30px;
+    margin: -10px 0 0 -10px;
+    &:hover {
+      background: transparent;
+    }
+    &:before,
+    &:after {
+      display: none;
+    }
+	}
+  
+  .gouping-divider {
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: 4px 0;
+		width: 100%;
+		height: 0px;
+		border-top: 1px solid #464646;
+		border-bottom: 1px solid #595959;
+  }
+	
+	.treeitem,
+	.tab {
+		display: none;
+	}
+	.treeitem.show,
+	.tab.show {
+		display: block;
+	}
+	
+} // #panel-new-item-wrap .contents

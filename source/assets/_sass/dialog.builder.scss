@@ -1,0 +1,106 @@
+
+$color-accent: #33cc59;
+$color-accent-2: #529ef2;
+$color-accent-3: #9285fb;
+$color-bg: #535353;
+
+html, body {
+	width: 100%;
+	height: 100%;
+  min-height: 100%;
+  margin: 0px;
+}
+
+body, code {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 13px;
+	line-height: 15px;
+	font-weight: 300;
+	color: #dadada;
+}
+
+html, #loader-bg {
+  background: #fff;
+  background: linear-gradient(44deg, #c075ee, #6be6d7);
+}
+
+#wrap {
+	height: 100%;
+}
+
+code {
+	background: rgba( #000, .3 );
+	padding: 0px 4px;
+	border-radius: 4px;
+}
+
+
+@import
+	// PANELS
+	'panels/0-panels.scss',
+	'panels/1-add-items.scss',
+	'panels/2-structure-treeview.scss',
+	'panels/3-item-properties.scss',
+	'panels/4-dialog-preview.scss',
+	// MISC
+	'misc/number-input.scss',
+	'misc/drop-list.scss',
+	'misc/radiocheck.scss',
+	'misc/loading-screen.scss',
+	'misc/custom-cursor.scss',
+	'misc/modal-window.scss',
+	'misc/notifications.scss',
+	'misc/legend.scss',
+	// GOOGLE FONTS
+	'misc/google-fonts.scss',
+	// TOOLBAR
+	'misc/bottom-left-toolbar.scss',
+	'toolbar/toolbar.scss',
+	'toolbar/reset.scss',
+	'toolbar/import.scss',
+	'toolbar/export.scss'
+;
+
+::selection {
+	background: #afafaf;
+}
+::-moz-selection {
+	background: #afafaf;
+}
+
+%noselection {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.backstretch img {
+	opacity: .8;
+  animation: bg-hue-animation 30s ease infinite;
+  @keyframes bg-hue-animation {
+    0%   { filter: hue-rotate( -30deg ); }
+    50%  { filter: hue-rotate( 9deg   ); }
+    80%  { filter: hue-rotate( -24deg ); }
+    100% { filter: hue-rotate( -30deg ); }
+  }
+}
+
+.center-1 {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+.center-2 {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.center-3 {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

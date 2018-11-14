@@ -1,0 +1,17 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 18 24" xml:space="preserve">
+    <style>
+        .st0,.st1{fill:none;stroke:#fff;stroke-linejoin:round}.st0{stroke-linecap:round}.st1{stroke-width:1.0063}
+    </style>
+    <title>
+        export-shortcut-icon
+    </title>
+    <g id="Layer_1-2">
+        <path class="st0 lqhGJlnt_0" d="M13.5 2.5H16c.8 0 1.5.7 1.5 1.5v18c0 .8-.7 1.5-1.5 1.5H2c-.8 0-1.5-.7-1.5-1.5V4c0-.8.7-1.5 1.5-1.5h2.5"/>
+        <path class="st0 lqhGJlnt_1" d="M10.7 1.5C10.2.6 8.9.2 8 .8c-.3.2-.5.4-.7.7H5.5c-.6 0-1 .4-1 1V3c0 .8.7 1.5 1.5 1.5h6c.8 0 1.5-.7 1.5-1.5v-.5c0-.6-.4-1-1-1h-1.8z"/>
+        <path class="st1 lqhGJlnt_2" d="M11.8 13.8V16H6.1v-5.1h4.1"/>
+        <path class="st1 lqhGJlnt_3" d="M12 11.3l-3 3-1.2-1.2"/>
+    </g>
+    <style data-made-with="vivus-instant">
+        @keyframes lqhGJlnt_fade{0%,91.20879120879121%{stroke-opacity:1}}.lqhGJlnt_0{stroke-dasharray:65 67;stroke-dashoffset:66;animation:lqhGJlnt_draw 233ms ease-in 0ms forwards}.lqhGJlnt_1{stroke-dasharray:23 25;stroke-dashoffset:24;animation:lqhGJlnt_draw 233ms ease-in 38ms forwards}.lqhGJlnt_2{stroke-dasharray:18 20;stroke-dashoffset:19;animation:lqhGJlnt_draw 233ms ease-in 77ms forwards}.lqhGJlnt_3{stroke-dasharray:6 8;stroke-dashoffset:7;animation:lqhGJlnt_draw 233ms ease-in 116ms forwards}
+    </style>
+</svg>

@@ -1,0 +1,7 @@
+title: jQuery Pretty Dropdowns
+description: A simple, lightweight jQuery plugin to create stylized drop-down menus.
+google_analytics: UA-2843793-6
+show_downloads: true
+theme: jekyll-theme-cayman
+gems:
+  - jekyll-mentions

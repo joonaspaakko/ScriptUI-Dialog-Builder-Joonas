@@ -1,0 +1,58 @@
+
+// Checks the radio for latest hits.
+
+.radiocheck {
+	@extend %noselection;
+	cursor: pointer;
+	position: relative;
+	top: -1px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-right: 7px;
+	text-align: center;
+	border-radius: 2px;
+	> i {
+		display: none;
+	}
+	&.on {
+		> i {
+			display: block;
+				background: $color-gray;
+		}
+	}
+	
+	&.checkbox {
+		width: 9px;
+		height: 9px;
+		line-height: 11px;
+		border: 1px solid $color-gray;
+		i {
+			width: 9px;
+			height: 9px;
+			line-height: 11px;
+			color: $color-bg;
+			font-size: 8px;
+		}
+	}
+	&.radiobutton {
+		width: 9px;
+		height: 9px;
+		line-height: 12px;
+		border: 1px solid $color-gray;
+		border-radius: 300px;
+		&.on {
+			width: 11px;
+			height: 11px;
+			line-height: 12px;
+			border: none;
+		}
+		i {
+			width: 11px;
+			height: 11px;
+			line-height: 12px;
+			border-radius: 300px;
+			color: $color-bg;
+			font-size: 4px;
+		}
+	}
+}

@@ -1,0 +1,81 @@
+
+$import-bg: $color-bg;
+/* $import-bg: #ff4242; */
+
+#import-box {
+  width: 550px;
+	text-align: center;
+  .ta {
+    position: relative;
+    z-index: 0;
+    transition: all 100ms ease;
+    overflow: hidden;
+  }
+  .placeholder {
+    color: lighten(desaturate($import-bg,70),17);
+    background: darken(desaturate($import-bg,20),15);
+    display: inline-block;
+    padding: 20px 30px;
+    border-bottom: 1px solid #404040;
+    strong {
+      color: lighten(desaturate($import-bg,70),40);
+      text-transform: uppercase;
+    }
+    .important {
+      color: #ffa667;
+    }
+  }
+  .code {
+  	text-align: left;
+    position: relative;
+    z-index: 2;
+    outline: none;
+    overflow: auto;
+    box-shadow: inset 0 0 10px #000;
+    background: #272822;
+  }
+  .CodeMirror {
+    background: #272822;
+    height: auto;
+  }
+  
+  .import-btn {
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    margin: 12px 0;
+    color: darken(desaturate($import-bg,20),25);
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 32px;
+    border-radius: 300px;
+    &.clicked,
+    &:hover {
+      position: relative;
+      z-index: 55;
+      color: $color-accent;
+      box-shadow: 0 0 14px $color-accent;
+      .fa-arrow-right {
+        display: inline-block;
+        transition: all 200ms ease;
+        margin-left: 2px;
+        transform: rotate( -90deg );
+      }
+    }
+    .fa-times {
+      display: none;
+      font-size: 18px;
+      padding-top: 6px;
+    }
+    &.tada {
+      color: red;
+      box-shadow: 0 0 20px red;
+    }
+    &.tada .fa-times {
+      display: inline-block;
+    }
+    
+  }
+  
+}

@@ -1,0 +1,86 @@
+
+$color-gray: #c1c1c1;
+
+$width: 25px;
+$height: 13px;
+$outline: none;
+$padding: 2px;
+$arrowSize: 5px;
+
+.number-wrap {
+  vertical-align: top;
+  margin-top: 10px;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  z-index: 0;
+  // padding-right: ($padding*2) + $arrowSize + ($arrowSize/2);
+  .arrow {
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: 5;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 0 $arrowSize $arrowSize $arrowSize;
+    border-color: transparent transparent $color-gray transparent;
+    right: $padding +1px;
+    top: $padding +2px;
+    &:hover {
+      border-color: transparent transparent $color-accent transparent;
+    }
+    &:active {
+      border-color: transparent transparent $color-accent-2 transparent;
+    }
+  }
+  .arrow.minus {
+    border-width: $arrowSize $arrowSize 0 $arrowSize;
+    border-color: $color-gray transparent transparent transparent;
+    top: auto;
+    bottom: $padding +2px;
+    &:hover {
+      border-color: $color-accent transparent transparent transparent;
+    }
+    &:active {
+      border-color: $color-accent-2 transparent transparent transparent;
+    }
+  }
+}
+
+.number {
+  text-align: center;
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+	background: #2a2a2a;
+  border: 1px solid $color-bg;
+  color: $color-gray;
+  border-radius: 4px;
+  padding: $padding ($padding);
+  padding-right: ($padding*2) + $arrowSize + 1px;
+  outline: $outline;
+  caret-color: rgba( 255,255,255, .4 );
+  width: $width;
+  height: $height;
+}
+
+.number-overlay {
+  cursor: text;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+  background: transparent;
+  z-index: 4;
+}
+
+.number:focus {
+  border-color: $color-accent;
+}
+
+.number-input-drag * {
+	cursor: ns-resize !important;
+}

@@ -1,0 +1,499 @@
+
+#panel-edit-style-wrap {
+	z-index: 10;
+	border-right: 2px solid #414141;
+	
+  // Removes the arrows between panels from this one.
+  &:before {
+    display: none;
+  }
+	
+} // panel-edit-style-wrap
+
+body.update-styles .saving-icon {
+  display: block !important;
+}
+
+#edit-style-contents {
+  text-align: center;
+  width: 165px;
+  > div {
+    text-align: left;
+  }
+	h2 {
+    overflow: hidden;
+    display: block;
+    text-align: left;
+		color: #fff;
+		font-size: 15px;
+		font-weight: 400;
+    margin: 19px 0 7px;
+    &:first-child {
+      margin-top: 4px;
+    }
+	}
+  
+  h4 {
+    margin: 10px 0 0;
+    display: inline-block;
+    color: #c1c1c1;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  .desc {
+    color: #747474;
+    font-size: 11px;
+    font-weight: 400;
+  }
+  
+  .margins-desc {
+    // color: #c1c1c1;
+    width: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    height: auto;
+    overflow: hidden;
+    transition: all 1s;
+    > span {
+      flex: 1;
+      text-align: center;
+    }
+    &.hide {
+      height: 0;
+    }
+  }
+  
+  [title] {
+    cursor: help;
+  }
+
+  h2:hover .info {
+    visibility: visible;
+  }
+  
+  .tabbed-panel {
+    cursor: pointer;
+    display: block;
+    text-align: left;
+  }
+	
+  .textarea {
+    background-color: #292929;
+    border: 1px solid $color-bg;
+    border-radius: 4px;
+    white-space: normal;
+    outline: none;
+    padding: 6px;
+    resize: vertical;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 15px;
+    height: 15px;
+    width: 151px;
+    max-height: 160px;
+    color: #fff;
+    &:focus {
+      border: 1px solid $color-accent;
+    }
+  }
+  
+  .justify-container {
+    text-align: left;
+  }
+  .justify-icon-wrap {
+    display: inline-block;
+    box-shadow: 0 0 3px #222;
+    border: 1px solid #333;
+    border-radius: 4px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .justify-icon {
+    position: relative;
+    z-index: 0;
+    color: #939393;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    font-size: 11px;
+    $justify-icon-height: 19px;
+    width: $justify-icon-height;
+    height: $justify-icon-height;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    &[data-edit="justify-center"] {
+      border: 1px solid #333;
+      border-top: none;
+      border-bottom: none;
+    }
+    .icon {
+      line-height: $justify-icon-height;
+      height: $justify-icon-height;
+    }
+    &.active {
+      color: #fff;
+      background: #292929;
+    }
+    &:hover {
+      color: $color-accent;
+    }
+  }
+  
+  // NUMBER INPUTS
+  .link-icon {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 10px;
+    color: #acacac;
+    padding: 0 5px 0 5px;
+    .fa-lock-open {
+      display: block;
+    }
+		.fa-unlock-alt {
+			display: none;
+		}
+    &.active {
+      color: $color-accent;
+      .fa-lock-open {
+        display: none;
+      }
+      .fa-unlock-alt {
+        display: block;
+      }
+    }
+    &:hover {
+      color: $color-accent-2;
+    }
+    
+  }
+  
+  .number-wrap {
+    margin-top: 0px;
+    .number {
+      width: 26px;
+      height: 15px;
+    }
+  }
+  
+  .margin-inputs {
+    margin-top: 4px;
+    .n-1-4,
+    .n-3-4 {
+  		display: inline-block;
+      position: relative;
+      z-index: 0;
+  	}
+    .arrow {
+      &.plus {
+        border-bottom-color: #c1c1c1;
+      }
+      &.minus {
+        border-top-color: #c1c1c1;
+      }
+    }
+    
+    .n-3-4.hidden {
+      // Overlay that covers these so that you can't mouse interact when these are
+      // locked. Because the mouse events were built by javascript and I forgot
+      // to consider that at the time... Using the native "disabled" attribute
+      // to disable the inputs doesn't stop the mouse events from still being
+      // there... This is just a protective cover on top of the disabled inputs
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: not-allowed;
+      }
+    	.number {
+        text-indent: -9999px;
+        color: #3e3e3e;
+        background: #3e3e3e;
+        border-color: $color-bg;
+      }
+    	.arrow {
+        background: #3e3e3e;
+        border-color: $color-bg;
+      }
+    }
+  }
+  
+  .number-wrap.hide { display: none; }
+
+  .dimensions-container {
+    .number {
+      width: 30px;
+    }
+    h4 {
+      margin-top: 3px;
+      padding-right: 3px;
+      padding-left: 1px;
+      &.width-heading {
+        padding-left: 0px;
+      }
+    }
+		.width.danger-zone,
+		.height.danger-zone {
+			color: #fe6b0d;
+		}
+  }
+  
+  // PRETTY DROPDOWNS
+  $dropdown-mini-width: 79px;
+  .prettydropdown {
+    width: $dropdown-mini-width !important;
+    max-width: $dropdown-mini-width !important;
+    height: 22px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    margin-left: 2px;
+    &:first-child {
+      margin-left: 0px;
+    }
+  }
+	.prettydropdown > ul {
+    width: $dropdown-mini-width !important;
+    max-width: $dropdown-mini-width !important;
+    outline: none;
+    &:focus {
+      border: 1px solid $color-accent;
+    }
+    border-radius: 4px;
+    font-size: 12px;
+    background: #2a2a2a;
+    color: #c1c1c1;
+    border-color: $color-bg;
+  }
+	.prettydropdown > ul.active {
+    // box-shadow: 0 0 18px rgba(255,255,255, .45);
+    border: 1px solid $color-accent;
+  }
+	.prettydropdown > ul > li {
+    width: $dropdown-mini-width !important;
+    max-width: $dropdown-mini-width !important;
+		height: 22px;
+		line-height: 22px;
+    min-width: 40px;
+    padding-left: 5px;
+	}
+  .prettydropdown > ul > li > span.checked {
+    font-size: 10px;
+    margin-right: 5px;
+    color: $color-accent-2;
+  }
+  .prettydropdown > ul.active > li:not(.label):hover, .prettydropdown > ul.active > li.hover:not(.label), .prettydropdown > ul.active > li:first-child:hover:after {
+    background: transparent;
+    color: #e1e1e1;
+  }
+  .prettydropdown.arrow > ul > li.selected:before, .prettydropdown.arrow > ul > li.selected:after {
+    top: 12px;
+    right: 5px;
+    border: 5px solid transparent;
+  }
+  .prettydropdown > ul.active > li.selected:before, .prettydropdown > ul.active > li.selected:after {
+    border: none;
+  }
+  .prettydropdown.arrow:hover > ul > li.selected:before {
+    border-top-color: $color-accent;
+  }
+  .prettydropdown.arrow > ul > li.selected:before {
+    border-top-color: #c1c1c1;
+  }
+
+  .orientation-heading { display: inline-block; width: 94px; }
+  .orientation {
+    text-transform: capitalize;
+    display: inline-block;
+    .prettydropdown, ul, li,
+    .prettydropdown > ul > li {
+      width: 90px !important;
+      max-width: 90px !important;
+    }
+  }
+  .spacing-heading { display: inline-block; }
+  .spacing-container {
+    padding-left: 4px;
+    vertical-align: middle;
+    display: inline-block;
+    .number {;
+      width: 55px;
+      height: 18px;
+    }
+  }
+	
+  
+  .align-children {
+    text-transform: capitalize;
+		.prettydropdown {
+			margin-right: 2px;
+		}
+  }
+  
+  .alignment-container {
+    h2 {
+      margin: 19px 8px 8px 0;
+    }
+    > * {
+      display: inline-block;
+    }
+    .prettydropdown, ul, li,
+    .prettydropdown > ul > li {
+      text-transform: capitalize;
+      width: 160px !important;
+      max-width: 160px !important;
+    }
+  }
+  
+  // Checkbox for Aligment - Right next to the heading
+  // https://paulund.co.uk/style-checkboxes-with-css
+  /**
+   * Create the text for the On position
+   */
+   .alignment-checkbox {
+     margin-top: 0px;
+     width: 50px;
+     height: 17px;
+     background: #333;
+     border-radius: 300px;
+     position: relative;
+     top: -6px;
+     input {
+       display: none;
+     }
+     
+     &:before,
+     &:after {
+       position: absolute;
+       z-index: 0;
+       top : 0px;
+       height: 18px;
+       line-height: 18px;
+       font-size: 11px;
+     }
+     &:before {
+       content: 'On';
+       left: 6px;
+       color: $color-accent;
+     }
+     &:after {
+       content: 'Off';
+       right: 6px;
+       color: #e1e1e1;
+     }
+    
+    label {
+       display: block;
+       width: 22px;
+       height: 11px;
+       border-radius: 50px;
+       transition: all .5s ease;
+       cursor: pointer;
+       position: absolute;
+       z-index: 1;
+       top : 3px;
+       left: 3px;
+       background: #ddd;
+     }
+     
+     input[type=checkbox]:checked + label {
+       left: 25px;
+       background: $color-accent;
+     }
+      
+   }
+
+
+  .no-properties {
+    border: 1px solid $color-accent;
+    background: rgba($color-accent, .4);
+    color: #fff;
+    border-radius: 5px;
+    white-space: normal;
+    padding: 8px 8px;
+    font-size: 13px;
+    text-align: left;
+  }
+
+	.edit-info {
+    margin-top: 20px;
+    border-radius: 4px;
+    white-space: normal;
+		background: #424242;
+		padding: 8px 8px;
+    font-size: 11px;
+    text-align: left;
+		code {
+			font-size: 11px;
+		}
+		.item {
+			display: inline;
+      padding: 0 4px;
+      border-radius: 4px;
+      span {
+        padding-left: 4px;
+      }
+		}
+		.warning {
+			color: #ff6f6f;
+		}
+		&.highlight-animation {
+	    animation-name: example;
+	    animation-duration: 3.5s;
+      animation-timing-function: ease-in-out;
+      border: 1px solid #e31f1f;
+		}
+		@keyframes example {
+	    0% { background-color: #424242; }
+	    5% { background-color: rgba(#e31f1f, .55); }
+	    100% { background-color: #424242; }
+		}
+	}
+
+	.preferred-size-auto {
+    cursor: pointer !important;
+		color: #939393;
+    font-size: 13px;
+    vertical-align: middle;
+    padding-left: 4px;
+    &:hover {
+      color: $color-accent-2;
+    }
+	}
+  
+  .edit-text-wrap {
+    position: relative;
+    textarea {
+      position: relative;
+      z-index: 1;
+    }
+    &.is-not-multiline textarea {
+      padding-right: 19px;
+      width: 132px;
+    }
+    // I SAID... NO LINE BREAKS...
+    & .no-linebreaks-icon {
+      display: none;
+    }
+    &.is-not-multiline .no-linebreaks-icon {
+      display: inline-block;
+      position: absolute;
+      top: 9px;
+      right: 10px;
+      z-index: 2;
+      width: 14px;
+      height: 12px;
+    }
+  }
+  
+	
+} // #edit-style-contents

@@ -1,0 +1,814 @@
+
+#dialog-section {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+	* {
+	  @extend %noselection;
+	}
+}
+
+#dialog-overlay-wrap {
+  height: 100%;
+  overflow: auto;
+}
+
+#dialog {
+	user-select: text;
+  position: relative;
+  z-index: 10;
+  display: inline-block;
+  min-height: 0px;
+  min-width: 70px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 400;
+	letter-spacing: 0.026em;
+  margin: 80px 55px;
+  
+  [contenteditable] {
+    position: relative;
+    z-index: 0;
+    outline: none;
+		&:focus {
+	    // background: #fff !important;
+	    // color: #000 !important;
+	  }
+		&:hover {
+			cursor: text;
+		}
+  }
+	
+  #dialog-title-bar {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border-top: 1px solid #f4f4f4;
+    border-bottom: 1px solid #b6b6b6;
+    color: #333333;
+    height: 20px;
+    line-height: 20px;
+    background: linear-gradient(to bottom, #e5e5e5 0%,#d3d3d3 100%);
+	  border-radius: 6px 6px 0 0;
+    /* padding: 0 13px; */
+		div {
+      position: absolute; // Chrome was doing just fine with max-width: 100%, but I needed to add this to make it work in firefox.
+      right: 13px;
+      left: 13px;
+			&:focus {
+				right: unset;
+				left: unset;
+        width: 100%;
+			}
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; // There's a javscript fix in the "assets/js/panels/dialog.js" file. Look for id: #5945573415
+		}
+		div:focus {
+			text-overflow: unset; // There's a javscript fix in the "assets/js/panels/dialog.js" file. Look for id: #5945573415
+		}
+  }
+	
+  #dialog-container {
+  	overflow: hidden;
+	  border-radius: 6px;
+	  box-shadow: 0px 0px 2px rgba(0,0,0,.7), 0px 2px 30px 3px rgba(0,0,0,.4);
+		 > .padding-box {
+	    display: flex;
+	    white-space: nowrap;
+	    padding: 16px;
+	    background: $color-bg;
+	    min-height: 20px;
+	    color: #dadada;
+	  }
+  }
+  
+  .padding-box {
+    > .divider-line {
+      align-self: stretch;
+      display: flex;
+      > .padding-box {
+        align-self: stretch;
+      }
+    }
+  }
+	.text-container {
+		display: block;
+	}
+	
+  // ORIENTATION ROW
+  .orientation-row {
+    display: flex;
+    flex-direction: row;
+    
+    > div {
+      display: flex;
+      flex-direction: row;
+    }
+        
+    // ALIGN CHILDREN
+    &.align-children-vertical-top > div {
+      align-items: flex-start;
+    }
+    &.align-children-vertical-center > div {
+      align-items: center;
+    }
+    &.align-children-vertical-bottom > div {
+      align-items: flex-end;
+    }
+    &.align-children-vertical-fill > div {
+      align-items: stretch;
+    }
+    &.align-children-horizontal-left > div {
+      justify-content: flex-start;
+    }
+    &.align-children-horizontal-center > div {
+      justify-content: center;
+    }
+    &.align-children-horizontal-right > div {
+      justify-content: flex-end;
+    }
+    &.align-children-horizontal-fill > div {
+      justify-content: stretch;
+      >div {
+        flex: 1;
+      }
+    }
+    
+    // ALIGMENT
+    > div > .alignment-vertical-top {
+      justify-self: flex-start;
+      margin-bottom: auto !important;
+    }
+    > div > .alignment-vertical-center {
+      justify-self: center;
+      margin-top: auto !important;
+      margin-bottom: auto !important;
+    }
+    > div > .alignment-vertical-bottom {
+      justify-self: flex-end;
+      margin-top: auto !important;
+    }
+    > div > .alignment-vertical-fill {
+      align-self: stretch;
+    }
+  }
+	
+	// ORIENTATION COLUMN
+  .orientation-column {
+    display: flex;
+    flex-direction: column;
+    
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    // ALIGN CHILDREN
+    &.align-children-horizontal-left > div {
+      align-items: flex-start;
+    }
+    &.align-children-horizontal-center > div {
+      align-items: center;
+      > .padding-box > div {
+        text-align: center;
+        .text-container {
+          display: inline-block;
+        }
+      }
+    }
+    &.align-children-horizontal-right > div {
+      align-items: flex-end;
+      > .padding-box > div {
+        text-align: right;
+        .text-container {
+          display: inline-block;
+        }
+      }
+    }
+    &.align-children-horizontal-fill > div {
+      align-items: stretch;
+    }
+    &.align-children-vertical-top > div {
+      justify-content: flex-start;
+    }
+    &.align-children-vertical-center > div {
+      justify-content: center;
+    }
+    &.align-children-vertical-bottom > div {
+      justify-content: flex-end;
+    }
+    &.align-children-vertical-fill > div {
+      justify-content: stretch;
+      >div {
+        flex: 1;
+      }
+    }
+    
+      // ALIGMENT
+    > div > .alignment-horizontal-left {
+      align-self: flex-start;
+    }
+    > div > .alignment-horizontal-center {
+      align-self: center;
+    }
+    > div > .alignment-horizontal-right {
+      align-self: flex-end;
+    }
+    > div > .alignment-horizontal-fill {
+      align-self: stretch;
+    }
+  }
+	
+	#dialog-container.orientation-row {
+		flex-direction: column;
+    > .padding-box {
+      flex-direction: row;
+    }
+	}
+  
+  .group,
+  .panel {
+    /* display: inline-block; */
+    align-items: flex-start;
+    align-items: center;
+  }
+  
+  .panel.orientation-row > *,
+  .group.orientation-row > * {
+    line-height: 15px;
+    min-height: 15px;
+  }
+  .panel.orientation-column > *,
+  .group.orientation-column > * {
+    line-height: 14px;
+    min-height: 14px;
+  }
+  
+  .button {
+    line-height: 23px;
+    min-height: 23px;
+  }
+  
+  & > .orientation-column > .padding-box {
+    display: flex;
+    flex-direction: column;
+  }
+  & > .orientation-row > .padding-box {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .panel {
+    position: relative;
+    .title {
+      align-self: flex-start;
+      color: #f0f0f0;
+      background: $color-bg;
+      min-height: 13px;
+      line-height: 13px;
+      padding: 0px 5px;
+      margin: 0 0 -24px 10px !important;
+    }
+    > .padding-box {
+      align-self: stretch;
+      justify-self: stretch;
+      flex-grow: 1;
+      min-width: 30px;
+      min-height: 0px;
+      border: 1px solid #3e3e3e;
+      border: 1px solid darken($color-bg,5);
+			margin-top: 19px;
+      padding: 16px 16px;
+    }
+  }
+  
+  .padding-box {
+    align-self: stretch;
+    justify-self: stretch;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  
+  // .orientation-row > .padding-box > div > .title,
+  .padding-box > .panel.orientation-row > {
+    .title {
+      position: absolute;
+      // top: 17px;
+    }
+    .padding-box {
+      margin-top: 8px;
+    }
+  }
+  // Correction for spacing <style> element...
+  .padding-box > .panel.orientation-row:first-of-type > .title {
+    top: 0px;
+  }
+  .orientation-row > .padding-box > .panel.orientation-row > .title {
+    top: 0px;
+  }
+  
+	.justify-left {
+		text-align: left;
+	}
+	.justify-center {
+		text-align: center;
+	}
+	.justify-right {
+		text-align: right;
+	}
+	
+  .play-video {
+    color: #8a8a8a;
+    font-size: 50px;
+    padding: 50px 100px;
+    transition: all 300ms linear;
+    display: flex;
+    white-space: nowrap;
+    background: $color-bg;
+    min-height: 20px;
+  }
+  
+  &:hover .add-new-element {
+    color: #a2a2a2;
+    font-size: 60px;
+  }
+  
+  .button {
+    display: flex;
+		.button-border {
+      overflow: hidden;
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      flex-direction: column;
+			border: 1px solid #c1c1c1;
+			border-radius: 9999px;
+      .text-container {
+        display: block;
+        padding: 0px 13px;
+      }
+			&:hover {
+				// background: #cdcdcd;
+        // color: $color-bg !important;
+			}
+		}
+  }
+	
+	.radiobutton,
+	.checkbox {
+		text-align: left;
+	}
+	
+  .dropdownlist {
+    display: flex;
+  }
+  
+  // #U7FTZMRVYxVqiArfdgQeQjMRpx6R → set.values.js
+  .text-container.multiline {
+    width: 100%;
+    text-align: left;
+  }
+  .static-text,
+  .edit-text {
+    display: flex;
+    align-items: center;
+    .text-container {
+      display: inline-block !important; // Content editable \n
+      white-space: pre-line !important; // Content editable \n
+      vertical-align: middle;
+    }
+  }
+  
+  .static-text {
+    overflow: hidden;
+    .text-container {
+      box-sizing: border-box;
+      width: 100%;
+    }
+  }
+  
+  .edit-text{
+		> span {
+      cursor: text;
+      overflow: auto;
+      width: 100%;
+      height: 100%;
+      padding: 3px 5px;
+      background: darken($color-bg,7);
+      border: 1px solid lighten($color-bg,7);
+      border-radius: 4px;
+			box-sizing: border-box;
+			vertical-align: middle;
+      text-align: left;
+      &:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+      }
+    }
+		&.focused span {
+			background: #fff;
+			color: #333 !important;
+		}
+  }
+  
+  
+  .list-box{
+    ul, li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    ul {
+      overflow: auto;
+      height: 100%;
+      background: $color-bg;
+      border: 1px solid lighten($color-bg,10);
+      border-radius: 4px;
+      
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+        height: 12px;
+      }
+    }
+    li {
+      cursor: pointer;
+      white-space: nowrap;
+      text-align: left;
+      border-bottom: 1px solid lighten($color-bg,10);
+			&.selected,
+			&:active {
+        // background: #476785;
+        // background: #3d4e5f;
+        background: #345c80;
+      }
+    }
+    span {
+      white-space: nowrap;
+      display: inline-block;
+      padding: 5px 5px 3px 5px;
+    }
+  }
+  
+  .tree-view {
+		display: flex;
+    > .padding-box {
+      margin: 0px;
+      padding: 0px;
+      padding-top: 2px;
+      border: 1px solid lighten($color-bg,10);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+  }
+  
+  .tree-view-item {
+    .item-wrap {
+      position: relative;
+      padding-left: 14px;
+			margin-bottom: 2px;
+      &:before {
+        content: "";
+        position: absolute;
+        right: -200%;
+        bottom: 0px;
+        left: -200%;
+        // width: 500%;
+        border-bottom: 1px solid lighten($color-bg,10);
+      }
+      .tree-view-arrow {
+        cursor: pointer;
+        display: none;
+        position: absolute;
+        top: 5.2px;
+        left: 1px;
+        font-size: 10px;
+        line-height: 10px;
+        transition: transform .10s ease;
+      }
+      .text-container {
+				padding: 1px 3px 3px 0;
+        text-align: left;
+      }
+    }
+    > .padding-box {
+      display: none;
+      padding-left: 10px;
+      overflow: visible;
+    }
+    &.tree-node > .item-wrap > .tree-view-arrow {
+      display: inline-block;
+    }
+    &.expanded {
+      > .item-wrap .tree-view-arrow {
+        top: 5.3px;
+        transform: rotate(90deg);
+      }
+      > .padding-box {
+        display: block;
+      }
+    }
+  }
+  
+  .divider-line {
+    min-width: auto;
+    min-height: auto;
+    line-height: 0px;
+    padding: 0px;
+    margin: 0px !important;
+    > .padding-box {
+      min-width: 0;
+      min-height: 0;
+      padding: 0px;
+      margin: 0px;
+    }
+  }
+	
+	// Slider
+  // This tool helped a ton: https://github.com/danielstern/range.css
+	
+	input[type=range] {
+	  -webkit-appearance: none;
+	  width: 100%;
+    height: 13px;
+	  margin: 6px 0;
+    background: transparent;
+	}
+  .orientation-row .padding-box input[type=range] {
+    width: auto;
+  }
+  input[type="range"].alignment-horizontal-fill {
+    width: 100% !important;
+  }
+	input[type=range]:focus {
+	  outline: none;
+	}
+	input[type=range]::-webkit-slider-runnable-track {
+	  width: 100%;
+	  height: 2px;
+	  cursor: pointer;
+	  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+	  background: #747474;
+	  border-radius: 0px;
+	  border: 0px solid rgba(0, 0, 0, 0);
+	}
+	input[type=range]::-webkit-slider-thumb {
+	  box-shadow: 0px 0px 0px 3px #535454, 0px 0px 0px #606161;
+	  border: 1.5px solid #c7c7c7;
+	  height: 13px;
+	  width: 13px;
+	  border-radius: 13px;
+	  background: #535454;
+	  cursor: pointer;
+	  -webkit-appearance: none;
+	  margin-top: -5.5px;
+    &:active {
+      background: #459ff4;
+      border-color: #459ff4;
+    }
+	}
+	input[type=range]:focus::-webkit-slider-runnable-track {
+	  background: #939393;
+	}
+	input[type=range]::-moz-range-track {
+	  width: 100%;
+	  height: 2px;
+	  cursor: pointer;
+	  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+	  background: #747474;
+	  border-radius: 0px;
+	  border: 0px solid rgba(0, 0, 0, 0);
+	}
+	input[type=range]::-moz-range-thumb {
+	  box-shadow: 0px 0px 0px 3px #535454, 0px 0px 0px #606161;
+	  border: 1.5px solid #c7c7c7;
+	  height: 13px;
+	  width: 13px;
+	  border-radius: 13px;
+	  background: #535454;
+	  cursor: pointer;
+    &:active {
+      background: #459ff4;
+      border-color: #459ff4;
+    }
+	}
+	input[type=range]::-ms-track {
+	  width: 100%;
+	  height: 2px;
+	  cursor: pointer;
+	  background: transparent;
+	  border-color: transparent;
+	  color: transparent;
+	}
+	input[type=range]::-ms-fill-lower {
+	  background: #555555;
+	  border: 0px solid rgba(0, 0, 0, 0);
+	  border-radius: 0px;
+	  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+	}
+	input[type=range]::-ms-fill-upper {
+	  background: #747474;
+	  border: 0px solid rgba(0, 0, 0, 0);
+	  border-radius: 0px;
+	  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+	}
+	input[type=range]::-ms-thumb {
+	  box-shadow: 0px 0px 0px 3px #535454, 0px 0px 0px #606161;
+	  border: 1.5px solid #c7c7c7;
+	  height: 13px;
+	  width: 13px;
+	  border-radius: 13px;
+	  background: #535454;
+	  cursor: pointer;
+	  height: 2px;
+    &:active {
+      background: #459ff4;
+      border-color: #459ff4;
+    }
+	}
+	input[type=range]:focus::-ms-fill-lower {
+	  background: #747474;
+	}
+	input[type=range]:focus::-ms-fill-upper {
+	  background: #939393;
+	}
+
+	
+
+
+  .tabbed-panel {
+    display: flex;
+    > .tab-container {
+      position: absolute;
+      z-index: 1;
+      top: auto;
+      left: auto;
+      margin-top: 8px;
+      margin-left: 13px;
+      text-align: left;
+      display: block !important;
+      justify-self: flex-start;
+      align-self: flex-start;
+    	.tab {
+        cursor: default;
+    		display: inline-block;
+        padding-bottom: 3px;
+    		border-bottom: 2px solid transparent;
+        margin-left: 28px;
+        &:first-child {
+          margin-left: 0px;
+        }
+        &.active,
+        &:hover {
+          color: #46a0f5;
+        }
+        &.visible {
+    		  border-bottom: 2px solid #dadada;
+        }
+    	}
+    }
+    > .padding-box {
+      display: flex;
+      margin: 0 !important;
+    }
+  	> .padding-box > .tab {
+      flex: 1;
+      display: none;
+  	}
+    > .padding-box > .tab > .title {
+      display: none;
+    }
+  	> .padding-box > .tab > .padding-box {
+  		margin: 0 !important;
+      border: none !important;
+  	}
+  }
+
+  .visible-tab,
+  .tab-temp-class {
+    position: relative;
+    z-index: 0;
+    display: flex !important;
+    padding-top   : 25px !important;
+		padding-right : 27px !important;
+    padding-bottom: 27px !important;
+  }
+	.tab-temp-class {
+    flex: 0 !important;
+    align-self: flex-start !important;
+    justify-self: flex-start !important;
+		display: inline-block !important;
+	}
+	.tab-temp-hide-class {
+    display: none !important;
+    padding-top   : 0px !important;
+		padding-right : 0px !important;
+    padding-bottom: 0px !important;
+	}
+  
+  // So that you can easily tell which items are active...
+  .active {
+    &.panel > .title,
+    > .button-border > .text-container,
+    > .text-container,
+    > span > .text-container,
+    &.tree-view-item > .item-wrap .text-container,
+    > label {
+      color: $color-accent;
+    }
+    >  #dialog-title-bar {
+      border-bottom: 2px solid $color-accent;
+			box-shadow: 0 0 20px #33cc59;
+      animation: dlgShadowPulsate 2s ease-out infinite;
+    }
+    &.group > .padding-box,
+    &.list-box ul,
+    &.divider-line > .padding-box,
+    &.tabbed-panel > .padding-box,
+    &.tree-view > .padding-box,
+    &.edit-text > span {
+      border: 1px solid $color-accent;
+    }
+    &.edit-text > span > span {
+      color: #f1f1f1;
+    }
+	}
+  .currently-active-tab {
+    color: $color-accent;
+  }
+  
+	.active[type=range]::-moz-range-thumb {
+    border-color: $color-accent;
+  }
+	.active[type=range]::-webkit-slider-thumb {
+    border-color: $color-accent;
+  }
+	.active[type=range]::-ms-thumb {
+    border-color: $color-accent;
+  }
+  
+  @keyframes dlgShadowPulsate {
+    0% { box-shadow  : 0 0 3px #33cc59; }
+    50% { box-shadow : 0 0 20px #33cc59; }
+    100% { box-shadow: 0 0 3px #33cc59; }
+  }
+  
+  &.hide-active .currently-active-tab {
+    color: #dadada;
+  }
+  &.hide-active .active {
+    &.panel > .title,
+    > .button-border > .text-container,
+    > .text-container,
+    > span > .text-container,
+    &.tree-view-item > .item-wrap .text-container,
+    > label {
+      color: #dadada;
+    }
+    >  #dialog-title-bar {
+      border-bottom: none;
+			box-shadow: none;
+      animation: none;
+    }
+    
+    &.edit-text > span  {
+      border-color: #656666;
+    }
+    &.tree-view > .padding-box,
+    &.list-box ul {
+      border-color: #737474;
+    }
+    &.tabbed-panel > .padding-box,
+    &.divider-line > .padding-box {
+      border-color: #464747;
+    }
+    &.group > .padding-box, {
+      border: none;
+    }
+	}
+  
+	&.hide-active .active[type=range]::-moz-range-thumb {
+    border-color: #c7c7c7;
+  }
+	&.hide-active .active[type=range]::-webkit-slider-thumb {
+    border-color: #c7c7c7;
+  }
+	&.hide-active .active[type=range]::-ms-thumb {
+    border-color: #c7c7c7;
+  }
+	
+} // #dialog
+
+
+// body.dialog-animate-changes #dialog [data-item-type],
+// body.dialog-animate-changes #dialog .padding-box {
+// body.dialog-animate-changes #dialog,
+body.dialog-animate-changes #dialog * {
+  transition: all 250ms ease;
+}

@@ -1,0 +1,69 @@
+
+.i-am-legend {
+	z-index: 1;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	border-radius: 9px;
+	background: rgba( #000, .2 );
+	padding: 4px 4px 4px 7px;
+	font-size: 12px;
+	text-align: left;
+	color: #fff;
+	tr.l-export {
+		cursor: pointer;
+	}
+	.desc {
+		padding-right: 6px;
+	}
+	.shortcut {
+		font-size: 10px;
+		font-weight: 700;
+		word-spacing: 0px;
+		background: rgba( #000, .3 );
+		padding: 2px 5px;
+		border-radius: 5px;
+		transition: all 350ms ease-out;
+		border: 1px solid transparent;
+	}
+	.l-export.success .shortcut {
+		border: 1px solid lighten($color-accent, 15);
+		background: $color-accent;
+    text-shadow: 0 0 4px darken($color-accent, 20);
+	}
+	.l-export.failure .shortcut {
+		border: 1px solid lighten(#e83f34, 15);
+		background: #e83f34;
+    text-shadow: 0 0 4px darken(#e83f34, 20);
+	}
+}
+
+#dialog-overlay-wrap {
+	transition: background 350ms ease-out;
+}
+body.successful-shortcut-export #dialog-overlay-wrap {
+   background: rgba( $color-accent, .6 );
+}
+body.shortcut-export-failure #dialog-overlay-wrap {
+   background: rgba( #e83f34, .6 );
+}
+
+#export-success-icon {
+	position: absolute;
+	z-index: 9999;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	.circle {
+		display: inline-block;
+		background: rgba( #000, .5 );
+		border-radius: 50%;
+		padding: 50px;
+	}
+	img {
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+	}
+}
