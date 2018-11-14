@@ -60,7 +60,7 @@ function numberInputs() {
 		    var now = Date.now();
 		    var dt =  now - timestamp;
 		    var dy = e.screenY - lastMouseY;
-				console.log( e.shiftKey );
+				
 		    var speedY = Math.abs( Math.round(dy / dt * (e.shiftKey ? 200 : 40)) );
 				var dragSpeed = speedY > 4 ? speedY : 0; // Poor mans slow start...
 				

@@ -5,7 +5,7 @@ function numberInputs(){function o(e,t,i,a){var n=e.val();if(isNaN(n))e.val(g);e
 // 	$('body').addClass('dragging-margins');
 // }
 // dragWrapper.find('.number-overlay').css({ position: 'fixed' });
-if(mousemovePing=!1,e.preventDefault(),null===p)return p=Date.now(),void(m=e.screenY);var t=Date.now(),i=t-p,a=e.screenY-m;console.log(e.shiftKey);var n=Math.abs(Math.round(a/i*(e.shiftKey?200:40))),d=4<n?n:0;// Poor mans slow start...
+if(mousemovePing=!1,e.preventDefault(),null===p)return p=Date.now(),void(m=e.screenY);var t=Date.now(),i=t-p,a=e.screenY-m,n=Math.abs(Math.round(a/i*(e.shiftKey?200:40))),d=4<n?n:0;// Poor mans slow start...
 p=t,m=e.screenY,e.pageY<c?o(r,"up",e.shiftKey,d):e.pageY>c&&o(r,"down",e.shiftKey,d),c=e.pageY}}else if("mouseup"===e.type){
 // dragStartElement.removeClass('danger-zone');
 // dragWrapper.find('.number-overlay').css({ position: 'absolute' });
