@@ -52,7 +52,7 @@ function shortcutExport() {
           '<div class="center-2">' +
             '<div class="center-3">' +
               '<div class="circle">' +
-                '<img src="assets/images/export-shortcut-icon_animated.svg" alt="" />' +
+                '<img src="assets/images/export-shortcut-icon.svg" alt="" />' +
               '</div>' +
             '</div>' +
           '</div>' +

@@ -645,15 +645,15 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/assets/images/export-shortcut-icon_animated.svg": {
+	"/source/assets/images/export-shortcut-icon.svg": {
 		"ft": 2097152,
-		"miP": 1,
+		"miP": 0,
 		"oA": 2,
-		"oAP": "/build/assets/images/export-shortcut-icon_animated.svg",
+		"oAP": "/build/assets/images/export-shortcut-icon.svg",
 		"oF": 0,
 		"opt": 0,
 		"plM": 3758088159,
-		"prP": 1
+		"prP": 0
 		},
 	"/source/assets/images/graduation-cap-bold.svg": {
 		"ft": 2097152,
@@ -7508,7 +7508,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-lotr",
 	"iconImageWasSetByUser": 0,
-	"lastBuiltDate": 563888286.04020405
+	"lastBuiltDate": 563890039.96301198
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
