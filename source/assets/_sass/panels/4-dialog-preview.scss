@@ -486,8 +486,10 @@
         cursor: pointer;
         display: none;
         position: absolute;
-        top: 5.2px;
-        left: 1px;
+        top: 0;
+        left: 0px;
+				margin-top: 2.5px;
+				margin-left: 2px;
         font-size: 10px;
         line-height: 10px;
         transition: transform .10s ease;
@@ -507,7 +509,7 @@
     }
     &.expanded {
       > .item-wrap .tree-view-arrow {
-        top: 5.3px;
+				// margin-top: 2.5px;
         transform: rotate(90deg);
       }
       > .padding-box {
