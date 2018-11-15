@@ -371,9 +371,15 @@
     text-align: left;
   }
   .static-text,
-  .edit-text {
-    display: flex;
-    align-items: center;
+  .edit-text > span {
+    display: inline-block;
+    vertical-align: middle;
+    &:before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
     .text-container {
       display: inline-block !important; // Content editable \n
       white-space: pre-line !important; // Content editable \n
@@ -400,21 +406,13 @@
       border: 1px solid lighten($color-bg,7);
       border-radius: 4px;
 			box-sizing: border-box;
-			vertical-align: middle;
       text-align: left;
-      &:before {
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        height: 100%;
-      }
     }
 		&.focused span {
 			background: #fff;
 			color: #333 !important;
 		}
   }
-  
   
   .list-box{
     ul, li {

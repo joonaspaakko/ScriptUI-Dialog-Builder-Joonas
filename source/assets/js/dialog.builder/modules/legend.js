@@ -45,14 +45,14 @@ function shortcutExport() {
     }, 350);
 		
     clearTimeout( iconTimeout );
-    $('#dialog-section #export-success-icon:first').remove();
+    $('#dialog-section #export-success-icon').remove();
 		$(
       '<div id="export-success-icon">' +
         '<div class="center-1">' +
           '<div class="center-2">' +
             '<div class="center-3">' +
               '<div class="circle">' +
-                '<img src="assets/images/export-shortcut-icon.svg" alt="" />' +
+                '<img src="assets/images/export-shortcut-icon.svg?'+ new Date().getTime() +'" alt="" />' +
               '</div>' +
             '</div>' +
           '</div>' +

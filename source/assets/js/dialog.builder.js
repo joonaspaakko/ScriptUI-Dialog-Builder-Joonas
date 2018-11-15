@@ -93,7 +93,7 @@ else {
 		var currentItem = data.items[ 'item-' + currentId ];
     if ( currentItem.style.preferredSize !== undefined ) {
       item.activate( currentId );
-      item.funnel.update( 'preferredSize' );
+      item.update.style.dialogPreview( 'preferredSize', data, data.items['item-'+currentId] );
     }
 	});
 	

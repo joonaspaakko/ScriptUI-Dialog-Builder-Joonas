@@ -1,7 +1,7 @@
 
 // TEXT INFO THAT IS USED FOR MULTIPLE ITEMS
 var reText = {
-	textItems: "This item supports multiline text <small>(press enter to insert a line break)</small>. <br><br> Changing the default justification of multiline text renders inconsistently and for that reason dialog preview will show multiline text aligned to the left and justify will be commented out in the export, if set to anything but left.",
+	textItems: "This item supports multiline text <small>(press enter to insert a line break)</small>. <br><br> Changing the default justification of multiline text renders inconsistently and for that reason multiline text is always aligned to the left.",
 	tabs: " <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG)."
 }
 
@@ -91,7 +91,7 @@ item.list.statictext = function( params ) {
 		type: 'StaticText',
 		addPanelIconClass: 'fas fa-font',
 		multiline: true,
-		editInfo: reText.textItems,
+		editInfo: reText.textItems + '<br><br> In the case of multiline text and justify <code>center</code> or <code>right</code> the justify setting is included in the export but commented out.',
 		defaultStyle: {
 			text: 'StaticText',
 			justify: 'left',
