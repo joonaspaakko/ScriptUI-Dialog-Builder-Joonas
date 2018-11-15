@@ -373,10 +373,12 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			var width = style.preferredSize[0];
 			var height = style.preferredSize[1];
 			if ( width > 0 ) {
-				styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
+				styleBlock += tabsies + jsxVarName + '.minimumSize.width = '+ width +'; \n';
+				// styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
 			}
 			if ( height > 0 ) {
-				styleBlock += tabsies + jsxVarName + '.preferredSize.height = '+ height +'; \n';
+				styleBlock += tabsies + jsxVarName + '.minimumSize.height = '+ height +'; \n';
+				// styleBlock += tabsies + jsxVarName + '.preferredSize.height = '+ height +'; \n';
 			}
 		}
 		// JUSTIFY
