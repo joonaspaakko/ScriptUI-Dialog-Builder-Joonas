@@ -413,17 +413,21 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			var alignment = '';
 			if ( parentOrientation === 'column' ) {
 				alignment =
-				style.alignment === 'top' && 'left' ||
-				style.alignment === 'bottom' && 'right' ||
-				style.alignment;
+					style.alignment === 'top' && 'left' ||
+					style.alignment === 'bottom' && 'right' ||
+					style.alignment;
 			}
 			else {
 				alignment =
-				style.alignment === 'left' && 'top' ||
-				style.alignment === 'right' && 'bottom' ||
-				style.alignment;
+					style.alignment === 'left' && 'top' ||
+					style.alignment === 'right' && 'bottom' ||
+					style.alignment;
 			}
-			styleBlock += tabsies + jsxVarName + '.alignment = "' + alignment + '"; \n';
+			
+			var alignC = data.items[ 'item-' + parentId ].style.alignChildren;
+			alignment = parentOrientation === 'column' ? ('["' + alignment + '","' + alignC[1] + '"]') : ('["' +alignC[0] + '","' + alignment + '"]');
+			
+			styleBlock += tabsies + jsxVarName + '.alignment = ' + alignment + '; \n';
 		}
 	}
 	
