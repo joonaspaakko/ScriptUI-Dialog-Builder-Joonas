@@ -242,8 +242,8 @@
   }
   .panel.orientation-column > *,
   .group.orientation-column > * {
-    line-height: 14px;
-    min-height: 14px;
+    line-height: 13px;
+    min-height: 13px;
   }
   
   .button {
@@ -269,7 +269,7 @@
       min-height: 13px;
       line-height: 13px;
       padding: 0px 5px;
-      margin: 0 0 -24px 10px !important;
+      margin: 0 0 -24px 5px !important;
     }
     > .padding-box {
       align-self: stretch;
@@ -347,7 +347,7 @@
 			border-radius: 9999px;
       .text-container {
         display: block;
-        padding: 0px 13px;
+        padding: 0px 20px;
       }
 			&:hover {
 				// background: #cdcdcd;
@@ -523,6 +523,7 @@
     padding: 0px;
     margin: 0px !important;
     > .padding-box {
+      border-color: #4b4b4b;
       min-width: 0;
       min-height: 0;
       padding: 0px;

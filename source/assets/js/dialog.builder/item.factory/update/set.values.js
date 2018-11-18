@@ -186,7 +186,17 @@ item.update.set_values = function( params ) {
 			var paddingBoxClass = '> .padding-box';
 			element.find('> style.spacing').remove(); // Get rid of the old one.
 			
-			val = val + 3;
+			var extraPadding = 0;
+			var parentId = params.data.items['item-' + id].parentId;
+			if ( parentId !== false ) {
+				var parentData = params.data.items['item-' + parentId];
+				var parentOrientationRow = parentData.style.orientation === 'column';
+				if ( parentOrientationRow ) {
+					extraPadding = 2;
+				}
+			}
+			
+			val = val + extraPadding;
 			
 			$(
 			'<style class="spacing">' +

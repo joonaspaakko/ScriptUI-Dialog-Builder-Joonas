@@ -47,31 +47,6 @@
 		"rFN": 0,
 		"uCM": 0
 		},
-	"/source/_includes/_modules/info-text.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "/build/_includes/_modules/info-text.html",
-		"oF": 1
-		},
-	"/source/_includes/_modules/info-text.md": {
-		"cB": 0,
-		"cS": 0,
-		"eF": 1,
-		"eL": 1,
-		"ema": 1,
-		"eSQ": 1,
-		"ft": 4096,
-		"oA": 0,
-		"oAP": "/source/_includes/_modules/info-text.html",
-		"oF": 3,
-		"oFM": 0,
-		"oS": 0,
-		"pHT": 0,
-		"pME": 1,
-		"rFN": 0,
-		"uCM": 0
-		},
 	"/source/_includes/footer.kit": {
 		"cB": 0,
 		"ft": 2048,
@@ -7296,16 +7271,6 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/dialog.builder/modules/custom.cursor.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/assets/js/dialog.builder/modules/info.js": {
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/dialog.builder/modules/info.min.js",
 		"oF": 1,
 		"sC": 0,
 		"tS": 0

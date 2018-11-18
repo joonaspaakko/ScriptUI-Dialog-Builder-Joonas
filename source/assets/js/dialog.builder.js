@@ -42,7 +42,6 @@
 // @codekit-prepend "dialog.builder/modules/notifications.js";
 // @codekit-prepend "dialog.builder/modules/legend.js";
 // @codekit-prepend "dialog.builder/modules/panels.collapse.js";
-// @codekit-prepend "dialog.builder/modules/info.js";
 
 var data = local_storage.get('dialog');
 

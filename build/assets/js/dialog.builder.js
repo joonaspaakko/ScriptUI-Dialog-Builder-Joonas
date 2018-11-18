@@ -1,15 +1,15 @@
 // TEXT INFO THAT IS USED FOR MULTIPLE ITEMS
 function droplistOnWindowResize(){$(window).on("resize",function(){droplist.hide()})}// Defines how fast the number updates while dragging.
-function numberInputs(){function o(e,t,i,a){var n=e.val();if(isNaN(n))e.val(g);else{n=parseInt(n,10);var d=$("#dialog .active"),o=d.width(),s=e.hasClass("width"),l=d.height(),r=e.hasClass("height");0===n?e.removeClass("danger-zone"):s&&n<o?e.addClass("danger-zone"):s&&o<=n?e.removeClass("danger-zone"):r&&n<l?e.addClass("danger-zone"):r&&l<=n&&e.removeClass("danger-zone");var c={min:parseInt(e.attr("min"),10),max:parseInt(e.attr("max"),10),step:a||parseInt(e.attr("step"),10),modifierStep:parseInt(e.attr("modifier-step"),10)},p=(i?c.modifierStep:c.step)||1,m=n<c.min,u=n>c.max,v=m||u;switch(t){case"blur":if(v){var f=m&&c.min||u&&c.max;e.val(f)}break;case"up":n<c.max&&(n=n+p>c.max?c.max:n+p,e.val(n),g=n);break;case"down":n>c.min&&(n=n-p<c.min?c.min:n-p,e.val(n),g=n);break}}item.funnel.update(e.data("edit"))}$(".number").wrap('<div class="number-wrap">');var g,e=$(".number-wrap");$('<div class="arrow plus"></div><div class="arrow minus"></div><div class="number-overlay"></div>').appendTo(e);var t=e.find(".number"),i=e.find(".number-overlay");t.each(function(){"none"===$(this).css("display")&&$(this).closest(".number-wrap").addClass("hide")});var s,l,r=!1,c=0,p=null,m=null;$(window).on("mousedown mousemove mouseup",function(e){if("mousedown"===e.type)r=!0,s=$(e.target).parent(),l=s.find("> .number");else if("mousemove"===e.type){if(r&&mousemovePing&&l.hasClass("number")){
+function numberInputs(){function o(e,t,i,a){var n=e.val();if(isNaN(n))e.val(g);else{n=parseInt(n,10);var d=$("#dialog .active"),o=d.width(),s=e.hasClass("width"),r=d.height(),l=e.hasClass("height");0===n?e.removeClass("danger-zone"):s&&n<o?e.addClass("danger-zone"):s&&o<=n?e.removeClass("danger-zone"):l&&n<r?e.addClass("danger-zone"):l&&r<=n&&e.removeClass("danger-zone");var c={min:parseInt(e.attr("min"),10),max:parseInt(e.attr("max"),10),step:a||parseInt(e.attr("step"),10),modifierStep:parseInt(e.attr("modifier-step"),10)},p=(i?c.modifierStep:c.step)||1,m=n<c.min,u=n>c.max,v=m||u;switch(t){case"blur":if(v){var f=m&&c.min||u&&c.max;e.val(f)}break;case"up":n<c.max&&(n=n+p>c.max?c.max:n+p,e.val(n),g=n);break;case"down":n>c.min&&(n=n-p<c.min?c.min:n-p,e.val(n),g=n);break}}item.funnel.update(e.data("edit"))}$(".number").wrap('<div class="number-wrap">');var g,e=$(".number-wrap");$('<div class="arrow plus"></div><div class="arrow minus"></div><div class="number-overlay"></div>').appendTo(e);var t=e.find(".number"),i=e.find(".number-overlay");t.each(function(){"none"===$(this).css("display")&&$(this).closest(".number-wrap").addClass("hide")});var s,r,l=!1,c=0,p=null,m=null;$(window).on("mousedown mousemove mouseup",function(e){if("mousedown"===e.type)l=!0,s=$(e.target).parent(),r=s.find("> .number");else if("mousemove"===e.type){if(l&&mousemovePing&&r.hasClass("number")){
 // if ( dragStartElement.data('edit') === 'margins' ) {
 // 	$('body').addClass('dragging-margins');
 // }
 // dragWrapper.find('.number-overlay').css({ position: 'fixed' });
 if(mousemovePing=!1,e.preventDefault(),null===p)return p=Date.now(),void(m=e.screenY);var t=Date.now(),i=t-p,a=e.screenY-m,n=Math.abs(Math.round(a/i*(e.shiftKey?200:40))),d=4<n?n:0;// Poor mans slow start...
-p=t,m=e.screenY,e.pageY<c?o(l,"up",e.shiftKey,d):e.pageY>c&&o(l,"down",e.shiftKey,d),c=e.pageY}}else if("mouseup"===e.type){
+p=t,m=e.screenY,e.pageY<c?o(r,"up",e.shiftKey,d):e.pageY>c&&o(r,"down",e.shiftKey,d),c=e.pageY}}else if("mouseup"===e.type){
 // dragStartElement.removeClass('danger-zone');
 // dragWrapper.find('.number-overlay').css({ position: 'absolute' });
-r&&l.length;r=!1}}),
+l&&r.length;l=!1}}),
 // I tried to emulate native functionality by making it so that
 // single click simply places the caret and double click selects the
 // text, but ended up leaving that out. I liked it better that the
@@ -27,42 +27,42 @@ o(i,38===t?"up":40===t?"down":"numberEntry",e.shiftKey)})}function exportCode(){
 var e=new ClipboardJS(".btn.copy",{text:function(){return n.getValue()}});e.on("success",function(e){var t=$(e.trigger),i=t.find(".fa-check"),a=t.find(".fa-clipboard-list");i.addClass("rotateIn"),a.hide(),setTimeout(function(){i.removeClass("rotateIn"),a.show()},750)}),e.on("error",function(e){var t=$(e.trigger),i=t.find(".fa-times"),a=t.find(".fa-clipboard-list");i.addClass("tada"),a.hide(),setTimeout(function(){n.execCommand("selectAll"),i.removeClass("tada"),a.show()},750)})}function getJSX(c){var p="",m={},u={dialog:"",tab:""},// Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
 v={name:"",parent:""},f=[];// JUST DO IT
 // Creates rest of the counters based on the "Add items" panel...
-$("#panel-new-item-wrap ul li").each(function(){u[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),g=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,o=a.type,s=a.id,l=a.style,r=!1;e===g-1&&(r=!0),p+=makeJSXitem(t,c,u,m,o,s,n,d,l,v,f,r)}),p}function makeJSXitem(e,t,i,a,n,d,o,s,l,r,c,p){var m="",u=n.toLowerCase();++i[u];var v=customVarNames(u,s,i);a[d]=v;var f=a[o];
+$("#panel-new-item-wrap ul li").each(function(){u[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),g=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,o=a.type,s=a.id,r=a.style,l=!1;e===g-1&&(l=!0),p+=makeJSXitem(t,c,u,m,o,s,n,d,r,v,f,l)}),p}function makeJSXitem(e,t,i,a,n,d,o,s,r,l,c,p){var m="",u=n.toLowerCase();++i[u];var v=customVarNames(u,s,i);a[d]=v;var f=a[o];
 // If current item is a parent...
-"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+v.toUpperCase()+"\n",m+="// "+Array(v.length+1).join("=")+"\n"):r.parent!==f&&r.name!==f&&(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"));var g=$("#dialog");
+"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+v.toUpperCase()+"\n",m+="// "+Array(v.length+1).join("=")+"\n"):l.parent!==f&&l.name!==f&&(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"));var g=$("#dialog");
 // This is where each item is first added
-switch(n){case"Dialog":m+="var "+v+' = new Window("'+u+'"); \n';break;case"ListBox":case"DropDownList":var h=l.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+v+'_array = ["'+h.join('","')+'"]; \n',m+="var "+v+" = "+a[o]+'.add("'+u+'", undefined, '+v+"_array",void 0!==l.selection&&"ListBox"===n&&1<l.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+v+" = "+a[o]+'.add("panel"); \n';break;case"TreeView":var b=g.find('[data-item-id="'+d+'"]'),y=0<l.preferredSize[0]?l.preferredSize[0]:Math.round(b.width()),w=0<l.preferredSize[1]?l.preferredSize[1]:Math.round(b.height());m+="var "+v+" = "+a[o]+'.add("'+n.toLowerCase()+'", [0,0,'+(y+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=g.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+v+" = "+a[o]+'.add("'+C+'", "'+l.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===l.text?0:l.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+v+" = "+a[o]+'.add("'+u+'"'+k+"); \n"}r.name=v,r.parent=a[o];var T=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,o,s,l,v,c)+T;
+switch(n){case"Dialog":m+="var "+v+' = new Window("'+u+'"); \n';break;case"ListBox":case"DropDownList":var h=r.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+v+'_array = ["'+h.join('","')+'"]; \n',m+="var "+v+" = "+a[o]+'.add("'+u+'", undefined, '+v+"_array",void 0!==r.selection&&"ListBox"===n&&1<r.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+v+" = "+a[o]+'.add("panel"); \n';break;case"TreeView":var b=g.find('[data-item-id="'+d+'"]'),y=0<r.preferredSize[0]?r.preferredSize[0]:Math.round(b.width()),w=0<r.preferredSize[1]?r.preferredSize[1]:Math.round(b.height());m+="var "+v+" = "+a[o]+'.add("'+n.toLowerCase()+'", [0,0,'+(y+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=g.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+v+" = "+a[o]+'.add("'+C+'", "'+r.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===r.text?0:r.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+v+" = "+a[o]+'.add("'+u+'"'+k+"); \n"}l.name=v,l.parent=a[o];var T=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,o,s,r,v,c)+T;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
 var S=t.order[e+1];if(void 0!==S){var _=t.items["item-"+S],P="TreeItem"===n&&"TreeItem"!==_.type;P&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):P&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
 // When the item type is not a fitting variable name...
 function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
-a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,o,s,l,r){var c="",p="    ";
+a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,o,s,r,l){var c="",p="    ";
 // var counter = counters[ type.toLowerCase() ];
 if("TreeItem"===a){var m=e.items["item-"+n].expanded,u=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),v=!1;$.each(u,function(){$(this).hasClass("expanded")||(v=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
-}),m&&!1===v&&r.push(p+l+".expanded = true; \n")}else if("Divider"===a)c+=p+l+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+l+".minvalue = 0; \n",c+=p+l+".maxvalue = 100; \n",c+=p+l+".value = 50; \n";else{if(
+}),m&&!1===v&&l.push(p+r+".expanded = true; \n")}else if("Divider"===a)c+=p+r+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+r+".minvalue = 0; \n",c+=p+r+".maxvalue = 100; \n",c+=p+r+".value = 50; \n";else{if(
 // DROP LIST SELECTION
-"DropDownList"===a&&void 0!==s.selection&&(c+=p+l+".selection = "+s.selection+"; \n"),"ListBox"===a&&void 0!==s.selection&&0<s.selection.length)c+=p+l+".selection = "+(1<s.selection.length?JSON.stringify(s.selection):s.selection)+"; \n";
+"DropDownList"===a&&void 0!==s.selection&&(c+=p+r+".selection = "+s.selection+"; \n"),"ListBox"===a&&void 0!==s.selection&&0<s.selection.length)c+=p+r+".selection = "+(1<s.selection.length?JSON.stringify(s.selection):s.selection)+"; \n";
 // TABBED PANEL SELECTION
 // Due to me being an idiot, it's better for our insanity if tabbed panel selection defined when the selected item is created.
-"Tab"===a&&e.items["item-"+d].style.selection===n&&(c+=p+i[d]+".selection = "+l+"; \n"),
+"Tab"===a&&e.items["item-"+d].style.selection===n&&(c+=p+i[d]+".selection = "+r+"; \n"),
 // TABBED PANEL ALIGN CHILDREN
-"TabbedPanel"===a&&(c+=p+l+'.alignChildren = "fill"; \n');
+"TabbedPanel"===a&&(c+=p+r+'.alignChildren = "fill"; \n');
 // TEXT
-var f=item.list[a.toLowerCase()](!1).multiline;if(void 0!==s.text&&0<s.text.length)c+=p+l+'.text = "'+(f?s.text.split("\n").join("\\r"):s.text)+'"; \n';
+var f=item.list[a.toLowerCase()](!1).multiline;if(void 0!==s.text&&0<s.text.length)c+=p+r+'.text = "'+(f?s.text.split("\n").join("\\r"):s.text)+'"; \n';
 // CHECKED
 // PREFERRED SIZE
-if(!0===s.checked&&(c+=p+l+".value = "+s.checked+"; \n"),void 0!==s.preferredSize&&"TreeView"!==a){var g=s.preferredSize[0],h=s.preferredSize[1],b=item.list[a.toLowerCase()](!1).parent?"preferredSize":"minimumSize";0<g&&(c+=p+l+"."+b+".width = "+g+"; \n"),0<h&&(c+=p+l+"."+b+".height = "+h+"; \n")}
+if(!0===s.checked&&(c+=p+r+".value = "+s.checked+"; \n"),void 0!==s.preferredSize&&"TreeView"!==a){var g=s.preferredSize[0],h=s.preferredSize[1],b=item.list[a.toLowerCase()](!1).parent?"preferredSize":"minimumSize";0<g&&(c+=p+r+"."+b+".width = "+g+"; \n"),0<h&&(c+=p+r+"."+b+".height = "+h+"; \n")}
 // JUSTIFY
-if(void 0!==s.justify&&"left"!==s.justify||"Button"===a&&"center"!==s.justify)c+=p+(0<(void 0===s.text?0:s.text.indexOf("\n"))?"// ":"")+l+'.justify = "'+s.justify+'"; \n';
+if(void 0!==s.justify&&"left"!==s.justify||"Button"===a&&"center"!==s.justify)c+=p+(0<(void 0===s.text?0:s.text.indexOf("\n"))?"// ":"")+r+'.justify = "'+s.justify+'"; \n';
 // ORIENTATION
 // MARGINS
-if(void 0!==s.orientation&&(c+=p+l+'.orientation = "'+s.orientation+'"; \n'),
+if(void 0!==s.orientation&&(c+=p+r+'.orientation = "'+s.orientation+'"; \n'),
 // ALIGN CHILDREN
-void 0!==s.alignChildren&&(c+=p+l+'.alignChildren = ["'+s.alignChildren[0]+'","'+s.alignChildren[1]+'"]; \n'),
+void 0!==s.alignChildren&&(c+=p+r+'.alignChildren = ["'+s.alignChildren[0]+'","'+s.alignChildren[1]+'"]; \n'),
 // SPACING
-void 0!==s.spacing&&(c+=p+l+".spacing = "+s.spacing+"; \n"),void 0!==s.margins)c+=p+l+".margins = "+("object"==typeof s.margins?"["+s.margins[3]+","+s.margins[0]+","+s.margins[1]+","+s.margins[2]+"]":s.margins)+"; \n";
+void 0!==s.spacing&&(c+=p+r+".spacing = "+s.spacing+"; \n"),void 0!==s.margins)c+=p+r+".margins = "+("object"==typeof s.margins?"["+s.margins[3]+","+s.margins[0]+","+s.margins[1]+","+s.margins[2]+"]":s.margins)+"; \n";
 // ALIGNMENT
-if(null!=s.alignment){var y=e.items["item-"+d].style.orientation,w="";w="column"===y?("top"===s.alignment?"left":"bottom"===s.alignment&&"right")||s.alignment:("left"===s.alignment?"top":"right"===s.alignment&&"bottom")||s.alignment;var C=e.items["item-"+d].style.alignChildren;c+=p+l+".alignment = "+(w="column"===y?'["'+w+'","'+C[1]+'"]':'["'+C[0]+'","'+w+'"]')+"; \n"}}return c}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
+if(null!=s.alignment){var y=e.items["item-"+d].style.orientation,w="";w="column"===y?("top"===s.alignment?"left":"bottom"===s.alignment&&"right")||s.alignment:("left"===s.alignment?"top":"right"===s.alignment&&"bottom")||s.alignment;var C=e.items["item-"+d].style.alignChildren;c+=p+r+".alignment = "+(w="column"===y?'["'+w+'","'+C[1]+'"]':'["'+C[0]+'","'+w+'"]')+"; \n"}}return c}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
 /* exported notification */
 function notification(e,t,i){
 // "I think that padding makes you look fat..."
@@ -125,10 +125,10 @@ var a=e.type.toLowerCase();item.list[a](!1).parent&&$("<ul></ul>").insertAfter(i
 // No data in ul, so gotta go a step higher to look for the data...
 var n,d=e.event.match(/^drag/);
 // Append to parent items
-n=t?d?e.previousIsParent?"insertAfter":"prependTo":"appendTo":"insertAfter",$(i)[n](e.target)},dialogPreview:function(e){var t,i,a=item.list[e.type.toLowerCase()](e).previewHtml,n=e.target.is("ul")?e.target.parent("li"):e.target,d=n.data("parent"),o=n.data("item-id"),s=$("#dialog"),l=s.find('[data-item-id="'+o+'"]'),r=e.event.match(/^drag/);
+n=t?d?e.previousIsParent?"insertAfter":"prependTo":"appendTo":"insertAfter",$(i)[n](e.target)},dialogPreview:function(e){var t,i,a=item.list[e.type.toLowerCase()](e).previewHtml,n=e.target.is("ul")?e.target.parent("li"):e.target,d=n.data("parent"),o=n.data("item-id"),s=$("#dialog"),r=s.find('[data-item-id="'+o+'"]'),l=e.event.match(/^drag/);
 // No data in ul, so gotta go a step higher to look for the data...
 // Append to parent items
-i=d?(t=r?e.previousIsParent?"insertAfter":"prependTo":"appendTo","Dialog"===e.type?s:r&&e.previousIsParent?l:l.find("> .padding-box")):(t="insertAfter",s.find('[data-item-id="'+o+'"]')),$(a)[t](i),"DropDownList"===e.type?droplist.init($('#dialog [data-item-id="'+e.id+'"]'),e.id):"RadioButton"===e.type||"Checkbox"===e.type?radiocheck.init($('#dialog [data-item-id="'+e.id+'"]'),e.id,e.type):"ListBox"===e.type&&listbox.init($('#dialog [data-item-id="'+e.id+'"]'),e.id)}},item.get={},item.get.order=function(){var t=[];return $("#panel-tree-view-wrap .contents [data-item-id]").each(function(){var e=$(this).data("item-id");t.push(e)}),t},item.get.id=function(){var e=item.get.order();return Math.max.apply(null,e)+1},item.activate=function(e){droplist.hide();
+i=d?(t=l?e.previousIsParent?"insertAfter":"prependTo":"appendTo","Dialog"===e.type?s:l&&e.previousIsParent?r:r.find("> .padding-box")):(t="insertAfter",s.find('[data-item-id="'+o+'"]')),$(a)[t](i),"DropDownList"===e.type?droplist.init($('#dialog [data-item-id="'+e.id+'"]'),e.id):"RadioButton"===e.type||"Checkbox"===e.type?radiocheck.init($('#dialog [data-item-id="'+e.id+'"]'),e.id,e.type):"ListBox"===e.type&&listbox.init($('#dialog [data-item-id="'+e.id+'"]'),e.id)}},item.get={},item.get.order=function(){var t=[];return $("#panel-tree-view-wrap .contents [data-item-id]").each(function(){var e=$(this).data("item-id");t.push(e)}),t},item.get.id=function(){var e=item.get.order();return Math.max.apply(null,e)+1},item.activate=function(e){droplist.hide();
 // Write active item id to local storage
 var t=local_storage.get("dialog");t.activeId=e,local_storage.set("dialog",t);
 // Change the active element in the treeview.
@@ -160,9 +160,9 @@ a.order=(i=[],$("#tree-view-contents [data-item-id]").each(function(){var e=$(th
 // Update parent id
 a.items["item-"+e].parentId=t,
 // Write back to local storage...
-local_storage.set("dialog",a)},dialogPreview:function(e,t,i,a,n){var d=$("#dialog"),o=d.find('[data-item-id="'+e+'"]'),s=d.find('[data-item-id="'+n+'"]'),l="insertAfter"===a?s:s.find("> .padding-box");
+local_storage.set("dialog",a)},dialogPreview:function(e,t,i,a,n){var d=$("#dialog"),o=d.find('[data-item-id="'+e+'"]'),s=d.find('[data-item-id="'+n+'"]'),r="insertAfter"===a?s:s.find("> .padding-box");
 // If you move a checked radiobutton to a parent that already has a checked radio button, uncheck the radiobutton that was moved.
-if(o[a](l),"RadioButton"===i){var r=o.find(".radiobutton"),c=r.hasClass("on"),p=0,m=':not([data-item-type="RadioButton"],.spacing)';if(o.nextUntil(m).add(o.prevUntil(m)).each(function(){$(this).find(".radiobutton").hasClass("on")&&++p}),0<p&&c){r.removeClass("on");var u=local_storage.get("dialog");u.items["item-"+e].style.checked=!1,local_storage.set("dialog",u)}}}},
+if(o[a](r),"RadioButton"===i){var l=o.find(".radiobutton"),c=l.hasClass("on"),p=0,m=':not([data-item-type="RadioButton"],.spacing)';if(o.nextUntil(m).add(o.prevUntil(m)).each(function(){$(this).find(".radiobutton").hasClass("on")&&++p}),0<p&&c){l.removeClass("on");var u=local_storage.get("dialog");u.items["item-"+e].style.checked=!1,local_storage.set("dialog",u)}}}},
 // @codekit-append "get.values.js";
 // @codekit-append "set.values.js";
 item.update={},item.update.style={},item.update.style.localStorage=function(e,t){var i=item.update.get_values(e);return t.items["item-"+t.activeId].style[e]=i[e],local_storage.set("dialog",t),t;// Changed data is force fed to the two functions below
@@ -177,7 +177,7 @@ e.order=item.get.order(),
 local_storage.set("dialog",e)},item.update.get_values=function(e){var t={},i=$("#panel-edit-style-wrap"),a=i.find('[data-edit^="'+e+'"]');switch(e){case"text":t.text=a.val();break;case"listItems":t.listItems=a.val();break;case"justify":t.justify=i.find('[data-edit^="justify"].active').data("value");break;case"margins":
 // All sides share the same value.
 // - single number value
-if(0<i.find(".n-3-4.hidden").length)t.margins=parseInt(i.find(".margin-inputs .top").val(),10);else{var n=[];i.find('[data-edit="margins"]').each(function(){n.push(parseInt($(this).val(),10))}),t.margins=n}break;case"preferredSize":var d=parseInt(i.find("input.width").val(),10),o=parseInt(i.find("input.height").val(),10);t.preferredSize=[d,o];break;case"orientation":t.orientation=a.find("option:selected").val();break;case"spacing":t.spacing=parseInt(a.val(),10);break;case"alignChildren":var s=i.find('#align-children-horizontal[data-edit="alignChildren"] option:selected').val(),l=i.find('#align-children-vertical[data-edit="alignChildren"] option:selected').val();t.alignChildren=[s,l];break;case"alignment":!1===a.prop("disabled")?t.alignment=a.find("option:selected").val():t.alignment=null;break}
+if(0<i.find(".n-3-4.hidden").length)t.margins=parseInt(i.find(".margin-inputs .top").val(),10);else{var n=[];i.find('[data-edit="margins"]').each(function(){n.push(parseInt($(this).val(),10))}),t.margins=n}break;case"preferredSize":var d=parseInt(i.find("input.width").val(),10),o=parseInt(i.find("input.height").val(),10);t.preferredSize=[d,o];break;case"orientation":t.orientation=a.find("option:selected").val();break;case"spacing":t.spacing=parseInt(a.val(),10);break;case"alignChildren":var s=i.find('#align-children-horizontal[data-edit="alignChildren"] option:selected').val(),r=i.find('#align-children-vertical[data-edit="alignChildren"] option:selected').val();t.alignChildren=[s,r];break;case"alignment":!1===a.prop("disabled")?t.alignment=a.find("option:selected").val():t.alignment=null;break}
 // console.table( data );
 return t},
 // Updates the Dialog preview look
@@ -187,11 +187,11 @@ case"text":if("Dialog"===i)d.find("#dialog-title-bar div").text(t);else if("Pane
 // Makes sure the panel container is always wide enough to cover the title
 o.css({minWidth:s.width()+22})}
 // type === 'RadioButton' || type === 'Checkbox' || type === 'DropDownList'
-else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else{var l=d.find(".text-container"),r=item.list[i.toLowerCase()](!1).multiline,c=t.indexOf("\n");
+else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else{var r=d.find(".text-container"),l=item.list[i.toLowerCase()](!1).multiline,c=t.indexOf("\n");
 // #U7FTZMRVYxVqiArfdgQeQjMRpx6R → dialog.scss
 // Multiline text yo!
 // Visually locks multiline text alignment to left
-l.removeClass("multiline"),r&&0<c&&l.addClass("multiline"),l.text(t)}break;
+r.removeClass("multiline"),l&&0<c&&r.addClass("multiline"),r.text(t)}break;
 // LIST ITEMS
 case"listItems":"DropDownList"===i?
 /*global droplist*/
@@ -215,12 +215,12 @@ d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
 case"orientation":d.removeClass(function(e,t){return(t.match(/(^|\s)orientation-\S+/g)||[]).join(" ")}).addClass("orientation-"+t);break;
 // SPACING
-case"spacing":var D=d.find("> .padding-box"),j="> .padding-box";D.find("> style.spacing").remove(),// Get rid of the old one.
-t+=3,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(D);break;
+case"spacing":var D=d.find("> .padding-box"),j="> .padding-box";D.find("> style.spacing").remove();// Get rid of the old one.
+var L=0,V=e.data.items["item-"+n].parentId;if(!1!==V)"column"===e.data.items["item-"+V].style.orientation&&(L=2);t+=L,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(D);break;
 // ALIGN CHILDREN
 case"alignChildren":d.removeClass(function(e,t){return(t.match(/(^|\s)align-children-\S+/g)||[]).join(" ")}),d.addClass("align-children-horizontal-"+t[0]),d.addClass("align-children-vertical-"+t[1]);break;
 // ALIGNMENT
-case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var L="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+L[0]),d.addClass("alignment-vertical-"+L[1])}break}};var tabbedPanel={onCreate:function(e){
+case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var A="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+A[0]),d.addClass("alignment-vertical-"+A[1])}break}};var tabbedPanel={onCreate:function(e){
 // There's no point in having a tabbed panel with less than
 // two items, so this section makes sure that when a tabbed
 // panel is created, two child tabs are created as well.
@@ -257,9 +257,9 @@ onStartSort:function(e){if(e.hasClass("tab")){$("body").addClass("dragging-tab")
 // Remove dragged tab from the dialog preview. The next function (
 // onDragSortDrop ) triggers update that makes sure it is all up to date.
 // So even if you decide to drop it where you picked it up, it is put back.
-onSort:function(e){var t=e.hasClass("tab"),i=e.hasClass("tabbedpanel");if(t||i||0<$('#dialog [data-item-id="'+e.data("item-id")+'"]').closest(".tab").length){$("body").removeClass("dragging-tab");var a=local_storage.get("dialog"),n=e.data("item-id"),d=a.items["item-"+n].parentId,o=$("#dialog"),s=o.find('[data-item-id="'+d+'"]'),l=s.find("> .tab-container");o.find('.tab-container [data-tab-id="'+n+'"]').appendTo(l);
+onSort:function(e){var t=e.hasClass("tab"),i=e.hasClass("tabbedpanel");if(t||i||0<$('#dialog [data-item-id="'+e.data("item-id")+'"]').closest(".tab").length){$("body").removeClass("dragging-tab");var a=local_storage.get("dialog"),n=e.data("item-id"),d=a.items["item-"+n].parentId,o=$("#dialog"),s=o.find('[data-item-id="'+d+'"]'),r=s.find("> .tab-container");o.find('.tab-container [data-tab-id="'+n+'"]').appendTo(r);
 // Sort the shelf
-var r=s.find("> .padding-box > .tab");tab.containerSort(r,l),item.activate(n),
+var l=s.find("> .padding-box > .tab");tab.containerSort(l,r),item.activate(n),
 // Build Item Properties panel
 edit_style_panel.build(a.items["item-"+n].style),
 // Update
@@ -322,7 +322,7 @@ $("#drop-list").remove();var i=$(this);if(i.hasClass("open"))droplist.hide();els
 // Second click on the .drop-list-wrap...
 })},backbone:function(e){var t=null,i=e.find(".items").children();i.each(function(){var e=$(this).width();t<e&&(t=e)}),
 // listWrap.width( maxWidth );
-i.width(t)},inspector:function(e,t){var i="",a=t.find(".selected").index();return t.find(".items").children().each(function(e){var t=$(this).text();i+='<li class="option'+("-"===t?" horizontal-line":"")+(e===a?" selected":"")+'">'+t+"</li>"}),i},makeList:function(e,t,i){var a=t.offset().top,n=t.offset().left,d=t.outerWidth(),o=t.outerHeight();$('<div id="drop-list"><ul>'+i+"</ul></div>").appendTo("#dialog-section");var s=$("#drop-list"),l=2*parseInt(s.css("border-left-width"),10),r=2*parseInt(s.css("padding-left"),10);s.css({top:a+o,left:n-($(window).width()-$("#dialog-overlay-wrap").width()),width:d-(l+r)})},set:function(e,t,d){var o=e.find(".items");o.children().remove();var s=!1;
+i.width(t)},inspector:function(e,t){var i="",a=t.find(".selected").index();return t.find(".items").children().each(function(e){var t=$(this).text();i+='<li class="option'+("-"===t?" horizontal-line":"")+(e===a?" selected":"")+'">'+t+"</li>"}),i},makeList:function(e,t,i){var a=t.offset().top,n=t.offset().left,d=t.outerWidth(),o=t.outerHeight();$('<div id="drop-list"><ul>'+i+"</ul></div>").appendTo("#dialog-section");var s=$("#drop-list"),r=2*parseInt(s.css("border-left-width"),10),l=2*parseInt(s.css("padding-left"),10);s.css({top:a+o,left:n-($(window).width()-$("#dialog-overlay-wrap").width()),width:d-(r+l)})},set:function(e,t,d){var o=e.find(".items");o.children().remove();var s=!1;
 // Rebuild the list
 // Makes it so that if the selected item is removed, the selected item is swapped to the first item.
 // This will prevent bunch of other issues...
@@ -343,13 +343,13 @@ numberInputs(),
 $(".pretty-classic").prettyDropdown({classic:!0,customClass:"arrow triangle",selectedMarker:'<i class="fas fa-check"></i>'}),$("#panel-edit-style-wrap textarea").each(function(){
 /*global autosize*/
 /*eslint no-undef: ["error", { "typeof": true }] */
-autosize(this)});var d=item.list[i](!1).defaultStyle.text,o=item.list[i](!1).multiline,s=$('#panel-edit-style-wrap [data-edit="text"]'),l=s.parent();
+autosize(this)});var d=item.list[i](!1).defaultStyle.text,o=item.list[i](!1).multiline,s=$('#panel-edit-style-wrap [data-edit="text"]'),r=s.parent();
 // Icon on the text container telling the user they can't add linebreaks to current item
-!d||o||l.hasClass("is-not-multiline")||l.addClass("is-not-multiline"),
+!d||o||r.hasClass("is-not-multiline")||r.addClass("is-not-multiline"),
 // SELECT TEXT INPUT IN THE ITEM PROPERTIES PANEL
 // If the item has default text, then try to select it. If it doesn't have default text, it never will.
 // This check is used because when the textarea doesn't exist, there's nothing to focus in so it just basically does a site wide Cmd+A, which is not cool...
-"dialog"!==t&&d&&(s.focus(),s.select())}var r=n.editInfo;r&&$('<div class="edit-info">'+r+"</div>").appendTo(a)}},panel_edit_style_html={
+"dialog"!==t&&d&&(s.focus(),s.select())}var l=n.editInfo;l&&$('<div class="edit-info">'+l+"</div>").appendTo(a)}},panel_edit_style_html={
 // Mayhaps in hindsight this wasn't the best way to build this html...
 // but what is done is done. Honestly, I look at this and I'm like oh
 // boy... I have absolutely no idea why I made it this way. My best
@@ -374,7 +374,7 @@ i=$('<h2 class="orientation-heading" title="The layout orientation of children i
 i=$('<input class="number" style="display: none;"><div class="spacing-container"><input class="number" data-edit="spacing" value="'+t+'" min="0" max="300" step="1" modifier-step="5"></div><input class="number" style="display: none;">');break;case"alignChildren":var n=$("#dialog .active").hasClass("orientation-column");i=$('<h2 title="Tells the layout manager how unlike-sized children of this container should be aligned within a column or row. \n\nOrder of creation determines which children are at the top of a column or the left of a row; the earlier a child is created, the closer it is to the top or left of its column or row. If defined, alignment for a child element overrides the alignChildren setting for the parent container. See alignment property for values.">Align Children</h2><div class="align-children"><select id="align-children-horizontal" data-edit="alignChildren" name="qty" class="pretty-classic"><option>left</option><option>center</option><option>right</option>'+(n?"<option>fill</option>":"")+'</select><select id="align-children-vertical" data-edit="alignChildren" name="qty" class="pretty-classic"><option>top</option><option>center</option><option>bottom</option>'+(n?"":"<option>fill</option>")+"</select></div>");
 // var horizontalValue = !isColumn && value[0] === 'fill' ? 'center' : value[0];
 // var verticalValue   =  isColumn && value[1] === 'fill' ? 'center' : value[1];
-var d=t[0],o=t[1];i.find('#align-children-horizontal option:contains("'+d+'")').prop("selected",!0),i.find('#align-children-vertical option:contains("'+o+'")').prop("selected",!0);break;case"alignment":var s,l=$("#dialog .active").parent("div").parent("div").hasClass("orientation-column"),r=l?"column":"row",c=l?"horizontal":"vertical",p=null===t,m=l?["left","center","right","fill"]:["top","center","bottom","fill"],u="";$.each(m,function(e,t){u+='<option value="'+t+'">'+t+"</option>"}),i=$('<div class="alignment-container"><h2 title="The alignment style for this element. If defined, this value overrides the alignChildren setting for the parent container.">Alignment <span>(Self)</span></h2><div class="alignment-checkbox"><input type="checkbox" id="alignment-checkbox-input" name="" '+(p?"":"checked")+' /><label for="alignment-checkbox-input"></label></div><br>'+('<div id="alignment-'+c+'"><select name="qty" class="pretty-classic" data-edit="alignment"  data-edit-value="'+c+'" '+(p?"disabled":"")+" >"+u+"</select></div>")+"</div>"),"column"===r?(s=("top"===t?"left":"bottom"===t&&"right")||t,i.find('#alignment-horizontal option:contains("'+(null===t?"center":s)+'")').prop("selected",!0)):(s=("left"===t?"top":"right"===t&&"bottom")||t,i.find('#alignment-vertical option:contains("'+(null===t?"center":s)+'")').prop("selected",!0));break}return i}},propsPanel=$("#panel-edit-style-wrap");
+var d=t[0],o=t[1];i.find('#align-children-horizontal option:contains("'+d+'")').prop("selected",!0),i.find('#align-children-vertical option:contains("'+o+'")').prop("selected",!0);break;case"alignment":var s,r=$("#dialog .active").parent("div").parent("div").hasClass("orientation-column"),l=r?"column":"row",c=r?"horizontal":"vertical",p=null===t,m=r?["left","center","right","fill"]:["top","center","bottom","fill"],u="";$.each(m,function(e,t){u+='<option value="'+t+'">'+t+"</option>"}),i=$('<div class="alignment-container"><h2 title="The alignment style for this element. If defined, this value overrides the alignChildren setting for the parent container.">Alignment <span>(Self)</span></h2><div class="alignment-checkbox"><input type="checkbox" id="alignment-checkbox-input" name="" '+(p?"":"checked")+' /><label for="alignment-checkbox-input"></label></div><br>'+('<div id="alignment-'+c+'"><select name="qty" class="pretty-classic" data-edit="alignment"  data-edit-value="'+c+'" '+(p?"disabled":"")+" >"+u+"</select></div>")+"</div>"),"column"===l?(s=("top"===t?"left":"bottom"===t&&"right")||t,i.find('#alignment-horizontal option:contains("'+(null===t?"center":s)+'")').prop("selected",!0)):(s=("left"===t?"top":"right"===t&&"bottom")||t,i.find('#alignment-vertical option:contains("'+(null===t?"center":s)+'")').prop("selected",!0));break}return i}},propsPanel=$("#panel-edit-style-wrap");
 // EDIT PANEL CLICK EVENTS
 // JUSTIFY
 propsPanel.on("click",".justify-icon",function(){$(this).addClass("active").siblings().removeClass("active")}),
@@ -442,7 +442,7 @@ $('<div id="notifications-wrap"></div>').appendTo("#dialog-overlay-wrap"),
 //
 // };
 // GLOBAL SHORTCUT(S)
-$(document).on("keydown",function(e){69==(e.keyCode?e.keyCode:e.which)&&e.altKey&&$(".l-export").trigger("click")}),shortcutExport(),$(".panel-wrap .collapse").on("click",function(){var e=$(this).parent(),t=e.hasClass("collapse")?"removeClass":"addClass";e[t]("collapse"),$("#dialog-section").backstretch("resize")}),$("#bottom-left-toolbar .info").on("click",function(){var e=$(this).find(".content").html();modal.init(e),$("#modal-window").find(".v").html($("body").data().version),$("#modal-window-content").css({position:"absolute",top:0})});
+$(document).on("keydown",function(e){69==(e.keyCode?e.keyCode:e.which)&&e.altKey&&$(".l-export").trigger("click")}),shortcutExport(),$(".panel-wrap .collapse").on("click",function(){var e=$(this).parent(),t=e.hasClass("collapse")?"removeClass":"addClass";e[t]("collapse"),$("#dialog-section").backstretch("resize")});
 // CORE
 // ****
 // @codekit-prepend "dialog.builder/item.factory/items.js";
@@ -482,7 +482,6 @@ $(document).on("keydown",function(e){69==(e.keyCode?e.keyCode:e.which)&&e.altKey
 // @codekit-prepend "dialog.builder/modules/notifications.js";
 // @codekit-prepend "dialog.builder/modules/legend.js";
 // @codekit-prepend "dialog.builder/modules/panels.collapse.js";
-// @codekit-prepend "dialog.builder/modules/info.js";
 var data=local_storage.get("dialog");
 // START FROM NOTHING...
 if(null===data){var params={id:0,type:"Dialog",parentId:!1,target:$("#panel-tree-view-wrap .contents"),event:"load"};item.funnel.create(params)}
@@ -559,13 +558,13 @@ item.funnel.create(o)},
 item.drag.duplicate=function(e,d){var t=e.prev(),i=e.parent("ul"),a=t.length<1,o=t.data("parent"),s=a?i:t;// Target previous item. If it doesn't exist, target parent item.
 // Dolly becomes a real sheep by way of eliminating the original
 $("#panel-tree-view-wrap .dolly").removeClass("dolly"),e.remove(),$("body").removeClass("duplicate-item");// The function of this class is to change the cursor
-var l,r=local_storage.get("dialog"),c=$("#panel-tree-view-wrap"),p=Math.abs(e.data("item-id")-item.get.id());
+var r,l=local_storage.get("dialog"),c=$("#panel-tree-view-wrap"),p=Math.abs(e.data("item-id")-item.get.id());
 // Dragged item and every child with data-item-id attribute
-e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=r.items["item-"+t],a=0===e?d.target.parent("li").data("item-id"):i.parentId+p,n={id:item.get.id(),type:i.type,parentId:a,target:0===e?s:c.find('[data-item-id="'+a+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:o,sourceId:t};0===e&&(l=n.id),item.funnel.create(n)}),
+e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=l.items["item-"+t],a=0===e?d.target.parent("li").data("item-id"):i.parentId+p,n={id:item.get.id(),type:i.type,parentId:a,target:0===e?s:c.find('[data-item-id="'+a+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:o,sourceId:t};0===e&&(r=n.id),item.funnel.create(n)}),
 // Reactivate the ye olde active item
-item.activate(l);var n=(
+item.activate(r);var n=(
 // Build Item Properties panel
-r=local_storage.get("dialog")).items["item-"+l];edit_style_panel.build(n.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
+l=local_storage.get("dialog")).items["item-"+r];edit_style_panel.build(n.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
 // ACTIVATE ITEMS WHEN FOCUSED IN DIALOG PREVIEW
 dialogElem.on("focus","[contenteditable]",function(){var e=$(this),t=(e.parent().attr("id"),e.hasClass("tab")&&e.data("tab-id")||e.closest("[data-item-id]").data("item-id"));item.activate(t);
 // Build Item Properties panel
