@@ -7461,6 +7461,12 @@
 		"oA": 0,
 		"oAP": "/build/index.html",
 		"oF": 0
+		},
+	"/wiki-images": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/wiki-images",
+		"oF": 0
 		}
 	},
 "hooks": [
@@ -7471,9 +7477,9 @@
 	"creationDate": 542192780,
 	"displayValue": "ScriptUI Dialog Builder",
 	"displayValueWasSetByUser": 1,
-	"iconImageName": "meme-lotr",
-	"iconImageWasSetByUser": 0,
-	"lastBuiltDate": 563974613.70229805
+	"iconImageName": "meme-fry",
+	"iconImageWasSetByUser": 1,
+	"lastBuiltDate": 564260468.38779104
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
@@ -9460,7 +9466,7 @@
 		],
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
-	"skippedFoldersString": "_cache,cache,.idea,log,_logs,logs,node_modules,/storage/framework/sessions,_ASSET_STORAGE",
+	"skippedFoldersString": "_ASSET_STORAGE,_cache,cache,.idea,log,_logs,logs,node_modules,/storage/framework/sessions,wiki-images",
 	"sourceFolderName": "source",
 	"susyVersion": 3,
 	"tsAllowSyntheticDefaultImports": 0,
