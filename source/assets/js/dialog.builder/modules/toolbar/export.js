@@ -81,7 +81,7 @@ $('#toolbar .export').on("click", function() {
 
 function exportCode() {
 	var data = local_storage.get('dialog');
-	var importJSON = '/* \nCode for Import http://scriptui.joonas.me — (Triple click to select): \n' + JSON.stringify( data ) + '\n*/ \n\n';
+	var importJSON = '/* \nCode for Import https://scriptui.joonas.me — (Triple click to select): \n' + JSON.stringify( data ) + '\n*/ \n\n';
 	var jsxItems = getJSX( data );
 	var bundle = importJSON + jsxItems + 'dialog.show();';
 	return bundle;

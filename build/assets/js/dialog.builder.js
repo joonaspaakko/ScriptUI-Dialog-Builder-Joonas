@@ -21,7 +21,7 @@ l&&r.length;l=!1}}),
 i.on("click",function(){$(this).parent().find(".number").focus()}),t.on("focus blur",function(e){var t=$(this);"focus"===e.type?(g=$(this).val(),
 // if ( overlay_dblclick === true ) {
 $(this).select()):o(t,"blur")}),e.find(".arrow").on("click",function(e){var t=$(this),i=t.parent().find(".number");t.hasClass("plus")?o(i,"up",e.shiftKey):t.hasClass("minus")&&o(i,"down",e.shiftKey)}),t.on("keyup",function(e){var t=e.keyCode?e.keyCode:e.which,i=$(this);// Arrow Up
-o(i,38===t?"up":40===t?"down":"numberEntry",e.shiftKey)})}function exportCode(){var e=local_storage.get("dialog");return"/* \nCode for Import http://scriptui.joonas.me — (Triple click to select): \n"+JSON.stringify(e)+"\n*/ \n\n"+getJSX(e)+"dialog.show();"}function clipBoardEvent(n){
+o(i,38===t?"up":40===t?"down":"numberEntry",e.shiftKey)})}function exportCode(){var e=local_storage.get("dialog");return"/* \nCode for Import https://scriptui.joonas.me — (Triple click to select): \n"+JSON.stringify(e)+"\n*/ \n\n"+getJSX(e)+"dialog.show();"}function clipBoardEvent(n){
 /*global ClipboardJS*/
 /*eslint no-undef: ["error", { "typeof": true }] */
 var e=new ClipboardJS(".btn.copy",{text:function(){return n.getValue()}});e.on("success",function(e){var t=$(e.trigger),i=t.find(".fa-check"),a=t.find(".fa-clipboard-list");i.addClass("rotateIn"),a.hide(),setTimeout(function(){i.removeClass("rotateIn"),a.show()},750)}),e.on("error",function(e){var t=$(e.trigger),i=t.find(".fa-times"),a=t.find(".fa-clipboard-list");i.addClass("tada"),a.hide(),setTimeout(function(){n.execCommand("selectAll"),i.removeClass("tada"),a.show()},750)})}function getJSX(c){var p="",m={},u={dialog:"",tab:""},// Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
