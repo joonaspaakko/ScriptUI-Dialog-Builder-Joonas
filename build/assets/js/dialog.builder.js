@@ -559,9 +559,9 @@ item.funnel.create(o)},
 item.drag.duplicate=function(e,d){var t=e.prev(),i=e.parent("ul"),a=t.length<1,o=t.data("parent"),s=a?i:t;// Target previous item. If it doesn't exist, target parent item.
 // Dolly becomes a real sheep by way of eliminating the original
 $("#panel-tree-view-wrap .dolly").removeClass("dolly"),e.remove(),$("body").removeClass("duplicate-item");// The function of this class is to change the cursor
-var l,r=local_storage.get("dialog"),c=$("#panel-tree-view-wrap");
+var l,r=local_storage.get("dialog"),c=$("#panel-tree-view-wrap"),p=Math.abs(e.data("item-id")-item.get.id());
 // Dragged item and every child with data-item-id attribute
-e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=r.items["item-"+t],a=0===e?d.target.parent("li").data("item-id"):l,n={id:item.get.id(),type:i.type,parentId:a,target:0===e?s:c.find('[data-item-id="'+a+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:o,sourceId:t};0===e&&(l=n.id),item.funnel.create(n)}),
+e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=r.items["item-"+t],a=0===e?d.target.parent("li").data("item-id"):i.parentId+p,n={id:item.get.id(),type:i.type,parentId:a,target:0===e?s:c.find('[data-item-id="'+a+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:o,sourceId:t};0===e&&(l=n.id),item.funnel.create(n)}),
 // Reactivate the ye olde active item
 item.activate(l);var n=(
 // Build Item Properties panel

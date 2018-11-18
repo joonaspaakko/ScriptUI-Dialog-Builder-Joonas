@@ -210,8 +210,10 @@ item.drag.duplicate = function( $item, container ) {
   
   $('body').removeClass('duplicate-item'); // The function of this class is to change the cursor
   
+  
   var data     = local_storage.get('dialog'),
       treeView = $('#panel-tree-view-wrap'),
+      difference = Math.abs( $item.data('item-id') - item.get.id() ),
       dupRootId;
   
   // Dragged item and every child with data-item-id attribute
@@ -219,8 +221,8 @@ item.drag.duplicate = function( $item, container ) {
     
     var sourceId    = $(this).data('item-id'),
         currentItem = data.items[ 'item-' + sourceId ],
-        parentId    = i === 0 ? container.target.parent('li').data('item-id') : dupRootId;
-        
+        parentId    = i === 0 ? container.target.parent('li').data('item-id') : currentItem.parentId + difference;
+    
     var params = {
       id: item.get.id(),
       type: currentItem.type,
