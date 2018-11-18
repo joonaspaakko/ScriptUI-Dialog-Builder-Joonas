@@ -8,6 +8,13 @@
     display: none;
   }
 	
+	input,
+  textarea,
+  .prettydropdown li, {
+		font-family: 'Source Sans Pro', sans-serif;
+    font-size: 13px;
+	}
+	
 } // panel-edit-style-wrap
 
 body.update-styles .saving-icon {
