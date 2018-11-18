@@ -17,6 +17,7 @@ item.funnel = {
 		
 		var loadFromLocalStorage = params.event === 'loadFromLocalStorage';
 	  if ( !loadFromLocalStorage ) edit_style_panel.build( params.style );
+		
 		var isTPanel = params.type === 'TabbedPanel';
 		if ( isTPanel ) tabbedPanel.onCreate( params.event );
 		var isTreeView = params.type === 'TreeView';

@@ -198,8 +198,6 @@ item.drag.make = function( $item ) {
 // **************************************
 item.drag.duplicate = function( $item, container ) {
   
-  // $item.find('ul').sortable('enable');
-  
   var previousItem     = $item.prev(),
       parentUl         = $item.parent('ul'),
       noPrevious       = previousItem.length < 1,
@@ -212,42 +210,38 @@ item.drag.duplicate = function( $item, container ) {
   
   $('body').removeClass('duplicate-item'); // The function of this class is to change the cursor
   
-  var data          = local_storage.get('dialog');
-  var draggedItemId = $item.data('item-id');
-  // var parentId      = $item.parent('ul').parent('li').data('item-id');
-  // var oldActiveId   = data.activeId;
-  var treeView      = $('#panel-tree-view-wrap');
-  
-  var difference = Math.abs( draggedItemId - item.get.id() );
+  var data     = local_storage.get('dialog'),
+      treeView = $('#panel-tree-view-wrap'),
+      dupRootId;
   
   // Dragged item and every child with data-item-id attribute
   $item.find('[data-item-id]').add( $item ).each(function( i ) {
     
-    var currentId   = $(this).data('item-id'),
-        currentItem = data.items[ 'item-' + currentId ],
-        // active      = treeView.find('.active'),
-        // isParent    = active.data('parent'),
-        parentId    = i === 0 ? container.target.parent('li').data('item-id') : currentItem.parentId + difference;
-    
+    var sourceId    = $(this).data('item-id'),
+        currentItem = data.items[ 'item-' + sourceId ],
+        parentId    = i === 0 ? container.target.parent('li').data('item-id') : dupRootId;
+        
     var params = {
-      id: currentId + difference,
+      id: item.get.id(),
       type: currentItem.type,
       parentId: parentId,
       target: i === 0 ? targetElement : treeView.find('[data-item-id="'+ parentId +'"] > ul'),
       event: i === 0 ? 'drag-duplicate' : 'loadFromLocalStorage',
       previousIsParent: previousIsParent,
-      sourceId: currentId
+      sourceId: sourceId // This is pushed forward to "item.create.localStorage" function, which handles copying the item specific style to this one...
     };
+    if ( i === 0 ) dupRootId = params.id;
     item.funnel.create( params );
     
 	});
   
   // Reactivate the ye olde active item
-  item.activate( $item.data('item-id') + difference );
+  item.activate( dupRootId );
   // Build Item Properties panel
-  var newItem = data.items[ 'item-' + $item.data('item-id') ];
+  data = local_storage.get('dialog');
+  var newItem = data.items[ 'item-' + dupRootId ];
   edit_style_panel.build( newItem.style );
   
-  $('body').removeClass('dragging')
+  $('body').removeClass('dragging');
 	
 };

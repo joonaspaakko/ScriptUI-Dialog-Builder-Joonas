@@ -556,21 +556,16 @@ item.funnel.create(o)},
 // **************************************
 // DRAG - DUPLICATE ITEM(S) (onDrop)
 // **************************************
-item.drag.duplicate=function(e,d){
-// $item.find('ul').sortable('enable');
-var t=e.prev(),i=e.parent("ul"),a=t.length<1,o=t.data("parent"),s=a?i:t;// Target previous item. If it doesn't exist, target parent item.
+item.drag.duplicate=function(e,d){var t=e.prev(),i=e.parent("ul"),a=t.length<1,o=t.data("parent"),s=a?i:t;// Target previous item. If it doesn't exist, target parent item.
 // Dolly becomes a real sheep by way of eliminating the original
 $("#panel-tree-view-wrap .dolly").removeClass("dolly"),e.remove(),$("body").removeClass("duplicate-item");// The function of this class is to change the cursor
-var l=local_storage.get("dialog"),n=e.data("item-id"),r=$("#panel-tree-view-wrap"),c=Math.abs(n-item.get.id());
+var l,r=local_storage.get("dialog"),c=$("#panel-tree-view-wrap");
 // Dragged item and every child with data-item-id attribute
-e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=l.items["item-"+t],
-// active      = treeView.find('.active'),
-// isParent    = active.data('parent'),
-a=0===e?d.target.parent("li").data("item-id"):i.parentId+c,n={id:t+c,type:i.type,parentId:a,target:0===e?s:r.find('[data-item-id="'+a+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:o,sourceId:t};item.funnel.create(n)}),
+e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=r.items["item-"+t],a=0===e?d.target.parent("li").data("item-id"):l,n={id:item.get.id(),type:i.type,parentId:a,target:0===e?s:c.find('[data-item-id="'+a+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:o,sourceId:t};0===e&&(l=n.id),item.funnel.create(n)}),
 // Reactivate the ye olde active item
-item.activate(e.data("item-id")+c);
+item.activate(l);var n=(
 // Build Item Properties panel
-var p=l.items["item-"+e.data("item-id")];edit_style_panel.build(p.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
+r=local_storage.get("dialog")).items["item-"+l];edit_style_panel.build(n.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
 // ACTIVATE ITEMS WHEN FOCUSED IN DIALOG PREVIEW
 dialogElem.on("focus","[contenteditable]",function(){var e=$(this),t=(e.parent().attr("id"),e.hasClass("tab")&&e.data("tab-id")||e.closest("[data-item-id]").data("item-id"));item.activate(t);
 // Build Item Properties panel
