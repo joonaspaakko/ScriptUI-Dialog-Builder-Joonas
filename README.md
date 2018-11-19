@@ -16,7 +16,7 @@ It's designed to work in modern browsers, such as Chrome or Firefox and not so m
 
 ## Dialog examples (JSX+JSON)
 
-1. [Export Layers Inside Selected Group Dialog (Gist)](https://gist.github.com/joonaspaakko/29c8bc6321fdb76b8fd6daa32745724e) - ([Comparison image](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/blob/master/wiki-images/export-layers-inside-selected-group-dialog.png?raw=true)).
+1. [Export Layers Inside Selected Group Dialog (Gist)](https://gist.github.com/joonaspaakko/29c8bc6321fdb76b8fd6daa32745724e) - ([Comparison image - Illustrator CC 2019 ](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/blob/master/wiki-images/export-layers-inside-selected-group-dialog.png?raw=true)).
 2. [Import Multiple PDF pages (Gist)](https://gist.github.com/joonaspaakko/3752836f282819949d5d0ab7268007dd) - (Comparison image below ↓).
 
 ## Comparison between ScriptUI Dialog Builder and Indesign
