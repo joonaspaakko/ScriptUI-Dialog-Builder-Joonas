@@ -62,19 +62,6 @@
     }
   }
   
-  // Light up all parents of the item you hover over + the item itself...
-  // NO NO NO NO!!! I really wanted this, but there are too many things that just don't work
-  // li:hover > .item-text {
-  //   color: #fff;
-  //   color: $color-accent-2;
-  //   font-weight: 900;
-  // }
-  // // Item name below the cursor
-  // span.item-text:hover {
-  //   color: saturate( $color-accent-3 ,20) /* !important */;
-  // }
-  //  #Z6VNn9pww3u9
-  // li.active {
   li.active > .item-text {
     color: $color-accent;
     > .remove-item,
@@ -120,12 +107,64 @@
       background-color: rgba(83,83,83, .80);
     }
   }
-    
-} // #tree-view-contents
-
-
-// DRAG STYLE
-#tree-view-contents {
+  
+  // li.active-parent > ul {
+  //   background: url('../images/indent-guides/indent-guide-active.svg') repeat-y top left;
+  //   background-size: $indent-guide-bg-size;
+  // }
+  
+  // li.active-parent { position: relative; }
+  // li.active-parent:before {
+  //   content: "";
+  //   position: absolute;
+  //   z-index: 1;
+  //   top: 17px;
+  //   bottom: 11px;
+  //   left: 20px;
+  //   background: url('../images/indent-guides/indent-guide-guiding.svg') repeat-y top left;
+  //   background-size: $indent-guide-bg-size;
+  //   width: 20px;
+  // }
+  
+  li.path-sibling-node {
+    background: url('../images/indent-guides/indent-guide-guiding.svg') repeat-y top left;
+    background-size: $indent-guide-bg-size;
+  }
+  
+  li.path-item {
+    background: url('../images/indent-guides/indent-guide-guiding-t-junction.svg') no-repeat left -4px;
+    background-size: $indent-guide-bg-size;
+  }
+  li.path-node,
+  li.path-node:last-child,
+  li.path-start {
+    background: url('../images/indent-guides/indent-guide-guiding-t-junction-node.svg') no-repeat left -4px;
+    background-size: $indent-guide-bg-size;
+    // background-color: rgba(83,83,83, .80);
+  }
+  li.path-start-last,
+  li.path-start-last:last-child {
+    background: url('../images/indent-guides/indent-guide-active-last.svg') no-repeat left -4px;
+    background-size: $indent-guide-bg-size;
+    background-color: rgba(83,83,83, .80);
+  }
+  
+	
+	.active-parent > .item-text {
+		// color: desaturate( lighten( adjust-hue($color-accent, 25), 10), 10);
+		// color: desaturate( lighten( adjust-hue($color-accent, 35), 10), 20);
+		// color: desaturate( #8692f5, 40);
+    // font-weight: bold;
+    .txt {
+      font-weight: normal;
+    }
+	}
+	.active-parent > .remove-item {
+    // color: #8692f5;
+		// color: orange;
+		// color: #009dff;
+		color: $color-accent-2;
+	}
   
   // Style for dragged items when sorting. Dragging new elements or duplicating elements looks different.
   .dragged {

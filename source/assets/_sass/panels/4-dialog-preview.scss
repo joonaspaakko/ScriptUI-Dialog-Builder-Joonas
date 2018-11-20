@@ -712,7 +712,48 @@
 		padding-right : 0px !important;
     padding-bottom: 0px !important;
 	}
+	
+  // I kinda wish I handled this accent color thing differently. It's kind of a hassle to manage....
   
+	// Hovering over items in the treeview highlights them in the dialog preview
+  .ghosting {
+    &.panel > .title,
+    > .button-border > .text-container,
+    > .text-container,
+    > span > .text-container,
+    &.tree-view-item > .item-wrap .text-container,
+    > label,
+    &.tab {
+      color: $color-accent-2;
+    }
+    >  #dialog-title-bar {
+      border-bottom: 2px solid $color-accent-2;
+			box-shadow: 0 0 20px $color-accent-2;
+      animation: dlgShadowPulsate 2s ease-out infinite;
+    }
+    &.group > .padding-box,
+    &.list-box ul,
+    &.divider-line > .padding-box,
+    &.tabbed-panel > .padding-box,
+    &.tree-view > .padding-box,
+    &.edit-text > span {
+      border: 1px solid $color-accent-2;
+    }
+    &.edit-text > span > span {
+      color: #f1f1f1;
+    }
+	}
+  
+	.ghosting[type=range]::-moz-range-thumb {
+    border-color: $color-accent-2;
+  }
+	.ghosting[type=range]::-webkit-slider-thumb {
+    border-color: $color-accent-2;
+  }
+	.ghosting[type=range]::-ms-thumb {
+    border-color: $color-accent-2;
+  }
+	
   // So that you can easily tell which items are active...
   .active {
     &.panel > .title,

@@ -5,8 +5,31 @@ function processItemName( text, type ) {
   return (type.toLowerCase() === trimmedText.toLowerCase() ) ? type : '<span class="type">' + type + ':</span> ' + '<span class="txt">' + text + '</span>';
 }
 
+var treeElem = $('#panel-tree-view-wrap');
+
+var dialog = $('#dialog');
+// So you can easily show parent items on hover without having to activate it
+$('#panel-tree-view-wrap').on("mouseenter mouseleave", ".item-text", function( e ) {
+  
+  var parent = $(this).parent('li'),
+      id     = parent.data('item-id'),
+      ghost  = dialog.find('[data-item-id="'+ id +'"]');
+  
+  if ( parent.data('item-type') === 'Tab') {
+    ghost = dialog.find('[data-tab-id="'+ id +'"]');
+  }
+  
+  if ( e.type === "mouseenter" ) {
+  	ghost.addClass('ghosting');
+  }
+  else {
+    ghost.removeClass('ghosting');
+  }
+  
+});
+
 // TREEVIEW NEW ITEM ACTIVATE CLICK EVENT
-$('#panel-tree-view-wrap').on("click", ".item-text", function() {
+treeElem.on("click", ".item-text", function() {
   
   var clickedItem = $(this).parent('li');
 	var id = clickedItem.data('item-id');
@@ -20,7 +43,7 @@ $('#panel-tree-view-wrap').on("click", ".item-text", function() {
 });
 
 // REMOVE ICON CLICK EVENT
-$('#tree-view-contents').on("click", ".remove-item", function() {
+treeElem.on("click", ".remove-item", function() {
   var id = $(this).parent('li').data('item-id');
   if ( id === 0 ) {
     resetDialog(); // If the item is dialog, show a warning first.
@@ -121,6 +144,9 @@ treeRootUl.sortable({
       else {
         item.drag.make( $item );
       }
+    	
+      // Tabs already get activated on drag, so I figured I should do the same for all items...
+			item.activate( $item.data('item-id') );
       
     }
     

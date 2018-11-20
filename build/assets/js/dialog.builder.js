@@ -1,6 +1,63 @@
 // TEXT INFO THAT IS USED FOR MULTIPLE ITEMS
+function activeParent(e,t){
+// Burn it all!!
+e.find(".active-parent").removeClass("active-parent"),t.parentsUntil(".dialog.tree-root").filter('[data-parent="true"]').addClass("active-parent")}
+// Just don't jump in the witch's oven...
+function lightThePath(e,t){
+// Burn it all!! Okay... Maybe not the best word choice there...
+$(".path-start").removeClass("path-start"),$(".path-item").removeClass("path-item"),$(".path-node").removeClass("path-node"),$(".path-sibling-node").removeClass("path-sibling-node"),$(".path-sibling-parent").removeClass("path-sibling-parent"),$(".path-end").removeClass("path-end"),$(".path-start-last").removeClass("path-start-last"),e.find(".active-parent").first().addClass("path-end");
+// PATH END
+var i=t;i.addClass("path-start"),(i.data("parent")||i.next().length<1)&&i.addClass("path-start-last"),e.find(".active-parent:not(:first)").addClass("path-node").add(i).each(function(){$(this).prevUntil(":first").each(function(){console.log($(this)),$(this).data("parent")?$(this).addClass("path-sibling-node"):$(this).addClass("path-item")})})}
+//
+// function traversePath( treeView, pathStart, pathEnd ) {
+//
+// 	// pathStart.prevUntil(':first').addClass('path-item');
+// 	//
+// 	// // console.log( pathStart.next().length );
+// 	// if ( pathStart.next().length == 0 ) {
+// 	// 	pathStart.addClass('path-start-last');
+// 	// }
+//
+// 	prevUntilParent( pathStart );
+// 	function prevUntilParent( item ) {
+//
+// 		var prev = item.prev();
+// 		if ( prev.length > 0 ) {
+// 			if ( prev.data('parent') ) {
+// 				prev.addClass('path-sibling-parent');
+// 			}
+// 			else {
+// 				prev.addClass('path-item');
+// 			}
+// 		}
+// 		else {
+// 			prevUntilParent( item.parent('ul').parent('li') );
+// 		}
+//
+// 	}
+//
+//
+// 	//
+// 	// treeView.find('.active-parent:not(:first)').each(function() {
+// 	//
+// 	// 	$(this).addClass('path-node');
+// 	// 	console.log( $(this)[0] );
+// 	// 	$(this).find('ul').children().each(function() {
+// 	//
+// 	// 		if ( $(this).data('parent') ) {
+// 	// 			// console.log( $(this).data('parent') );
+// 	// 			$(this).addClass('path-sibling-node');
+// 	// 		}
+// 	// 		else {
+// 	// 			$(this).addClass('path-item');
+// 	// 		}
+// 	// 	});
+// 	//
+// 	// });
+//
+// }
 function droplistOnWindowResize(){$(window).on("resize",function(){droplist.hide()})}// Defines how fast the number updates while dragging.
-function numberInputs(){function o(e,t,i,a){var n=e.val();if(isNaN(n))e.val(g);else{n=parseInt(n,10);var d=$("#dialog .active"),o=d.width(),s=e.hasClass("width"),r=d.height(),l=e.hasClass("height");0===n?e.removeClass("danger-zone"):s&&n<o?e.addClass("danger-zone"):s&&o<=n?e.removeClass("danger-zone"):l&&n<r?e.addClass("danger-zone"):l&&r<=n&&e.removeClass("danger-zone");var c={min:parseInt(e.attr("min"),10),max:parseInt(e.attr("max"),10),step:a||parseInt(e.attr("step"),10),modifierStep:parseInt(e.attr("modifier-step"),10)},p=(i?c.modifierStep:c.step)||1,m=n<c.min,u=n>c.max,v=m||u;switch(t){case"blur":if(v){var f=m&&c.min||u&&c.max;e.val(f)}break;case"up":n<c.max&&(n=n+p>c.max?c.max:n+p,e.val(n),g=n);break;case"down":n>c.min&&(n=n-p<c.min?c.min:n-p,e.val(n),g=n);break}}item.funnel.update(e.data("edit"))}$(".number").wrap('<div class="number-wrap">');var g,e=$(".number-wrap");$('<div class="arrow plus"></div><div class="arrow minus"></div><div class="number-overlay"></div>').appendTo(e);var t=e.find(".number"),i=e.find(".number-overlay");t.each(function(){"none"===$(this).css("display")&&$(this).closest(".number-wrap").addClass("hide")});var s,r,l=!1,c=0,p=null,m=null;$(window).on("mousedown mousemove mouseup",function(e){if("mousedown"===e.type)l=!0,s=$(e.target).parent(),r=s.find("> .number");else if("mousemove"===e.type){if(l&&mousemovePing&&r.hasClass("number")){
+function numberInputs(){function o(e,t,i,a){var n=e.val();if(isNaN(n))e.val(g);else{n=parseInt(n,10);var d=$("#dialog .active"),o=d.width(),s=e.hasClass("width"),r=d.height(),l=e.hasClass("height");0===n?e.removeClass("danger-zone"):s&&n<o?e.addClass("danger-zone"):s&&o<=n?e.removeClass("danger-zone"):l&&n<r?e.addClass("danger-zone"):l&&r<=n&&e.removeClass("danger-zone");var c={min:parseInt(e.attr("min"),10),max:parseInt(e.attr("max"),10),step:a||parseInt(e.attr("step"),10),modifierStep:parseInt(e.attr("modifier-step"),10)},p=(i?c.modifierStep:c.step)||1,m=n<c.min,v=n>c.max,u=m||v;switch(t){case"blur":if(u){var f=m&&c.min||v&&c.max;e.val(f)}break;case"up":n<c.max&&(n=n+p>c.max?c.max:n+p,e.val(n),g=n);break;case"down":n>c.min&&(n=n-p<c.min?c.min:n-p,e.val(n),g=n);break}}item.funnel.update(e.data("edit"))}$(".number").wrap('<div class="number-wrap">');var g,e=$(".number-wrap");$('<div class="arrow plus"></div><div class="arrow minus"></div><div class="number-overlay"></div>').appendTo(e);var t=e.find(".number"),i=e.find(".number-overlay");t.each(function(){"none"===$(this).css("display")&&$(this).closest(".number-wrap").addClass("hide")});var s,r,l=!1,c=0,p=null,m=null;$(window).on("mousedown mousemove mouseup",function(e){if("mousedown"===e.type)l=!0,s=$(e.target).parent(),r=s.find("> .number");else if("mousemove"===e.type){if(l&&mousemovePing&&r.hasClass("number")){
 // if ( dragStartElement.data('edit') === 'margins' ) {
 // 	$('body').addClass('dragging-margins');
 // }
@@ -24,22 +81,22 @@ $(this).select()):o(t,"blur")}),e.find(".arrow").on("click",function(e){var t=$(
 o(i,38===t?"up":40===t?"down":"numberEntry",e.shiftKey)})}function exportCode(){var e=local_storage.get("dialog");return"/* \nCode for Import https://scriptui.joonas.me — (Triple click to select): \n"+JSON.stringify(e)+"\n*/ \n\n"+getJSX(e)+"dialog.show();"}function clipBoardEvent(n){
 /*global ClipboardJS*/
 /*eslint no-undef: ["error", { "typeof": true }] */
-var e=new ClipboardJS(".btn.copy",{text:function(){return n.getValue()}});e.on("success",function(e){var t=$(e.trigger),i=t.find(".fa-check"),a=t.find(".fa-clipboard-list");i.addClass("rotateIn"),a.hide(),setTimeout(function(){i.removeClass("rotateIn"),a.show()},750)}),e.on("error",function(e){var t=$(e.trigger),i=t.find(".fa-times"),a=t.find(".fa-clipboard-list");i.addClass("tada"),a.hide(),setTimeout(function(){n.execCommand("selectAll"),i.removeClass("tada"),a.show()},750)})}function getJSX(c){var p="",m={},u={dialog:"",tab:""},// Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
-v={name:"",parent:""},f=[];// JUST DO IT
+var e=new ClipboardJS(".btn.copy",{text:function(){return n.getValue()}});e.on("success",function(e){var t=$(e.trigger),i=t.find(".fa-check"),a=t.find(".fa-clipboard-list");i.addClass("rotateIn"),a.hide(),setTimeout(function(){i.removeClass("rotateIn"),a.show()},750)}),e.on("error",function(e){var t=$(e.trigger),i=t.find(".fa-times"),a=t.find(".fa-clipboard-list");i.addClass("tada"),a.hide(),setTimeout(function(){n.execCommand("selectAll"),i.removeClass("tada"),a.show()},750)})}function getJSX(c){var p="",m={},v={dialog:"",tab:""},// Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
+u={name:"",parent:""},f=[];// JUST DO IT
 // Creates rest of the counters based on the "Add items" panel...
-$("#panel-new-item-wrap ul li").each(function(){u[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),g=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,o=a.type,s=a.id,r=a.style,l=!1;e===g-1&&(l=!0),p+=makeJSXitem(t,c,u,m,o,s,n,d,r,v,f,l)}),p}function makeJSXitem(e,t,i,a,n,d,o,s,r,l,c,p){var m="",u=n.toLowerCase();++i[u];var v=customVarNames(u,s,i);a[d]=v;var f=a[o];
+$("#panel-new-item-wrap ul li").each(function(){v[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),g=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,o=a.type,s=a.id,r=a.style,l=!1;e===g-1&&(l=!0),p+=makeJSXitem(t,c,v,m,o,s,n,d,r,u,f,l)}),p}function makeJSXitem(e,t,i,a,n,d,o,s,r,l,c,p){var m="",v=n.toLowerCase();++i[v];var u=customVarNames(v,s,i);a[d]=u;var f=a[o];
 // If current item is a parent...
-"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+v.toUpperCase()+"\n",m+="// "+Array(v.length+1).join("=")+"\n"):l.parent!==f&&l.name!==f&&(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"));var g=$("#dialog");
+"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+u.toUpperCase()+"\n",m+="// "+Array(u.length+1).join("=")+"\n"):l.parent!==f&&l.name!==f&&(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"));var g=$("#dialog");
 // This is where each item is first added
-switch(n){case"Dialog":m+="var "+v+' = new Window("'+u+'"); \n';break;case"ListBox":case"DropDownList":var h=r.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+v+'_array = ["'+h.join('","')+'"]; \n',m+="var "+v+" = "+a[o]+'.add("'+u+'", undefined, '+v+"_array",void 0!==r.selection&&"ListBox"===n&&1<r.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+v+" = "+a[o]+'.add("panel"); \n';break;case"TreeView":var b=g.find('[data-item-id="'+d+'"]'),y=0<r.preferredSize[0]?r.preferredSize[0]:Math.round(b.width()),w=0<r.preferredSize[1]?r.preferredSize[1]:Math.round(b.height());m+="var "+v+" = "+a[o]+'.add("'+n.toLowerCase()+'", [0,0,'+(y+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=g.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+v+" = "+a[o]+'.add("'+C+'", "'+r.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===r.text?0:r.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+v+" = "+a[o]+'.add("'+u+'"'+k+"); \n"}l.name=v,l.parent=a[o];var T=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,o,s,r,v,c)+T;
+switch(n){case"Dialog":m+="var "+u+' = new Window("'+v+'"); \n';break;case"ListBox":case"DropDownList":var h=r.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+u+'_array = ["'+h.join('","')+'"]; \n',m+="var "+u+" = "+a[o]+'.add("'+v+'", undefined, '+u+"_array",void 0!==r.selection&&"ListBox"===n&&1<r.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+u+" = "+a[o]+'.add("panel"); \n';break;case"TreeView":var b=g.find('[data-item-id="'+d+'"]'),y=0<r.preferredSize[0]?r.preferredSize[0]:Math.round(b.width()),w=0<r.preferredSize[1]?r.preferredSize[1]:Math.round(b.height());m+="var "+u+" = "+a[o]+'.add("'+n.toLowerCase()+'", [0,0,'+(y+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=g.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+u+" = "+a[o]+'.add("'+C+'", "'+r.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===r.text?0:r.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+u+" = "+a[o]+'.add("'+v+'"'+k+"); \n"}l.name=u,l.parent=a[o];var T=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,o,s,r,u,c)+T;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
-var S=t.order[e+1];if(void 0!==S){var _=t.items["item-"+S],P="TreeItem"===n&&"TreeItem"!==_.type;P&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):P&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
+var S=t.order[e+1];if(void 0!==S){var P=t.items["item-"+S],_="TreeItem"===n&&"TreeItem"!==P.type;_&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):_&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
 // When the item type is not a fitting variable name...
 function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
 a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,o,s,r,l){var c="",p="    ";
 // var counter = counters[ type.toLowerCase() ];
-if("TreeItem"===a){var m=e.items["item-"+n].expanded,u=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),v=!1;$.each(u,function(){$(this).hasClass("expanded")||(v=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
-}),m&&!1===v&&l.push(p+r+".expanded = true; \n")}else if("Divider"===a)c+=p+r+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+r+".minvalue = 0; \n",c+=p+r+".maxvalue = 100; \n",c+=p+r+".value = 50; \n";else{if(
+if("TreeItem"===a){var m=e.items["item-"+n].expanded,v=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),u=!1;$.each(v,function(){$(this).hasClass("expanded")||(u=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
+}),m&&!1===u&&l.push(p+r+".expanded = true; \n")}else if("Divider"===a)c+=p+r+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+r+".minvalue = 0; \n",c+=p+r+".maxvalue = 100; \n",c+=p+r+".value = 50; \n";else{if(
 // DROP LIST SELECTION
 "DropDownList"===a&&void 0!==s.selection&&(c+=p+r+".selection = "+s.selection+"; \n"),"ListBox"===a&&void 0!==s.selection&&0<s.selection.length)c+=p+r+".selection = "+(1<s.selection.length?JSON.stringify(s.selection):s.selection)+"; \n";
 // TABBED PANEL SELECTION
@@ -77,9 +134,7 @@ $("#notifications-wrap .notification:last").addClass("last").prev().removeClass(
 // But would you be interested in our newsletter?
 setTimeout(function(){a(n)},1e3*i||5e3)}function shortcutExport(){var e=new ClipboardJS(".l-export",{text:function(){return exportCode()}}),t=$(".l-export");e.on("success",function(){clearTimeout(bgTimeout),t.addClass("success"),$("body").addClass("successful-shortcut-export"),bgTimeout=setTimeout(function(){t.removeClass("success"),$("body").removeClass("successful-shortcut-export")},350),clearTimeout(iconTimeout),$("#dialog-section #export-success-icon").remove(),$('<div id="export-success-icon"><div class="center-1"><div class="center-2"><div class="center-3"><div class="circle"><img src="assets/images/export-shortcut-icon.svg?'+(new Date).getTime()+'" alt="" /></div></div></div></div></div>').appendTo("#dialog-section"),iconTimeout=setTimeout(function(){$("#export-success-icon").remove()},950)}),e.on("error",function(){t.addClass("failure"),$("body").addClass("shortcut-export-failure"),setTimeout(function(){t.removeClass("failure"),$("body").removeClass("shortcut-export-failure")},350)})}function processItemName(e,t){
 // debugger;
-var i=void 0===e?t:e.trim();return t.toLowerCase()===i.toLowerCase()?t:'<span class="type">'+t+':</span> <span class="txt">'+e+"</span>"}
-// TREEVIEW NEW ITEM ACTIVATE CLICK EVENT
-function lineBreakIntercept(e){
+var i=void 0===e?t:e.trim();return t.toLowerCase()===i.toLowerCase()?t:'<span class="type">'+t+':</span> <span class="txt">'+e+"</span>"}function lineBreakIntercept(e){
 // Stop the press if element doesn't support multiline.
 var t=e.keyCode?e.keyCode:e.which,i=$("#panel-tree-view-wrap .active").data("item-type"),a=item.list[i.toLowerCase()](!1).multiline;return!(13===t&&!a)}var reText={textItems:"This item supports multiline text <small>(press enter to insert a line break)</small>. <br><br> Changing the default justification of multiline text renders inconsistently and for that reason multiline text is always aligned to the left.",tabs:" <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG)."},item={list:{}};item.list.dialog=function(e){return{type:"Dialog",parent:!0,defaultStyle:{text:"Dialog",preferredSize:[0,0],margins:16,orientation:"column",spacing:10,alignChildren:["center","top"]},previewHtml:'<div id="dialog-container" data-parent="true" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div id="dialog-title-bar"><div contenteditable="true">'+e.type+'</div></div><div class="padding-box"></div></div>'}},item.list.group=function(e){return{type:"Group",parent:!0,addPanelIconClass:"fas fa-object-group",defaultStyle:{preferredSize:[0,0],margins:0,orientation:"row",spacing:10,alignChildren:["left","center"],alignment:null},previewHtml:'<div class="group" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="padding-box"></div></div>'}},item.list.panel=function(e){return{type:"Panel",parent:!0,addPanelDivider:"below",addPanelIconClass:"fas fa-columns",defaultStyle:{text:"Panel",preferredSize:[0,0],margins:10,orientation:"column",spacing:10,alignChildren:["left","top"],alignment:null},previewHtml:'<div class="panel" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><span class="title" contenteditable="true">'+e.type+'</span><div class="padding-box"></div></div>'}},item.list.statictext=function(e){return{type:"StaticText",addPanelIconClass:"fas fa-font",multiline:!0,editInfo:reText.textItems+"<br><br> In the case of multiline text and justify <code>center</code> or <code>right</code> the justify setting is included in the export but commented out.",defaultStyle:{text:"StaticText",justify:"left",preferredSize:[0,0],alignment:null},previewHtml:'<div class="static-text" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><span class="text-container" contenteditable="true">'+e.type+"</span></div>"}},item.list.edittext=function(e){return{type:"EditText",addPanelIconClass:"fas fa-i-cursor",multiline:!0,editInfo:reText.textItems,defaultStyle:{text:"EditText",
 // justify: 'left',
@@ -132,9 +187,9 @@ i=d?(t=l?e.previousIsParent?"insertAfter":"prependTo":"appendTo","Dialog"===e.ty
 // Write active item id to local storage
 var t=local_storage.get("dialog");t.activeId=e,local_storage.set("dialog",t);
 // Change the active element in the treeview.
-var i=$("#panel-tree-view-wrap");i.find(".active").removeClass("active"),i.find('[data-item-id="'+e+'"]').addClass("active");
+var i=$("#panel-tree-view-wrap");i.find(".active").removeClass("active");var a=i.find('[data-item-id="'+e+'"]');a.addClass("active");
 // Change the active element in the dialog preview
-var a=$("#dialog");a.find(".active").removeClass("active"),a.find('[data-item-id="'+e+'"]').addClass("active"),tab.onActivate(e)},item.remove={localStorage:function(){
+var n=$("#dialog");n.find(".active").removeClass("active"),n.find('[data-item-id="'+e+'"]').addClass("active"),tab.onActivate(e),activeParent(i,a),lightThePath(i,a)},item.remove={localStorage:function(){
 // Read old data from local storage.
 var e,t,i,a=local_storage.get("dialog");
 // Get current order
@@ -162,7 +217,7 @@ a.items["item-"+e].parentId=t,
 // Write back to local storage...
 local_storage.set("dialog",a)},dialogPreview:function(e,t,i,a,n){var d=$("#dialog"),o=d.find('[data-item-id="'+e+'"]'),s=d.find('[data-item-id="'+n+'"]'),r="insertAfter"===a?s:s.find("> .padding-box");
 // If you move a checked radiobutton to a parent that already has a checked radio button, uncheck the radiobutton that was moved.
-if(o[a](r),"RadioButton"===i){var l=o.find(".radiobutton"),c=l.hasClass("on"),p=0,m=':not([data-item-type="RadioButton"],.spacing)';if(o.nextUntil(m).add(o.prevUntil(m)).each(function(){$(this).find(".radiobutton").hasClass("on")&&++p}),0<p&&c){l.removeClass("on");var u=local_storage.get("dialog");u.items["item-"+e].style.checked=!1,local_storage.set("dialog",u)}}}},
+if(o[a](r),"RadioButton"===i){var l=o.find(".radiobutton"),c=l.hasClass("on"),p=0,m=':not([data-item-type="RadioButton"],.spacing)';if(o.nextUntil(m).add(o.prevUntil(m)).each(function(){$(this).find(".radiobutton").hasClass("on")&&++p}),0<p&&c){l.removeClass("on");var v=local_storage.get("dialog");v.items["item-"+e].style.checked=!1,local_storage.set("dialog",v)}}}},
 // @codekit-append "get.values.js";
 // @codekit-append "set.values.js";
 item.update={},item.update.style={},item.update.style.localStorage=function(e,t){var i=item.update.get_values(e);return t.items["item-"+t.activeId].style[e]=i[e],local_storage.set("dialog",t),t;// Changed data is force fed to the two functions below
@@ -205,11 +260,11 @@ case"checked":!0===t&&d.find("input").prop("checked",!0);break;
 // JUSTIFY
 case"justify":d.removeClass(function(e,t){return(t.match(/(^|\s)justify-\S+/g)||[]).join(" ")}).addClass("justify-"+e.value);break;
 // MARGINS
-case"margins":var p=t[0],m=t[1],u=t[2],v=t[3],f="object"!=typeof t,g=f?t:p,h=f?t:m,b=f?t:u,y=f?t:v;"Dialog"===i?o.css({paddingTop:g<=6?1:g,paddingRight:h<=1?1:h,paddingBottom:b<=1?1:b,paddingLeft:y<=1?1:y}):"Panel"===i||"Tab"===i?o.css({paddingTop:g<=3?3:g,paddingRight:h<=3?3:h,paddingBottom:b<=1?1:b,paddingLeft:y<=3?3:y}):o.css({paddingTop:g,paddingRight:h,paddingBottom:b,paddingLeft:y});break;
+case"margins":var p=t[0],m=t[1],v=t[2],u=t[3],f="object"!=typeof t,g=f?t:p,h=f?t:m,b=f?t:v,y=f?t:u;"Dialog"===i?o.css({paddingTop:g<=6?1:g,paddingRight:h<=1?1:h,paddingBottom:b<=1?1:b,paddingLeft:y<=1?1:y}):"Panel"===i||"Tab"===i?o.css({paddingTop:g<=3?3:g,paddingRight:h<=3?3:h,paddingBottom:b<=1?1:b,paddingLeft:y<=3?3:y}):o.css({paddingTop:g,paddingRight:h,paddingBottom:b,paddingLeft:y});break;
 // PREFERRED SIZE
 case"preferredSize":d.width("auto").height("auto");var w=d.width(),C=d.height(),x=0==t[0]?"auto":t[0]<w?w:t[0],I=0==t[1]?"auto":t[1]<C?C:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var S=d.width(),_=T.outerWidth(!0),P=k.outerWidth(!0);d.removeClass("get-width");var z=_+P;z<x?(d.addClass("too-big"),P<S&&k.width("auto")):x<z&&(d.addClass("too-small"),S<P&&k.width(S-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var S=d.width(),P=T.outerWidth(!0),_=k.outerWidth(!0);d.removeClass("get-width");var z=P+_;z<x?(d.addClass("too-big"),_<S&&k.width("auto")):x<z&&(d.addClass("too-small"),S<_&&k.width(S-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
@@ -338,14 +393,14 @@ var edit_style_panel={build:function(e,t){var a=$("#edit-style-inner-container")
 // Generate edit panel structure
 $.each(e,function(e,t){var i=panel_edit_style_html.init(e,t);void 0!==i&&i.appendTo(a)}),
 // Style number inputs
-numberInputs(),
+numberInputs();var d=item.list[i](!1).defaultStyle.text,o=item.list[i](!1).multiline,s=$('#panel-edit-style-wrap [data-edit="text"]'),r=s.parent();
+// Icon on the text container telling the user they can't add linebreaks to current item
+!d||o||r.hasClass("is-not-multiline")||r.addClass("is-not-multiline"),
 // Style dropdowns
 $(".pretty-classic").prettyDropdown({classic:!0,customClass:"arrow triangle",selectedMarker:'<i class="fas fa-check"></i>'}),$("#panel-edit-style-wrap textarea").each(function(){
 /*global autosize*/
 /*eslint no-undef: ["error", { "typeof": true }] */
-autosize(this)});var d=item.list[i](!1).defaultStyle.text,o=item.list[i](!1).multiline,s=$('#panel-edit-style-wrap [data-edit="text"]'),r=s.parent();
-// Icon on the text container telling the user they can't add linebreaks to current item
-!d||o||r.hasClass("is-not-multiline")||r.addClass("is-not-multiline"),
+autosize(this)}),
 // SELECT TEXT INPUT IN THE ITEM PROPERTIES PANEL
 // If the item has default text, then try to select it. If it doesn't have default text, it never will.
 // This check is used because when the textarea doesn't exist, there's nothing to focus in so it just basically does a site wide Cmd+A, which is not cool...
@@ -374,7 +429,7 @@ i=$('<h2 class="orientation-heading" title="The layout orientation of children i
 i=$('<input class="number" style="display: none;"><div class="spacing-container"><input class="number" data-edit="spacing" value="'+t+'" min="0" max="300" step="1" modifier-step="5"></div><input class="number" style="display: none;">');break;case"alignChildren":var n=$("#dialog .active").hasClass("orientation-column");i=$('<h2 title="Tells the layout manager how unlike-sized children of this container should be aligned within a column or row. \n\nOrder of creation determines which children are at the top of a column or the left of a row; the earlier a child is created, the closer it is to the top or left of its column or row. If defined, alignment for a child element overrides the alignChildren setting for the parent container. See alignment property for values.">Align Children</h2><div class="align-children"><select id="align-children-horizontal" data-edit="alignChildren" name="qty" class="pretty-classic"><option>left</option><option>center</option><option>right</option>'+(n?"<option>fill</option>":"")+'</select><select id="align-children-vertical" data-edit="alignChildren" name="qty" class="pretty-classic"><option>top</option><option>center</option><option>bottom</option>'+(n?"":"<option>fill</option>")+"</select></div>");
 // var horizontalValue = !isColumn && value[0] === 'fill' ? 'center' : value[0];
 // var verticalValue   =  isColumn && value[1] === 'fill' ? 'center' : value[1];
-var d=t[0],o=t[1];i.find('#align-children-horizontal option:contains("'+d+'")').prop("selected",!0),i.find('#align-children-vertical option:contains("'+o+'")').prop("selected",!0);break;case"alignment":var s,r=$("#dialog .active").parent("div").parent("div").hasClass("orientation-column"),l=r?"column":"row",c=r?"horizontal":"vertical",p=null===t,m=r?["left","center","right","fill"]:["top","center","bottom","fill"],u="";$.each(m,function(e,t){u+='<option value="'+t+'">'+t+"</option>"}),i=$('<div class="alignment-container"><h2 title="The alignment style for this element. If defined, this value overrides the alignChildren setting for the parent container.">Alignment <span>(Self)</span></h2><div class="alignment-checkbox"><input type="checkbox" id="alignment-checkbox-input" name="" '+(p?"":"checked")+' /><label for="alignment-checkbox-input"></label></div><br>'+('<div id="alignment-'+c+'"><select name="qty" class="pretty-classic" data-edit="alignment"  data-edit-value="'+c+'" '+(p?"disabled":"")+" >"+u+"</select></div>")+"</div>"),"column"===l?(s=("top"===t?"left":"bottom"===t&&"right")||t,i.find('#alignment-horizontal option:contains("'+(null===t?"center":s)+'")').prop("selected",!0)):(s=("left"===t?"top":"right"===t&&"bottom")||t,i.find('#alignment-vertical option:contains("'+(null===t?"center":s)+'")').prop("selected",!0));break}return i}},propsPanel=$("#panel-edit-style-wrap");
+var d=t[0],o=t[1];i.find('#align-children-horizontal option:contains("'+d+'")').prop("selected",!0),i.find('#align-children-vertical option:contains("'+o+'")').prop("selected",!0);break;case"alignment":var s,r=$("#dialog .active").parent("div").parent("div").hasClass("orientation-column"),l=r?"column":"row",c=r?"horizontal":"vertical",p=null===t,m=r?["left","center","right","fill"]:["top","center","bottom","fill"],v="";$.each(m,function(e,t){v+='<option value="'+t+'">'+t+"</option>"}),i=$('<div class="alignment-container"><h2 title="The alignment style for this element. If defined, this value overrides the alignChildren setting for the parent container.">Alignment <span>(Self)</span></h2><div class="alignment-checkbox"><input type="checkbox" id="alignment-checkbox-input" name="" '+(p?"":"checked")+' /><label for="alignment-checkbox-input"></label></div><br>'+('<div id="alignment-'+c+'"><select name="qty" class="pretty-classic" data-edit="alignment"  data-edit-value="'+c+'" '+(p?"disabled":"")+" >"+v+"</select></div>")+"</div>"),"column"===l?(s=("top"===t?"left":"bottom"===t&&"right")||t,i.find('#alignment-horizontal option:contains("'+(null===t?"center":s)+'")').prop("selected",!0)):(s=("left"===t?"top":"right"===t&&"bottom")||t,i.find('#alignment-vertical option:contains("'+(null===t?"center":s)+'")').prop("selected",!0));break}return i}},propsPanel=$("#panel-edit-style-wrap");
 // EDIT PANEL CLICK EVENTS
 // JUSTIFY
 propsPanel.on("click",".justify-icon",function(){$(this).addClass("active").siblings().removeClass("active")}),
@@ -498,11 +553,15 @@ $.each(data.order,function(e,t){void 0!==data.items["item-"+t].style.preferredSi
 // Reactivate the ye olde active item
 item.activate(oldActiveId);
 // Build Item Properties panel
-var oldItem=data.items["item-"+oldActiveId];edit_style_panel.build(oldItem.style)}$("#panel-tree-view-wrap").on("click",".item-text",function(){var e=$(this).parent("li").data("item-id");item.activate(e);
+var oldItem=data.items["item-"+oldActiveId];edit_style_panel.build(oldItem.style)}var treeElem=$("#panel-tree-view-wrap"),dialog=$("#dialog");
+// So you can easily show parent items on hover without having to activate it
+$("#panel-tree-view-wrap").on("mouseenter mouseleave",".item-text",function(e){var t=$(this).parent("li"),i=t.data("item-id"),a=dialog.find('[data-item-id="'+i+'"]');"Tab"===t.data("item-type")&&(a=dialog.find('[data-tab-id="'+i+'"]')),"mouseenter"===e.type?a.addClass("ghosting"):a.removeClass("ghosting")}),
+// TREEVIEW NEW ITEM ACTIVATE CLICK EVENT
+treeElem.on("click",".item-text",function(){var e=$(this).parent("li").data("item-id");item.activate(e);
 // Build Item Properties panel
 var t=local_storage.get("dialog");edit_style_panel.build(t.items["item-"+e].style)}),
 // REMOVE ICON CLICK EVENT
-$("#tree-view-contents").on("click",".remove-item",function(){var e=$(this).parent("li").data("item-id");0===e?resetDialog():item.funnel.remove(e)});var treeRootUl=$("#panel-tree-view-wrap .tree-root > ul"),treeDialog=$("#panel-tree-view-wrap .tree-dialog");
+treeElem.on("click",".remove-item",function(){var e=$(this).parent("li").data("item-id");0===e?resetDialog():item.funnel.remove(e)});var treeRootUl=$("#panel-tree-view-wrap .tree-root > ul"),treeDialog=$("#panel-tree-view-wrap .tree-dialog");
 // TREEVIEW DRAG EVENT
 treeRootUl.sortable({group:"dialog-items",
 // exclude: ".disabled",
@@ -536,7 +595,9 @@ else t.options.drop||e.clone(!0).insertAfter(e);i(e,t)},onDrop:function(e,t,i){i
 treeDialog.width("auto"),0<t.target.closest("#panel-new-item-wrap").length)e.remove();else{var a=0<e.find(".item-text").length,n=$("body").hasClass("duplicate-item");
 // REGULAR SORT
 // DRAGGING / SORTING WITHIN THE TREE VIEW PANEL
-a&&!n?item.drag.sort(e):a&&n?item.drag.duplicate(e,t):item.drag.make(e)}i(e,t)}}),
+a&&!n?item.drag.sort(e):a&&n?item.drag.duplicate(e,t):item.drag.make(e),
+// Tabs already get activated on drag, so I figured I should do the same for all items...
+item.activate(e.data("item-id"))}i(e,t)}}),
 // ADD ITEMS BY DRAGGING THEM INTO THE TREE VIEW
 // The events are handled in the function above
 $("#panel-new-item-wrap ul").sortable({drop:!1,group:"dialog-items"}),item.drag={},

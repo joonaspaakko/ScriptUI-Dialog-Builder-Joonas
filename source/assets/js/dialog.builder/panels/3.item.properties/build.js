@@ -29,6 +29,16 @@ edit_style_panel.build = function( style, source ) {
 		// Style number inputs
 		numberInputs();
 		
+		var hasDefaultText = item.list[ lType ](false).defaultStyle.text;
+		var multilineItem  = item.list[ lType ](false).multiline;
+		var editText       = $('#panel-edit-style-wrap [data-edit="text"]');
+		var editTextParent = editText.parent();
+		
+		// Icon on the text container telling the user they can't add linebreaks to current item
+		if ( hasDefaultText && !multilineItem && !editTextParent.hasClass('is-not-multiline') ) {
+			editTextParent.addClass('is-not-multiline');
+		}
+		
 		// Style dropdowns
 		$('.pretty-classic').prettyDropdown({
 			classic: true,
@@ -41,16 +51,6 @@ edit_style_panel.build = function( style, source ) {
 			/*eslint no-undef: ["error", { "typeof": true }] */
   		autosize(this);
 		});
-		
-		var hasDefaultText = item.list[ lType ](false).defaultStyle.text;
-		var multilineItem  = item.list[ lType ](false).multiline;
-		var editText       = $('#panel-edit-style-wrap [data-edit="text"]');
-		var editTextParent = editText.parent();
-		
-		// Icon on the text container telling the user they can't add linebreaks to current item
-		if ( hasDefaultText && !multilineItem && !editTextParent.hasClass('is-not-multiline') ) {
-			editTextParent.addClass('is-not-multiline');
-		}
 		
 	  // SELECT TEXT INPUT IN THE ITEM PROPERTIES PANEL
 		// If the item has default text, then try to select it. If it doesn't have default text, it never will.
