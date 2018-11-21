@@ -37,7 +37,7 @@ function activeParent( treeView, treeActive ) {
 
 // Just don't jump in the witch's oven...
 function lightThePath( treeView, treeActive ) {
-	
+		
 	// Burn it all!! Okay... Maybe not the best word choice there...
 	$('.path-node').removeClass('path-node');
 	$('.path-item').removeClass('path-item');
@@ -47,36 +47,38 @@ function lightThePath( treeView, treeActive ) {
 	$('.path-start-last').removeClass('path-start-last');
 	$('.path-start-node').removeClass('path-start-node');
 	
-	// PATH START
-	var pathEnd = treeView.find('.active-parent').first();
-	pathEnd.addClass('path-end');
-	
-	// PATH END
-	var pathStart = treeActive;
-	
-	if ( pathStart.next().length < 1 ) {
-		pathStart.addClass('path-start-last');
-	}
-	else if( pathStart.data('parent') ) {
-		pathStart.addClass('path-start-node');
-	}
-	else {
-		pathStart.addClass('path-start');
-	}
-	
-	treeView.find('.active-parent:not(:first)').addClass('path-node').add( pathStart ).each(function() {
-		var prevItems = $(this).prevUntil(':first');
-		prevItems.each(function() {
-			
-			if ( $(this).data('parent') ) {
-				$(this).addClass('path-sibling-node');
-			}
-			else {
-				$(this).addClass('path-item');
-			}
+	if ( treeActive.data('item-type') !== "Dialog" ) {
+		// PATH START
+		var pathEnd = treeView.find('.active-parent').first();
+		pathEnd.addClass('path-end');
+		
+		// PATH END
+		var pathStart = treeActive;
+		
+		if ( pathStart.next().length < 1 ) {
+			pathStart.addClass('path-start-last');
+		}
+		else if( pathStart.data('parent') ) {
+			pathStart.addClass('path-start-node');
+		}
+		else {
+			pathStart.addClass('path-start');
+		}
+		
+		treeView.find('.active-parent:not(:first)').addClass('path-node').add( pathStart ).each(function() {
+			var prevItems = $(this).prevUntil(':first');
+			prevItems.each(function() {
+				
+				if ( $(this).data('parent') ) {
+					$(this).addClass('path-sibling-node');
+				}
+				else {
+					$(this).addClass('path-item');
+				}
+				
+			});
 			
 		});
-		
-	});
+	}
 	
 }
