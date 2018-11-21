@@ -1,5 +1,5 @@
 // TEXT INFO THAT IS USED FOR MULTIPLE ITEMS
-function activeParent(e,t){
+function breadCrumbs(e,t){
 // Burn it all!!
 e.find(".active-parent").removeClass("active-parent"),t.parentsUntil(".dialog.tree-root").filter('[data-parent="true"]').addClass("active-parent")}
 // Just don't jump in the witch's oven...
@@ -41,7 +41,7 @@ $("#panel-new-item-wrap ul li").each(function(){v[$(this).data("item-type").toLo
 // This is where each item is first added
 switch(n){case"Dialog":m+="var "+u+' = new Window("'+v+'"); \n';break;case"ListBox":case"DropDownList":var h=r.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+u+'_array = ["'+h.join('","')+'"]; \n',m+="var "+u+" = "+a[o]+'.add("'+v+'", undefined, '+u+"_array",void 0!==r.selection&&"ListBox"===n&&1<r.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+u+" = "+a[o]+'.add("panel"); \n';break;case"TreeView":var b=g.find('[data-item-id="'+d+'"]'),y=0<r.preferredSize[0]?r.preferredSize[0]:Math.round(b.width()),w=0<r.preferredSize[1]?r.preferredSize[1]:Math.round(b.height());m+="var "+u+" = "+a[o]+'.add("'+n.toLowerCase()+'", [0,0,'+(y+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=g.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+u+" = "+a[o]+'.add("'+C+'", "'+r.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===r.text?0:r.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+u+" = "+a[o]+'.add("'+v+'"'+k+"); \n"}l.name=u,l.parent=a[o];var T=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,o,s,r,u,c)+T;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
-var S=t.order[e+1];if(void 0!==S){var P=t.items["item-"+S],_="TreeItem"===n&&"TreeItem"!==P.type;_&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):_&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
+var S=t.order[e+1];if(void 0!==S){var _=t.items["item-"+S],P="TreeItem"===n&&"TreeItem"!==_.type;P&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):P&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
 // When the item type is not a fitting variable name...
 function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
 a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,o,s,r,l){var c="",p="    ";
@@ -140,7 +140,7 @@ var t=local_storage.get("dialog");t.activeId=e,local_storage.set("dialog",t);
 // Change the active element in the treeview.
 var i=$("#panel-tree-view-wrap");i.find(".active").removeClass("active");var a=i.find('[data-item-id="'+e+'"]');a.addClass("active");
 // Change the active element in the dialog preview
-var n=$("#dialog");n.find(".active").removeClass("active"),n.find('[data-item-id="'+e+'"]').addClass("active"),tab.onActivate(e),activeParent(i,a),lightThePath(i,a)},item.remove={localStorage:function(){
+var n=$("#dialog");n.find(".active").removeClass("active"),n.find('[data-item-id="'+e+'"]').addClass("active"),tab.onActivate(e),breadCrumbs(i,a)},item.remove={localStorage:function(){
 // Read old data from local storage.
 var e,t,i,a=local_storage.get("dialog");
 // Get current order
@@ -215,7 +215,7 @@ case"margins":var p=t[0],m=t[1],v=t[2],u=t[3],f="object"!=typeof t,g=f?t:p,h=f?t
 // PREFERRED SIZE
 case"preferredSize":d.width("auto").height("auto");var w=d.width(),C=d.height(),x=0==t[0]?"auto":t[0]<w?w:t[0],I=0==t[1]?"auto":t[1]<C?C:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var S=d.width(),P=T.outerWidth(!0),_=k.outerWidth(!0);d.removeClass("get-width");var z=P+_;z<x?(d.addClass("too-big"),_<S&&k.width("auto")):x<z&&(d.addClass("too-small"),S<_&&k.width(S-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var S=d.width(),_=T.outerWidth(!0),P=k.outerWidth(!0);d.removeClass("get-width");var z=_+P;z<x?(d.addClass("too-big"),P<S&&k.width("auto")):x<z&&(d.addClass("too-small"),S<P&&k.width(S-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION

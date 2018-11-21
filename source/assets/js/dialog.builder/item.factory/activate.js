@@ -21,12 +21,12 @@ item.activate = function( id ) {
 	
 	tab.onActivate( id );
 	
-	activeParent( treeView, treeActive );
-	lightThePath( treeView, treeActive );
+	breadCrumbs( treeView, treeActive );
+	// lightThePath( treeView, treeActive );
 	
 };
 
-function activeParent( treeView, treeActive ) {
+function breadCrumbs( treeView, treeActive ) {
 	
 	// Burn it all!!
 	treeView.find('.active-parent').removeClass('active-parent');
