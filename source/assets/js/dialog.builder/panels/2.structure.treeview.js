@@ -9,7 +9,7 @@ var treeElem = $('#panel-tree-view-wrap');
 
 var dialog = $('#dialog');
 // So you can easily show parent items on hover without having to activate it
-$('#panel-tree-view-wrap').on("mouseenter mouseleave", ".item-text", function( e ) {
+$('#panel-tree-view-wrap').on("mouseenter mouseleave", ".item-text", function( e ) {
   
   var parent = $(this).parent('li'),
       id     = parent.data('item-id'),

@@ -34,6 +34,8 @@
 	}
 	
   .item-text {
+    display: inline-block;
+    width: 100%;
     cursor: pointer;
     .type {
       
@@ -108,51 +110,53 @@
     }
   }
   
-  // li.active-parent > ul {
-  //   background: url('../images/indent-guides/indent-guide-active.svg') repeat-y top left;
-  //   background-size: $indent-guide-bg-size;
-  // }
-  
-  // li.active-parent { position: relative; }
-  // li.active-parent:before {
-  //   content: "";
-  //   position: absolute;
-  //   z-index: 1;
-  //   top: 17px;
-  //   bottom: 11px;
-  //   left: 20px;
-  //   background: url('../images/indent-guides/indent-guide-guiding.svg') repeat-y top left;
-  //   background-size: $indent-guide-bg-size;
-  //   width: 20px;
-  // }
-  
   li.path-sibling-node {
     background: url('../images/indent-guides/indent-guide-guiding.svg') repeat-y top left;
     background-size: $indent-guide-bg-size;
+    position: relative;
+    background-color: rgba(83,83,83, .80);
+  }
+  li.path-sibling-node:before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    background: url('../images/indent-guides/indent-guide-active-t-junction.svg') no-repeat left -4px;
+    background-size: $indent-guide-bg-size;
+    width: 20px;
+    height: 20px;
   }
   
   li.path-item {
     background: url('../images/indent-guides/indent-guide-guiding-t-junction.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
   }
-  li.path-node,
-  li.path-node:last-child,
+  
+  li.path-start-node,
+  li.path-node {
+    background: url('../images/indent-guides/indent-guide-guiding-t-junction-2.svg') no-repeat left -4px;
+    background-size: $indent-guide-bg-size;
+  }
+  
   li.path-start {
-    background: url('../images/indent-guides/indent-guide-guiding-t-junction-node.svg') no-repeat left -4px;
+    background: url('../images/indent-guides/indent-guide-guiding-t-junction-2.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
     background-color: rgba(83,83,83, .80);
   }
+  
+  li.path-node:last-child,
   li.path-start-last,
   li.path-start-last:last-child {
     background: url('../images/indent-guides/indent-guide-active-last.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
     background-color: rgba(83,83,83, .80);
   }
-  
 	
 	.active-parent > .item-text {
 		// color: desaturate( lighten( adjust-hue($color-accent, 25), 10), 10);
 		// color: desaturate( lighten( adjust-hue($color-accent, 35), 10), 20);
+		// color: desaturate( lighten( adjust-hue($color-accent, 35), 20), 10);
 		// color: desaturate( #8692f5, 40);
     // font-weight: bold;
     .txt {
@@ -161,9 +165,9 @@
 	}
 	.active-parent > .remove-item {
     // color: #8692f5;
-		// color: orange;
+		color: orange;
 		// color: #009dff;
-		color: $color-accent-2;
+		// color: $color-accent-2;
 	}
   
   // Style for dragged items when sorting. Dragging new elements or duplicating elements looks different.

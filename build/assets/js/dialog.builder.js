@@ -5,58 +5,9 @@ e.find(".active-parent").removeClass("active-parent"),t.parentsUntil(".dialog.tr
 // Just don't jump in the witch's oven...
 function lightThePath(e,t){
 // Burn it all!! Okay... Maybe not the best word choice there...
-$(".path-start").removeClass("path-start"),$(".path-item").removeClass("path-item"),$(".path-node").removeClass("path-node"),$(".path-sibling-node").removeClass("path-sibling-node"),$(".path-sibling-parent").removeClass("path-sibling-parent"),$(".path-end").removeClass("path-end"),$(".path-start-last").removeClass("path-start-last"),e.find(".active-parent").first().addClass("path-end");
+$(".path-node").removeClass("path-node"),$(".path-item").removeClass("path-item"),$(".path-sibling-node").removeClass("path-sibling-node"),$(".path-end").removeClass("path-end"),$(".path-start").removeClass("path-start"),$(".path-start-last").removeClass("path-start-last"),$(".path-start-node").removeClass("path-start-node"),e.find(".active-parent").first().addClass("path-end");
 // PATH END
-var i=t;i.addClass("path-start"),(i.data("parent")||i.next().length<1)&&i.addClass("path-start-last"),e.find(".active-parent:not(:first)").addClass("path-node").add(i).each(function(){$(this).prevUntil(":first").each(function(){console.log($(this)),$(this).data("parent")?$(this).addClass("path-sibling-node"):$(this).addClass("path-item")})})}
-//
-// function traversePath( treeView, pathStart, pathEnd ) {
-//
-// 	// pathStart.prevUntil(':first').addClass('path-item');
-// 	//
-// 	// // console.log( pathStart.next().length );
-// 	// if ( pathStart.next().length == 0 ) {
-// 	// 	pathStart.addClass('path-start-last');
-// 	// }
-//
-// 	prevUntilParent( pathStart );
-// 	function prevUntilParent( item ) {
-//
-// 		var prev = item.prev();
-// 		if ( prev.length > 0 ) {
-// 			if ( prev.data('parent') ) {
-// 				prev.addClass('path-sibling-parent');
-// 			}
-// 			else {
-// 				prev.addClass('path-item');
-// 			}
-// 		}
-// 		else {
-// 			prevUntilParent( item.parent('ul').parent('li') );
-// 		}
-//
-// 	}
-//
-//
-// 	//
-// 	// treeView.find('.active-parent:not(:first)').each(function() {
-// 	//
-// 	// 	$(this).addClass('path-node');
-// 	// 	console.log( $(this)[0] );
-// 	// 	$(this).find('ul').children().each(function() {
-// 	//
-// 	// 		if ( $(this).data('parent') ) {
-// 	// 			// console.log( $(this).data('parent') );
-// 	// 			$(this).addClass('path-sibling-node');
-// 	// 		}
-// 	// 		else {
-// 	// 			$(this).addClass('path-item');
-// 	// 		}
-// 	// 	});
-// 	//
-// 	// });
-//
-// }
-function droplistOnWindowResize(){$(window).on("resize",function(){droplist.hide()})}// Defines how fast the number updates while dragging.
+var i=t;i.next().length<1?i.addClass("path-start-last"):i.data("parent")?i.addClass("path-start-node"):i.addClass("path-start"),e.find(".active-parent:not(:first)").addClass("path-node").add(i).each(function(){$(this).prevUntil(":first").each(function(){$(this).data("parent")?$(this).addClass("path-sibling-node"):$(this).addClass("path-item")})})}function droplistOnWindowResize(){$(window).on("resize",function(){droplist.hide()})}// Defines how fast the number updates while dragging.
 function numberInputs(){function o(e,t,i,a){var n=e.val();if(isNaN(n))e.val(g);else{n=parseInt(n,10);var d=$("#dialog .active"),o=d.width(),s=e.hasClass("width"),r=d.height(),l=e.hasClass("height");0===n?e.removeClass("danger-zone"):s&&n<o?e.addClass("danger-zone"):s&&o<=n?e.removeClass("danger-zone"):l&&n<r?e.addClass("danger-zone"):l&&r<=n&&e.removeClass("danger-zone");var c={min:parseInt(e.attr("min"),10),max:parseInt(e.attr("max"),10),step:a||parseInt(e.attr("step"),10),modifierStep:parseInt(e.attr("modifier-step"),10)},p=(i?c.modifierStep:c.step)||1,m=n<c.min,v=n>c.max,u=m||v;switch(t){case"blur":if(u){var f=m&&c.min||v&&c.max;e.val(f)}break;case"up":n<c.max&&(n=n+p>c.max?c.max:n+p,e.val(n),g=n);break;case"down":n>c.min&&(n=n-p<c.min?c.min:n-p,e.val(n),g=n);break}}item.funnel.update(e.data("edit"))}$(".number").wrap('<div class="number-wrap">');var g,e=$(".number-wrap");$('<div class="arrow plus"></div><div class="arrow minus"></div><div class="number-overlay"></div>').appendTo(e);var t=e.find(".number"),i=e.find(".number-overlay");t.each(function(){"none"===$(this).css("display")&&$(this).closest(".number-wrap").addClass("hide")});var s,r,l=!1,c=0,p=null,m=null;$(window).on("mousedown mousemove mouseup",function(e){if("mousedown"===e.type)l=!0,s=$(e.target).parent(),r=s.find("> .number");else if("mousemove"===e.type){if(l&&mousemovePing&&r.hasClass("number")){
 // if ( dragStartElement.data('edit') === 'margins' ) {
 // 	$('body').addClass('dragging-margins');

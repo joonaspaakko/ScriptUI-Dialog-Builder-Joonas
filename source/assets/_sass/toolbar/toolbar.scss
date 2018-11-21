@@ -63,7 +63,8 @@
 		  animation-delay: .7s;
 		  animation-duration: .7s;
 			.icon {
-				top: 2px;
+				// top: 2px;
+				top: 1px;
 				left: 1px;
 			}
 		}
@@ -87,6 +88,21 @@
 		&,
 		& a {
 			color: #fff;
+		}
+	}
+	
+	> div {
+		width: auto;
+		padding: 0 20px;
+		&:hover {
+			width: auto;
+		}
+		.icon {
+			margin-right: 8px;
+		}
+		> span,
+		> div {
+			float: left;
 		}
 	}
 	
