@@ -61,10 +61,14 @@ treeRootUl.sortable({
   group: 'dialog-items',
 	// exclude: ".disabled",
 	vertical: true,
-  // distance: 4,
+  distance: 4,
 	delay: 100,
   // I didn't do a huge amount of testing, but it seems setting a minus
   // tolerance helped with a problem when using the 'isValidTarget' function.
+  // - Vague description: Somehow when isValidTarget
+  // function was utilized to prevent dragging tabs where they don't
+  // belong, just sorting withing a tabbed panel make the placeholder
+  // line jump up and down in a way that din't make any sense...
   tolerance: -3,
   isValidTarget: function ($item, container ) {
     var result = true;
@@ -87,20 +91,17 @@ treeRootUl.sortable({
     // DRAGGING / SORTING WITHIN THE TREE VIEW PANEL
     if ( $item.find('.item-text').length > 0 ) {
       
-      // Make a clone in the place of the original...
-      $item.clone().insertAfter( $item ).addClass('dolly')//.addClass('dolly duplicate-parent');
-      var dolly = $('#panel-tree-view-wrap .dolly');
-      // dolly.find('[data-parent="true"]').addClass('duplicate-parent');
+      // For most items nothing needs to be done
+      // onDragStart, except when you're duplicating items
       
       tab.onStartSort( $item );
       
       // DUPLICATE ITEMS
       // DRAGGING / SORTING WITHIN THE TREE VIEW PANEL
       if ( event.altKey ) {
-        $('body').addClass('duplicate-item');
-      }
-      else {
-        dolly.addClass('sort-temp-item');
+        // Make a clone in the place of the original...
+        $item.clone().insertAfter( $item ).addClass('dolly');
+        $('body').addClass('duplicate-item'); // The function of this class is to change the cursor
       }
       
     }
@@ -171,7 +172,7 @@ item.drag = {};
 // *********************************
 item.drag.sort = function( $item ) {
   
-  $('#panel-tree-view-wrap .sort-temp-item').remove();
+  // $('#panel-tree-view-wrap .sort-temp-item').remove();
   
   var parentId = $item.parent('ul').parent('li').data('item-id'),
   previousItem = $item.prev();
@@ -230,30 +231,43 @@ item.drag.duplicate = function( $item, container ) {
       previousIsParent = previousItem.data('parent'),
       targetElement    = noPrevious ? parentUl : previousItem; // Target previous item. If it doesn't exist, target parent item.
   
+  $('body').removeClass('duplicate-item'); // The function of this class is to change the cursor
+  
   // Dolly becomes a real sheep by way of eliminating the original
+  // The cloned elements are actually just thrown away and then re-created
+  // from scratch. I did it this way because there's basically 3 places
+  // where the items exist at all times; Treeview, Dialog Preview and Local
+  // storage. Since I have a system in place for creating items that handles
+  // creating the item in all of these 3 places in one swing, then why not...
   $('#panel-tree-view-wrap .dolly').removeClass('dolly');
   $item.remove();
   
-  $('body').removeClass('duplicate-item'); // The function of this class is to change the cursor
-  
-  
   var data     = local_storage.get('dialog'),
       treeView = $('#panel-tree-view-wrap'),
-      difference = Math.abs( $item.data('item-id') - item.get.id() ),
       dupRootId;
+  
+  // Filled inside the each function below.
+  var parentMap = {};
   
   // Dragged item and every child with data-item-id attribute
   $item.find('[data-item-id]').add( $item ).each(function( i ) {
     
     var sourceId    = $(this).data('item-id'),
-        currentItem = data.items[ 'item-' + sourceId ],
-        parentId    = i === 0 ? container.target.parent('li').data('item-id') : currentItem.parentId + difference;
+        sourceItemData = data.items[ 'item-' + sourceId ],
+        newId = item.get.id(),
+        newParentId = i === 0 ? container.target.parent('li').data('item-id') : parentMap[ 'parent-' + sourceItemData.parentId ];
+    
+    // Maps old parent id with the new parent id so that
+    // following items can then check what they new parent id is
+    if ( $(this).data('parent') ) {
+      parentMap[ 'parent-' + sourceId ] = newId;
+    }
     
     var params = {
-      id: item.get.id(),
-      type: currentItem.type,
-      parentId: parentId,
-      target: i === 0 ? targetElement : treeView.find('[data-item-id="'+ parentId +'"] > ul'),
+      id: newId,
+      type: sourceItemData.type,
+      parentId: newParentId,
+      target: i === 0 ? targetElement : treeView.find('[data-item-id="'+ newParentId +'"] > ul'),
       event: i === 0 ? 'drag-duplicate' : 'loadFromLocalStorage',
       previousIsParent: previousIsParent,
       sourceId: sourceId // This is pushed forward to "item.create.localStorage" function, which handles copying the item specific style to this one...
@@ -265,10 +279,12 @@ item.drag.duplicate = function( $item, container ) {
   
   // Reactivate the ye olde active item
   item.activate( dupRootId );
+  
   // Build Item Properties panel
   data = local_storage.get('dialog');
   var newItem = data.items[ 'item-' + dupRootId ];
   edit_style_panel.build( newItem.style );
+  
   
   $('body').removeClass('dragging');
 	

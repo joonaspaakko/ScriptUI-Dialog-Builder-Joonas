@@ -56,7 +56,8 @@
 		  animation-delay: .6s;
 		  animation-duration: .5s;
 			.icon {
-				top: 1px;
+				// top: 1px;
+				top: 0.2px;
 			}
 		}
 		&:nth-child(2) {
@@ -64,7 +65,7 @@
 		  animation-duration: .7s;
 			.icon {
 				// top: 2px;
-				top: 1px;
+				top: 1.2px;
 				left: 1px;
 			}
 		}
@@ -72,7 +73,8 @@
 		  animation-delay: .8s;
 		  animation-duration: .9s;
 			.icon {
-				top: 1px;
+				// top: 1px;
+				top: 0.5px;
 				left: 2px;
 			}
 		}

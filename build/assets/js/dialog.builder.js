@@ -41,7 +41,7 @@ $("#panel-new-item-wrap ul li").each(function(){v[$(this).data("item-type").toLo
 // This is where each item is first added
 switch(n){case"Dialog":m+="var "+u+' = new Window("'+v+'"); \n';break;case"ListBox":case"DropDownList":var h=r.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+u+'_array = ["'+h.join('","')+'"]; \n',m+="var "+u+" = "+a[o]+'.add("'+v+'", undefined, '+u+"_array",void 0!==r.selection&&"ListBox"===n&&1<r.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+u+" = "+a[o]+'.add("panel"); \n';break;case"TreeView":var b=g.find('[data-item-id="'+d+'"]'),y=0<r.preferredSize[0]?r.preferredSize[0]:Math.round(b.width()),w=0<r.preferredSize[1]?r.preferredSize[1]:Math.round(b.height());m+="var "+u+" = "+a[o]+'.add("'+n.toLowerCase()+'", [0,0,'+(y+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=g.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+u+" = "+a[o]+'.add("'+C+'", "'+r.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===r.text?0:r.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+u+" = "+a[o]+'.add("'+v+'"'+k+"); \n"}l.name=u,l.parent=a[o];var T=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,o,s,r,u,c)+T;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
-var S=t.order[e+1];if(void 0!==S){var _=t.items["item-"+S],P="TreeItem"===n&&"TreeItem"!==_.type;P&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):P&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
+var S=t.order[e+1];if(void 0!==S){var P=t.items["item-"+S],_="TreeItem"===n&&"TreeItem"!==P.type;_&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):_&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
 // When the item type is not a fitting variable name...
 function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
 a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,o,s,r,l){var c="",p="    ";
@@ -140,7 +140,7 @@ var t=local_storage.get("dialog");t.activeId=e,local_storage.set("dialog",t);
 // Change the active element in the treeview.
 var i=$("#panel-tree-view-wrap");i.find(".active").removeClass("active");var a=i.find('[data-item-id="'+e+'"]');a.addClass("active");
 // Change the active element in the dialog preview
-var n=$("#dialog");n.find(".active").removeClass("active"),n.find('[data-item-id="'+e+'"]').addClass("active"),tab.onActivate(e),breadCrumbs(i,a)},item.remove={localStorage:function(){
+var n=$("#dialog");n.find(".active").removeClass("active"),n.find('[data-item-id="'+e+'"]').addClass("active"),tab.onActivate(e),breadCrumbs(i,a),lightThePath(i,a)},item.remove={localStorage:function(){
 // Read old data from local storage.
 var e,t,i,a=local_storage.get("dialog");
 // Get current order
@@ -215,7 +215,7 @@ case"margins":var p=t[0],m=t[1],v=t[2],u=t[3],f="object"!=typeof t,g=f?t:p,h=f?t
 // PREFERRED SIZE
 case"preferredSize":d.width("auto").height("auto");var w=d.width(),C=d.height(),x=0==t[0]?"auto":t[0]<w?w:t[0],I=0==t[1]?"auto":t[1]<C?C:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var S=d.width(),_=T.outerWidth(!0),P=k.outerWidth(!0);d.removeClass("get-width");var z=_+P;z<x?(d.addClass("too-big"),P<S&&k.width("auto")):x<z&&(d.addClass("too-small"),S<P&&k.width(S-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var S=d.width(),P=T.outerWidth(!0),_=k.outerWidth(!0);d.removeClass("get-width");var z=P+_;z<x?(d.addClass("too-big"),_<S&&k.width("auto")):x<z&&(d.addClass("too-small"),S<_&&k.width(S-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
@@ -516,31 +516,30 @@ treeElem.on("click",".remove-item",function(){var e=$(this).parent("li").data("i
 // TREEVIEW DRAG EVENT
 treeRootUl.sortable({group:"dialog-items",
 // exclude: ".disabled",
-vertical:!0,
-// distance: 4,
-delay:100,
+vertical:!0,distance:4,delay:100,
 // I didn't do a huge amount of testing, but it seems setting a minus
 // tolerance helped with a problem when using the 'isValidTarget' function.
+// - Vague description: Somehow when isValidTarget
+// function was utilized to prevent dragging tabs where they don't
+// belong, just sorting withing a tabbed panel make the placeholder
+// line jump up and down in a way that din't make any sense...
 tolerance:-3,isValidTarget:function(e,t){var i=tabbedPanel.onDragValid(e,t),a=treeView.onDragValid(e,t);
 // TRUE = Droppable
 // FALSE = No dropsies
 return!i&&!a},onDragStart:function(e,t,i,a){
-// DRAGGING / SORTING WITHIN THE TREE VIEW PANEL
-if(
 // Gives the container a static width to prevent size from changing as
 // soon as you remove something by dragging. This width is removed onDrop.
-treeDialog.width(treeDialog.width()),0<e.find(".item-text").length){
-// Make a clone in the place of the original...
-e.clone().insertAfter(e).addClass("dolly");//.addClass('dolly duplicate-parent');
-var n=$("#panel-tree-view-wrap .dolly");
-// dolly.find('[data-parent="true"]').addClass('duplicate-parent');
+treeDialog.width(treeDialog.width()),
+// DRAGGING / SORTING WITHIN THE TREE VIEW PANEL
+0<e.find(".item-text").length?(
+// For most items nothing needs to be done
+// onDragStart, except when you're duplicating items
 tab.onStartSort(e),
 // DUPLICATE ITEMS
 // DRAGGING / SORTING WITHIN THE TREE VIEW PANEL
-a.altKey?$("body").addClass("duplicate-item"):n.addClass("sort-temp-item")}
-// MAKE NEW ITEM
-// DRAGGING FROM THE ADD PANEL TO THE TREE VIEW PANEL
-else t.options.drop||e.clone(!0).insertAfter(e);i(e,t)},onDrop:function(e,t,i){if(
+a.altKey&&(
+// Make a clone in the place of the original...
+e.clone().insertAfter(e).addClass("dolly"),$("body").addClass("duplicate-item"))):t.options.drop||e.clone(!0).insertAfter(e),i(e,t)},onDrop:function(e,t,i){if(
 // The width is made static onDragStart making things
 // less jumpy. This normalizes the container width.
 treeDialog.width("auto"),0<t.target.closest("#panel-new-item-wrap").length)e.remove();else{var a=0<e.find(".item-text").length,n=$("body").hasClass("duplicate-item");
@@ -555,7 +554,9 @@ $("#panel-new-item-wrap ul").sortable({drop:!1,group:"dialog-items"}),item.drag=
 // *********************************
 // DRAG - SORT ITEM(S) (onDrop)
 // *********************************
-item.drag.sort=function(e){$("#panel-tree-view-wrap .sort-temp-item").remove();var t=e.parent("ul").parent("li").data("item-id"),i=e.prev(),a=0<i.length?"insertAfter":"prependTo",n=0<i.length?i.data("item-id"):t;e.attr("item-parent-id",t),e.data({"item-parent-id":t});var d=e.data("item-type"),o=e.data("item-id");item.funnel.sort(o,t,d,a,n),tab.onSort(e),treeViewItem.onSort(e,d,o)},
+item.drag.sort=function(e){
+// $('#panel-tree-view-wrap .sort-temp-item').remove();
+var t=e.parent("ul").parent("li").data("item-id"),i=e.prev(),a=0<i.length?"insertAfter":"prependTo",n=0<i.length?i.data("item-id"):t;e.attr("item-parent-id",t),e.data({"item-parent-id":t});var d=e.data("item-type"),o=e.data("item-id");item.funnel.sort(o,t,d,a,n),tab.onSort(e),treeViewItem.onSort(e,d,o)},
 // *********************************
 // DRAG - MAKE NEW ITEM (onDrop)
 // *********************************
@@ -567,16 +568,25 @@ item.funnel.create(o)},
 // **************************************
 // DRAG - DUPLICATE ITEM(S) (onDrop)
 // **************************************
-item.drag.duplicate=function(e,d){var t=e.prev(),i=e.parent("ul"),a=t.length<1,o=t.data("parent"),s=a?i:t;// Target previous item. If it doesn't exist, target parent item.
+item.drag.duplicate=function(e,o){var t=e.prev(),i=e.parent("ul"),a=t.length<1,s=t.data("parent"),r=a?i:t;// Target previous item. If it doesn't exist, target parent item.
+$("body").removeClass("duplicate-item"),// The function of this class is to change the cursor
 // Dolly becomes a real sheep by way of eliminating the original
-$("#panel-tree-view-wrap .dolly").removeClass("dolly"),e.remove(),$("body").removeClass("duplicate-item");// The function of this class is to change the cursor
-var r,l=local_storage.get("dialog"),c=$("#panel-tree-view-wrap"),p=Math.abs(e.data("item-id")-item.get.id());
+// The cloned elements are actually just thrown away and then re-created
+// from scratch. I did it this way because there's basically 3 places
+// where the items exist at all times; Treeview, Dialog Preview and Local
+// storage. Since I have a system in place for creating items that handles
+// creating the item in all of these 3 places in one swing, then why not...
+$("#panel-tree-view-wrap .dolly").removeClass("dolly"),e.remove();var l,c=local_storage.get("dialog"),p=$("#panel-tree-view-wrap"),m={};
+// Filled inside the each function below.
 // Dragged item and every child with data-item-id attribute
-e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=l.items["item-"+t],a=0===e?d.target.parent("li").data("item-id"):i.parentId+p,n={id:item.get.id(),type:i.type,parentId:a,target:0===e?s:c.find('[data-item-id="'+a+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:o,sourceId:t};0===e&&(r=n.id),item.funnel.create(n)}),
+e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=c.items["item-"+t],a=item.get.id(),n=0===e?o.target.parent("li").data("item-id"):m["parent-"+i.parentId];
+// Maps old parent id with the new parent id so that
+// following items can then check what they new parent id is
+$(this).data("parent")&&(m["parent-"+t]=a);var d={id:a,type:i.type,parentId:n,target:0===e?r:p.find('[data-item-id="'+n+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:s,sourceId:t};0===e&&(l=d.id),item.funnel.create(d)}),
 // Reactivate the ye olde active item
-item.activate(r);var n=(
+item.activate(l);var n=(
 // Build Item Properties panel
-l=local_storage.get("dialog")).items["item-"+r];edit_style_panel.build(n.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
+c=local_storage.get("dialog")).items["item-"+l];edit_style_panel.build(n.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
 // ACTIVATE ITEMS WHEN FOCUSED IN DIALOG PREVIEW
 dialogElem.on("focus","[contenteditable]",function(){var e=$(this),t=(e.parent().attr("id"),e.hasClass("tab")&&e.data("tab-id")||e.closest("[data-item-id]").data("item-id"));item.activate(t);
 // Build Item Properties panel

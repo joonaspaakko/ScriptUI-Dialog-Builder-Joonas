@@ -47,7 +47,6 @@ item.update.style.dialogPreview = function( prop, data, dataItem ) {
 	
 };
 
-
 item.update.order = function() {
 	
 	// Read old data from local storage....

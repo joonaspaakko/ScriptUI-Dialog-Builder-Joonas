@@ -22,7 +22,7 @@ item.activate = function( id ) {
 	tab.onActivate( id );
 	
 	breadCrumbs( treeView, treeActive );
-	// lightThePath( treeView, treeActive );
+	lightThePath( treeView, treeActive );
 	
 };
 

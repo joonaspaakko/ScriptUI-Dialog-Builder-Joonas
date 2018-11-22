@@ -6,12 +6,13 @@
 
 #tree-view-contents {
   
-	.sort-temp-item {
-		display: none;
-	}
-	
+  // Adds a tiny vertical line coming from the Dialog item in the
+  // situation where it is the only iteṁ. The idea here was to indicate
+  // that this is sort of where the treeview beings, but I felt it
+  // looked more distracting than helpful. A line does a poor job
+  // representing a full treeview... Just looks cleaner without it.
   .tree-root > ul {
-    /* padding-top: 4px; */
+    // padding-top: 4px;
   }
   
   ul, li {
@@ -44,7 +45,6 @@
       color: #999;
     }
   }
-  
 	
   .tree-dialog,
   .tree-root {
@@ -60,10 +60,15 @@
     vertical-align: middle;
     margin-right: 5px;
     &:hover {
-      color: rgb(233,30,79);
+      color: rgb(233,30,79) !important;
     }
   }
   
+	.item-text:hover {
+		// color: $color-accent-2;
+		color: #ebe6e6;
+	}
+
   li.active > .item-text {
     color: $color-accent;
     > .remove-item,
@@ -71,7 +76,7 @@
       color: #dadada;
     }
     > .remove-item:hover {
-      color: rgb(233,30,79);
+      color: rgb(233,30,79) !important;
     }
   }
   
@@ -111,7 +116,7 @@
   }
   
   li.path-sibling-node {
-    background: url('../images/indent-guides/indent-guide-guiding.svg') repeat-y top left;
+    background: url('../images/indent-guides/indent-guide-path.svg') repeat-y top left;
     background-size: $indent-guide-bg-size;
     position: relative;
     background-color: rgba(83,83,83, .80);
@@ -122,25 +127,25 @@
     z-index: 1;
     top: 0px;
     left: 0px;
-    background: url('../images/indent-guides/indent-guide-active-t-junction.svg') no-repeat left -4px;
+    background: url('../images/indent-guides/indent-guide-path-t-junction-1.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
     width: 20px;
     height: 20px;
   }
   
   li.path-item {
-    background: url('../images/indent-guides/indent-guide-guiding-t-junction.svg') no-repeat left -4px;
+    background: url('../images/indent-guides/indent-guide-path-t-junction-2.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
   }
   
   li.path-start-node,
   li.path-node {
-    background: url('../images/indent-guides/indent-guide-guiding-t-junction-2.svg') no-repeat left -4px;
+    background: url('../images/indent-guides/indent-guide-path-t-junction-3.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
   }
   
   li.path-start {
-    background: url('../images/indent-guides/indent-guide-guiding-t-junction-2.svg') no-repeat left -4px;
+    background: url('../images/indent-guides/indent-guide-path-t-junction-3.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
     background-color: rgba(83,83,83, .80);
   }
@@ -148,10 +153,15 @@
   li.path-node:last-child,
   li.path-start-last,
   li.path-start-last:last-child {
-    background: url('../images/indent-guides/indent-guide-active-last.svg') no-repeat left -4px;
+    background: url('../images/indent-guides/indent-guide-path-last.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
     background-color: rgba(83,83,83, .80);
   }
+	
+	// li.path-end > .item-text {
+  //   color: #b67fdc;
+  //   font-weight: bold;
+	// }
 	
 	.active-parent > .item-text {
 		// color: desaturate( lighten( adjust-hue($color-accent, 25), 10), 10);
@@ -198,6 +208,7 @@
     &:before { // A little disc that at least in theory gives a better idea of the current branch level when dragging things.
       content:"";
       position: absolute;
+      z-index: 999;
       top: -4px;
       left: -1px;
       width: 5px;

@@ -160,6 +160,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"/source/assets/_sass/misc/dialog-preview-accents.scss": {
+		"aP": 1,
+		"bl": 1,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/build/assets/_sass/misc/dialog-preview-accents.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/source/assets/_sass/misc/drop-list.scss": {
 		"aP": 1,
 		"bl": 1,
@@ -670,36 +683,6 @@
 		"plM": 3758088159,
 		"prP": 1
 		},
-	"/source/assets/images/indent-guides/indent-guide-guiding-t-junction-2.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/build/assets/images/indent-guides/indent-guide-guiding-t-junction-2.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/source/assets/images/indent-guides/indent-guide-guiding-t-junction.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/build/assets/images/indent-guides/indent-guide-guiding-t-junction.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/source/assets/images/indent-guides/indent-guide-guiding.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/build/assets/images/indent-guides/indent-guide-guiding.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
 	"/source/assets/images/indent-guides/indent-guide-last.svg": {
 		"ft": 2097152,
 		"miP": 1,
@@ -709,6 +692,56 @@
 		"opt": 1,
 		"plM": 3758088159,
 		"prP": 1
+		},
+	"/source/assets/images/indent-guides/indent-guide-path-last.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/assets/images/indent-guides/indent-guide-path-last.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/source/assets/images/indent-guides/indent-guide-path-t-junction-1.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/assets/images/indent-guides/indent-guide-path-t-junction-1.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/source/assets/images/indent-guides/indent-guide-path-t-junction-2.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/assets/images/indent-guides/indent-guide-path-t-junction-2.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/source/assets/images/indent-guides/indent-guide-path-t-junction-3.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/assets/images/indent-guides/indent-guide-path-t-junction-3.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/source/assets/images/indent-guides/indent-guide-path.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/assets/images/indent-guides/indent-guide-path.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
 		},
 	"/source/assets/images/indent-guides/indent-guide-t-junction.svg": {
 		"ft": 2097152,
@@ -7509,7 +7542,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-fry",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 564525584.16105604
+	"lastBuiltDate": 564581573.64411294
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
