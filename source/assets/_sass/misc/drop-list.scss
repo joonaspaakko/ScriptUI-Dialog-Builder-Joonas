@@ -1,5 +1,8 @@
 
 // This is sort of the mask put on top of the original <select>
+.alignment-horizontal-fill > .drop-list-wrap {
+	flex: 1;
+}
 .drop-list-wrap {
 	@extend %noselection;
 	cursor: pointer;
