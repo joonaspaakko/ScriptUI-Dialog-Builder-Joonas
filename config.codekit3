@@ -7545,6 +7545,16 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/assets/js/dialog.builder/modules/toolbar/sample.dialog.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/sample.dialog.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/source/assets/js/dialog.builder/panels/1.add.items.js": {
 		"ft": 64,
 		"ma": 0,

@@ -8,16 +8,16 @@ function lightThePath(e,t){if(
 $(".path-node").removeClass("path-node"),$(".path-item").removeClass("path-item"),$(".path-sibling-node").removeClass("path-sibling-node"),$(".path-end").removeClass("path-end"),$(".path-start").removeClass("path-start"),$(".path-start-last").removeClass("path-start-last"),$(".path-start-node").removeClass("path-start-node"),"Dialog"!==t.data("item-type")){e.find(".active-parent").first().addClass("path-end");
 // PATH END
 var i=t;i.next().length<1?i.addClass("path-start-last"):i.data("parent")?i.addClass("path-start-node"):i.addClass("path-start"),e.find(".active-parent:not(:first)").addClass("path-node").add(i).each(function(){$(this).prevUntil(":first").each(function(){$(this).data("parent")?$(this).addClass("path-sibling-node"):$(this).addClass("path-item")})})}}function droplistOnWindowResize(){$(window).on("resize",function(){droplist.hide()})}// Defines how fast the number updates while dragging.
-function numberInputs(){function o(e,t,i,a){var n=e.val();if(isNaN(n))e.val(g);else{n=parseInt(n,10);var d=$("#dialog .active"),o=d.width(),s=e.hasClass("width"),r=d.height(),l=e.hasClass("height");0===n?e.removeClass("danger-zone"):s&&n<o?e.addClass("danger-zone"):s&&o<=n?e.removeClass("danger-zone"):l&&n<r?e.addClass("danger-zone"):l&&r<=n&&e.removeClass("danger-zone");var c={min:parseInt(e.attr("min"),10),max:parseInt(e.attr("max"),10),step:a||parseInt(e.attr("step"),10),modifierStep:parseInt(e.attr("modifier-step"),10)},p=(i?c.modifierStep:c.step)||1,m=n<c.min,v=n>c.max,u=m||v;switch(t){case"blur":if(u){var f=m&&c.min||v&&c.max;e.val(f)}break;case"up":n<c.max&&(n=n+p>c.max?c.max:n+p,e.val(n),g=n);break;case"down":n>c.min&&(n=n-p<c.min?c.min:n-p,e.val(n),g=n);break}}item.funnel.update(e.data("edit"))}$(".number").wrap('<div class="number-wrap">');var g,e=$(".number-wrap");$('<div class="arrow plus"></div><div class="arrow minus"></div><div class="number-overlay"></div>').appendTo(e);var t=e.find(".number"),i=e.find(".number-overlay");t.each(function(){"none"===$(this).css("display")&&$(this).closest(".number-wrap").addClass("hide")});var s,r,l=!1,c=0,p=null,m=null;$(window).on("mousedown mousemove mouseup",function(e){if("mousedown"===e.type)l=!0,s=$(e.target).parent(),r=s.find("> .number");else if("mousemove"===e.type){if(l&&mousemovePing&&r.hasClass("number")){
+function numberInputs(){function r(e,t,i,a){var n=e.val();if(isNaN(n))e.val(v);else{n=parseInt(n,10);var d=$("#dialog .active"),r=d.width(),l=e.hasClass("width"),o=d.height(),s=e.hasClass("height");0===n?e.removeClass("danger-zone"):l&&n<r?e.addClass("danger-zone"):l&&r<=n?e.removeClass("danger-zone"):s&&n<o?e.addClass("danger-zone"):s&&o<=n&&e.removeClass("danger-zone");var c={min:parseInt(e.attr("min"),10),max:parseInt(e.attr("max"),10),step:a||parseInt(e.attr("step"),10),modifierStep:parseInt(e.attr("modifier-step"),10)},p=(i?c.modifierStep:c.step)||1,m=n<c.min,f=n>c.max,u=m||f;switch(t){case"blur":if(u){var g=m&&c.min||f&&c.max;e.val(g)}break;case"up":n<c.max&&(n=n+p>c.max?c.max:n+p,e.val(n),v=n);break;case"down":n>c.min&&(n=n-p<c.min?c.min:n-p,e.val(n),v=n);break}}item.funnel.update(e.data("edit"))}$(".number").wrap('<div class="number-wrap">');var v,e=$(".number-wrap");$('<div class="arrow plus"></div><div class="arrow minus"></div><div class="number-overlay"></div>').appendTo(e);var t=e.find(".number"),i=e.find(".number-overlay");t.each(function(){"none"===$(this).css("display")&&$(this).closest(".number-wrap").addClass("hide")});var l,o,s=!1,c=0,p=null,m=null;$(window).on("mousedown mousemove mouseup",function(e){if("mousedown"===e.type)s=!0,l=$(e.target).parent(),o=l.find("> .number");else if("mousemove"===e.type){if(s&&mousemovePing&&o.hasClass("number")){
 // if ( dragStartElement.data('edit') === 'margins' ) {
 // 	$('body').addClass('dragging-margins');
 // }
 // dragWrapper.find('.number-overlay').css({ position: 'fixed' });
 if(mousemovePing=!1,e.preventDefault(),null===p)return p=Date.now(),void(m=e.screenY);var t=Date.now(),i=t-p,a=e.screenY-m,n=Math.abs(Math.round(a/i*(e.shiftKey?200:40))),d=4<n?n:0;// Poor mans slow start...
-p=t,m=e.screenY,e.pageY<c?o(r,"up",e.shiftKey,d):e.pageY>c&&o(r,"down",e.shiftKey,d),c=e.pageY}}else if("mouseup"===e.type){
+p=t,m=e.screenY,e.pageY<c?r(o,"up",e.shiftKey,d):e.pageY>c&&r(o,"down",e.shiftKey,d),c=e.pageY}}else if("mouseup"===e.type){
 // dragStartElement.removeClass('danger-zone');
 // dragWrapper.find('.number-overlay').css({ position: 'absolute' });
-l&&r.length;l=!1}}),
+s&&o.length;s=!1}}),
 // I tried to emulate native functionality by making it so that
 // single click simply places the caret and double click selects the
 // text, but ended up leaving that out. I liked it better that the
@@ -26,51 +26,51 @@ l&&r.length;l=!1}}),
 // The overlay is there to prevent weird text selection stuff when dragging, but
 // that in turn makes it so that you can't directly focus on the input.
 // With this, clicking the overlay will result in the same thing.
-i.on("click",function(){$(this).parent().find(".number").focus()}),t.on("focus blur",function(e){var t=$(this);"focus"===e.type?(g=$(this).val(),
+i.on("click",function(){$(this).parent().find(".number").focus()}),t.on("focus blur",function(e){var t=$(this);"focus"===e.type?(v=$(this).val(),
 // if ( overlay_dblclick === true ) {
-$(this).select()):o(t,"blur")}),e.find(".arrow").on("click",function(e){var t=$(this),i=t.parent().find(".number");t.hasClass("plus")?o(i,"up",e.shiftKey):t.hasClass("minus")&&o(i,"down",e.shiftKey)}),t.on("keyup",function(e){var t=e.keyCode?e.keyCode:e.which,i=$(this);// Arrow Up
-o(i,38===t?"up":40===t?"down":"numberEntry",e.shiftKey)})}function exportCode(){var e=local_storage.get("dialog");return"/* \nCode for Import https://scriptui.joonas.me — (Triple click to select): \n"+JSON.stringify(e)+"\n*/ \n\n"+getJSX(e)+"dialog.show();"}function clipBoardEvent(n){
+$(this).select()):r(t,"blur")}),e.find(".arrow").on("click",function(e){var t=$(this),i=t.parent().find(".number");t.hasClass("plus")?r(i,"up",e.shiftKey):t.hasClass("minus")&&r(i,"down",e.shiftKey)}),t.on("keyup",function(e){var t=e.keyCode?e.keyCode:e.which,i=$(this);// Arrow Up
+r(i,38===t?"up":40===t?"down":"numberEntry",e.shiftKey)})}function exportCode(){var e=local_storage.get("dialog");return"/* \nCode for Import https://scriptui.joonas.me — (Triple click to select): \n"+JSON.stringify(e)+"\n*/ \n\n"+getJSX(e)+"dialog.show();"}function clipBoardEvent(n){
 /*global ClipboardJS*/
 /*eslint no-undef: ["error", { "typeof": true }] */
-var e=new ClipboardJS(".btn.copy",{text:function(){return n.getValue()}});e.on("success",function(e){var t=$(e.trigger),i=t.find(".fa-check"),a=t.find(".fa-clipboard-list");i.addClass("rotateIn"),a.hide(),setTimeout(function(){i.removeClass("rotateIn"),a.show()},750)}),e.on("error",function(e){var t=$(e.trigger),i=t.find(".fa-times"),a=t.find(".fa-clipboard-list");i.addClass("tada"),a.hide(),setTimeout(function(){n.execCommand("selectAll"),i.removeClass("tada"),a.show()},750)})}function getJSX(c){var p="",m={},v={dialog:"",tab:""},// Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
-u={name:"",parent:""},f=[];// JUST DO IT
+var e=new ClipboardJS(".btn.copy",{text:function(){return n.getValue()}});e.on("success",function(e){var t=$(e.trigger),i=t.find(".fa-check"),a=t.find(".fa-clipboard-list");i.addClass("rotateIn"),a.hide(),setTimeout(function(){i.removeClass("rotateIn"),a.show()},750)}),e.on("error",function(e){var t=$(e.trigger),i=t.find(".fa-times"),a=t.find(".fa-clipboard-list");i.addClass("tada"),a.hide(),setTimeout(function(){n.execCommand("selectAll"),i.removeClass("tada"),a.show()},750)})}function getJSX(c){var p="",m={},f={dialog:"",tab:""},// Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
+u={name:"",parent:""},g=[];// JUST DO IT
 // Creates rest of the counters based on the "Add items" panel...
-$("#panel-new-item-wrap ul li").each(function(){v[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),g=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,o=a.type,s=a.id,r=a.style,l=!1;e===g-1&&(l=!0),p+=makeJSXitem(t,c,v,m,o,s,n,d,r,u,f,l)}),p}function makeJSXitem(e,t,i,a,n,d,o,s,r,l,c,p){var m="",v=n.toLowerCase();++i[v];var u=customVarNames(v,s,i);a[d]=u;var f=a[o];
+$("#panel-new-item-wrap ul li").each(function(){f[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),v=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,r=a.type,l=a.id,o=a.style,s=!1;e===v-1&&(s=!0),p+=makeJSXitem(t,c,f,m,r,l,n,d,o,u,g,s)}),p}function makeJSXitem(e,t,i,a,n,d,r,l,o,s,c,p){var m="",f=n.toLowerCase();++i[f];var u=customVarNames(f,l,i);a[d]=u;var g=a[r];
 // If current item is a parent...
-"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+u.toUpperCase()+"\n",m+="// "+Array(u.length+1).join("=")+"\n"):l.parent!==f&&l.name!==f&&(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"));var g=$("#dialog");
+"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+u.toUpperCase()+"\n",m+="// "+Array(u.length+1).join("=")+"\n"):s.parent!==g&&s.name!==g&&(m+="// "+g.toUpperCase()+"\n",m+="// "+Array(g.length+1).join("=")+"\n"));var v=$("#dialog");
 // This is where each item is first added
-switch(n){case"Dialog":m+="var "+u+' = new Window("'+v+'"); \n';break;case"ListBox":case"DropDownList":var h=r.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+u+'_array = ["'+h.join('","')+'"]; \n',m+="var "+u+" = "+a[o]+'.add("'+v+'", undefined, '+u+"_array",void 0!==r.selection&&"ListBox"===n&&1<r.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+u+" = "+a[o]+'.add("panel"); \n';break;case"TreeView":var b=g.find('[data-item-id="'+d+'"]'),y=0<r.preferredSize[0]?r.preferredSize[0]:Math.round(b.width()),w=0<r.preferredSize[1]?r.preferredSize[1]:Math.round(b.height());m+="var "+u+" = "+a[o]+'.add("'+n.toLowerCase()+'", [0,0,'+(y+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=g.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+u+" = "+a[o]+'.add("'+C+'", "'+r.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===r.text?0:r.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+u+" = "+a[o]+'.add("'+v+'"'+k+"); \n"}l.name=u,l.parent=a[o];var T=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,o,s,r,u,c)+T;
+switch(n){case"Dialog":m+="var "+u+' = new Window("'+f+'"); \n';break;case"ListBox":case"DropDownList":var h=o.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+u+'_array = ["'+h.join('","')+'"]; \n',m+="var "+u+" = "+a[r]+'.add("'+f+'", undefined, '+u+"_array",void 0!==o.selection&&"ListBox"===n&&1<o.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+u+" = "+a[r]+'.add("panel"); \n';break;case"TreeView":var y=v.find('[data-item-id="'+d+'"]'),b=0<o.preferredSize[0]?o.preferredSize[0]:Math.round(y.width()),w=0<o.preferredSize[1]?o.preferredSize[1]:Math.round(y.height());m+="var "+u+" = "+a[r]+'.add("'+n.toLowerCase()+'", [0,0,'+(b+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=v.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+u+" = "+a[r]+'.add("'+C+'", "'+o.text+'"); \n';break;default:var x=item.list[n.toLowerCase()](!1).multiline,I=void 0===o.text?0:o.text.indexOf("\n"),k=x&&0<I?", undefined, undefined, {multiline: true}":"";m+="var "+u+" = "+a[r]+'.add("'+f+'"'+k+"); \n"}s.name=u,s.parent=a[r];var S=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,r,l,o,u,c)+S;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
-var S=t.order[e+1];if(void 0!==S){var P=t.items["item-"+S],_="TreeItem"===n&&"TreeItem"!==P.type;_&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):_&&(m+="\n")}else void 0===S&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
+var T=t.order[e+1];if(void 0!==T){var z=t.items["item-"+T],P="TreeItem"===n&&"TreeItem"!==z.type;P&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):P&&(m+="\n")}else void 0===T&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
 // When the item type is not a fitting variable name...
 function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
-a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,o,s,r,l){var c="",p="    ";
+a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,r,l,o,s){var c="",p="    ";
 // var counter = counters[ type.toLowerCase() ];
-if("TreeItem"===a){var m=e.items["item-"+n].expanded,v=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),u=!1;$.each(v,function(){$(this).hasClass("expanded")||(u=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
-}),m&&!1===u&&l.push(p+r+".expanded = true; \n")}else if("Divider"===a)c+=p+r+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+r+".minvalue = 0; \n",c+=p+r+".maxvalue = 100; \n",c+=p+r+".value = 50; \n";else{if(
+if("TreeItem"===a){var m=e.items["item-"+n].expanded,f=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),u=!1;$.each(f,function(){$(this).hasClass("expanded")||(u=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
+}),m&&!1===u&&s.push(p+o+".expanded = true; \n")}else if("Divider"===a)c+=p+o+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+o+".minvalue = 0; \n",c+=p+o+".maxvalue = 100; \n",c+=p+o+".value = 50; \n";else{if(
 // DROP LIST SELECTION
-"DropDownList"===a&&void 0!==s.selection&&(c+=p+r+".selection = "+s.selection+"; \n"),"ListBox"===a&&void 0!==s.selection&&0<s.selection.length)c+=p+r+".selection = "+(1<s.selection.length?JSON.stringify(s.selection):s.selection)+"; \n";
+"DropDownList"===a&&void 0!==l.selection&&(c+=p+o+".selection = "+l.selection+"; \n"),"ListBox"===a&&void 0!==l.selection&&0<l.selection.length)c+=p+o+".selection = "+(1<l.selection.length?JSON.stringify(l.selection):l.selection)+"; \n";
 // TABBED PANEL SELECTION
 // Due to me being an idiot, it's better for our insanity if tabbed panel selection defined when the selected item is created.
-"Tab"===a&&e.items["item-"+d].style.selection===n&&(c+=p+i[d]+".selection = "+r+"; \n"),
+"Tab"===a&&e.items["item-"+d].style.selection===n&&(c+=p+i[d]+".selection = "+o+"; \n"),
 // TABBED PANEL ALIGN CHILDREN
-"TabbedPanel"===a&&(c+=p+r+'.alignChildren = "fill"; \n');
+"TabbedPanel"===a&&(c+=p+o+'.alignChildren = "fill"; \n');
 // TEXT
-var f=item.list[a.toLowerCase()](!1).multiline;if(void 0!==s.text&&0<s.text.length)c+=p+r+'.text = "'+(f?s.text.split("\n").join("\\r"):s.text)+'"; \n';
+var g=item.list[a.toLowerCase()](!1).multiline;if(void 0!==l.text&&0<l.text.length)c+=p+o+'.text = "'+(g?l.text.split("\n").join("\\r"):l.text)+'"; \n';
 // CHECKED
 // PREFERRED SIZE
-if(!0===s.checked&&(c+=p+r+".value = "+s.checked+"; \n"),void 0!==s.preferredSize&&"TreeView"!==a){var g=s.preferredSize[0],h=s.preferredSize[1],b=item.list[a.toLowerCase()](!1).parent?"preferredSize":"minimumSize";0<g&&(c+=p+r+"."+b+".width = "+g+"; \n"),0<h&&(c+=p+r+"."+b+".height = "+h+"; \n")}
+if(!0===l.checked&&(c+=p+o+".value = "+l.checked+"; \n"),void 0!==l.preferredSize&&"TreeView"!==a){var v=l.preferredSize[0],h=l.preferredSize[1],y=item.list[a.toLowerCase()](!1).parent?"preferredSize":"minimumSize";0<v&&(c+=p+o+"."+y+".width = "+v+"; \n"),0<h&&(c+=p+o+"."+y+".height = "+h+"; \n")}
 // JUSTIFY
-if(void 0!==s.justify&&"left"!==s.justify||"Button"===a&&"center"!==s.justify)c+=p+(0<(void 0===s.text?0:s.text.indexOf("\n"))?"// ":"")+r+'.justify = "'+s.justify+'"; \n';
+if(void 0!==l.justify&&"left"!==l.justify||"Button"===a&&"center"!==l.justify)c+=p+(0<(void 0===l.text?0:l.text.indexOf("\n"))?"// ":"")+o+'.justify = "'+l.justify+'"; \n';
 // ORIENTATION
 // MARGINS
-if(void 0!==s.orientation&&(c+=p+r+'.orientation = "'+s.orientation+'"; \n'),
+if(void 0!==l.orientation&&(c+=p+o+'.orientation = "'+l.orientation+'"; \n'),
 // ALIGN CHILDREN
-void 0!==s.alignChildren&&(c+=p+r+'.alignChildren = ["'+s.alignChildren[0]+'","'+s.alignChildren[1]+'"]; \n'),
+void 0!==l.alignChildren&&(c+=p+o+'.alignChildren = ["'+l.alignChildren[0]+'","'+l.alignChildren[1]+'"]; \n'),
 // SPACING
-void 0!==s.spacing&&(c+=p+r+".spacing = "+s.spacing+"; \n"),void 0!==s.margins)c+=p+r+".margins = "+("object"==typeof s.margins?"["+s.margins[3]+","+s.margins[0]+","+s.margins[1]+","+s.margins[2]+"]":s.margins)+"; \n";
+void 0!==l.spacing&&(c+=p+o+".spacing = "+l.spacing+"; \n"),void 0!==l.margins)c+=p+o+".margins = "+("object"==typeof l.margins?"["+l.margins[3]+","+l.margins[0]+","+l.margins[1]+","+l.margins[2]+"]":l.margins)+"; \n";
 // ALIGNMENT
-if(null!=s.alignment){var y=e.items["item-"+d].style.orientation,w="";w="column"===y?("top"===s.alignment?"left":"bottom"===s.alignment&&"right")||s.alignment:("left"===s.alignment?"top":"right"===s.alignment&&"bottom")||s.alignment;var C=e.items["item-"+d].style.alignChildren;c+=p+r+".alignment = "+(w="column"===y?'["'+w+'","'+C[1]+'"]':'["'+C[0]+'","'+w+'"]')+"; \n"}}return c}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
+if(null!=l.alignment){var b=e.items["item-"+d].style.orientation,w="";w="column"===b?("top"===l.alignment?"left":"bottom"===l.alignment&&"right")||l.alignment:("left"===l.alignment?"top":"right"===l.alignment&&"bottom")||l.alignment;var C=e.items["item-"+d].style.alignChildren;c+=p+o+".alignment = "+(w="column"===b?'["'+w+'","'+C[1]+'"]':'["'+C[0]+'","'+w+'"]')+"; \n"}}return c}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
 /* exported notification */
 function notification(e,t,i){
 // "I think that padding makes you look fat..."
@@ -78,7 +78,7 @@ function a(e){e.addClass("fadeOut"),setTimeout(function(){e.remove()},300)}
 // HTML
 var n=$('<div class="notification '+e+' animated"><div><i class="fas fa-info-circle icon"></i><div class="msg">'+t+"<div></div></div>").appendTo("#notifications-wrap"),d=$("#notifications-wrap .notification").length;
 // Crowd control - GET BACK YOU MONSTERS!!!! *hoses the crap out of the crowd while frantically digging for the pepper spray*
-1<=d&&a($("#notifications-wrap .notification").slice(0,d-1));var o=n.height();n.css({height:0,visibility:"visible"}),n.animate({height:o},300,"easeInOutBack"),
+1<=d&&a($("#notifications-wrap .notification").slice(0,d-1));var r=n.height();n.css({height:0,visibility:"visible"}),n.animate({height:r},300,"easeInOutBack"),
 // Bananas - B - A - N - A - N - A - S !!
 $("#notifications-wrap .notification:last").addClass("last").prev().removeClass("last"),
 // Ain't nobody got time to close notifications manually.
@@ -102,7 +102,7 @@ if(item.remove.treeView(e),item.remove.dialogPreview(e,d),item.remove.localStora
 // 3. Select parent
 e=0<a.length&&a.data("item-id")||0<i.length&&i.data("item-id")||n.data("item-id"),item.activate(e);
 // Build Item Properties panel
-var o=local_storage.get("dialog");edit_style_panel.build(o.items["item-"+e].style)}$("#dialog-section").backstretch("resize")},update:function(e,t){droplist.hide();
+var r=local_storage.get("dialog");edit_style_panel.build(r.items["item-"+e].style)}$("#dialog-section").backstretch("resize")},update:function(e,t){droplist.hide();
 // LOCAL STORAGE
 var i=local_storage.get("dialog"),a=(i="localStorage"===t?i:item.update.style.localStorage(e,i)).items["item-"+i.activeId];
 // TREE VIEW PANEL
@@ -131,10 +131,10 @@ var a=e.type.toLowerCase();item.list[a](!1).parent&&$("<ul></ul>").insertAfter(i
 // No data in ul, so gotta go a step higher to look for the data...
 var n,d=e.event.match(/^drag/);
 // Append to parent items
-n=t?d?e.previousIsParent?"insertAfter":"prependTo":"appendTo":"insertAfter",$(i)[n](e.target)},dialogPreview:function(e){var t,i,a=item.list[e.type.toLowerCase()](e).previewHtml,n=e.target.is("ul")?e.target.parent("li"):e.target,d=n.data("parent"),o=n.data("item-id"),s=$("#dialog"),r=s.find('[data-item-id="'+o+'"]'),l=e.event.match(/^drag/);
+n=t?d?e.previousIsParent?"insertAfter":"prependTo":"appendTo":"insertAfter",$(i)[n](e.target)},dialogPreview:function(e){var t,i,a=item.list[e.type.toLowerCase()](e).previewHtml,n=e.target.is("ul")?e.target.parent("li"):e.target,d=n.data("parent"),r=n.data("item-id"),l=$("#dialog"),o=l.find('[data-item-id="'+r+'"]'),s=e.event.match(/^drag/);
 // No data in ul, so gotta go a step higher to look for the data...
 // Append to parent items
-i=d?(t=l?e.previousIsParent?"insertAfter":"prependTo":"appendTo","Dialog"===e.type?s:l&&e.previousIsParent?r:r.find("> .padding-box")):(t="insertAfter",s.find('[data-item-id="'+o+'"]')),$(a)[t](i),"DropDownList"===e.type?droplist.init($('#dialog [data-item-id="'+e.id+'"]'),e.id):"RadioButton"===e.type||"Checkbox"===e.type?radiocheck.init($('#dialog [data-item-id="'+e.id+'"]'),e.id,e.type):"ListBox"===e.type&&listbox.init($('#dialog [data-item-id="'+e.id+'"]'),e.id)}},item.get={},item.get.order=function(){var t=[];return $("#panel-tree-view-wrap .contents [data-item-id]").each(function(){var e=$(this).data("item-id");t.push(e)}),t},item.get.id=function(){var e=item.get.order();return Math.max.apply(null,e)+1},item.activate=function(e){droplist.hide();
+i=d?(t=s?e.previousIsParent?"insertAfter":"prependTo":"appendTo","Dialog"===e.type?l:s&&e.previousIsParent?o:o.find("> .padding-box")):(t="insertAfter",l.find('[data-item-id="'+r+'"]')),$(a)[t](i),"DropDownList"===e.type?droplist.init($('#dialog [data-item-id="'+e.id+'"]'),e.id):"RadioButton"===e.type||"Checkbox"===e.type?radiocheck.init($('#dialog [data-item-id="'+e.id+'"]'),e.id,e.type):"ListBox"===e.type&&listbox.init($('#dialog [data-item-id="'+e.id+'"]'),e.id)}},item.get={},item.get.order=function(){var t=[];return $("#panel-tree-view-wrap .contents [data-item-id]").each(function(){var e=$(this).data("item-id");t.push(e)}),t},item.get.id=function(){var e=item.get.order();return Math.max.apply(null,e)+1},item.activate=function(e){droplist.hide();
 // Write active item id to local storage
 var t=local_storage.get("dialog");t.activeId=e,local_storage.set("dialog",t);
 // Change the active element in the treeview.
@@ -166,9 +166,9 @@ a.order=(i=[],$("#tree-view-contents [data-item-id]").each(function(){var e=$(th
 // Update parent id
 a.items["item-"+e].parentId=t,
 // Write back to local storage...
-local_storage.set("dialog",a)},dialogPreview:function(e,t,i,a,n){var d=$("#dialog"),o=d.find('[data-item-id="'+e+'"]'),s=d.find('[data-item-id="'+n+'"]'),r="insertAfter"===a?s:s.find("> .padding-box");
+local_storage.set("dialog",a)},dialogPreview:function(e,t,i,a,n){var d=$("#dialog"),r=d.find('[data-item-id="'+e+'"]'),l=d.find('[data-item-id="'+n+'"]'),o="insertAfter"===a?l:l.find("> .padding-box");
 // If you move a checked radiobutton to a parent that already has a checked radio button, uncheck the radiobutton that was moved.
-if(o[a](r),"RadioButton"===i){var l=o.find(".radiobutton"),c=l.hasClass("on"),p=0,m=':not([data-item-type="RadioButton"],.spacing)';if(o.nextUntil(m).add(o.prevUntil(m)).each(function(){$(this).find(".radiobutton").hasClass("on")&&++p}),0<p&&c){l.removeClass("on");var v=local_storage.get("dialog");v.items["item-"+e].style.checked=!1,local_storage.set("dialog",v)}}}},
+if(r[a](o),"RadioButton"===i){var s=r.find(".radiobutton"),c=s.hasClass("on"),p=0,m=':not([data-item-type="RadioButton"],.spacing)';if(r.nextUntil(m).add(r.prevUntil(m)).each(function(){$(this).find(".radiobutton").hasClass("on")&&++p}),0<p&&c){s.removeClass("on");var f=local_storage.get("dialog");f.items["item-"+e].style.checked=!1,local_storage.set("dialog",f)}}}},
 // @codekit-append "get.values.js";
 // @codekit-append "set.values.js";
 item.update={},item.update.style={},item.update.style.localStorage=function(e,t){var i=item.update.get_values(e);return t.items["item-"+t.activeId].style[e]=i[e],local_storage.set("dialog",t),t;// Changed data is force fed to the two functions below
@@ -183,21 +183,21 @@ e.order=item.get.order(),
 local_storage.set("dialog",e)},item.update.get_values=function(e){var t={},i=$("#panel-edit-style-wrap"),a=i.find('[data-edit^="'+e+'"]');switch(e){case"text":t.text=a.val();break;case"listItems":t.listItems=a.val();break;case"justify":t.justify=i.find('[data-edit^="justify"].active').data("value");break;case"margins":
 // All sides share the same value.
 // - single number value
-if(0<i.find(".n-3-4.hidden").length)t.margins=parseInt(i.find(".margin-inputs .top").val(),10);else{var n=[];i.find('[data-edit="margins"]').each(function(){n.push(parseInt($(this).val(),10))}),t.margins=n}break;case"preferredSize":var d=parseInt(i.find("input.width").val(),10),o=parseInt(i.find("input.height").val(),10);t.preferredSize=[d,o];break;case"orientation":t.orientation=a.find("option:selected").val();break;case"spacing":t.spacing=parseInt(a.val(),10);break;case"alignChildren":var s=i.find('#align-children-horizontal[data-edit="alignChildren"] option:selected').val(),r=i.find('#align-children-vertical[data-edit="alignChildren"] option:selected').val();t.alignChildren=[s,r];break;case"alignment":!1===a.prop("disabled")?t.alignment=a.find("option:selected").val():t.alignment=null;break}
+if(0<i.find(".n-3-4.hidden").length)t.margins=parseInt(i.find(".margin-inputs .top").val(),10);else{var n=[];i.find('[data-edit="margins"]').each(function(){n.push(parseInt($(this).val(),10))}),t.margins=n}break;case"preferredSize":var d=parseInt(i.find("input.width").val(),10),r=parseInt(i.find("input.height").val(),10);t.preferredSize=[d,r];break;case"orientation":t.orientation=a.find("option:selected").val();break;case"spacing":t.spacing=parseInt(a.val(),10);break;case"alignChildren":var l=i.find('#align-children-horizontal[data-edit="alignChildren"] option:selected').val(),o=i.find('#align-children-vertical[data-edit="alignChildren"] option:selected').val();t.alignChildren=[l,o];break;case"alignment":!1===a.prop("disabled")?t.alignment=a.find("option:selected").val():t.alignment=null;break}
 // console.table( data );
 return t},
 // Updates the Dialog preview look
-item.update.set_values=function(e){var t=e.value,i=e.dataItem.type,a=e.dataItem.style,n=e.dataItem.id,d=$("#dialog .active"),o=d.find("> .padding-box");switch(e.property){
+item.update.set_values=function(e){var t=e.value,i=e.dataItem.type,a=e.dataItem.style,n=e.dataItem.id,d=$("#dialog .active"),r=d.find("> .padding-box");switch(e.property){
 // TEXT
-case"text":if("Dialog"===i)d.find("#dialog-title-bar div").text(t);else if("Panel"===i){var s=d.find("> .title");s.text(t),
+case"text":if("Dialog"===i)d.find("#dialog-title-bar div").text(t);else if("Panel"===i){var l=d.find("> .title");l.text(t),
 // Makes sure the panel container is always wide enough to cover the title
-o.css({minWidth:s.width()+22})}
+r.css({minWidth:l.width()+22})}
 // type === 'RadioButton' || type === 'Checkbox' || type === 'DropDownList'
-else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else{var r=d.find(".text-container"),l=item.list[i.toLowerCase()](!1).multiline,c=t.indexOf("\n");
+else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else{var o=d.find(".text-container"),s=item.list[i.toLowerCase()](!1).multiline,c=t.indexOf("\n");
 // #U7FTZMRVYxVqiArfdgQeQjMRpx6R → dialog.scss
 // Multiline text yo!
 // Visually locks multiline text alignment to left
-r.removeClass("multiline"),l&&0<c&&r.addClass("multiline"),r.text(t)}break;
+o.removeClass("multiline"),s&&0<c&&o.addClass("multiline"),o.text(t)}break;
 // LIST ITEMS
 case"listItems":"DropDownList"===i?
 /*global droplist*/
@@ -211,11 +211,11 @@ case"checked":!0===t&&d.find("input").prop("checked",!0);break;
 // JUSTIFY
 case"justify":d.removeClass(function(e,t){return(t.match(/(^|\s)justify-\S+/g)||[]).join(" ")}).addClass("justify-"+e.value);break;
 // MARGINS
-case"margins":var p=t[0],m=t[1],v=t[2],u=t[3],f="object"!=typeof t,g=f?t:p,h=f?t:m,b=f?t:v,y=f?t:u;"Dialog"===i?o.css({paddingTop:g<=6?1:g,paddingRight:h<=1?1:h,paddingBottom:b<=1?1:b,paddingLeft:y<=1?1:y}):"Panel"===i||"Tab"===i?o.css({paddingTop:g<=3?3:g,paddingRight:h<=3?3:h,paddingBottom:b<=1?1:b,paddingLeft:y<=3?3:y}):o.css({paddingTop:g,paddingRight:h,paddingBottom:b,paddingLeft:y});break;
+case"margins":var p=t[0],m=t[1],f=t[2],u=t[3],g="object"!=typeof t,v=g?t:p,h=g?t:m,y=g?t:f,b=g?t:u;"Dialog"===i?r.css({paddingTop:v<=6?1:v,paddingRight:h<=1?1:h,paddingBottom:y<=1?1:y,paddingLeft:b<=1?1:b}):"Panel"===i||"Tab"===i?r.css({paddingTop:v<=3?3:v,paddingRight:h<=3?3:h,paddingBottom:y<=1?1:y,paddingLeft:b<=3?3:b}):r.css({paddingTop:v,paddingRight:h,paddingBottom:y,paddingLeft:b});break;
 // PREFERRED SIZE
 case"preferredSize":d.width("auto").height("auto");var w=d.width(),C=d.height(),x=0==t[0]?"auto":t[0]<w?w:t[0],I=0==t[1]?"auto":t[1]<C?C:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var S=d.width(),P=T.outerWidth(!0),_=k.outerWidth(!0);d.removeClass("get-width");var z=P+_;z<x?(d.addClass("too-big"),_<S&&k.width("auto")):x<z&&(d.addClass("too-small"),S<_&&k.width(S-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),S=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var T=d.width(),z=S.outerWidth(!0),P=k.outerWidth(!0);d.removeClass("get-width");var _=z+P;_<x?(d.addClass("too-big"),P<T&&k.width("auto")):x<_&&(d.addClass("too-small"),T<P&&k.width(T-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
@@ -226,7 +226,7 @@ var L=0,V=e.data.items["item-"+n].parentId;if(!1!==V)"column"===e.data.items["it
 // ALIGN CHILDREN
 case"alignChildren":d.removeClass(function(e,t){return(t.match(/(^|\s)align-children-\S+/g)||[]).join(" ")}),d.addClass("align-children-horizontal-"+t[0]),d.addClass("align-children-vertical-"+t[1]);break;
 // ALIGNMENT
-case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var A="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+A[0]),d.addClass("alignment-vertical-"+A[1])}break}};var tabbedPanel={onCreate:function(e){
+case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var B="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+B[0]),d.addClass("alignment-vertical-"+B[1])}break}};var tabbedPanel={onCreate:function(e){
 // There's no point in having a tabbed panel with less than
 // two items, so this section makes sure that when a tabbed
 // panel is created, two child tabs are created as well.
@@ -235,7 +235,7 @@ var d=t.find(".active").data("item-id");item.activate(a),n.id=item.get.id(),item
 item.activate(d)}
 // Tab item is hidden in the "Add items" panel by default, because you don't need it unless you have a TabbedPanel in the document.
 // There's no need for extra conditionals because this is triggered only after a tabbed panel is created, which is what happens on load or import when the dialog is reconstructed.
-var o=$("#panel-new-item-wrap .tab");o.hasClass("show")||o.addClass("show")},
+var r=$("#panel-new-item-wrap .tab");r.hasClass("show")||r.addClass("show")},
 // Prevents dragging items to specific containers...
 // True = Prevent dropping
 onDragValid:function(e,t){var i=t.target.parent("li"),a=e.hasClass("tab"),n=i.hasClass("tabbedpanel");
@@ -247,8 +247,8 @@ return a&&!n||!a&&n},
 // Just a little reminder for people trying to add anything but tabs inside tabbed panel or a tab outside of tabbed panels.
 onClick:function(e,t){var i=t.data("item-type"),a=e.hasClass("tab"),n="TabbedPanel"===i,d=a&&!n||!a&&n;
 // ITEMS
-if(d){var o=$("#panel-edit-style-wrap .edit-info");o.removeClass("highlight-animation"),// Reset so that the animation can run again if user tries to add another item with similar issues.
-setTimeout(function(){o.addClass("highlight-animation")},10)}return d}},tab={onCreate:function(e){if("Tab"===e.type){var t=$('#dialog [data-item-id="'+e.parentId+'"]'),i=t.find("> .tab-container");
+if(d){var r=$("#panel-edit-style-wrap .edit-info");r.removeClass("highlight-animation"),// Reset so that the animation can run again if user tries to add another item with similar issues.
+setTimeout(function(){r.addClass("highlight-animation")},10)}return d}},tab={onCreate:function(e){if("Tab"===e.type){var t=$('#dialog [data-item-id="'+e.parentId+'"]'),i=t.find("> .tab-container");
 // var tabItem = $('#dialog [data-item-id="'+ params.id +'"]');
 $('<div class="tab" data-tab-id="'+e.id+'" contenteditable>'+e.style.text+"</div>").appendTo(i),tab.containerSort(t.find("> .padding-box > .tab"),i),item.activate(e.id);
 // Build Item Properties panel
@@ -263,16 +263,16 @@ onStartSort:function(e){if(e.hasClass("tab")){$("body").addClass("dragging-tab")
 // Remove dragged tab from the dialog preview. The next function (
 // onDragSortDrop ) triggers update that makes sure it is all up to date.
 // So even if you decide to drop it where you picked it up, it is put back.
-onSort:function(e){var t=e.hasClass("tab"),i=e.hasClass("tabbedpanel");if(t||i||0<$('#dialog [data-item-id="'+e.data("item-id")+'"]').closest(".tab").length){$("body").removeClass("dragging-tab");var a=local_storage.get("dialog"),n=e.data("item-id"),d=a.items["item-"+n].parentId,o=$("#dialog"),s=o.find('[data-item-id="'+d+'"]'),r=s.find("> .tab-container");o.find('.tab-container [data-tab-id="'+n+'"]').appendTo(r);
+onSort:function(e){var t=e.hasClass("tab"),i=e.hasClass("tabbedpanel");if(t||i||0<$('#dialog [data-item-id="'+e.data("item-id")+'"]').closest(".tab").length){$("body").removeClass("dragging-tab");var a=local_storage.get("dialog"),n=e.data("item-id"),d=a.items["item-"+n].parentId,r=$("#dialog"),l=r.find('[data-item-id="'+d+'"]'),o=l.find("> .tab-container");r.find('.tab-container [data-tab-id="'+n+'"]').appendTo(o);
 // Sort the shelf
-var l=s.find("> .padding-box > .tab");tab.containerSort(l,r),item.activate(n),
+var s=l.find("> .padding-box > .tab");tab.containerSort(s,o),item.activate(n),
 // Build Item Properties panel
 edit_style_panel.build(a.items["item-"+n].style),
 // Update
-tab.onUpdate.init(a,n)}},containerSort:function(e,t){e.each(function(){var e=$(this).data("item-id");t.find('[data-tab-id="'+e+'"]').appendTo(t)})},onUpdate:{init:function(o,e){
+tab.onUpdate.init(a,n)}},containerSort:function(e,t){e.each(function(){var e=$(this).data("item-id");t.find('[data-tab-id="'+e+'"]').appendTo(t)})},onUpdate:{init:function(r,e){
 // Start churning if updated item inside a tabbed panel...
 // - Because any nested item can cause parents and the whole hecking family to bloat up
-var t=$('#panel-tree-view-wrap [data-item-id="'+e+'"]');0<t.closest(".tabbedpanel").length&&t.parentsUntil(".dialog").filter(".tabbedpanel").each(function(){var e=o.items["item-"+$(this).data("item-id")],t=$('#dialog [data-item-id="'+e.id+'"]'),i=0,a=0;t.find("> .padding-box > .tab").each(function(){
+var t=$('#panel-tree-view-wrap [data-item-id="'+e+'"]');0<t.closest(".tabbedpanel").length&&t.parentsUntil(".dialog").filter(".tabbedpanel").each(function(){var e=r.items["item-"+$(this).data("item-id")],t=$('#dialog [data-item-id="'+e.id+'"]'),i=0,a=0;t.find("> .padding-box > .tab").each(function(){
 // Makes current tab visible so that dimensions return properly.
 // Siblings are also hidden...
 $(this).addClass("tab-temp-class");var e=$(this).innerWidth(),t=$(this).innerHeight();$(this).removeClass("tab-temp-class"),
@@ -292,7 +292,7 @@ n.id=item.get.id(),item.funnel.create(n),// Filler tab N.2.
 item.activate(d)}
 // TreeViewItem item is hidden in the "Add items" panel by default, because you don't need it unless you have a TreeView item in the document.
 // There's no need for extra conditionals because this is triggered only after a TreeView item is created, which is what happens on load or import when the dialog is reconstructed.
-var o=$("#panel-new-item-wrap .treeitem");o.hasClass("show")||o.addClass("show")},
+var r=$("#panel-new-item-wrap .treeitem");r.hasClass("show")||r.addClass("show")},
 // Prevents dragging items to specific containers...
 // True = Prevent dropping
 onDragValid:function(e,t){var i=t.target.parent("li"),a=e.hasClass("treeitem"),n=i.hasClass("treeview"),d=i.hasClass("treeitem");
@@ -302,24 +302,24 @@ onDragValid:function(e,t){var i=t.target.parent("li"),a=e.hasClass("treeitem"),n
 // Dragging !item + Target is treeview or item     = NO DROPSIES
 return a&&!n&&!d||!a&&(n||d)},
 // Just a little reminder for people trying to add anything but tabs inside tabbed panel or a tab outside of tabbed panels. Silly humans...
-onClick:function(e,t){var i=t.data("item-type"),a=e.hasClass("treeitem"),n="TreeView"===i,d="TreeItem"===i,o=a&&!n&&!d||!a&&(n||d);
+onClick:function(e,t){var i=t.data("item-type"),a=e.hasClass("treeitem"),n="TreeView"===i,d="TreeItem"===i,r=a&&!n&&!d||!a&&(n||d);
 // ITEMS
-if(o){var s=$("#panel-edit-style-wrap .edit-info");s.removeClass("highlight-animation"),// Reset so that the animation can run again if user tries to add another item with similar issues.
-setTimeout(function(){s.addClass("highlight-animation")},10)}return o}},treeViewItem={onClick:function(){$("#dialog").on("click",".tree-view-arrow",function(){var e=$(this).parent(".item-wrap").parent(".tree-view-item"),t=e.data("item-id"),i=local_storage.get("dialog"),a=i.items["item-"+t];treeViewItem.expand(i,a,e,!0)})},onSort:function(e,t,i){if("TreeItem"===t){$('#dialog [data-item-id="'+i+'"]').parent(".padding-box").parent(".tree-view-item").addClass("tree-node");
+if(r){var l=$("#panel-edit-style-wrap .edit-info");l.removeClass("highlight-animation"),// Reset so that the animation can run again if user tries to add another item with similar issues.
+setTimeout(function(){l.addClass("highlight-animation")},10)}return r}},treeViewItem={onClick:function(){$("#dialog").on("click",".tree-view-arrow",function(){var e=$(this).parent(".item-wrap").parent(".tree-view-item"),t=e.data("item-id"),i=local_storage.get("dialog"),a=i.items["item-"+t];treeViewItem.expand(i,a,e,!0)})},onSort:function(e,t,i){if("TreeItem"===t){$('#dialog [data-item-id="'+i+'"]').parent(".padding-box").parent(".tree-view-item").addClass("tree-node");
 // Get rid of previous data
-var a=$("#dialog .tree-node > .padding-box:empty").parent().removeClass("tree-node expanded");if(0<a.length){var n=a.data("item-id"),d=local_storage.get("dialog");delete d.items["item-"+n].expanded,local_storage.set("dialog",d)}}},onUpdate:function(e,t){if("TreeItem"===t.type){var i=$('#dialog [data-item-id="'+t.id+'"]');0<i.parent(".padding-box").parent(".tree-view-item").length&&i.parent(".padding-box").parent(".tree-view-item").addClass("tree-node"),treeViewItem.expand(e,t,i)}},expand:function(e,t,i,a){var n,d="expanded";if(!0!==a)n=t.expanded?"addClass":"removeClass";else{var o=i.hasClass(d);n=o?"removeClass":"addClass"}i[n](d),a&&(
+var a=$("#dialog .tree-node > .padding-box:empty").parent().removeClass("tree-node expanded");if(0<a.length){var n=a.data("item-id"),d=local_storage.get("dialog");delete d.items["item-"+n].expanded,local_storage.set("dialog",d)}}},onUpdate:function(e,t){if("TreeItem"===t.type){var i=$('#dialog [data-item-id="'+t.id+'"]');0<i.parent(".padding-box").parent(".tree-view-item").length&&i.parent(".padding-box").parent(".tree-view-item").addClass("tree-node"),treeViewItem.expand(e,t,i)}},expand:function(e,t,i,a){var n,d="expanded";if(!0!==a)n=t.expanded?"addClass":"removeClass";else{var r=i.hasClass(d);n=r?"removeClass":"addClass"}i[n](d),a&&(
 // COLLAPSE
-o?delete e.items["item-"+t.id].expanded:e.items["item-"+t.id].expanded=!0,local_storage.set("dialog",e))}};treeViewItem.onClick();var listbox={init:function(t,i){t.on("click","li",function(){var e=$(this);listbox.clickety(i,t,e)})},clickety:function(e,t,i){
+r?delete e.items["item-"+t.id].expanded:e.items["item-"+t.id].expanded=!0,local_storage.set("dialog",e))}};treeViewItem.onClick();var listbox={init:function(t,i){t.on("click","li",function(){var e=$(this);listbox.clickety(i,t,e)})},clickety:function(e,t,i){
 // LIGHT SWITCH...
 var a="selected",n=i.hasClass(a)?"removeClass":"addClass";i[n](a);
 // GET ALL SELECTED ITEMS...
 var d=[];t.find("li").each(function(){$(this).hasClass(a)&&d.push($(this).index())});
 // WRITE SELECTION LOCAL STORAGE...
-var o=local_storage.get("dialog");o.items["item-"+e].style.selection=d,local_storage.set("dialog",o)},set:function(e,t){var n=e.find("ul");n.children().remove();var i,a,d=t.split(","),o=local_storage.get("dialog"),s=o.items["item-"+o.activeId];
+var r=local_storage.get("dialog");r.items["item-"+e].style.selection=d,local_storage.set("dialog",r)},set:function(e,t){var n=e.find("ul");n.children().remove();var i,a,d=t.split(","),r=local_storage.get("dialog"),l=r.items["item-"+r.activeId];
 // Remove last selection if it's index is larger than the current list
-void 0!==s.style.selection&&(i=s.style.selection,a=0,$.each(i,function(e,t){a<t&&(a=t)}),a>=d.length&&s.style.selection.pop(),local_storage.set("dialog",o)),
+void 0!==l.style.selection&&(i=l.style.selection,a=0,$.each(i,function(e,t){a<t&&(a=t)}),a>=d.length&&l.style.selection.pop(),local_storage.set("dialog",r)),
 // Rebuild the list
-$.each(d,function(e,t){var i=t.trim(),a=0<=$.inArray(e,s.style.selection);$("<li"+(a?' class="selected"':"")+"><span>"+i+"</span></li>").appendTo(n)})}};// This droplist has so many smoking mirrors... Practically all mirrors at this point... **FRAGILE**
+$.each(d,function(e,t){var i=t.trim(),a=0<=$.inArray(e,l.style.selection);$("<li"+(a?' class="selected"':"")+"><span>"+i+"</span></li>").appendTo(n)})}};// This droplist has so many smoking mirrors... Practically all mirrors at this point... **FRAGILE**
 // REMOVE (HIDE) LIST ON WINDOW RESIZE
 // Because the opened up list is held in place via absolute positioning...
 droplistOnWindowResize();var droplist={init:function(e,a){e.find(".drop-list-wrap").on("click",function(){
@@ -328,13 +328,13 @@ $("#drop-list").remove();var i=$(this);if(i.hasClass("open"))droplist.hide();els
 // Second click on the .drop-list-wrap...
 })},backbone:function(e){var t=null,i=e.find(".items").children();i.each(function(){var e=$(this).width();t<e&&(t=e)}),
 // listWrap.width( maxWidth );
-i.width(t)},inspector:function(e,t){var i="",a=t.find(".selected").index();return t.find(".items").children().each(function(e){var t=$(this).text();i+='<li class="option'+("-"===t?" horizontal-line":"")+(e===a?" selected":"")+'">'+t+"</li>"}),i},makeList:function(e,t,i){var a=t.offset().top,n=t.offset().left,d=t.outerWidth(),o=t.outerHeight();$('<div id="drop-list"><ul>'+i+"</ul></div>").appendTo("#dialog-section");var s=$("#drop-list"),r=2*parseInt(s.css("border-left-width"),10),l=2*parseInt(s.css("padding-left"),10);s.css({top:a+o,left:n-($(window).width()-$("#dialog-overlay-wrap").width()),width:d-(r+l)})},set:function(e,t,d){var o=e.find(".items");o.children().remove();var s=!1;
+i.width(t)},inspector:function(e,t){var i="",a=t.find(".selected").index();return t.find(".items").children().each(function(e){var t=$(this).text();i+='<li class="option'+("-"===t?" horizontal-line":"")+(e===a?" selected":"")+'">'+t+"</li>"}),i},makeList:function(e,t,i){var a=t.offset().top,n=t.offset().left,d=t.outerWidth(),r=t.outerHeight();$('<div id="drop-list"><ul>'+i+"</ul></div>").appendTo("#dialog-section");var l=$("#drop-list"),o=2*parseInt(l.css("border-left-width"),10),s=2*parseInt(l.css("padding-left"),10);l.css({top:a+r,left:n-($(window).width()-$("#dialog-overlay-wrap").width()),width:d-(o+s)})},set:function(e,t,d){var r=e.find(".items");r.children().remove();var l=!1;
 // Rebuild the list
 // Makes it so that if the selected item is removed, the selected item is swapped to the first item.
 // This will prevent bunch of other issues...
-if($.each(t.split(","),function(e,t){var i=t.trim(),a="-"==i?" horizontal-line":"",n=e===d.selection?" selected test":"";e===d.selection&&(s=!0),$('<div class="'+n+a+'">'+i+"</div>").appendTo(o)}),!s){var i=local_storage.get("dialog");i.items["item-"+i.activeId].style.selection=0,local_storage.set("dialog",i),o.find("> div:first").addClass("selected")}var a=e.find(".drop-list-wrap");droplist.backbone(a)},hide:function(){$("#drop-list").remove(),$(".drop-list-wrap.open").removeClass("open")}},radiocheck={init:function(e,d,t){var o=this,i=e.find(".radiocheck");o.restore(e,d,t,i),i.on("click",function(){var e=$(this),t=local_storage.get("dialog"),i=t.items["item-"+d],a=e.hasClass("on");e[a?"removeClass":"addClass"]("on");var n=!a;
+if($.each(t.split(","),function(e,t){var i=t.trim(),a="-"==i?" horizontal-line":"",n=e===d.selection?" selected test":"";e===d.selection&&(l=!0),$('<div class="'+n+a+'">'+i+"</div>").appendTo(r)}),!l){var i=local_storage.get("dialog");i.items["item-"+i.activeId].style.selection=0,local_storage.set("dialog",i),r.find("> div:first").addClass("selected")}var a=e.find(".drop-list-wrap");droplist.backbone(a)},hide:function(){$("#drop-list").remove(),$(".drop-list-wrap.open").removeClass("open")}},radiocheck={init:function(e,d,t){var r=this,i=e.find(".radiocheck");r.restore(e,d,t,i),i.on("click",function(){var e=$(this),t=local_storage.get("dialog"),i=t.items["item-"+d],a=e.hasClass("on");e[a?"removeClass":"addClass"]("on");var n=!a;
 // RADIOBUTTON
-e.is(".radiobutton")&&o.radio.clearSiblings(t,e),i.style.checked=n,local_storage.set("dialog",t)})},restore:function(e,t,i,a){!0===local_storage.get("dialog").items["item-"+t].style.checked&&a.addClass("on")},radio:{clearSiblings:function(a,e){var t=e.parent(),i=':not([data-item-type="RadioButton"],.spacing)';
+e.is(".radiobutton")&&r.radio.clearSiblings(t,e),i.style.checked=n,local_storage.set("dialog",t)})},restore:function(e,t,i,a){!0===local_storage.get("dialog").items["item-"+t].style.checked&&a.addClass("on")},radio:{clearSiblings:function(a,e){var t=e.parent(),i=':not([data-item-type="RadioButton"],.spacing)';
 // Clear all adjacent sibling radiobuttons...
 t.nextUntil(i).add(t.prevUntil(i)).each(function(){var e=$(this),t=e.data("item-id"),i=e.find(".radiocheck");e.hasClass("radiobutton")&&(i.removeClass("on"),a.items["item-"+t].style.checked=!1)})}}},addItemsPanel={init:function(){this.generateHTML(),
 // CREATE NEW ITEM EVENT
@@ -344,9 +344,9 @@ var edit_style_panel={build:function(e,t){var a=$("#edit-style-inner-container")
 // Generate edit panel structure
 $.each(e,function(e,t){var i=panel_edit_style_html.init(e,t);void 0!==i&&i.appendTo(a)}),
 // Style number inputs
-numberInputs();var d=item.list[i](!1).defaultStyle.text,o=item.list[i](!1).multiline,s=$('#panel-edit-style-wrap [data-edit="text"]'),r=s.parent();
+numberInputs();var d=item.list[i](!1).defaultStyle.text,r=item.list[i](!1).multiline,l=$('#panel-edit-style-wrap [data-edit="text"]'),o=l.parent();
 // Icon on the text container telling the user they can't add linebreaks to current item
-!d||o||r.hasClass("is-not-multiline")||r.addClass("is-not-multiline"),
+!d||r||o.hasClass("is-not-multiline")||o.addClass("is-not-multiline"),
 // Style dropdowns
 $(".pretty-classic").prettyDropdown({classic:!0,customClass:"arrow triangle",selectedMarker:'<i class="fas fa-check"></i>'}),$("#panel-edit-style-wrap textarea").each(function(){
 /*global autosize*/
@@ -355,7 +355,7 @@ autosize(this)}),
 // SELECT TEXT INPUT IN THE ITEM PROPERTIES PANEL
 // If the item has default text, then try to select it. If it doesn't have default text, it never will.
 // This check is used because when the textarea doesn't exist, there's nothing to focus in so it just basically does a site wide Cmd+A, which is not cool...
-"dialog"!==t&&d&&(s.focus(),s.select())}var l=n.editInfo;l&&$('<div class="edit-info">'+l+"</div>").appendTo(a)}},panel_edit_style_html={
+"dialog"!==t&&d&&(l.focus(),l.select())}var s=n.editInfo;s&&$('<div class="edit-info">'+s+"</div>").appendTo(a)}},panel_edit_style_html={
 // Mayhaps in hindsight this wasn't the best way to build this html...
 // but what is done is done. Honestly, I look at this and I'm like oh
 // boy... I have absolutely no idea why I made it this way. My best
@@ -380,7 +380,7 @@ i=$('<h2 class="orientation-heading" title="The layout orientation of children i
 i=$('<input class="number" style="display: none;"><div class="spacing-container"><input class="number" data-edit="spacing" value="'+t+'" min="0" max="300" step="1" modifier-step="5"></div><input class="number" style="display: none;">');break;case"alignChildren":var n=$("#dialog .active").hasClass("orientation-column");i=$('<h2 title="Tells the layout manager how unlike-sized children of this container should be aligned within a column or row. \n\nOrder of creation determines which children are at the top of a column or the left of a row; the earlier a child is created, the closer it is to the top or left of its column or row. If defined, alignment for a child element overrides the alignChildren setting for the parent container. See alignment property for values.">Align Children</h2><div class="align-children"><select id="align-children-horizontal" data-edit="alignChildren" name="qty" class="pretty-classic"><option>left</option><option>center</option><option>right</option>'+(n?"<option>fill</option>":"")+'</select><select id="align-children-vertical" data-edit="alignChildren" name="qty" class="pretty-classic"><option>top</option><option>center</option><option>bottom</option>'+(n?"":"<option>fill</option>")+"</select></div>");
 // var horizontalValue = !isColumn && value[0] === 'fill' ? 'center' : value[0];
 // var verticalValue   =  isColumn && value[1] === 'fill' ? 'center' : value[1];
-var d=t[0],o=t[1];i.find('#align-children-horizontal option:contains("'+d+'")').prop("selected",!0),i.find('#align-children-vertical option:contains("'+o+'")').prop("selected",!0);break;case"alignment":var s,r=$("#dialog .active").parent("div").parent("div").hasClass("orientation-column"),l=r?"column":"row",c=r?"horizontal":"vertical",p=null===t,m=r?["left","center","right","fill"]:["top","center","bottom","fill"],v="";$.each(m,function(e,t){v+='<option value="'+t+'">'+t+"</option>"}),i=$('<div class="alignment-container"><h2 title="The alignment style for this element. If defined, this value overrides the alignChildren setting for the parent container.">Alignment <span>(Self)</span></h2><div class="alignment-checkbox"><input type="checkbox" id="alignment-checkbox-input" name="" '+(p?"":"checked")+' /><label for="alignment-checkbox-input"></label></div><br>'+('<div id="alignment-'+c+'"><select name="qty" class="pretty-classic" data-edit="alignment"  data-edit-value="'+c+'" '+(p?"disabled":"")+" >"+v+"</select></div>")+"</div>"),"column"===l?(s=("top"===t?"left":"bottom"===t&&"right")||t,i.find('#alignment-horizontal option:contains("'+(null===t?"center":s)+'")').prop("selected",!0)):(s=("left"===t?"top":"right"===t&&"bottom")||t,i.find('#alignment-vertical option:contains("'+(null===t?"center":s)+'")').prop("selected",!0));break}return i}},propsPanel=$("#panel-edit-style-wrap");
+var d=t[0],r=t[1];i.find('#align-children-horizontal option:contains("'+d+'")').prop("selected",!0),i.find('#align-children-vertical option:contains("'+r+'")').prop("selected",!0);break;case"alignment":var l,o=$("#dialog .active").parent("div").parent("div").hasClass("orientation-column"),s=o?"column":"row",c=o?"horizontal":"vertical",p=null===t,m=o?["left","center","right","fill"]:["top","center","bottom","fill"],f="";$.each(m,function(e,t){f+='<option value="'+t+'">'+t+"</option>"}),i=$('<div class="alignment-container"><h2 title="The alignment style for this element. If defined, this value overrides the alignChildren setting for the parent container.">Alignment <span>(Self)</span></h2><div class="alignment-checkbox"><input type="checkbox" id="alignment-checkbox-input" name="" '+(p?"":"checked")+' /><label for="alignment-checkbox-input"></label></div><br>'+('<div id="alignment-'+c+'"><select name="qty" class="pretty-classic" data-edit="alignment"  data-edit-value="'+c+'" '+(p?"disabled":"")+" >"+f+"</select></div>")+"</div>"),"column"===s?(l=("top"===t?"left":"bottom"===t&&"right")||t,i.find('#alignment-horizontal option:contains("'+(null===t?"center":l)+'")').prop("selected",!0)):(l=("left"===t?"top":"right"===t&&"bottom")||t,i.find('#alignment-vertical option:contains("'+(null===t?"center":l)+'")').prop("selected",!0));break}return i}},propsPanel=$("#panel-edit-style-wrap");
 // EDIT PANEL CLICK EVENTS
 // JUSTIFY
 propsPanel.on("click",".justify-icon",function(){$(this).addClass("active").siblings().removeClass("active")}),
@@ -410,11 +410,11 @@ if(t<a+60){var n=$(window).height()-(a-i.find(".CodeMirror").height());i.find(".
 /*eslint no-undef: ["error", { "typeof": true }] */
 download(exportCode(),"ScriptUI Dialog Builder - Export.jsx","application/javascript");var e=$(this),t=e.find(".fa-check"),i=e.find(".fa-download");t.addClass("rotateIn"),i.hide(),setTimeout(function(){t.removeClass("rotateIn"),i.show()},750)})}),
 // IMPORT EVENT
-$("#toolbar .import").on("click",function(){var d,o;modal.init('<div id="import-box"><h2>Import.jsx</h2><div class="ta"><div class="placeholder"><span class="important">The current dialog will be overwritten on a successful import.</span> <br><br>You can only import JSON generated by this this tool on export. 3rd line of every export includes the impotable JSON. Your old dialog code written in Javascript will <strong>not</strong> work! <br><br>Valid JSON is beautified (restructured) on paste <br> so that it is easier to read if necessary. <br></br><strong>Paste below</strong> <br><strong>↓</strong></div><div class="code"></div></div><div data-enter class="import-btn animated infinite"><i class="fas fa-arrow-right"></i><i class="fas fa-times"></i></div></div>'),(o=CodeMirror($("#import-box .code")[0],{mode:{name:"javascript",json:!0},theme:"monokai",autofocus:!0,lineNumbers:!0})).on("change",function(e,t){if("paste"===t.origin)
+$("#toolbar .import").on("click",function(){var d,r;modal.init('<div id="import-box"><h2>Import.jsx</h2><div class="ta"><div class="placeholder"><span class="important">The current dialog will be overwritten on a successful import.</span> <br><br>You can only import JSON generated by this this tool on export. 3rd line of every export includes the impotable JSON. Your old dialog code written in Javascript will <strong>not</strong> work! <br><br>Valid JSON is beautified (restructured) on paste <br> so that it is easier to read if necessary. <br></br><strong>Paste below</strong> <br><strong>↓</strong></div><div class="code"></div></div><div data-enter class="import-btn animated infinite"><i class="fas fa-arrow-right"></i><i class="fas fa-times"></i></div></div>'),(r=CodeMirror($("#import-box .code")[0],{mode:{name:"javascript",json:!0},theme:"monokai",autofocus:!0,lineNumbers:!0})).on("change",function(e,t){if("paste"===t.origin)
 /*eslint no-empty: "error"*/
 try{
 // Poor man's 'beautify' on paste
-var i=o.getValue();d=i;var a=JSON.parse(i),n=JSON.stringify(a,null,3);o.getDoc().setValue(n)}catch(e){
+var i=r.getValue();d=i;var a=JSON.parse(i),n=JSON.stringify(a,null,3);r.getDoc().setValue(n)}catch(e){
 // continue regardless of error
 }
 // This section makes sure the #export-box doesn't spill past the viewport
@@ -430,7 +430,9 @@ var i=$("#import-box");i.find(".fa-arrow-right").hide(),i.find(".import-btn").ad
 // JSON parsed succesfully
 else local_storage.remove("dialog"),local_storage.set("dialog",e),modal.remove(),loadingScreen.init(1.5,function(){location.reload()})})}),
 // RESET EVENT
-$("#toolbar .reset").on("click",resetDialog),$(".grey-out-active").on("click",function(){$(this).hasClass("off")?($(this).removeClass("off"),$("#dialog").removeClass("hide-active"),notification("info","Active item highlighted in the dialog preview.",3.5)):($(this).addClass("off"),$("#dialog").addClass("hide-active"),notification("meh","Active item grayed out in the dialog preview.",3.5))}),
+$("#toolbar .reset").on("click",resetDialog),
+// Load sample dialog
+$("#toolbar .sample-dialog").on("click",function(){modal.init('<div id="reset-box"><h2>Sample Dialog.jsx</h2><span class="text">Are you sure you want to replace <br>the current dialog with a sample?</span><span class="yes" data-enter>Load Sample</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),local_storage.set("dialog",JSON.parse('{"activeId":1,"items":{"item-0":{"id":0,"type":"Dialog","parentId":false,"style":{"text":"Import Multiple PDF pages","preferredSize":[0,0],"margins":16,"orientation":"row","spacing":10,"alignChildren":["left","top"]}},"item-1":{"id":1,"type":"Panel","parentId":20,"style":{"text":"Page Selection","preferredSize":[0,205],"margins":10,"orientation":"column","spacing":10,"alignChildren":["left","top"],"alignment":null}},"item-2":{"id":2,"type":"StaticText","parentId":1,"style":{"text":"Import PDF Pages:","justify":"left","preferredSize":[0,0],"alignment":null}},"item-3":{"id":3,"type":"EditText","parentId":6,"style":{"text":"1","preferredSize":[60,0],"alignment":null}},"item-4":{"id":4,"type":"StaticText","parentId":6,"style":{"text":"thru","justify":"left","preferredSize":[0,0],"alignment":null}},"item-5":{"id":5,"type":"EditText","parentId":6,"style":{"text":"1","preferredSize":[60,0],"alignment":null}},"item-6":{"id":6,"type":"Group","parentId":1,"style":{"preferredSize":[0,0],"margins":0,"orientation":"row","spacing":10,"alignChildren":["left","center"],"alignment":null}},"item-7":{"id":7,"type":"StaticText","parentId":1,"style":{"text":"Start Placing on Doc Page:","justify":"left","preferredSize":[0,0],"alignment":null}},"item-8":{"id":8,"type":"Checkbox","parentId":1,"style":{"text":"Reverse Page Order","preferredSize":[0,0],"alignment":null}},"item-9":{"id":9,"type":"Panel","parentId":20,"style":{"text":"Sizing Options","preferredSize":[0,160],"margins":10,"orientation":"column","spacing":10,"alignChildren":["left","top"],"alignment":null}},"item-10":{"id":10,"type":"Checkbox","parentId":9,"style":{"text":"Fit to Page","preferredSize":[0,0],"alignment":null}},"item-11":{"id":11,"type":"Checkbox","parentId":9,"style":{"text":"Keep Proportions","preferredSize":[0,0],"alignment":null}},"item-12":{"id":12,"type":"Checkbox","parentId":9,"style":{"text":"Bleed the Fit Page","preferredSize":[0,0],"alignment":null,"checked":true}},"item-13":{"id":13,"type":"StaticText","parentId":9,"style":{"text":"Scale of Imported Page","justify":"left","preferredSize":[0,0],"alignment":null}},"item-14":{"id":14,"type":"Group","parentId":9,"style":{"preferredSize":[0,0],"margins":0,"orientation":"row","spacing":10,"alignChildren":["left","center"],"alignment":null}},"item-15":{"id":15,"type":"EditText","parentId":14,"style":{"text":"100","preferredSize":[40,0],"alignment":null}},"item-16":{"id":16,"type":"StaticText","parentId":14,"style":{"text":"Y%","justify":"left","preferredSize":[0,0],"alignment":null}},"item-17":{"id":17,"type":"EditText","parentId":14,"style":{"text":"100","preferredSize":[40,0],"alignment":null}},"item-18":{"id":18,"type":"StaticText","parentId":14,"style":{"text":"X%:","justify":"left","preferredSize":[0,0],"alignment":null}},"item-19":{"id":19,"type":"Group","parentId":0,"style":{"preferredSize":[0,0],"margins":0,"orientation":"column","spacing":10,"alignChildren":["fill","top"],"alignment":null}},"item-20":{"id":20,"type":"Group","parentId":0,"style":{"preferredSize":[0,0],"margins":0,"orientation":"column","spacing":10,"alignChildren":["fill","top"],"alignment":null}},"item-21":{"id":21,"type":"Panel","parentId":19,"style":{"text":"Positioning Options","preferredSize":[0,205],"margins":10,"orientation":"column","spacing":10,"alignChildren":["fill","top"],"alignment":null}},"item-22":{"id":22,"type":"StaticText","parentId":21,"style":{"text":"Position on Page Aligned From:","justify":"left","preferredSize":[0,0],"alignment":null}},"item-23":{"id":23,"type":"DropDownList","parentId":21,"style":{"text":"","listItems":"Top Left, Top Center, Top Right, Center Left, Center, Center Right, Bottom Left, Bottom Center, Bottom Right, -, Top - Relative to spine,  Center  - Relative to spine,  Right  - Relative to spine","preferredSize":[0,0],"alignment":null,"selection":0}},"item-24":{"id":24,"type":"DropDownList","parentId":21,"style":{"text":"Rotation:","listItems":"0, 90, 180, 270","preferredSize":[0,0],"alignment":null,"selection":0}},"item-25":{"id":25,"type":"StaticText","parentId":21,"style":{"text":"Offset by:","justify":"left","preferredSize":[0,0],"alignment":null}},"item-26":{"id":26,"type":"Group","parentId":21,"style":{"preferredSize":[0,0],"margins":0,"orientation":"row","spacing":10,"alignChildren":["left","center"],"alignment":null}},"item-27":{"id":27,"type":"StaticText","parentId":26,"style":{"text":"X:","justify":"left","preferredSize":[0,0],"alignment":null}},"item-28":{"id":28,"type":"EditText","parentId":26,"style":{"text":"0","preferredSize":[40,0],"alignment":null}},"item-29":{"id":29,"type":"StaticText","parentId":26,"style":{"text":"X:","justify":"left","preferredSize":[0,0],"alignment":null}},"item-30":{"id":30,"type":"EditText","parentId":26,"style":{"text":"0","preferredSize":[40,0],"alignment":null}},"item-31":{"id":31,"type":"Panel","parentId":19,"style":{"text":"Placement Options","preferredSize":[0,160],"margins":10,"orientation":"column","spacing":10,"alignChildren":["fill","top"],"alignment":null}},"item-32":{"id":32,"type":"DropDownList","parentId":31,"style":{"text":"Crop to:","listItems":"Art, Crop, Trim, Bleed, Media","preferredSize":[0,0],"alignment":null,"selection":0}},"item-33":{"id":33,"type":"Checkbox","parentId":31,"style":{"text":"Place Pages on a New Layer","preferredSize":[0,0],"alignment":null}},"item-34":{"id":34,"type":"Checkbox","parentId":31,"style":{"text":"Ignore Font and Image Errors","preferredSize":[0,0],"alignment":null}},"item-35":{"id":35,"type":"Checkbox","parentId":31,"style":{"text":"Transparent PDF Background","preferredSize":[0,0],"alignment":null,"checked":true}},"item-36":{"id":36,"type":"Group","parentId":0,"style":{"preferredSize":[0,0],"margins":0,"orientation":"column","spacing":10,"alignChildren":["fill","top"],"alignment":null}},"item-37":{"id":37,"type":"Button","parentId":36,"style":{"text":"OK","justify":"center","preferredSize":[0,0],"alignment":null}},"item-38":{"id":38,"type":"Button","parentId":36,"style":{"text":"Cancel","justify":"center","preferredSize":[0,0],"alignment":null}},"item-39":{"id":39,"type":"EditText","parentId":1,"style":{"text":"1","preferredSize":[60,0],"alignment":null}},"item-40":{"id":40,"type":"Checkbox","parentId":1,"style":{"text":"Map to Doc Pages","preferredSize":[0,0],"alignment":null}}},"order":[0,20,1,2,6,3,4,5,8,7,39,40,9,10,11,12,13,14,18,15,16,17,19,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38]}')),modal.remove(),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}),$(".grey-out-active").on("click",function(){$(this).hasClass("off")?($(this).removeClass("off"),$("#dialog").removeClass("hide-active"),notification("info","Active item highlighted in the dialog preview.",3.5)):($(this).addClass("off"),$("#dialog").addClass("hide-active"),notification("meh","Active item grayed out in the dialog preview.",3.5))}),
 // Very sophisticated notification system.
 // Check out our kickaster at verysophisticatednotificationsystem.gov
 // Press that like button and subscribe...
@@ -483,6 +485,7 @@ $(document).on("keydown",function(e){69==(e.keyCode?e.keyCode:e.which)&&e.altKey
 // @codekit-prepend "dialog.builder/modules/toolbar/export.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/import.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/reset.js";
+// @codekit-prepend "dialog.builder/modules/toolbar/sample.dialog.js";
 // @codekit-prepend "dialog.builder/modules/custom.cursor.js";
 // @codekit-prepend "dialog.builder/modules/toggle.active.visibility.js";
 // @codekit-prepend "dialog.builder/modules/notifications.js";
@@ -556,19 +559,19 @@ $("#panel-new-item-wrap ul").sortable({drop:!1,group:"dialog-items"}),item.drag=
 // *********************************
 item.drag.sort=function(e){
 // $('#panel-tree-view-wrap .sort-temp-item').remove();
-var t=e.parent("ul").parent("li").data("item-id"),i=e.prev(),a=0<i.length?"insertAfter":"prependTo",n=0<i.length?i.data("item-id"):t;e.attr("item-parent-id",t),e.data({"item-parent-id":t});var d=e.data("item-type"),o=e.data("item-id");item.funnel.sort(o,t,d,a,n),tab.onSort(e),treeViewItem.onSort(e,d,o)},
+var t=e.parent("ul").parent("li").data("item-id"),i=e.prev(),a=0<i.length?"insertAfter":"prependTo",n=0<i.length?i.data("item-id"):t;e.attr("item-parent-id",t),e.data({"item-parent-id":t});var d=e.data("item-type"),r=e.data("item-id");item.funnel.sort(r,t,d,a,n),tab.onSort(e),treeViewItem.onSort(e,d,r)},
 // *********************************
 // DRAG - MAKE NEW ITEM (onDrop)
 // *********************************
-item.drag.make=function(e){var t=e.prev(),i=e.parent("ul"),a=t.length<1,n=t.data("parent"),d=a?i:t,o={id:item.get.id(),// Picked up in the function onDragStart.
+item.drag.make=function(e){var t=e.prev(),i=e.parent("ul"),a=t.length<1,n=t.data("parent"),d=a?i:t,r={id:item.get.id(),// Picked up in the function onDragStart.
 type:e.data("item-type"),parentId:a?i.parent("li").data("item-id"):t.data("item-parent-id"),// Fetch parent id from the previous item. If it doesn't exist, fetch id from the parent item.
 target:d,previousIsParent:n,event:"drag"};// Traget previous item. If it doesn't exist, target parent item.
 e.remove(),// Item is the dragged li from the "Add Items" panel
-item.funnel.create(o)},
+item.funnel.create(r)},
 // **************************************
 // DRAG - DUPLICATE ITEM(S) (onDrop)
 // **************************************
-item.drag.duplicate=function(e,o){var t=e.prev(),i=e.parent("ul"),a=t.length<1,s=t.data("parent"),r=a?i:t;// Target previous item. If it doesn't exist, target parent item.
+item.drag.duplicate=function(e,r){var t=e.prev(),i=e.parent("ul"),a=t.length<1,l=t.data("parent"),o=a?i:t;// Target previous item. If it doesn't exist, target parent item.
 $("body").removeClass("duplicate-item"),// The function of this class is to change the cursor
 // Dolly becomes a real sheep by way of eliminating the original
 // The cloned elements are actually just thrown away and then re-created
@@ -576,17 +579,17 @@ $("body").removeClass("duplicate-item"),// The function of this class is to chan
 // where the items exist at all times; Treeview, Dialog Preview and Local
 // storage. Since I have a system in place for creating items that handles
 // creating the item in all of these 3 places in one swing, then why not...
-$("#panel-tree-view-wrap .dolly").removeClass("dolly"),e.remove();var l,c=local_storage.get("dialog"),p=$("#panel-tree-view-wrap"),m={};
+$("#panel-tree-view-wrap .dolly").removeClass("dolly"),e.remove();var s,c=local_storage.get("dialog"),p=$("#panel-tree-view-wrap"),m={};
 // Filled inside the each function below.
 // Dragged item and every child with data-item-id attribute
-e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=c.items["item-"+t],a=item.get.id(),n=0===e?o.target.parent("li").data("item-id"):m["parent-"+i.parentId];
+e.find("[data-item-id]").add(e).each(function(e){var t=$(this).data("item-id"),i=c.items["item-"+t],a=item.get.id(),n=0===e?r.target.parent("li").data("item-id"):m["parent-"+i.parentId];
 // Maps old parent id with the new parent id so that
 // following items can then check what they new parent id is
-$(this).data("parent")&&(m["parent-"+t]=a);var d={id:a,type:i.type,parentId:n,target:0===e?r:p.find('[data-item-id="'+n+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:s,sourceId:t};0===e&&(l=d.id),item.funnel.create(d)}),
+$(this).data("parent")&&(m["parent-"+t]=a);var d={id:a,type:i.type,parentId:n,target:0===e?o:p.find('[data-item-id="'+n+'"] > ul'),event:0===e?"drag-duplicate":"loadFromLocalStorage",previousIsParent:l,sourceId:t};0===e&&(s=d.id),item.funnel.create(d)}),
 // Reactivate the ye olde active item
-item.activate(l);var n=(
+item.activate(s);var n=(
 // Build Item Properties panel
-c=local_storage.get("dialog")).items["item-"+l];edit_style_panel.build(n.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
+c=local_storage.get("dialog")).items["item-"+s];edit_style_panel.build(n.style),$("body").removeClass("dragging")};var dialogElem=$("#dialog");
 // ACTIVATE ITEMS WHEN FOCUSED IN DIALOG PREVIEW
 dialogElem.on("focus","[contenteditable]",function(){var e=$(this),t=(e.parent().attr("id"),e.hasClass("tab")&&e.data("tab-id")||e.closest("[data-item-id]").data("item-id"));item.activate(t);
 // Build Item Properties panel

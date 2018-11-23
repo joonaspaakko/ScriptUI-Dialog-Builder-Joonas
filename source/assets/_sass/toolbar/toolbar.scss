@@ -16,7 +16,7 @@
 		z-index: 0;
 		width: 35px;
     height: 35px;
-		font-size: 14px;
+		font-size: 13px;
     line-height: 35px;
     border-radius: 900px;
 		font-family: 'Source Sans Pro', sans-serif;
@@ -35,11 +35,6 @@
 		transition: all 150ms ease-in-out;
     &:hover {
 			color: darken($color-accent-2,20);
-			margin: 0 4px;
-			width: 39px;
-	    height: 39px;
-			font-size: 16px;
-	    line-height: 39px;
 			a { color: darken($color-accent-2,20); }
     }
 		a { color: $color-bg; }
@@ -57,7 +52,7 @@
 		  animation-duration: .5s;
 			.icon {
 				// top: 1px;
-				top: 0.2px;
+				top: .8px;
 			}
 		}
 		&:nth-child(2) {
@@ -65,8 +60,8 @@
 		  animation-duration: .7s;
 			.icon {
 				// top: 2px;
-				top: 1.2px;
-				left: 1px;
+				top: 0px;
+				// left: 1px;
 			}
 		}
 		&:nth-child(3) {
@@ -75,7 +70,7 @@
 			.icon {
 				// top: 1px;
 				top: 0.5px;
-				left: 2px;
+				// left: 2px;
 			}
 		}
 		&:nth-child(4) {
@@ -95,7 +90,10 @@
 	
 	> div {
 		width: auto;
-		padding: 0 20px;
+		height: 31px;
+		line-height: 31px;
+		padding: 0 12px 0 14px;
+		margin: 0 4px;
 		&:hover {
 			width: auto;
 		}
