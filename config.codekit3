@@ -126,6 +126,17 @@
 		"oAP": "/build/favicon/site.webmanifest",
 		"oF": 1
 		},
+	"/open-graph/og-image.jpg": {
+		"ft": 16384,
+		"iS": 171143,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/open-graph/og-image.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
 	"/README.md": {
 		"cB": 0,
 		"cS": 0,
@@ -7649,7 +7660,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-fry",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 564581573.64411294
+	"lastBuiltDate": 564662806.11754203
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
