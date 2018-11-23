@@ -29,6 +29,103 @@
 		"oAP": "/build/build",
 		"oF": 0
 		},
+	"/favicon/android-chrome-192x192.png": {
+		"ft": 32768,
+		"iS": 6023,
+		"oA": 2,
+		"oAP": "/build/favicon/android-chrome-192x192.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/favicon/android-chrome-512x512.png": {
+		"ft": 32768,
+		"iS": 14261,
+		"oA": 2,
+		"oAP": "/build/favicon/android-chrome-512x512.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/favicon/apple-touch-icon.png": {
+		"ft": 32768,
+		"iS": 5420,
+		"oA": 2,
+		"oAP": "/build/favicon/apple-touch-icon.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/favicon/browserconfig.xml": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "/build/favicon/browserconfig.xml",
+		"oF": 1
+		},
+	"/favicon/favicon-16x16.png": {
+		"ft": 32768,
+		"iS": 1098,
+		"oA": 2,
+		"oAP": "/build/favicon/favicon-16x16.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/favicon/favicon-32x32.png": {
+		"ft": 32768,
+		"iS": 1791,
+		"oA": 2,
+		"oAP": "/build/favicon/favicon-32x32.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/favicon/favicon.ico": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "/build/favicon/favicon.ico",
+		"oF": 1
+		},
+	"/favicon/mstile-150x150.png": {
+		"ft": 32768,
+		"iS": 4584,
+		"oA": 2,
+		"oAP": "/build/favicon/mstile-150x150.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/favicon/safari-pinned-tab.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/favicon/safari-pinned-tab.svg",
+		"oF": 1,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/favicon/site.webmanifest": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "/build/favicon/site.webmanifest",
+		"oF": 1
+		},
 	"/README.md": {
 		"cB": 0,
 		"cS": 0,
