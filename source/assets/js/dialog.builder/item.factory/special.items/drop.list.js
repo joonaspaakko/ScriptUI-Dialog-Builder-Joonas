@@ -111,9 +111,9 @@ var droplist = {
 		$.each( val.split(','), function( i, item ) {
 			var trimmedItem = item.trim();
 			var hr = trimmedItem == '-' ? ' horizontal-line' : '';
-			var selectedClass = (i === style.selection) ? ' class="selected'+ hr +'"' : '';
-			ping = (i === style.selection) ? true : false;
-			$('<div'+ selectedClass +'>'+ trimmedItem +'</div>').appendTo( dropDownItems );
+			var selectedClass = (i === style.selection) ? ' selected test' : '';
+			if ( i === style.selection ) ping = true;
+			$('<div class="'+ selectedClass + hr +'">'+ trimmedItem +'</div>').appendTo( dropDownItems );
 		});
 		
 		// Makes it so that if the selected item is removed, the selected item is swapped to the first item.
