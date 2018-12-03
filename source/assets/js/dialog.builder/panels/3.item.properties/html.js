@@ -89,12 +89,12 @@ panel_edit_style_html.init = function( key, value ) {
 			
 		case "preferredSize":
 			html = $(
-				// '<h2 title="The preferred size, used by layout managers to determine the best size for each element. \n\nIf not explicitly set by a script, value is established by the UI framework in which ScriptUI is employed, and is based on such attributes of the element as its text, font, font size, icon size, and other UI framework-specific attributes. A script can explicitly set preferredSize before the layout manager is invoked in order to establish an element size other than the default.">' +
-				// 	'Preferred Size' +
+				'<h2 title="The preferred size, used by layout managers to determine the best size for each element. \n\nIf not explicitly set by a script, value is established by the UI framework in which ScriptUI is employed, and is based on such attributes of the element as its text, font, font size, icon size, and other UI framework-specific attributes. A script can explicitly set preferredSize before the layout manager is invoked in order to establish an element size other than the default.">' +
+					'Preferred Size' +
 				// '<h2 title="The minimum height and width to which the element can be resized.">' +
 				// 	'Minimum Size' +
-				'<h2 title="If item is a parent, the exported code will use preferredSize and if the item is not a parent, minimumSize is used.">' +
-					'Size' +
+				// '<h2 title="If item is a parent, the exported code will use preferredSize and if the item is not a parent, minimumSize is used.">' +
+				// 	'Size' +
 					'<span class="preferred-size-auto" title="Reset to content size (0)"><i class="fas fa-compress"></i></span>' +
 				'</h2>' +
 

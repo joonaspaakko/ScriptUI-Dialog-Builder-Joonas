@@ -373,15 +373,15 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			var width = style.preferredSize[0];
 			var height = style.preferredSize[1];
 			
-			var size = item.list[ type.toLowerCase() ](false).parent ? 'preferredSize' : 'minimumSize';
+			// var size = item.list[ type.toLowerCase() ](false).parent ? 'preferredSize' : 'minimumSize';
 			
 			if ( width > 0 ) {
-				styleBlock += tabsies + jsxVarName + '.'+ size +'.width = '+ width +'; \n';
-				// styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
+				// styleBlock += tabsies + jsxVarName + '.'+ size +'.width = '+ width +'; \n';
+				styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
 			}
 			if ( height > 0 ) {
-				styleBlock += tabsies + jsxVarName + '.'+ size +'.height = '+ height +'; \n';
-				// styleBlock += tabsies + jsxVarName + '.preferredSize.height = '+ height +'; \n';
+				// styleBlock += tabsies + jsxVarName + '.'+ size +'.height = '+ height +'; \n';
+				styleBlock += tabsies + jsxVarName + '.preferredSize.height = '+ height +'; \n';
 			}
 		}
 		// JUSTIFY

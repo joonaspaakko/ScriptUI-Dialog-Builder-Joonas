@@ -145,9 +145,6 @@ treeRootUl.sortable({
       else {
         item.drag.make( $item );
       }
-    	
-      // Tabs already get activated on drag, so I figured I should do the same for all items...
-			item.activate( $item.data('item-id') );
       
     }
     
@@ -187,6 +184,7 @@ item.drag.sort = function( $item ) {
   var id   = $item.data('item-id');
   
   item.funnel.sort( id, parentId, type, method, targetId );
+  item.activate( id );
   
   tab.onSort( $item );
   treeViewItem.onSort( $item, type, id );
