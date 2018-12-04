@@ -116,21 +116,12 @@
   }
   
   li.path-sibling-node {
+    background: url('../images/indent-guides/indent-guide-path-t-junction-1.svg') no-repeat top left;
+    background-size: $indent-guide-bg-size;
+  }
+  ul.path-parent-ul {
     background: url('../images/indent-guides/indent-guide-path.svg') repeat-y top left;
     background-size: $indent-guide-bg-size;
-    position: relative;
-    background-color: rgba(83,83,83, .80);
-  }
-  li.path-sibling-node:before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    top: 0px;
-    left: 0px;
-    background: url('../images/indent-guides/indent-guide-path-t-junction-1.svg') no-repeat left -4px;
-    background-size: $indent-guide-bg-size;
-    width: 20px;
-    height: 20px;
   }
   
   li.path-item {

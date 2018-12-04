@@ -46,6 +46,7 @@ function lightThePath( treeView, treeActive ) {
 	$('.path-start').removeClass('path-start');
 	$('.path-start-last').removeClass('path-start-last');
 	$('.path-start-node').removeClass('path-start-node');
+	$('.path-parent-ul').removeClass('path-parent-ul');
 	
 	if ( treeActive.data('item-type') !== "Dialog" ) {
 		// PATH START
@@ -71,6 +72,7 @@ function lightThePath( treeView, treeActive ) {
 				
 				if ( $(this).data('parent') ) {
 					$(this).addClass('path-sibling-node');
+					$(this).parent('ul').addClass('path-parent-ul');
 				}
 				else {
 					$(this).addClass('path-item');
