@@ -219,20 +219,20 @@ case"justify":d.removeClass(function(e,t){return(t.match(/(^|\s)justify-\S+/g)||
 // MARGINS
 case"margins":var p=t[0],m=t[1],f=t[2],u=t[3],g="object"!=typeof t,v=g?t:p,h=g?t:m,y=g?t:f,b=g?t:u;"Dialog"===i?r.css({paddingTop:v<=6?1:v,paddingRight:h<=1?1:h,paddingBottom:y<=1?1:y,paddingLeft:b<=1?1:b}):"Panel"===i||"Tab"===i?r.css({paddingTop:v<=3?3:v,paddingRight:h<=3?3:h,paddingBottom:y<=1?1:y,paddingLeft:b<=3?3:b}):r.css({paddingTop:v,paddingRight:h,paddingBottom:y,paddingLeft:b});break;
 // PREFERRED SIZE
-case"preferredSize":d.width("auto").height("auto");var w=d.width(),C=d.height(),x=0==t[0]?"auto":t[0]<w?w:t[0],I=0==t[1]?"auto":t[1]<C?C:t[1];
+case"preferredSize":d.width("auto").height("auto");var w=d.width(),C=d.height(),x=item.list[i.toLowerCase()](!1).parent,I=0==t[0]?"auto":x&&t[0]<w?w:t[0],k=0==t[1]?"auto":x&&t[1]<C?C:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:x,height:I}),"DropDownList"===i){var k=d.find(".drop-list-wrap"),S=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var T=d.width(),z=S.outerWidth(!0),P=k.outerWidth(!0);d.removeClass("get-width");var _=z+P;_<x?(d.addClass("too-big"),P<T&&k.width("auto")):x<_&&(d.addClass("too-small"),T<P&&k.width(T-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:I,height:k}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var z=d.width(),P=T.outerWidth(!0),_=S.outerWidth(!0);d.removeClass("get-width");var D=P+_;D<I?(d.addClass("too-big"),_<z&&S.width("auto")):I<D&&(d.addClass("too-small"),z<_&&S.width(z-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
 case"orientation":d.removeClass(function(e,t){return(t.match(/(^|\s)orientation-\S+/g)||[]).join(" ")}).addClass("orientation-"+t);break;
 // SPACING
-case"spacing":var D=d.find("> .padding-box"),j="> .padding-box";D.find("> style.spacing").remove();// Get rid of the old one.
-var L=0,V=e.data.items["item-"+n].parentId;if(!1!==V)"column"===e.data.items["item-"+V].style.orientation&&(L=2);t+=L,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(D);break;
+case"spacing":var j=d.find("> .padding-box"),L="> .padding-box";j.find("> style.spacing").remove();// Get rid of the old one.
+var V=0,B=e.data.items["item-"+n].parentId;if(!1!==B)"column"===e.data.items["item-"+B].style.orientation&&(V=2);t+=V,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(j);break;
 // ALIGN CHILDREN
 case"alignChildren":d.removeClass(function(e,t){return(t.match(/(^|\s)align-children-\S+/g)||[]).join(" ")}),d.addClass("align-children-horizontal-"+t[0]),d.addClass("align-children-vertical-"+t[1]);break;
 // ALIGNMENT
-case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var B="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+B[0]),d.addClass("alignment-vertical-"+B[1])}break}};var tabbedPanel={onCreate:function(e){
+case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var A="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+A[0]),d.addClass("alignment-vertical-"+A[1])}break}};var tabbedPanel={onCreate:function(e){
 // There's no point in having a tabbed panel with less than
 // two items, so this section makes sure that when a tabbed
 // panel is created, two child tabs are created as well.

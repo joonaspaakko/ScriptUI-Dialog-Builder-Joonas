@@ -131,8 +131,10 @@ item.update.set_values = function( params ) {
 			var contWidth = active.width();
 			var contHeight = active.height();
 			
-			var newWidth  = val[0] == 0 ? 'auto' : val[0] < contWidth  ? contWidth  : val[0];
-			var newHeight = val[1] == 0 ? 'auto' : val[1] < contHeight ? contHeight : val[1];
+			var isParent = item.list[ type.toLowerCase() ](false).parent;
+			
+			var newWidth  = val[0] == 0 ? 'auto' : isParent && val[0] < contWidth  ? contWidth  : val[0];
+			var newHeight = val[1] == 0 ? 'auto' : isParent && val[1] < contHeight ? contHeight : val[1];
 			active.css({ width: newWidth, height: newHeight });
 			
 			// Special treatment for Dropdownlist

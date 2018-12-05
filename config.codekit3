@@ -7637,7 +7637,7 @@
 		"tS": 0
 		},
 	"/source/index.kit": {
-		"cB": 0,
+		"cB": 1,
 		"ft": 2048,
 		"oA": 0,
 		"oAP": "/build/index.html",
@@ -7660,7 +7660,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-fry",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 565610608.56039906
+	"lastBuiltDate": 565703125.40609396
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
