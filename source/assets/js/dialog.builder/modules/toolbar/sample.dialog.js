@@ -5,7 +5,7 @@ $('#toolbar .sample-dialog').on("click", function() {
 	var content =
 		'<div id="reset-box">' +
 			'<h2>Sample Dialog.jsx</h2>' +
-			'<span class="text">Are you sure you want to replace <br>the current dialog with a sample?</span>' +
+			'<span class="text">Are you sure you want to <strong>replace</strong> <br>the current dialog with a sample?</span>' +
 			'<span class="yes" data-enter>Load Sample</span>' +
 			'<span class="no">Cancel</span>' +
 		'</div>';

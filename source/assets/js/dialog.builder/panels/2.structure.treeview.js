@@ -185,6 +185,9 @@ item.drag.sort = function( $item ) {
   
   item.funnel.sort( id, parentId, type, method, targetId );
   item.activate( id );
+  // Build Item Properties panel
+  var data = local_storage.get('dialog');
+  edit_style_panel.build( data.items[ 'item-' + id ].style );
   
   tab.onSort( $item );
   treeViewItem.onSort( $item, type, id );
