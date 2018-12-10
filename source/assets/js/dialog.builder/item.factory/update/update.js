@@ -24,13 +24,14 @@ item.update.style.treeView = function( prop, data, dataItem ) {
 	
 };
 
-item.update.style.dialogPreview = function( prop, data, dataItem ) {
+item.update.style.dialogPreview = function( prop, data, dataItem, event ) {
 	
 	var params = {
 		property: prop,
 		value: dataItem.style[ prop ],
 		data: data,
-		dataItem: dataItem
+		dataItem: dataItem,
+		event: event
 	};
 	
 	// prop: 'all' is used when items are first created. After that the properties are edited individually.

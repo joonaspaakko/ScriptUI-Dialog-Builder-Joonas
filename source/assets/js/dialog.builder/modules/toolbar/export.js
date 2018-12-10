@@ -201,6 +201,7 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 	// This is where each item is first added
 	switch ( type ) {
 		
+		
 		case 'Dialog':
 			block += 'var '+ jsxVarName +' = new Window("'+ lowerCaseType +'"); \n';
 			break;
@@ -239,11 +240,30 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ itemName +'", "'+ style.text +'"); \n';
 			break;
 			
-		default:
-			var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
+		case 'StaticText':
+			// var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
 			var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
-			var multilineText = multilineItem && linebreak > 0 ? ', undefined, undefined, {multiline: true}' : '';
+			var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
+			var tcW = Math.round( textContainer.width() );
+			var tcH = Math.round( textContainer.height() );
+			var softwrap = tcH > 22;
+			var multilineText = softwrap || linebreak > 0  ? ', [0,0, '+ (tcW) +', '+ (tcH) +' ], undefined, {multiline: true}' : '';
 			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ multilineText +'); \n';
+			break;
+			
+		case 'EditText':
+			// var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
+			var linebreak2 = style.text === undefined ? 0 : style.text.indexOf('\n');
+			var container = $('#dialog [data-item-id="'+ id +'"]');
+			var cW = Math.round( container.width() );
+			var cH = Math.round( container.height() );
+			var softwrap2 = tcH > 34;
+			var multilineText2 = softwrap2 || linebreak2 > 0  ? ', [0,0, '+ (cW) +', '+ (cH) +' ], undefined, {multiline: true}' : '';
+			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ multilineText2 +'); \n';
+			break;
+			
+		default:
+			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
 	
 	}
 	
@@ -373,16 +393,22 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			var width = style.preferredSize[0];
 			var height = style.preferredSize[1];
 			
-			// var size = item.list[ type.toLowerCase() ](false).parent ? 'preferredSize' : 'minimumSize';
+			var softwrap = false;
+			if ( multilineItem ) {
+				var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
+				var tcH = Math.round( textContainer.height() );
+				softwrap = tcH > 22;
+			}
 			
-			if ( width > 0 ) {
-				// styleBlock += tabsies + jsxVarName + '.'+ size +'.width = '+ width +'; \n';
-				styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
+			if ( !softwrap ) {
+				if ( width > 0 ) {
+					styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
+				}
+				if ( height > 0 ) {
+					styleBlock += tabsies + jsxVarName + '.preferredSize.height = '+ height +'; \n';
+				}
 			}
-			if ( height > 0 ) {
-				// styleBlock += tabsies + jsxVarName + '.'+ size +'.height = '+ height +'; \n';
-				styleBlock += tabsies + jsxVarName + '.preferredSize.height = '+ height +'; \n';
-			}
+			
 		}
 		// JUSTIFY
 		if ( style.justify !== undefined && style.justify !== 'left' || type === "Button" && style.justify !== 'center' ) {

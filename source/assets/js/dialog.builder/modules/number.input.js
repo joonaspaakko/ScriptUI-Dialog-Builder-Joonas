@@ -182,20 +182,19 @@ function numberInputs() {
 					contHeight = active.height(),
 					heightInput = numberElement.hasClass('height');
 			
-			if ( number === 0 ) {
+			if (
+				number === 0 && numberElement.hasClass('danger-zone') ||
+				widthInput && number >= contWidth && numberElement.hasClass('danger-zone') || 
+				heightInput && number >= contHeight && numberElement.hasClass('danger-zone')
+			) {
 				numberElement.removeClass('danger-zone');
 			}
-			else if ( widthInput && number < contWidth ) {
+			else if (
+				widthInput && number < contWidth && !numberElement.hasClass('danger-zone') ||
+				heightInput && number < contHeight && !numberElement.hasClass('danger-zone')
+			) {
 				numberElement.addClass('danger-zone');
-			}
-			else if ( widthInput && number >= contWidth ) {
-				numberElement.removeClass('danger-zone');
-			}
-			else if ( heightInput && number < contHeight ) {
-				numberElement.addClass('danger-zone');
-			}
-			else if ( heightInput && number >= contHeight ) {
-				numberElement.removeClass('danger-zone');
+				// notification( 'error', "The current size you've set is smaller than the item's contents. <br> The size you're set will be is included in the export", 6.5 );
 			}
 			
 	    var numData = {

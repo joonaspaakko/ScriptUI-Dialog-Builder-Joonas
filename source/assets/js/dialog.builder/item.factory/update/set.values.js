@@ -128,14 +128,14 @@ item.update.set_values = function( params ) {
 		case 'preferredSize':
 			
 			active.width('auto').height('auto');
-			var contWidth = active.width();
-			var contHeight = active.height();
+			var contWidth = Math.round( active.width() );
+			var contHeight = Math.round( active.height() );
 			
 			var isParent = item.list[ type.toLowerCase() ](false).parent;
 			
-			var newWidth  = val[0] == 0 ? 'auto' : isParent && val[0] < contWidth  ? contWidth  : val[0];
-			var newHeight = val[1] == 0 ? 'auto' : isParent && val[1] < contHeight ? contHeight : val[1];
-			active.css({ width: newWidth, height: newHeight });
+			var newWidth  = val[0] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[0] < contWidth  ) ? contWidth  : val[0];
+			var newHeight = val[1] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[1] < contHeight ) ? contHeight : val[1];
+			active.css({ width: newWidth, height: newHeight + ( type === 'Dialog' && 23 )});
 			
 			// Special treatment for Dropdownlist
 			if ( type === "DropDownList" ) {
@@ -192,7 +192,7 @@ item.update.set_values = function( params ) {
 			var parentId = params.data.items['item-' + id].parentId;
 			if ( parentId !== false ) {
 				var parentData = params.data.items['item-' + parentId];
-				var parentOrientationRow = parentData.style.orientation === 'column';
+				var parentOrientationRow = parentData.style.orientation === 'row';
 				if ( parentOrientationRow ) {
 					extraPadding = 2;
 				}
