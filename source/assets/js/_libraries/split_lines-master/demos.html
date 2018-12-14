@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+		<script src="jquery.splitlines.js"></script>
+		<style type="text/css">
+			body {
+				font-family: 'Lucida Sans', Helvetica, Arial, sans-serif;
+				margin-left:20px;
+				margin-top:20px;
+			}
+			h1 {
+				font-size: 30px;
+				font-weight: bold;
+				border-bottom: 1px solid;
+			}
+			p {
+				color:#666666;
+			}
+			#container>div {
+				margin-bottom:20px;
+			}
+			.original {
+				background:#eaeaea;
+			}
+			.example span, .example div {
+				border: 1px solid #ff0000;
+			}
+			#original-1, #example-1 {
+				width: 100px;
+			}
+			#original-3, #example-3 {
+				font-size:24px;
+				font-weight:bold;
+				line-height: 30px;
+				width:300px;
+			}
+			#original-4, #example-4 {
+				width: 100px;
+				line-height: 10px;
+				font-size:15px;
+			}
+			#example-6 {
+				font-style: italic;
+				font-size: 20px;
+				line-height: 24px;
+				width:300px;
+			}
+			#original-10, #example-10 {
+				max-width: 300px;
+			}
+			#original-10 p, #example-10 p {
+				font-family: sans-serif;
+				font-size: 14px;
+			}
+
+			.code {
+				font-family: monospace;
+				display:inline;
+			}
+		</style>
+		<script type="text/javascript">
+			// see: https://github.com/jeremyharris/split_lines/issues/3
+			// if this test fails, you'll see an additional line on all examples:
+			// `function () { return 'test'; }`
+			Array.prototype.test = function () {
+				return 'test';
+			};
+
+			function cycleFade() {
+				var div = $('#example-6');
+				$(div).children('div:first').animate({opacity:0}, 'slow', function() {
+					$(this).hide().appendTo(div);
+				});
+				// fade in the first hidden
+				$(div).children('div:hidden').first().show().css('opacity', 0).animate({opacity:1});
+			}
+
+			function cycleSlide() {
+				var div = $('#example-7');
+				var width = div.children('span:first').width();
+				$(div).children('span:first').animate({marginLeft: '-='+width}, 'slow', function() {
+					$(this).css({marginLeft: 0}).appendTo(div);
+				});
+			}
+
+			$(document).ready(function() {
+				$('#example-1').splitLines();
+				$('#example-2').splitLines({tag:'<span class="inline"><strong>', width:200});
+				$('#example-3').splitLines();
+				$('#example-4').splitLines();
+				$('#example-5').splitLines({width: 200});
+				$('#example-6').splitLines();
+				$('#example-7').splitLines({tag:'<span>',width: 120});
+				$('#example-8').splitLines({width: 10});
+				$('#example-9').splitLines({width: 150});
+				$('#example-10 p').splitLines({tag:'<span style="display:inline-block;">'});
+
+				$('#example-6').css('height', 24).children().css({
+					position: 'absolute',
+					display: 'none'
+				});
+				$('#example-6').children(':first').show();
+
+				$('#example-7').css({
+					width: 120,
+					height:20,
+					overflow: 'hidden'
+				}); //.children().css({width:100});
+				$('#example-7').children(':first').show();
+
+				setInterval('cycleFade()', 2000);
+				setInterval('cycleSlide()', 2000);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="container">
+				<h1>jQuery <span class="code">splitLines()</span> demos</h1>
+				<p>
+					<span class="code">splitLines()</span> takes a block of text and splits it up into separate lines based on the width of the box or a width passed to the function.
+				</p>
+				<blockquote>
+						<span class="code">splitLines()</span>
+						<ul>
+							<li><span class="code">width</span> string The width of the box. By default, it tries to use the element's width. If you don't define a width, there's no way to split it by lines!</li>
+							<li><span class="code">tag</span> string The tag to wrap the lines in</li>
+							<li><span class="code">keepHtml</span> boolean Whether or not to try and preserve the html within the element. Default is true</li>
+						</ul>
+				</blockquote>
+				<div>
+					<p>Example of text split by lines</p>
+					<div id="original-1" class="original">
+						This is an example of some long text that we want to split into lines.
+					</div>
+					<div id="example-1" class="example">
+						This is an example of some long text that we want to split into lines.
+					</div>
+				</div>
+				<div>
+					<p>Example of text split by lines using span tags and a defined width</p>
+					<div id="original-2" class="original">
+						This is an example of some long text that we want to split into lines. We also set it
+						to use a span tag and defined the width instead of using the original's width.
+					</div>
+					<div id="example-2" class="example">
+						This is an example of some long text that we want to split into lines. We also set it
+						to use a span tag and defined the width instead of using the original's width.
+					</div>
+				</div>
+				<div>
+					<p>Example of text split by lines with a larger font</p>
+					<div id="original-3" class="original">
+						This is an example of some long and large text that we want to split into lines.
+					</div>
+					<div id="example-3" class="example">
+						This is an example of some long and large text that we want to split into lines.
+					</div>
+				</div>
+				<div>
+					<p>Example of text split with a line height</p>
+					<div id="original-4" class="original">
+						My line height is smaller than my ascendors and descendors!
+					</div>
+					<div id="example-4" class="example">
+						My line height is smaller than my ascendors and descendors!
+					</div>
+				</div>
+				<div>
+					<p>Example of text that contains html</p>
+					<div id="original-5" class="original">
+						<em>Notice how the <strong>strong</strong> and emphasized tags are maintained during split.</em>
+					</div>
+					<div id="example-5" class="example">
+						<em>Notice how the <strong>strong</strong> and emphasized tags are maintained during split.</em>
+					</div>
+				</div>
+				<div>
+					<p>Example of text split by lines, and cycling through each other</p>
+					<div id="example-6">
+						Here's a spiffy fading example use case for <span class="code">splitLines()</span>.
+					</div>
+				</div>
+				<div>
+					<p>Another animation example</p>
+					<div id="example-7">
+						And a sliding example using <span class="code">splitLines()</span> to split into equal chunks! Isn't it neat?
+					</div>
+				</div>
+				<div>
+					<p>A test for using a width that's entirely too small</p>
+					<div id="example-8" class="example">
+						Long words will not fit into small widths!
+					</div>
+				</div>
+
+				<div>
+					<p>A test for preserving <code>&lt;br&gt;</code> tags.</p>
+					<div id="example-9" class="example">
+						Broken up <br/> with html line <br> breaks but still with split lines.
+						How about <span>words in tags<br/> with brs!</span>
+					</div>
+				</div>
+
+				<div>
+					<p>A test using the width of an outer container</p>
+					<div id="original-10" class="original">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales est libero, eget convallis mauris viverra eu. Fusce erat urna, blandit sed ex sit amet, sollicitudin pellentesque ex.</p>
+					</div>
+					<div id="example-10" class="example">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sodales est libero, eget convallis mauris viverra eu. Fusce erat urna, blandit sed ex sit amet, sollicitudin pellentesque ex.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -7171,6 +7171,16 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/assets/js/_libraries/jquery.breakLines.min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/_libraries/jquery.breakLines.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/source/assets/js/_libraries/jquery.easing.1.3.js": {
 		"ft": 64,
 		"ma": 0,
@@ -7265,6 +7275,48 @@
 		"oF": 1,
 		"sC": 0,
 		"tS": 0
+		},
+	"/source/assets/js/_libraries/split_lines-master/.gitignore": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/build/assets/js/_libraries/split_lines-master/.gitignore",
+		"oF": 0
+		},
+	"/source/assets/js/_libraries/split_lines-master/demos.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 0,
+		"oAP": "/build/assets/js/_libraries/split_lines-master/demos.html",
+		"oF": 0
+		},
+	"/source/assets/js/_libraries/split_lines-master/jquery.splitlines.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/_libraries/split_lines-master/jquery.splitlines.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/_libraries/split_lines-master/README.md": {
+		"cB": 0,
+		"cS": 0,
+		"eF": 1,
+		"eL": 1,
+		"ema": 1,
+		"eSQ": 1,
+		"ft": 4096,
+		"oA": 0,
+		"oAP": "/build/assets/js/_libraries/split_lines-master/README.html",
+		"oF": 0,
+		"oFM": 0,
+		"oS": 0,
+		"pHT": 0,
+		"pME": 1,
+		"rFN": 0,
+		"uCM": 0
 		},
 	"/source/assets/js/dialog.builder.js": {
 		"ft": 64,
@@ -7533,6 +7585,26 @@
 		"oA": 1,
 		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/export.min.js",
 		"oF": 1,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/modules/toolbar/export/apply.style.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/export/apply.style.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/modules/toolbar/export/make.item.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/export/make.item.min.js",
+		"oF": 0,
 		"sC": 0,
 		"tS": 0
 		},

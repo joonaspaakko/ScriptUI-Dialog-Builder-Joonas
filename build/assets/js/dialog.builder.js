@@ -35,20 +35,83 @@ r(i,38===t?"up":40===t?"down":"numberEntry",e.shiftKey)})}function exportCode(){
 var e=new ClipboardJS(".btn.copy",{text:function(){return n.getValue()}});e.on("success",function(e){var t=$(e.trigger),i=t.find(".fa-check"),a=t.find(".fa-clipboard-list");i.addClass("rotateIn"),a.hide(),setTimeout(function(){i.removeClass("rotateIn"),a.show()},750)}),e.on("error",function(e){var t=$(e.trigger),i=t.find(".fa-times"),a=t.find(".fa-clipboard-list");i.addClass("tada"),a.hide(),setTimeout(function(){n.execCommand("selectAll"),i.removeClass("tada"),a.show()},750)})}function getJSX(c){var p="",m={},u={dialog:"",tab:""},// Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
 f={name:"",parent:""},g=[];// JUST DO IT
 // Creates rest of the counters based on the "Add items" panel...
-$("#panel-new-item-wrap ul li").each(function(){u[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),v=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,r=a.type,l=a.id,o=a.style,s=!1;e===v-1&&(s=!0),p+=makeJSXitem(t,c,u,m,r,l,n,d,o,f,g,s)}),p}function makeJSXitem(e,t,i,a,n,d,r,l,o,s,c,p){var m="",u=n.toLowerCase();++i[u];var f=customVarNames(u,l,i);a[d]=f;var g=a[r];
+$("#panel-new-item-wrap ul li").each(function(){u[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),v=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,r=a.type,l=a.id,o=a.style,s=!1;e===v-1&&(s=!0),p+=makeJSXitem(t,c,u,m,r,l,n,d,o,f,g,s)}),p}
+// When the item type is not a fitting variable name...
+function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
+a=e;break;default:a=e+i[e]}return a}function makeJSXitem(e,t,i,a,n,d,r,l,o,s,c,p){var m="",u=n.toLowerCase();++i[u];var f=customVarNames(u,l,i);a[d]=f;var g=a[r];
 // If current item is a parent...
 "TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"):s.parent!==g&&s.name!==g&&(m+="// "+g.toUpperCase()+"\n",m+="// "+Array(g.length+1).join("=")+"\n"));var v=$("#dialog");
 // This is where each item is first added
 switch(n){case"Dialog":m+="var "+f+' = new Window("'+u+'"); \n';break;case"ListBox":case"DropDownList":var h=o.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+f+'_array = ["'+h.join('","')+'"]; \n',m+="var "+f+" = "+a[r]+'.add("'+u+'", undefined, '+f+"_array",void 0!==o.selection&&"ListBox"===n&&1<o.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+f+" = "+a[r]+'.add("panel"); \n';break;case"TreeView":var y=v.find('[data-item-id="'+d+'"]'),b=0<o.preferredSize[0]?o.preferredSize[0]:Math.round(y.width()),w=0<o.preferredSize[1]?o.preferredSize[1]:Math.round(y.height());m+="var "+f+" = "+a[r]+'.add("'+n.toLowerCase()+'", [0,0,'+(b+0)+","+(w+0)+"]); \n";break;case"TreeItem":var x=v.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+f+" = "+a[r]+'.add("'+x+'", "'+o.text+'"); \n';break;case"StaticText":
+// var isMultiline = statictext_multiline( id );
+var C=$('#dialog [data-item-id="'+d+'"] .text-container'),I=C.text();
+// textContainer.splitLines({
+// 		keepHtml: false,
+//     tag: '<div class="line">',
+// 		width: 96
+// });
+// console.log( textContainer.width() );
+// textContainer.html( textContainer.html().split('\n').join("<br>") )
+C.breakLines({
+// lineBreakHtml : '<br>'
+lineBreakHtml:"\n"}),console.table(C.text().split(/[\n]+/)),C.text(I);
+// ScriptUI has issues with multiline text if you don't define both
+// width and height. Let's say you only set width, what it appears to
+// do is it creates the item applies width and height to the bounds
+// based on how ever the text flows as is and then it applies that
+// width or height you wanted to give it... and that changes the text
+// flow, often resulting in unnecessary whitespace below the text.
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// Normally you could just give it a static width + height and call it a
+// day... but because this is a separate web app that simulates the ScriptUI,
+// not to mention all the differences between Adobe Applications... It's
+// totally not a mirror image of ScriptUI. So my original bandaid was to
+// give a static width and height on export aaand to also try and make the
+// text pixel perfect, which proved to be impossible. Because of these small
+// differences, the text will flow slightly differently. It's basically a
+// gamble. It might look perfect... It might also get whitespace below the text
+// or even worse... Some text might overflow the container and not show up.
+// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+// To tackle this issue I basically split multiline text into
+// multiple single line statictext items and place them in a
+// group. Problem solved for static text. Since this operation
+// is done on export, it doesn't affect the import JSON.
+// if ( isMultiline ) {
+//
+// 	block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
+//
+// 	// All softwrapped lines have been converted into forced linebreaks
+// 	var text = dialog.find('[data-item-id="'+ id +'"] .text-container').data('export-text');
+// 	var lines = text.split('\r');
+//
+// 	$.each( lines, function( i, line ) {
+//
+// 		block += '    ' + jsxVarName +'.add("statictext", undefined, "'+ line +'"); \n';
+//
+// 	});
+//
+//
+// }
 // var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
-var C=void 0===o.text?0:o.text.indexOf("\n"),I=$('#dialog [data-item-id="'+d+'"] .text-container'),k=Math.round(I.width()),S=Math.round(I.height()),T=22<S||0<C?", [0,0, "+k+", "+S+" ], undefined, {multiline: true}":"";m+="var "+f+" = "+a[r]+'.add("'+u+'"'+T+"); \n";break;case"EditText":
+// var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
+// var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
+// var tcW = Math.round( textContainer.width() );
+// var tcH = Math.round( textContainer.height() );
+// var softwrap = tcH > 22;
+// var multilineText = softwrap || linebreak > 0  ? ', [0,0, '+ (tcW) +', '+ (tcH) +' ], undefined, {multiline: true}' : '';
+//
+//
+//
+//
+// block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ multilineText +'); \n';
+break;case"EditText":
 // var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
-var z=void 0===o.text?0:o.text.indexOf("\n"),P=$('#dialog [data-item-id="'+d+'"]'),_=Math.round(P.width()),D=Math.round(P.height()),j=34<S||0<z?", [0,0, "+_+", "+D+" ], undefined, {multiline: true}":"";m+="var "+f+" = "+a[r]+'.add("'+u+'"'+j+"); \n";break;default:m+="var "+f+" = "+a[r]+'.add("'+u+'"); \n'}s.name=f,s.parent=a[r];var L=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,r,l,o,f,c)+L;
+var k=void 0===o.text?0:o.text.indexOf("\n"),S=$('#dialog [data-item-id="'+d+'"]'),T=Math.round(S.width()),z=Math.round(S.height()),P=34<tcH||0<k?", [0,0, "+T+", "+z+" ], undefined, {multiline: true}":"";m+="var "+f+" = "+a[r]+'.add("'+u+'"'+P+"); \n";break;default:m+="var "+f+" = "+a[r]+'.add("'+u+'"); \n'}s.name=f,s.parent=a[r];var _=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,r,l,o,f,c)+_;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
-var V=t.order[e+1];if(void 0!==V){var B=t.items["item-"+V],A="TreeItem"===n&&"TreeItem"!==B.type;A&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):A&&(m+="\n")}else void 0===V&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}
-// When the item type is not a fitting variable name...
-function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
-a=e;break;default:a=e+i[e]}return a}function styleJSXitem(e,t,i,a,n,d,r,l,o,s){var c="",p="    ";
+var j=t.order[e+1];if(void 0!==j){var D=t.items["item-"+j],L="TreeItem"===n&&"TreeItem"!==D.type;L&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):L&&(m+="\n")}else void 0===j&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}function statictext_multiline(e){var n=!1,d="",r=new function(){this.object=$('#dialog [data-item-id="'+e+'"] .text-container'),this.text=this.object.text(),this.words=this.text.split(/[\s\\n]+/)};return r.object.text(""),$.each(r.words,function(e,t){var i=0===e?"":" ",a=r.object.height();r.object.text(r.object.text()+i+t),d+=i+t,console.log("- - -"),console.table(r.words),console.log(t),
+// New line has appeared.
+// Joonas uses crushing depression. It's super effective!
+a<r.object.height()&&(n=!0,d+="\\r")}),r.object.data({"export-text":d}),n}function styleJSXitem(e,t,i,a,n,d,r,l,o,s){var c="",p="    ";
 // var counter = counters[ type.toLowerCase() ];
 if("TreeItem"===a){var m=e.items["item-"+n].expanded,u=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),f=!1;$.each(u,function(){$(this).hasClass("expanded")||(f=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
 }),m&&!1===f&&s.push(p+o+".expanded = true; \n")}else if("Divider"===a)c+=p+o+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+o+".minvalue = 0; \n",c+=p+o+".maxvalue = 100; \n",c+=p+o+".value = 50; \n";else{if(
@@ -219,14 +282,14 @@ case"margins":var p=t[0],m=t[1],u=t[2],f=t[3],g="object"!=typeof t,v=g?t:p,h=g?t
 // PREFERRED SIZE
 case"preferredSize":d.width("auto").height("auto");var w=Math.round(d.width()),x=Math.round(d.height()),C=item.list[i.toLowerCase()](!1).parent,I=0==t[0]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[0]<w?w:t[0],k=0==t[1]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[1]<x?x:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:I,height:k+("Dialog"===i&&23)}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var z=d.width(),P=T.outerWidth(!0),_=S.outerWidth(!0);d.removeClass("get-width");var D=P+_;D<I?(d.addClass("too-big"),_<z&&S.width("auto")):I<D&&(d.addClass("too-small"),z<_&&S.width(z-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:I,height:k+("Dialog"===i&&23)}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var z=d.width(),P=T.outerWidth(!0),_=S.outerWidth(!0);d.removeClass("get-width");var j=P+_;j<I?(d.addClass("too-big"),_<z&&S.width("auto")):I<j&&(d.addClass("too-small"),z<_&&S.width(z-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
 case"orientation":d.removeClass(function(e,t){return(t.match(/(^|\s)orientation-\S+/g)||[]).join(" ")}).addClass("orientation-"+t);break;
 // SPACING
-case"spacing":var j=d.find("> .padding-box"),L="> .padding-box";j.find("> style.spacing").remove();// Get rid of the old one.
-var V=0,B=e.data.items["item-"+n].parentId;if(!1!==B)"row"===e.data.items["item-"+B].style.orientation&&(V=2);t+=V,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(j);break;
+case"spacing":var D=d.find("> .padding-box"),L="> .padding-box";D.find("> style.spacing").remove();// Get rid of the old one.
+var V=0,B=e.data.items["item-"+n].parentId;if(!1!==B)"row"===e.data.items["item-"+B].style.orientation&&(V=2);t+=V,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(D);break;
 // ALIGN CHILDREN
 case"alignChildren":d.removeClass(function(e,t){return(t.match(/(^|\s)align-children-\S+/g)||[]).join(" ")}),d.addClass("align-children-horizontal-"+t[0]),d.addClass("align-children-vertical-"+t[1]);break;
 // ALIGNMENT
@@ -394,6 +457,8 @@ propsPanel.on("click",".link-icon",function(){var e=$(".margin-inputs .n-3-4");e
 // ***********************
 propsPanel.on("keydown",'[data-edit="text"]',function(e){return lineBreakIntercept(e)}),propsPanel.on("keyup",'[data-edit="text"]',function(e){18!=(e.keyCode?e.keyCode:e.which)&&// Update if alt is released.
 item.funnel.update($(this).data("edit"))}),propsPanel.on("keyup",'[data-edit="listItems"]',function(){item.funnel.update($(this).data("edit"))}),propsPanel.on("click",'[data-edit="justify"]',function(){item.funnel.update($(this).data("edit"))}),propsPanel.on("change","select[data-edit]",function(){if("orientation"===$(this).data("edit")){var e="column"===$(this).find("option:selected").val(),t=$("#align-children-horizontal"),i=$("#align-children-vertical");e?(i.find("option:contains(fill)").remove(),$("<option>fill</option>").appendTo(t)):(t.find("option:contains(fill)").remove(),$("<option>fill</option>").appendTo(i)),$("#panel-edit-style-wrap .align-children select").each(function(){$(this).clone().appendTo("#panel-edit-style-wrap .align-children")}),$("#panel-edit-style-wrap .align-children .prettydropdown").remove(),$("#panel-edit-style-wrap .align-children .pretty-classic").each(function(){$(this).trigger("change"),$(this).prettyDropdown({classic:!0,customClass:"arrow triangle",selectedMarker:'<i class="fas fa-check"></i>'})})}item.funnel.update($(this).data("edit"))});var mousemovePing,local_storage={set:function(e,t){localStorage.setItem(e,JSON.stringify(t))},get:function(e){return JSON.parse(localStorage.getItem(e))},remove:function(e){localStorage.removeItem(e)}},loadingScreen={init:function(e,t){$('<div id="loader-bg"><div class="loader">Loading...</div></div>').appendTo("body"),$("#loader-bg").backstretch([{url:"./assets/images/bg.jpg",alignX:"center"}]),setTimeout(function(){t()},this.secondsToMilliseconds(e))},secondsToMilliseconds:function(e){return 1e3*e}};setInterval(function(){mousemovePing=!0},45);var bgTimeout,iconTimeout,modal={init:function(e){modal.make(e),$("#modal-window-overlay").on("click",function(){modal.remove()})},make:function(e){e=void 0===e?"":e,$('<div id="modal-window"><div id="modal-window-overlay" data-esc></div><div id="modal-window-content" class="animated fadeIn">'+e+"</div></div>").appendTo("body"),$("body").addClass("modal-window-active")},remove:function(){$("#modal-window-content").addClass("fadeOut"),setTimeout(function(){$("#modal-window").remove(),$("body").removeClass("modal-window-active")},100)}};$(document).on("keydown",function(e){if(0<$("#modal-window").length){var t=e.keyCode?e.keyCode:e.which,i=13===t;27===t?$("#modal-window").find("[data-esc]").trigger("click"):i&&$("#modal-window").find("[data-enter]").trigger("click")}}),
+// @codekit-append "export/make.item.js";
+// @codekit-append "export/apply.style.js";
 // IMPORT EVENT
 $("#toolbar .export").on("click",function(){modal.init('<div id="export-box"><h2>Export.jsx</h2><div class="code"></div><div class="btns"><div class="download btn animated fadeInDown"><div class="icon"><i class="fas fa-check animated"></i><i class="fas fa-download"></i></div> <span>Download</span></div><div class="copy btn animated fadeInDown"><div class="icon"><i class="fas fa-check animated"></i><i class="fas fa-times animated"></i><i class="fas fa-clipboard-list"></i></div> <span>Copy to Clipboard</span></div></div></div>');
 /*global CodeMirror*/

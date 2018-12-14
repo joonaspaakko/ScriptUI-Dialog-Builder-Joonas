@@ -387,7 +387,8 @@
     }
     .text-container {
       display: inline-block !important; // Content editable \n
-      white-space: pre-line !important; // Content editable \n
+      // white-space: pre-line !important; // Content editable \n
+      white-space: pre !important; // Content editable \n
       vertical-align: middle;
     }
   }
