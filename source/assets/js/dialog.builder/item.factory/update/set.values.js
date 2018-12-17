@@ -47,9 +47,10 @@ item.update.set_values = function( params ) {
 				textContainer.removeClass('multiline');
 				if ( multilineItem && linebreak > 0 ) {
 					textContainer.addClass('multiline');
+					val = val.split('\n').join("<br>");
 				}
 				
-				textContainer.text( val );
+				textContainer.html( val );
 				
 			}
 			break;

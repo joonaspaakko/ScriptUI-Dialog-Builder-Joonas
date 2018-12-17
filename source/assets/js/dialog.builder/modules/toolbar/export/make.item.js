@@ -87,31 +87,41 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 			
 		case 'StaticText':
 			
-			// var isMultiline = statictext_multiline( id );
-			var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
-			var oldText = textContainer.text();
+			// // var isMultiline = statictext_multiline( id );
+			// var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
+			// var oldText = textContainer.html();
 			// textContainer.splitLines({
 			// 		keepHtml: false,
 			//     tag: '<div class="line">',
-			// 		width: 96
+			// 		width: textContainer.width()
 			// });
 			// console.log( textContainer.width() );
 			
 			// textContainer.html( textContainer.html().split('\n').join("<br>") )
+			statictext_multiline( id );
 			
-			textContainer.breakLines({
-				// lineBreakHtml : '<br>'
-				lineBreakHtml: '\n'
-			});
+			// textContainer.splitLines({
+			// 	keepHtml: true,
+		  //   tag: '<div class="line">',
+			// 	width: textContainer.width()
+			// });
 			
-			console.table( textContainer.text().split(/[\n]+/) );
-			textContainer.text( oldText );
+			// textContainer.breakLines({
+			// 	// lineBreakHtml : '<br>'
+			// 	lineBreakHtml    : '<br>',
+			// 	insideStartOfTags: true,
+			// 	atStartOfBlocks  : true,
+			// });
+			//
+			// console.table( textContainer.text().split(/[\n]+/) );
+			
+			// textContainer.html( oldText );
 			
 			// ScriptUI has issues with multiline text if you don't define both
-			// width and height. Let's say you only set width, what it appears to
-			// do is it creates the item applies width and height to the bounds
-			// based on how ever the text flows as is and then it applies that
-			// width or height you wanted to give it... and that changes the text
+			// width and height. Let's say you only set width... what it appears to
+			// do is it creates the item, applies width and height to the bounds
+			// based on how ever the text flows as is and then it applies the
+			// width or height you wanted gave it... and that changes the text
 			// flow, often resulting in unnecessary whitespace below the text.
 			// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 			// Normally you could just give it a static width + height and call it a
@@ -214,40 +224,108 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 	return block;
 }
 
+
 function statictext_multiline( id ) {
 	
 	var isMultiline = false;
-	var exportText = '';
+	var exportText = [];
 	
-	var item = new function() {
-		this.object = $('#dialog [data-item-id="'+ id +'"] .text-container');
-		this.text = this.object.text();
-		this.words = this.text.split(/[\s\\n]+/);
-	};
-	item.object.text('');
+	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
+	var text = container.html();
+	var words = text.split(" ");
 	
-	$.each( item.words, function( i, nextWord ) {
+	container.html('');
+	
+	console.table( words );
+	$.each( words, function( i, nextWord ) {
+		
+		var heightBefore = container.height();
+	
 		
 		var linebreak = i === 0 ? '' : ' ';
-			
-		var heightBefore = item.object.height();
-		item.object.text( item.object.text() + linebreak + nextWord );
-		exportText += linebreak + nextWord;
-		console.log( '- - -' );
-		console.table( item.words );
-		console.log( nextWord );
-		var heightAfter = item.object.height();
+		container.html( container.html() + linebreak + nextWord );
+		exportText.push( linebreak + nextWord );
 		
+		console.log( exportText );
+		
+		var heightAfter = container.height();
+	
 		// New line has appeared.
 		// Joonas uses crushing depression. It's super effective!
+		console.log( ' - - - - ' );
+		console.log( heightBefore );
+		console.log( heightAfter );
 		if ( heightBefore < heightAfter ) {
+			// console.log( nextWord );
 			isMultiline = true;
-			exportText += '\\r';
+			exportText += '<br>';
 		}
 		
 	});
 	
-	item.object.data({ "export-text": exportText });
+	// container.html( text );
 	
-	return isMultiline;
+	console.log( exportText );
+	
+	// console.log( exportText );
+	// container.data({ "export-text": exportText });
+	
+	// item.object.text( item.text ); // Just to make sure the text stays the same...
+	
+	// return isMultiline;
 }
+
+
+// function statictext_multiline( id ) {
+//
+// 	var isMultiline = false;
+// 	var exportText = '';
+//
+// 	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
+// 	var text = container.text();
+// 	var words = text.split(" ");
+//
+// 	item.object.text('');
+//
+// 	// console.table( item.words );
+// 	$.each( words, function( i, nextWord ) {
+//
+// 		var heightBefore = container.height();
+//
+//
+//
+// 		var forcedLineBreak = nextWord.split('\n');
+// 		if ( forcedLineBreak.length > 1 ) {
+// 			$.each( forcedLineBreak, function( i, nextWord ) {
+// 				var lastLoop = i === forcedLineBreak.length;
+// 				container.text( container.text() + linebreak + nextWord );
+// 				exportText += linebreak + nextWord + (lastLoop ? '' : '\\r');
+// 			});
+// 		}
+// 		else {
+// 			var linebreak = i === 0 ? '' : ' ';
+// 			container.text( container.text() + linebreak + nextWord );
+// 			exportText += linebreak + nextWord;
+// 		}
+//
+//
+// 		var heightAfter = container.height();
+//
+// 		// New line has appeared.
+// 		// Joonas uses crushing depression. It's super effective!
+// 		// console.log( heightBefore < heightAfter );
+// 		if ( heightBefore < heightAfter ) {
+// 			// console.log( nextWord );
+// 			isMultiline = true;
+// 			exportText += '\\r';
+// 		}
+//
+// 	});
+//
+// 	// console.log( exportText );
+// 	container.data({ "export-text": exportText });
+//
+// 	// item.object.text( item.text ); // Just to make sure the text stays the same...
+//
+// 	return isMultiline;
+// }

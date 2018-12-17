@@ -35,7 +35,7 @@
 		var words = [];
 		var splitContent;
 		for (var c=0; c<contents.length; c++) {
-			alert( contents[c].nodeName );
+			// alert( contents[c].nodeName );
 			if (contents[c].nodeName === 'BR') {
 				words.push('<br>');
 				continue;

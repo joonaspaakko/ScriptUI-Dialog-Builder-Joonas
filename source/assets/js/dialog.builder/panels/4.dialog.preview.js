@@ -74,13 +74,15 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
   
   var textBox = $('#panel-edit-style-wrap [data-edit="text"]');
   // Properties panel is updated right here, and the funnel update below updates local storage + tree view
-  textBox.html( $(this).text() );
+  textBox.html( $(this).html().split('<br>').join('\n') );
   // Keeps textbox height up to date with the content
   autosize.update( textBox );
   // Since dialog is being manipulated, it is ignored in the update pipeline...
   var ignore = 'dialog';
   item.funnel.update( 'text', ignore );
 	
+}).on("paste", "[contenteditable]", function( e ) {
+  e.preventDefault(); // Don't want to be pasting html into contenteditable
 });
 
 

@@ -446,7 +446,7 @@ var r=this.doc.mode;return r.innerMode?e.innerMode(r,this.getTokenAt(t).state).m
 		var words = [];
 		var splitContent;
 		for (var c=0; c<contents.length; c++) {
-			alert( contents[c].nodeName );
+			// alert( contents[c].nodeName );
 			if (contents[c].nodeName === 'BR') {
 				words.push('<br>');
 				continue;
@@ -637,6 +637,8 @@ var r=this.doc.mode;return r.innerMode?e.innerMode(r,this.getTokenAt(t).state).m
 					if (el.height() !== currentHeight) {
 						// insert a line break and add to the list of
 						// line breaks
+						console.log( nextCopy );
+						// console.log( $(this)[0].trim() === ' <br>' );
 						insertedBreaks = $(options.lineBreakHtml)
 						.insertBefore(this)
 						.add(insertedBreaks);

@@ -42,24 +42,37 @@ a=e;break;default:a=e+i[e]}return a}function makeJSXitem(e,t,i,a,n,d,r,l,o,s,c,p
 // If current item is a parent...
 "TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"):s.parent!==g&&s.name!==g&&(m+="// "+g.toUpperCase()+"\n",m+="// "+Array(g.length+1).join("=")+"\n"));var v=$("#dialog");
 // This is where each item is first added
-switch(n){case"Dialog":m+="var "+f+' = new Window("'+u+'"); \n';break;case"ListBox":case"DropDownList":var h=o.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+f+'_array = ["'+h.join('","')+'"]; \n',m+="var "+f+" = "+a[r]+'.add("'+u+'", undefined, '+f+"_array",void 0!==o.selection&&"ListBox"===n&&1<o.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+f+" = "+a[r]+'.add("panel"); \n';break;case"TreeView":var y=v.find('[data-item-id="'+d+'"]'),b=0<o.preferredSize[0]?o.preferredSize[0]:Math.round(y.width()),w=0<o.preferredSize[1]?o.preferredSize[1]:Math.round(y.height());m+="var "+f+" = "+a[r]+'.add("'+n.toLowerCase()+'", [0,0,'+(b+0)+","+(w+0)+"]); \n";break;case"TreeItem":var x=v.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+f+" = "+a[r]+'.add("'+x+'", "'+o.text+'"); \n';break;case"StaticText":
-// var isMultiline = statictext_multiline( id );
-var C=$('#dialog [data-item-id="'+d+'"] .text-container'),I=C.text();
+switch(n){case"Dialog":m+="var "+f+' = new Window("'+u+'"); \n';break;case"ListBox":case"DropDownList":var h=o.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+f+'_array = ["'+h.join('","')+'"]; \n',m+="var "+f+" = "+a[r]+'.add("'+u+'", undefined, '+f+"_array",void 0!==o.selection&&"ListBox"===n&&1<o.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+f+" = "+a[r]+'.add("panel"); \n';break;case"TreeView":var y=v.find('[data-item-id="'+d+'"]'),b=0<o.preferredSize[0]?o.preferredSize[0]:Math.round(y.width()),w=0<o.preferredSize[1]?o.preferredSize[1]:Math.round(y.height());m+="var "+f+" = "+a[r]+'.add("'+n.toLowerCase()+'", [0,0,'+(b+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=v.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+f+" = "+a[r]+'.add("'+C+'", "'+o.text+'"); \n';break;case"StaticText":
+// // var isMultiline = statictext_multiline( id );
+// var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
+// var oldText = textContainer.html();
 // textContainer.splitLines({
 // 		keepHtml: false,
 //     tag: '<div class="line">',
-// 		width: 96
+// 		width: textContainer.width()
 // });
 // console.log( textContainer.width() );
 // textContainer.html( textContainer.html().split('\n').join("<br>") )
-C.breakLines({
-// lineBreakHtml : '<br>'
-lineBreakHtml:"\n"}),console.table(C.text().split(/[\n]+/)),C.text(I);
+statictext_multiline(d);
+// textContainer.splitLines({
+// 	keepHtml: true,
+//   tag: '<div class="line">',
+// 	width: textContainer.width()
+// });
+// textContainer.breakLines({
+// 	// lineBreakHtml : '<br>'
+// 	lineBreakHtml    : '<br>',
+// 	insideStartOfTags: true,
+// 	atStartOfBlocks  : true,
+// });
+//
+// console.table( textContainer.text().split(/[\n]+/) );
+// textContainer.html( oldText );
 // ScriptUI has issues with multiline text if you don't define both
-// width and height. Let's say you only set width, what it appears to
-// do is it creates the item applies width and height to the bounds
-// based on how ever the text flows as is and then it applies that
-// width or height you wanted to give it... and that changes the text
+// width and height. Let's say you only set width... what it appears to
+// do is it creates the item, applies width and height to the bounds
+// based on how ever the text flows as is and then it applies the
+// width or height you wanted gave it... and that changes the text
 // flow, often resulting in unnecessary whitespace below the text.
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 // Normally you could just give it a static width + height and call it a
@@ -106,12 +119,70 @@ lineBreakHtml:"\n"}),console.table(C.text().split(/[\n]+/)),C.text(I);
 // block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ multilineText +'); \n';
 break;case"EditText":
 // var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
-var k=void 0===o.text?0:o.text.indexOf("\n"),S=$('#dialog [data-item-id="'+d+'"]'),T=Math.round(S.width()),z=Math.round(S.height()),P=34<tcH||0<k?", [0,0, "+T+", "+z+" ], undefined, {multiline: true}":"";m+="var "+f+" = "+a[r]+'.add("'+u+'"'+P+"); \n";break;default:m+="var "+f+" = "+a[r]+'.add("'+u+'"); \n'}s.name=f,s.parent=a[r];var _=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,r,l,o,f,c)+_;
+var x=void 0===o.text?0:o.text.indexOf("\n"),I=$('#dialog [data-item-id="'+d+'"]'),k=Math.round(I.width()),S=Math.round(I.height()),T=34<tcH||0<x?", [0,0, "+k+", "+S+" ], undefined, {multiline: true}":"";m+="var "+f+" = "+a[r]+'.add("'+u+'"'+T+"); \n";break;default:m+="var "+f+" = "+a[r]+'.add("'+u+'"); \n'}s.name=f,s.parent=a[r];var z=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,r,l,o,f,c)+z;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
-var j=t.order[e+1];if(void 0!==j){var D=t.items["item-"+j],L="TreeItem"===n&&"TreeItem"!==D.type;L&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):L&&(m+="\n")}else void 0===j&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}function statictext_multiline(e){var n=!1,d="",r=new function(){this.object=$('#dialog [data-item-id="'+e+'"] .text-container'),this.text=this.object.text(),this.words=this.text.split(/[\s\\n]+/)};return r.object.text(""),$.each(r.words,function(e,t){var i=0===e?"":" ",a=r.object.height();r.object.text(r.object.text()+i+t),d+=i+t,console.log("- - -"),console.table(r.words),console.log(t),
+var P=t.order[e+1];if(void 0!==P){var _=t.items["item-"+P],D="TreeItem"===n&&"TreeItem"!==_.type;D&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):D&&(m+="\n")}else void 0===P&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}function statictext_multiline(e){var d=[],r=$('#dialog [data-item-id="'+e+'"] .text-container'),t=r.html().split(" ");r.html(""),console.table(t),$.each(t,function(e,t){var i=r.height(),a=0===e?"":" ";r.html(r.html()+a+t),d.push(a+t),console.log(d);var n=r.height();
 // New line has appeared.
 // Joonas uses crushing depression. It's super effective!
-a<r.object.height()&&(n=!0,d+="\\r")}),r.object.data({"export-text":d}),n}function styleJSXitem(e,t,i,a,n,d,r,l,o,s){var c="",p="    ";
+console.log(" - - - - "),console.log(i),console.log(n),i<n&&(
+// console.log( nextWord );
+!0,d+="<br>")}),
+// container.html( text );
+console.log(d)}
+// function statictext_multiline( id ) {
+//
+// 	var isMultiline = false;
+// 	var exportText = '';
+//
+// 	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
+// 	var text = container.text();
+// 	var words = text.split(" ");
+//
+// 	item.object.text('');
+//
+// 	// console.table( item.words );
+// 	$.each( words, function( i, nextWord ) {
+//
+// 		var heightBefore = container.height();
+//
+//
+//
+// 		var forcedLineBreak = nextWord.split('\n');
+// 		if ( forcedLineBreak.length > 1 ) {
+// 			$.each( forcedLineBreak, function( i, nextWord ) {
+// 				var lastLoop = i === forcedLineBreak.length;
+// 				container.text( container.text() + linebreak + nextWord );
+// 				exportText += linebreak + nextWord + (lastLoop ? '' : '\\r');
+// 			});
+// 		}
+// 		else {
+// 			var linebreak = i === 0 ? '' : ' ';
+// 			container.text( container.text() + linebreak + nextWord );
+// 			exportText += linebreak + nextWord;
+// 		}
+//
+//
+// 		var heightAfter = container.height();
+//
+// 		// New line has appeared.
+// 		// Joonas uses crushing depression. It's super effective!
+// 		// console.log( heightBefore < heightAfter );
+// 		if ( heightBefore < heightAfter ) {
+// 			// console.log( nextWord );
+// 			isMultiline = true;
+// 			exportText += '\\r';
+// 		}
+//
+// 	});
+//
+// 	// console.log( exportText );
+// 	container.data({ "export-text": exportText });
+//
+// 	// item.object.text( item.text ); // Just to make sure the text stays the same...
+//
+// 	return isMultiline;
+// }
+function styleJSXitem(e,t,i,a,n,d,r,l,o,s){var c="",p="    ";
 // var counter = counters[ type.toLowerCase() ];
 if("TreeItem"===a){var m=e.items["item-"+n].expanded,u=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),f=!1;$.each(u,function(){$(this).hasClass("expanded")||(f=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
 }),m&&!1===f&&s.push(p+o+".expanded = true; \n")}else if("Divider"===a)c+=p+o+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+o+".minvalue = 0; \n",c+=p+o+".maxvalue = 100; \n",c+=p+o+".value = 50; \n";else{if(
@@ -137,7 +208,7 @@ void 0!==l.alignChildren&&(c+=p+o+'.alignChildren = ["'+l.alignChildren[0]+'","'
 // SPACING
 void 0!==l.spacing&&(c+=p+o+".spacing = "+l.spacing+"; \n"),void 0!==l.margins)c+=p+o+".margins = "+("object"==typeof l.margins?"["+l.margins[3]+","+l.margins[0]+","+l.margins[1]+","+l.margins[2]+"]":l.margins)+"; \n";
 // ALIGNMENT
-if(null!=l.alignment){var w=e.items["item-"+d].style.orientation,x="";x="column"===w?("top"===l.alignment?"left":"bottom"===l.alignment&&"right")||l.alignment:("left"===l.alignment?"top":"right"===l.alignment&&"bottom")||l.alignment;var C=e.items["item-"+d].style.alignChildren;c+=p+o+".alignment = "+(x="column"===w?'["'+x+'","'+C[1]+'"]':'["'+C[0]+'","'+x+'"]')+"; \n"}}return c}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
+if(null!=l.alignment){var w=e.items["item-"+d].style.orientation,C="";C="column"===w?("top"===l.alignment?"left":"bottom"===l.alignment&&"right")||l.alignment:("left"===l.alignment?"top":"right"===l.alignment&&"bottom")||l.alignment;var x=e.items["item-"+d].style.alignChildren;c+=p+o+".alignment = "+(C="column"===w?'["'+C+'","'+x[1]+'"]':'["'+x[0]+'","'+C+'"]')+"; \n"}}return c}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
 /* exported notification */
 function notification(e,t,i){
 // "I think that padding makes you look fat..."
@@ -264,7 +335,7 @@ else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.p
 // #U7FTZMRVYxVqiArfdgQeQjMRpx6R → dialog.scss
 // Multiline text yo!
 // Visually locks multiline text alignment to left
-o.removeClass("multiline"),s&&0<c&&o.addClass("multiline"),o.text(t)}break;
+o.removeClass("multiline"),s&&0<c&&(o.addClass("multiline"),t=t.split("\n").join("<br>")),o.html(t)}break;
 // LIST ITEMS
 case"listItems":"DropDownList"===i?
 /*global droplist*/
@@ -280,16 +351,16 @@ case"justify":d.removeClass(function(e,t){return(t.match(/(^|\s)justify-\S+/g)||
 // MARGINS
 case"margins":var p=t[0],m=t[1],u=t[2],f=t[3],g="object"!=typeof t,v=g?t:p,h=g?t:m,y=g?t:u,b=g?t:f;"Dialog"===i?r.css({paddingTop:v<=6?1:v,paddingRight:h<=1?1:h,paddingBottom:y<=1?1:y,paddingLeft:b<=1?1:b}):"Panel"===i||"Tab"===i?r.css({paddingTop:v<=3?3:v,paddingRight:h<=3?3:h,paddingBottom:y<=1?1:y,paddingLeft:b<=3?3:b}):r.css({paddingTop:v,paddingRight:h,paddingBottom:y,paddingLeft:b});break;
 // PREFERRED SIZE
-case"preferredSize":d.width("auto").height("auto");var w=Math.round(d.width()),x=Math.round(d.height()),C=item.list[i.toLowerCase()](!1).parent,I=0==t[0]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[0]<w?w:t[0],k=0==t[1]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[1]<x?x:t[1];
+case"preferredSize":d.width("auto").height("auto");var w=Math.round(d.width()),C=Math.round(d.height()),x=item.list[i.toLowerCase()](!1).parent,I=0==t[0]?"auto":"loadFromLocalStorage"!==e.event&&x&&t[0]<w?w:t[0],k=0==t[1]?"auto":"loadFromLocalStorage"!==e.event&&x&&t[1]<C?C:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:I,height:k+("Dialog"===i&&23)}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var z=d.width(),P=T.outerWidth(!0),_=S.outerWidth(!0);d.removeClass("get-width");var j=P+_;j<I?(d.addClass("too-big"),_<z&&S.width("auto")):I<j&&(d.addClass("too-small"),z<_&&S.width(z-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:I,height:k+("Dialog"===i&&23)}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var z=d.width(),P=T.outerWidth(!0),_=S.outerWidth(!0);d.removeClass("get-width");var D=P+_;D<I?(d.addClass("too-big"),_<z&&S.width("auto")):I<D&&(d.addClass("too-small"),z<_&&S.width(z-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
 case"orientation":d.removeClass(function(e,t){return(t.match(/(^|\s)orientation-\S+/g)||[]).join(" ")}).addClass("orientation-"+t);break;
 // SPACING
-case"spacing":var D=d.find("> .padding-box"),L="> .padding-box";D.find("> style.spacing").remove();// Get rid of the old one.
-var V=0,B=e.data.items["item-"+n].parentId;if(!1!==B)"row"===e.data.items["item-"+B].style.orientation&&(V=2);t+=V,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(D);break;
+case"spacing":var j=d.find("> .padding-box"),L="> .padding-box";j.find("> style.spacing").remove();// Get rid of the old one.
+var V=0,B=e.data.items["item-"+n].parentId;if(!1!==B)"row"===e.data.items["item-"+B].style.orientation&&(V=2);t+=V,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(j);break;
 // ALIGN CHILDREN
 case"alignChildren":d.removeClass(function(e,t){return(t.match(/(^|\s)align-children-\S+/g)||[]).join(" ")}),d.addClass("align-children-horizontal-"+t[0]),d.addClass("align-children-vertical-"+t[1]);break;
 // ALIGNMENT
@@ -663,9 +734,10 @@ dialogElem.on("focus blur",'[data-item-type="EditText"] [contenteditable]',funct
 // MIRROR TEXT CHANGES TO EDIT PANEL FROM DIALOG CONTENTEDITABLE
 dialogElem.on("keydown","[contenteditable]",function(e){return lineBreakIntercept(e)}).on("keyup","[contenteditable]",function(){var e=$(this).text().indexOf("\n");$(this).removeClass("multiline"),0<e&&$(this).addClass("multiline");var t=$('#panel-edit-style-wrap [data-edit="text"]');
 // Properties panel is updated right here, and the funnel update below updates local storage + tree view
-t.html($(this).text()),
+t.html($(this).html().split("<br>").join("\n")),
 // Keeps textbox height up to date with the content
-autosize.update(t);item.funnel.update("text","dialog")}),
+autosize.update(t);item.funnel.update("text","dialog")}).on("paste","[contenteditable]",function(e){e.preventDefault();// Don't want to be pasting html into contenteditable
+}),
 // DIALOG TITLE ELLIPSIS (input/contenteditable with ellipsis) FIX:
 // Related code can be found in 'dialog-preview.scss' file. Search
 // for: #5945573415 The css already gets rid of the ellipsis
