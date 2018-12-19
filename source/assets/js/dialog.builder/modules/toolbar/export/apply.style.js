@@ -1,5 +1,5 @@
 
-function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree ) {
+function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText ) {
 	var styleBlock = '';
 	// var counter = counters[ type.toLowerCase() ];
 	var tabsies = '    ';
@@ -53,10 +53,11 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 		}
 		
 		// TEXT
-		var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
 		if ( style.text !== undefined && style.text.length > 0 ) {
-			var text = multilineItem ? style.text.split('\n').join('\\r') : style.text;
-			styleBlock += tabsies + jsxVarName +'.text = "' + text + '"; \n';
+			if ( type === 'StaticText' && !multilineText[0] || type !== 'StaticText' ) {
+				var text = type === 'EditText' && multilineText[0] ? style.text.split('\n').join('\\r') : style.text;
+				styleBlock += tabsies + jsxVarName +'.text = "' + text + '"; \n';
+			}
 		}
 		// CHECKED
 		if ( style.checked === true ) {
@@ -67,14 +68,7 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			var width = style.preferredSize[0];
 			var height = style.preferredSize[1];
 			
-			var softwrap = false;
-			if ( multilineItem ) {
-				var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
-				var tcH = Math.round( textContainer.height() );
-				softwrap = tcH > 22;
-			}
-			
-			if ( !softwrap ) {
+			if ( !multilineText[0] ) {
 				if ( width > 0 ) {
 					styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
 				}
@@ -86,10 +80,11 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 		}
 		// JUSTIFY
 		if ( style.justify !== undefined && style.justify !== 'left' || type === "Button" && style.justify !== 'center' ) {
-			var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
-			styleBlock += tabsies + ( linebreak > 0 ? '// ' : ''  ) + jsxVarName + '.justify = "' + style.justify + '"; \n';
+			if ( !multilineText[0] && type !== 'StaticText' ) {
+				var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
+				styleBlock += tabsies + ( linebreak > 0 ? '// ' : ''  ) + jsxVarName + '.justify = "' + style.justify + '"; \n';
+			}
 		}
-		
 		// ORIENTATION
 		if ( style.orientation !== undefined  ) {
 			styleBlock += tabsies + jsxVarName + '.orientation = "' + style.orientation + '"; \n';
@@ -108,7 +103,7 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			styleBlock += tabsies + jsxVarName + '.margins = ' + (marginsArray ? '['+ style.margins[3] +','+ style.margins[0] +','+ style.margins[1] +','+ style.margins[2] +']' : style.margins) + '; \n';
 		}
 		// ALIGNMENT
-		if ( style.alignment != null ) {
+		if ( style.alignment != null && !multilineText[0] ) {
 			var parentOrientation = data.items[ 'item-' + parentId ].style.orientation;
 			var alignment = '';
 			if ( parentOrientation === 'column' ) {

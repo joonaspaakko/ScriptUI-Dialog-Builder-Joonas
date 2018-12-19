@@ -1,7 +1,6 @@
 
 // TEXT INFO THAT IS USED FOR MULTIPLE ITEMS
 var reText = {
-	textItems: "This item supports multiline text <small>(press enter to insert a line break)</small>. <br><br> Changing the default justification of multiline text renders inconsistently and for that reason multiline text is always aligned to the left.",
 	tabs: " <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG)."
 }
 
@@ -91,7 +90,7 @@ item.list.statictext = function( params ) {
 		type: 'StaticText',
 		addPanelIconClass: 'fas fa-font',
 		multiline: true,
-		editInfo: reText.textItems + '<br><br> In the case of multiline text and justify <code>center</code> or <code>right</code> the justify setting is included in the export but commented out.',
+		editInfo: 'This item supports multiline text. <br><br>Due to issues with ScriptUI multiline text, the code export will not output "true" multiline. <br><br>Instead, multiline <code>statictext</code> will be sliced and diced into several <code>statictext</code> and put inside a <code>group</code>.',
 		defaultStyle: {
 			text: 'StaticText',
 			justify: 'left',
@@ -114,7 +113,7 @@ item.list.edittext = function( params ) {
 		type: 'EditText',
 		addPanelIconClass: 'fas fa-i-cursor',
 		multiline: true,
-		editInfo: reText.textItems,
+		editInfo: "This item supports multiline text. <br><br>Multiline text flow may differ drastically from ScriptUI.",
 		defaultStyle: {
 			text: 'EditText',
 			// justify: 'left',

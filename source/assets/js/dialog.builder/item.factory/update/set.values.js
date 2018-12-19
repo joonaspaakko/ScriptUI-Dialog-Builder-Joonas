@@ -35,23 +35,23 @@ item.update.set_values = function( params ) {
 			else if ( type === 'TreeItem' ) {
 				active.find('> .item-wrap .text-container').text( val );
 			}
-			else {
+			else if ( item.list[ type.toLowerCase() ](false).multiline ) {
 				
 				var textContainer = active.find('.text-container');
+				textContainer.html( val.split('\n').join("<br>") );
 				
-				// #U7FTZMRVYxVqiArfdgQeQjMRpx6R → dialog.scss
-				// Multiline text yo!
-				// Visually locks multiline text alignment to left
-				var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
+				var isMultiline = multilineCheck( params.dataItem.id )[0];
 				var linebreak = val.indexOf('\n');
-				textContainer.removeClass('multiline');
-				if ( multilineItem && linebreak > 0 ) {
+				if ( isMultiline ) {
 					textContainer.addClass('multiline');
-					val = val.split('\n').join("<br>");
+				}
+				else {
+					textContainer.removeClass('multiline');
 				}
 				
-				textContainer.html( val );
-				
+			}
+			else {
+				active.find('.text-container').html( val );
 			}
 			break;
 		

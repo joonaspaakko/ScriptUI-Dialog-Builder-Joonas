@@ -38,36 +38,11 @@ f={name:"",parent:""},g=[];// JUST DO IT
 $("#panel-new-item-wrap ul li").each(function(){u[$(this).data("item-type").toLowerCase()]=0});var e=$("#panel-tree-view-wrap .tree-dialog li"),v=e.length;return e.each(function(e){var t=e,i=$(this).data().itemId,a=c.items["item-"+i],n=a.parentId,d=0===n||!1===n?"Dialog":c.items["item-"+n].type,r=a.type,l=a.id,o=a.style,s=!1;e===v-1&&(s=!0),p+=makeJSXitem(t,c,u,m,r,l,n,d,o,f,g,s)}),p}
 // When the item type is not a fitting variable name...
 function customVarNames(e,t,i){var a;switch(e){case"dropdownlist":a="dropdown"+i[e];break;case"tabbedpanel":a="tpanel"+i[e];break;case"dialog":// This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
-a=e;break;default:a=e+i[e]}return a}function makeJSXitem(e,t,i,a,n,d,r,l,o,s,c,p){var m="",u=n.toLowerCase();++i[u];var f=customVarNames(u,l,i);a[d]=f;var g=a[r];
+a=e;break;default:a=e+i[e]}return a}function makeJSXitem(e,t,i,a,n,d,r,l,o,s,c,p){var m=[!1],u="",f=n.toLowerCase();++i[f];var g=customVarNames(f,l,i);a[d]=g;var v=a[r];
 // If current item is a parent...
-"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(m+="// "+f.toUpperCase()+"\n",m+="// "+Array(f.length+1).join("=")+"\n"):s.parent!==g&&s.name!==g&&(m+="// "+g.toUpperCase()+"\n",m+="// "+Array(g.length+1).join("=")+"\n"));var v=$("#dialog");
+"TreeItem"!==n&&(item.list[n.toLowerCase()](!1).parent?(u+="// "+g.toUpperCase()+"\n",u+="// "+Array(g.length+1).join("=")+"\n"):s.parent!==v&&s.name!==v&&(u+="// "+v.toUpperCase()+"\n",u+="// "+Array(v.length+1).join("=")+"\n"));var h=$("#dialog");
 // This is where each item is first added
-switch(n){case"Dialog":m+="var "+f+' = new Window("'+u+'"); \n';break;case"ListBox":case"DropDownList":var h=o.listItems.split("\n").join("").split(",");$.each(h,function(e){h[e]=h[e].trim()}),m+="var "+f+'_array = ["'+h.join('","')+'"]; \n',m+="var "+f+" = "+a[r]+'.add("'+u+'", undefined, '+f+"_array",void 0!==o.selection&&"ListBox"===n&&1<o.selection.length&&(m+=", {multiselect: true}"),m+="); \n";break;case"Divider":m+="var "+f+" = "+a[r]+'.add("panel"); \n';break;case"TreeView":var y=v.find('[data-item-id="'+d+'"]'),b=0<o.preferredSize[0]?o.preferredSize[0]:Math.round(y.width()),w=0<o.preferredSize[1]?o.preferredSize[1]:Math.round(y.height());m+="var "+f+" = "+a[r]+'.add("'+n.toLowerCase()+'", [0,0,'+(b+0)+","+(w+0)+"]); \n";break;case"TreeItem":var C=v.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";m+="var "+f+" = "+a[r]+'.add("'+C+'", "'+o.text+'"); \n';break;case"StaticText":
-// // var isMultiline = statictext_multiline( id );
-// var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
-// var oldText = textContainer.html();
-// textContainer.splitLines({
-// 		keepHtml: false,
-//     tag: '<div class="line">',
-// 		width: textContainer.width()
-// });
-// console.log( textContainer.width() );
-// textContainer.html( textContainer.html().split('\n').join("<br>") )
-statictext_multiline(d);
-// textContainer.splitLines({
-// 	keepHtml: true,
-//   tag: '<div class="line">',
-// 	width: textContainer.width()
-// });
-// textContainer.breakLines({
-// 	// lineBreakHtml : '<br>'
-// 	lineBreakHtml    : '<br>',
-// 	insideStartOfTags: true,
-// 	atStartOfBlocks  : true,
-// });
-//
-// console.table( textContainer.text().split(/[\n]+/) );
-// textContainer.html( oldText );
+switch(n){case"Dialog":u+="var "+g+' = new Window("'+f+'"); \n';break;case"ListBox":case"DropDownList":var y=o.listItems.split("\n").join("").split(",");$.each(y,function(e){y[e]=y[e].trim()}),u+="var "+g+'_array = ["'+y.join('","')+'"]; \n',u+="var "+g+" = "+a[r]+'.add("'+f+'", undefined, '+g+"_array",void 0!==o.selection&&"ListBox"===n&&1<o.selection.length&&(u+=", {multiselect: true}"),u+="); \n";break;case"Divider":u+="var "+g+" = "+a[r]+'.add("panel"); \n';break;case"TreeView":var b=h.find('[data-item-id="'+d+'"]'),w=0<o.preferredSize[0]?o.preferredSize[0]:Math.round(b.width()),C=0<o.preferredSize[1]?o.preferredSize[1]:Math.round(b.height());u+="var "+g+" = "+a[r]+'.add("'+n.toLowerCase()+'", [0,0,'+(w+0)+","+(C+0)+"]); \n";break;case"TreeItem":var x=h.find('[data-item-id="'+d+'"]').hasClass("tree-node")?"node":"item";u+="var "+g+" = "+a[r]+'.add("'+x+'", "'+o.text+'"); \n';break;case"StaticText":
 // ScriptUI has issues with multiline text if you don't define both
 // width and height. Let's say you only set width... what it appears to
 // do is it creates the item, applies width and height to the bounds
@@ -85,130 +60,59 @@ statictext_multiline(d);
 // gamble. It might look perfect... It might also get whitespace below the text
 // or even worse... Some text might overflow the container and not show up.
 // = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-// To tackle this issue I basically split multiline text into
-// multiple single line statictext items and place them in a
-// group. Problem solved for static text. Since this operation
-// is done on export, it doesn't affect the import JSON.
-// if ( isMultiline ) {
-//
-// 	block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
-//
-// 	// All softwrapped lines have been converted into forced linebreaks
-// 	var text = dialog.find('[data-item-id="'+ id +'"] .text-container').data('export-text');
-// 	var lines = text.split('\r');
-//
-// 	$.each( lines, function( i, line ) {
-//
-// 		block += '    ' + jsxVarName +'.add("statictext", undefined, "'+ line +'"); \n';
-//
-// 	});
-//
-//
-// }
-// var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
-// var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
-// var textContainer = $('#dialog [data-item-id="'+ id +'"] .text-container');
-// var tcW = Math.round( textContainer.width() );
-// var tcH = Math.round( textContainer.height() );
-// var softwrap = tcH > 22;
-// var multilineText = softwrap || linebreak > 0  ? ', [0,0, '+ (tcW) +', '+ (tcH) +' ], undefined, {multiline: true}' : '';
-//
-//
-//
-//
-// block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ multilineText +'); \n';
-break;case"EditText":
-// var multilineItem = item.list[ type.toLowerCase() ](false).multiline;
-var x=void 0===o.text?0:o.text.indexOf("\n"),I=$('#dialog [data-item-id="'+d+'"]'),k=Math.round(I.width()),S=Math.round(I.height()),T=34<tcH||0<x?", [0,0, "+k+", "+S+" ], undefined, {multiline: true}":"";m+="var "+f+" = "+a[r]+'.add("'+u+'"'+T+"); \n";break;default:m+="var "+f+" = "+a[r]+'.add("'+u+'"); \n'}s.name=f,s.parent=a[r];var z=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";m+=styleJSXitem(t,i,a,n,d,r,l,o,f,c)+z;
+// To tackle this issue I basically split multiline text into multiple one line
+// statictext items and place them in a group. Problem solved for static text.
+// Since this operation is done on export, it doesn't affect the import JSON.
+// Obviously it does make it harder to edit the text once it's been exported...
+if((m=multilineCheck(d))[0]){var I="    ";
+// ADD PARENT GROUP
+// ALIGNMENT
+if(u+="var "+g+" = "+a[r]+'.add("group"); \n',
+// PREFERRED SIZE
+void 0!==o.preferredSize&&(0<o.preferredSize[0]&&(u+=I+g+".preferredSize.width = "+o.preferredSize[0]+"; \n"),0<o.preferredSize[1]&&(u+=I+g+".preferredSize.height = "+o.preferredSize[1]+"; \n")),
+// ORIENTATION
+u+=I+g+'.orientation = "column"; \n',
+// ALIGN CHILDREN
+void 0!==o.justify&&(u+=I+g+'.alignChildren = ["'+o.justify+'","center"]; \n'),
+// SPACING
+u+=I+g+".spacing = 0; \n",null!=o.alignment){var S=t.items["item-"+r].style.orientation,k="";k="column"===S?("top"===o.alignment?"left":"bottom"===o.alignment&&"right")||o.alignment:("left"===o.alignment?"top":"right"===o.alignment&&"bottom")||o.alignment;var T=t.items["item-"+r].style.alignChildren;k="column"===S?'["'+k+'","'+T[1]+'"]':'["'+T[0]+'","'+k+'"]',u+=I+g+".alignment = "+k+"; \n"}
+// SPACER
+u+="\n";
+// All softwrapped lines have been converted into forced linebreaks
+var z=m[1].split("<br>");$.each(z,function(e,t){
+// ADD EACH LINE AS SEPARATE STATIC TEXT ITEM
+u+=I+g+'.add("statictext", undefined, "'+t+'"); \n'})}else u+="var "+g+" = "+a[r]+'.add("'+f+'"); \n';break;case"EditText":m=multilineCheck(d);var P=$('#dialog [data-item-id="'+d+'"]'),_=Math.round(P.width()),D=Math.round(P.height()),j=m[0]?", [0,0, "+_+", "+D+" ], undefined, {multiline: true}":"";u+="var "+g+" = "+a[r]+'.add("'+f+'"'+j+"); \n";break;default:u+="var "+g+" = "+a[r]+'.add("'+f+'"); \n'}s.name=g,s.parent=a[r];var L=/*type === 'TreeView' ||*/"TreeItem"!==n||p?"\n":"";u+=styleJSXitem(t,i,a,n,d,r,l,o,g,c,m)+L;
 // Add in treeItem expanded properties if this is the last of treeItems in this group
-var P=t.order[e+1];if(void 0!==P){var _=t.items["item-"+P],D="TreeItem"===n&&"TreeItem"!==_.type;D&&0<c.length?(m+="\n",$.each(c,function(e,t){m+=t}),m+="\n",c=[]):D&&(m+="\n")}else void 0===P&&"TreeItem"===n&&($.each(c,function(e,t){m+=t}),m+="\n",c=[]);return m}function statictext_multiline(e){var d=[],r=$('#dialog [data-item-id="'+e+'"] .text-container'),t=r.html().split(" ");r.html(""),console.table(t),$.each(t,function(e,t){var i=r.height(),a=0===e?"":" ";r.html(r.html()+a+t),d.push(a+t),console.log(d);var n=r.height();
+var V=t.order[e+1];if(void 0!==V){var B=t.items["item-"+V],A="TreeItem"===n&&"TreeItem"!==B.type;A&&0<c.length?(u+="\n",$.each(c,function(e,t){u+=t}),u+="\n",c=[]):A&&(u+="\n")}else void 0===V&&"TreeItem"===n&&($.each(c,function(e,t){u+=t}),u+="\n",c=[]);return u}function multilineCheck(e){var d=!1,r=[],l=$('#dialog [data-item-id="'+e+'"] .text-container'),t=l.html(),i=t.split(" ");// Just to make super sure the dialog text stays the same...
+return l.html(""),$.each(i,function(e,t){var a=t.split("<br>");if(1<a.length)d=!0,$.each(a,function(e,t){var i=e===a.length-1;l.html(l.html()+(i?"":" ")+t+(i?"":"<br>")),r.push((i?"":" ")+t+(i?"":"<br>"))});else{var i=l.height(),n=0===e?"":" ";l.html(l.html()+n+t),
 // New line has appeared.
 // Joonas uses crushing depression. It's super effective!
-console.log(" - - - - "),console.log(i),console.log(n),i<n&&(
-// console.log( nextWord );
-!0,d+="<br>")}),
-// container.html( text );
-console.log(d)}
-// function statictext_multiline( id ) {
-//
-// 	var isMultiline = false;
-// 	var exportText = '';
-//
-// 	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
-// 	var text = container.text();
-// 	var words = text.split(" ");
-//
-// 	item.object.text('');
-//
-// 	// console.table( item.words );
-// 	$.each( words, function( i, nextWord ) {
-//
-// 		var heightBefore = container.height();
-//
-//
-//
-// 		var forcedLineBreak = nextWord.split('\n');
-// 		if ( forcedLineBreak.length > 1 ) {
-// 			$.each( forcedLineBreak, function( i, nextWord ) {
-// 				var lastLoop = i === forcedLineBreak.length;
-// 				container.text( container.text() + linebreak + nextWord );
-// 				exportText += linebreak + nextWord + (lastLoop ? '' : '\\r');
-// 			});
-// 		}
-// 		else {
-// 			var linebreak = i === 0 ? '' : ' ';
-// 			container.text( container.text() + linebreak + nextWord );
-// 			exportText += linebreak + nextWord;
-// 		}
-//
-//
-// 		var heightAfter = container.height();
-//
-// 		// New line has appeared.
-// 		// Joonas uses crushing depression. It's super effective!
-// 		// console.log( heightBefore < heightAfter );
-// 		if ( heightBefore < heightAfter ) {
-// 			// console.log( nextWord );
-// 			isMultiline = true;
-// 			exportText += '\\r';
-// 		}
-//
-// 	});
-//
-// 	// console.log( exportText );
-// 	container.data({ "export-text": exportText });
-//
-// 	// item.object.text( item.text ); // Just to make sure the text stays the same...
-//
-// 	return isMultiline;
-// }
-function styleJSXitem(e,t,i,a,n,d,r,l,o,s){var c="",p="    ";
+i<l.height()?(r.push(t),d=!0,r.splice(r.length-1,0,"<br>")):r.push(n+t)}}),l.html(t),[d,r.join("")]}function styleJSXitem(e,t,i,a,n,d,r,l,o,s,c){var p="",m="    ";
 // var counter = counters[ type.toLowerCase() ];
-if("TreeItem"===a){var m=e.items["item-"+n].expanded,u=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),f=!1;$.each(u,function(){$(this).hasClass("expanded")||(f=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
-}),m&&!1===f&&s.push(p+o+".expanded = true; \n")}else if("Divider"===a)c+=p+o+'.alignment = "fill"; \n';else if("Slider"===a)c+=p+o+".minvalue = 0; \n",c+=p+o+".maxvalue = 100; \n",c+=p+o+".value = 50; \n";else{if(
+if("TreeItem"===a){var u=e.items["item-"+n].expanded,f=$('#dialog [data-item-id="'+n+'"]').parentsUntil(".tree-view").filter(".tree-view-item"),g=!1;$.each(f,function(){$(this).hasClass("expanded")||(g=!0);// CLOSE THE FLOOD GATES!!! AAAAAAAAAAAAAAAAAAAA!!!
+}),u&&!1===g&&s.push(m+o+".expanded = true; \n")}else if("Divider"===a)p+=m+o+'.alignment = "fill"; \n';else if("Slider"===a)p+=m+o+".minvalue = 0; \n",p+=m+o+".maxvalue = 100; \n",p+=m+o+".value = 50; \n";else{if(
 // DROP LIST SELECTION
-"DropDownList"===a&&void 0!==l.selection&&(c+=p+o+".selection = "+l.selection+"; \n"),"ListBox"===a&&void 0!==l.selection&&0<l.selection.length)c+=p+o+".selection = "+(1<l.selection.length?JSON.stringify(l.selection):l.selection)+"; \n";
+"DropDownList"===a&&void 0!==l.selection&&(p+=m+o+".selection = "+l.selection+"; \n"),"ListBox"===a&&void 0!==l.selection&&0<l.selection.length)p+=m+o+".selection = "+(1<l.selection.length?JSON.stringify(l.selection):l.selection)+"; \n";
 // TABBED PANEL SELECTION
 // Due to me being an idiot, it's better for our insanity if tabbed panel selection defined when the selected item is created.
-"Tab"===a&&e.items["item-"+d].style.selection===n&&(c+=p+i[d]+".selection = "+o+"; \n"),
-// TABBED PANEL ALIGN CHILDREN
-"TabbedPanel"===a&&(c+=p+o+'.alignChildren = "fill"; \n');
 // TEXT
-var g=item.list[a.toLowerCase()](!1).multiline;if(void 0!==l.text&&0<l.text.length)c+=p+o+'.text = "'+(g?l.text.split("\n").join("\\r"):l.text)+'"; \n';
+if("Tab"===a&&e.items["item-"+d].style.selection===n&&(p+=m+i[d]+".selection = "+o+"; \n"),
+// TABBED PANEL ALIGN CHILDREN
+"TabbedPanel"===a&&(p+=m+o+'.alignChildren = "fill"; \n'),void 0!==l.text&&0<l.text.length)if("StaticText"===a&&!c[0]||"StaticText"!==a)p+=m+o+'.text = "'+("EditText"===a&&c[0]?l.text.split("\n").join("\\r"):l.text)+'"; \n';
 // CHECKED
 // PREFERRED SIZE
-if(!0===l.checked&&(c+=p+o+".value = "+l.checked+"; \n"),void 0!==l.preferredSize&&"TreeView"!==a){var v=l.preferredSize[0],h=l.preferredSize[1],y=!1;if(g){var b=$('#dialog [data-item-id="'+n+'"] .text-container');y=22<Math.round(b.height())}y||(0<v&&(c+=p+o+".preferredSize.width = "+v+"; \n"),0<h&&(c+=p+o+".preferredSize.height = "+h+"; \n"))}
+if(!0===l.checked&&(p+=m+o+".value = "+l.checked+"; \n"),void 0!==l.preferredSize&&"TreeView"!==a){var v=l.preferredSize[0],h=l.preferredSize[1];c[0]||(0<v&&(p+=m+o+".preferredSize.width = "+v+"; \n"),0<h&&(p+=m+o+".preferredSize.height = "+h+"; \n"))}
 // JUSTIFY
-if(void 0!==l.justify&&"left"!==l.justify||"Button"===a&&"center"!==l.justify)c+=p+(0<(void 0===l.text?0:l.text.indexOf("\n"))?"// ":"")+o+'.justify = "'+l.justify+'"; \n';
+if(void 0!==l.justify&&"left"!==l.justify||"Button"===a&&"center"!==l.justify)if(!c[0]&&"StaticText"!==a)p+=m+(0<(void 0===l.text?0:l.text.indexOf("\n"))?"// ":"")+o+'.justify = "'+l.justify+'"; \n';
 // ORIENTATION
 // MARGINS
-if(void 0!==l.orientation&&(c+=p+o+'.orientation = "'+l.orientation+'"; \n'),
+if(void 0!==l.orientation&&(p+=m+o+'.orientation = "'+l.orientation+'"; \n'),
 // ALIGN CHILDREN
-void 0!==l.alignChildren&&(c+=p+o+'.alignChildren = ["'+l.alignChildren[0]+'","'+l.alignChildren[1]+'"]; \n'),
+void 0!==l.alignChildren&&(p+=m+o+'.alignChildren = ["'+l.alignChildren[0]+'","'+l.alignChildren[1]+'"]; \n'),
 // SPACING
-void 0!==l.spacing&&(c+=p+o+".spacing = "+l.spacing+"; \n"),void 0!==l.margins)c+=p+o+".margins = "+("object"==typeof l.margins?"["+l.margins[3]+","+l.margins[0]+","+l.margins[1]+","+l.margins[2]+"]":l.margins)+"; \n";
+void 0!==l.spacing&&(p+=m+o+".spacing = "+l.spacing+"; \n"),void 0!==l.margins)p+=m+o+".margins = "+("object"==typeof l.margins?"["+l.margins[3]+","+l.margins[0]+","+l.margins[1]+","+l.margins[2]+"]":l.margins)+"; \n";
 // ALIGNMENT
-if(null!=l.alignment){var w=e.items["item-"+d].style.orientation,C="";C="column"===w?("top"===l.alignment?"left":"bottom"===l.alignment&&"right")||l.alignment:("left"===l.alignment?"top":"right"===l.alignment&&"bottom")||l.alignment;var x=e.items["item-"+d].style.alignChildren;c+=p+o+".alignment = "+(C="column"===w?'["'+C+'","'+x[1]+'"]':'["'+x[0]+'","'+C+'"]')+"; \n"}}return c}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
+if(null!=l.alignment&&!c[0]){var y=e.items["item-"+d].style.orientation,b="";b="column"===y?("top"===l.alignment?"left":"bottom"===l.alignment&&"right")||l.alignment:("left"===l.alignment?"top":"right"===l.alignment&&"bottom")||l.alignment;var w=e.items["item-"+d].style.alignChildren;p+=m+o+".alignment = "+(b="column"===y?'["'+b+'","'+w[1]+'"]':'["'+w[0]+'","'+b+'"]')+"; \n"}}return p}function resetDialog(){modal.init('<div id="reset-box"><h2>Delete Dialog.jsx</h2><span class="text">This will delete the dialog, <br /> allowing you to start over from a clean slate.</span><span class="yes" data-enter>Delete</span><span class="no">Cancel</span></div>');var e=$("#reset-box");e.find(".yes").on("click",function(){modal.remove(),setTimeout(function(){local_storage.remove("dialog"),loadingScreen.init(1.5,function(){location.reload()})},300)}),e.find(".no").on("click",function(){modal.remove()})}
 /* exported notification */
 function notification(e,t,i){
 // "I think that padding makes you look fat..."
@@ -225,7 +129,7 @@ setTimeout(function(){a(n)},1e3*i||5e3)}function shortcutExport(){var e=new Clip
 // debugger;
 var i=void 0===e?t:e.trim();return t.toLowerCase()===i.toLowerCase()?t:'<span class="type">'+t+':</span> <span class="txt">'+e+"</span>"}function lineBreakIntercept(e){
 // Stop the press if element doesn't support multiline.
-var t=e.keyCode?e.keyCode:e.which,i=$("#panel-tree-view-wrap .active").data("item-type"),a=item.list[i.toLowerCase()](!1).multiline;return!(13===t&&!a)}var reText={textItems:"This item supports multiline text <small>(press enter to insert a line break)</small>. <br><br> Changing the default justification of multiline text renders inconsistently and for that reason multiline text is always aligned to the left.",tabs:" <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG)."},item={list:{}};item.list.dialog=function(e){return{type:"Dialog",parent:!0,defaultStyle:{text:"Dialog",preferredSize:[0,0],margins:16,orientation:"column",spacing:10,alignChildren:["center","top"]},previewHtml:'<div id="dialog-container" data-parent="true" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div id="dialog-title-bar"><div contenteditable="true">'+e.type+'</div></div><div class="padding-box"></div></div>'}},item.list.group=function(e){return{type:"Group",parent:!0,addPanelIconClass:"fas fa-object-group",defaultStyle:{preferredSize:[0,0],margins:0,orientation:"row",spacing:10,alignChildren:["left","center"],alignment:null},previewHtml:'<div class="group" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="padding-box"></div></div>'}},item.list.panel=function(e){return{type:"Panel",parent:!0,addPanelDivider:"below",addPanelIconClass:"fas fa-columns",defaultStyle:{text:"Panel",preferredSize:[0,0],margins:10,orientation:"column",spacing:10,alignChildren:["left","top"],alignment:null},previewHtml:'<div class="panel" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><span class="title" contenteditable="true">'+e.type+'</span><div class="padding-box"></div></div>'}},item.list.statictext=function(e){return{type:"StaticText",addPanelIconClass:"fas fa-font",multiline:!0,editInfo:reText.textItems+"<br><br> In the case of multiline text and justify <code>center</code> or <code>right</code> the justify setting is included in the export but commented out.",defaultStyle:{text:"StaticText",justify:"left",preferredSize:[0,0],alignment:null},previewHtml:'<div class="static-text" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><span class="text-container" contenteditable="true">'+e.type+"</span></div>"}},item.list.edittext=function(e){return{type:"EditText",addPanelIconClass:"fas fa-i-cursor",multiline:!0,editInfo:reText.textItems,defaultStyle:{text:"EditText",
+var t=e.keyCode?e.keyCode:e.which,i=$("#panel-tree-view-wrap .active").data("item-type"),a=item.list[i.toLowerCase()](!1).multiline;return!(13===t&&!a)}var reText={tabs:" <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG)."},item={list:{}};item.list.dialog=function(e){return{type:"Dialog",parent:!0,defaultStyle:{text:"Dialog",preferredSize:[0,0],margins:16,orientation:"column",spacing:10,alignChildren:["center","top"]},previewHtml:'<div id="dialog-container" data-parent="true" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div id="dialog-title-bar"><div contenteditable="true">'+e.type+'</div></div><div class="padding-box"></div></div>'}},item.list.group=function(e){return{type:"Group",parent:!0,addPanelIconClass:"fas fa-object-group",defaultStyle:{preferredSize:[0,0],margins:0,orientation:"row",spacing:10,alignChildren:["left","center"],alignment:null},previewHtml:'<div class="group" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="padding-box"></div></div>'}},item.list.panel=function(e){return{type:"Panel",parent:!0,addPanelDivider:"below",addPanelIconClass:"fas fa-columns",defaultStyle:{text:"Panel",preferredSize:[0,0],margins:10,orientation:"column",spacing:10,alignChildren:["left","top"],alignment:null},previewHtml:'<div class="panel" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><span class="title" contenteditable="true">'+e.type+'</span><div class="padding-box"></div></div>'}},item.list.statictext=function(e){return{type:"StaticText",addPanelIconClass:"fas fa-font",multiline:!0,editInfo:'This item supports multiline text. <br><br>Due to issues with ScriptUI multiline text, the code export will not output "true" multiline. <br><br>Instead, multiline <code>statictext</code> will be sliced and diced into several <code>statictext</code> and put inside a <code>group</code>.',defaultStyle:{text:"StaticText",justify:"left",preferredSize:[0,0],alignment:null},previewHtml:'<div class="static-text" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><span class="text-container" contenteditable="true">'+e.type+"</span></div>"}},item.list.edittext=function(e){return{type:"EditText",addPanelIconClass:"fas fa-i-cursor",multiline:!0,editInfo:"This item supports multiline text. <br><br>Multiline text flow may differ drastically from ScriptUI.",defaultStyle:{text:"EditText",
 // justify: 'left',
 preferredSize:[0,0],alignment:null},previewHtml:'<div class="edit-text" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><span><span class="text-container" contenteditable="true">'+e.type+"</span></span></div>"}},item.list.button=function(e){return{type:"Button",addPanelIconClass:"fas fa-toggle-on",defaultStyle:{text:"Button",justify:"center",preferredSize:[0,0],alignment:null},previewHtml:'<div class="button" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="button-border"><span class="text-container" contenteditable="true">'+e.type+"</span></div></div>"}},item.list.divider=function(e){return{type:"Divider",addPanelIconClass:"fas fa-strikethrough",defaultStyle:!1,stylePropInfo:"This item doesn't have any adjustable properties.",editInfo:"Divider orientation is locked to the parent item orientation.",previewHtml:'<div class="panel divider-line" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="padding-box"></div></div>'}},item.list.checkbox=function(e){return{type:"Checkbox",addPanelIconClass:"fas fa-check-square",editInfo:"You can check the checkbox in the dialog preview.",defaultStyle:{text:"Checkbox",preferredSize:[0,0],alignment:null},previewHtml:'<div class="checkbox" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="radiocheck checkbox"><i class="fas fa-check"></i></i></div><label contenteditable="true">'+e.type+"</label></div>"}},item.list.radiobutton=function(e){return{type:"RadioButton",addPanelIconClass:"fas fa-dot-circle",editInfo:"You can check the radiobutton in the dialog preview. <br><br> Radiobuttons are split into different groups if there is a different type of item between them.",defaultStyle:{text:"RadioButton",preferredSize:[0,0],alignment:null},previewHtml:'<div class="radiobutton" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="radiocheck radiobutton"><i class="fas fa-circle"></i></div><label contenteditable="true">'+e.type+"</label></div>"}},item.list.dropdownlist=function(e){return{type:"DropDownList",addPanelIconClass:"fas fa-caret-square-down",editInfo:"You can select a dropdown item in the dialog preview. <br><br>You can make a divider by adding an item that is a single dash character: <code>-</code>.",defaultStyle:{text:"DropDownList",listItems:"Item 1, -, Item 2",preferredSize:[0,0],alignment:null,selection:0},previewHtml:'<div class="dropdownlist" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><label contenteditable="true">'+e.type+'</label><div class="drop-list-wrap"><div class="items"><div class="selected">Item 1</div><div>-</div><div>Item 2</div></div><div class="arrow"><i class="fas fa-chevron-down"></i></div></div></div>'}},item.list.slider=function(e){return{type:"Slider",addPanelIconClass:"fas fa-sliders-h",defaultStyle:!1,stylePropInfo:"This item doesn't have any adjustable properties.",editInfo:"Export outputs a static range from 0 to 100 with current value of 50 every single time.",previewHtml:'<div class="slider"><input type="range" min="0" max="100" value="" data-item-type="'+e.type+'" data-item-id="'+e.id+'"  data-item-parent-id="'+e.parentId+'"></div>'}},item.list.listbox=function(e){return{type:"ListBox",addPanelIconClass:"fas fa-list-alt",editInfo:"You can select item(s) in the dialog preview. <br><br> If you select multiple items, <code>multiline</code> property will be added on export.",defaultStyle:{listItems:"Item 1, Item 2",preferredSize:[0,0],alignment:null},previewHtml:'<div class="list-box" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><ul><li><span>Item 1</span></li><li><span>Item 2</span></li></ul></div>'}},item.list.tabbedpanel=function(e){return{type:"TabbedPanel",parent:!0,addPanelDivider:"above",addPanelIconClass:"fas fa-folder",editInfo:'<strong>Valid child item:</strong> <br><i class="far fa-folder"></i> Tab.'+reText.tabs,defaultStyle:{preferredSize:[0,0],margins:10,alignment:null},previewHtml:'<div class="panel tabbed-panel" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="tab-container"></div><div class="padding-box"></div></div>'}},item.list.tab=function(e){return{type:"Tab",parent:!0,addPanelDivider:"below",addPanelIconClass:"far fa-folder",editInfo:"Can only be placed inside <br><i class='fas fa-folder'></i> TabbedPanel."+reText.tabs,defaultStyle:{text:"Tab",preferredSize:[0,0],margins:10,orientation:"column",spacing:10,alignChildren:["left","top"]},previewHtml:'<div class="panel tab" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="padding-box"></div></div>'}},item.list.treeview=function(e){return{type:"TreeView",parent:!0,addPanelIconClass:"fas fa-tree",editInfo:'<strong>Valid child item:</strong> <br> <i class="fas fa-leaf"></i> TreeItem.',defaultStyle:{preferredSize:[0,0],alignment:null},previewHtml:'<div class="panel tree-view" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="padding-box"></div></div>'}},item.list.treeitem=function(e){return{type:"TreeItem",parent:!0,addPanelDivider:"below",addPanelIconClass:"fas fa-leaf",editInfo:'<strong>Valid child item:</strong> <br> <i class="fas fa-leaf"></i> TreeItem. <br><br>You can expand or collapse these items in the dialog preview by clicking the arrows.',defaultStyle:{text:"TreeItem"},previewHtml:'<div class="tree-view-item" data-parent="true" data-item-type="'+e.type+'" data-item-id="'+e.id+'" data-item-parent-id="'+e.parentId+'"><div class="item-wrap"><span class="tree-view-arrow"><i class="fas fa-chevron-right"></i></span><span class="text-container" contenteditable="true">'+e.type+'</span></div><div class="padding-box"></div></div>'}},
 // Cram it in there...
@@ -331,11 +235,7 @@ case"text":if("Dialog"===i)d.find("#dialog-title-bar div").text(t);else if("Pane
 // Makes sure the panel container is always wide enough to cover the title
 r.css({minWidth:l.width()+22})}
 // type === 'RadioButton' || type === 'Checkbox' || type === 'DropDownList'
-else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else{var o=d.find(".text-container"),s=item.list[i.toLowerCase()](!1).multiline,c=t.indexOf("\n");
-// #U7FTZMRVYxVqiArfdgQeQjMRpx6R → dialog.scss
-// Multiline text yo!
-// Visually locks multiline text alignment to left
-o.removeClass("multiline"),s&&0<c&&(o.addClass("multiline"),t=t.split("\n").join("<br>")),o.html(t)}break;
+else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else if(item.list[i.toLowerCase()](!1).multiline){var o=d.find(".text-container");o.html(t.split("\n").join("<br>"));var s=multilineCheck(e.dataItem.id)[0];t.indexOf("\n");s?o.addClass("multiline"):o.removeClass("multiline")}else d.find(".text-container").html(t);break;
 // LIST ITEMS
 case"listItems":"DropDownList"===i?
 /*global droplist*/
@@ -349,22 +249,22 @@ case"checked":!0===t&&d.find("input").prop("checked",!0);break;
 // JUSTIFY
 case"justify":d.removeClass(function(e,t){return(t.match(/(^|\s)justify-\S+/g)||[]).join(" ")}).addClass("justify-"+e.value);break;
 // MARGINS
-case"margins":var p=t[0],m=t[1],u=t[2],f=t[3],g="object"!=typeof t,v=g?t:p,h=g?t:m,y=g?t:u,b=g?t:f;"Dialog"===i?r.css({paddingTop:v<=6?1:v,paddingRight:h<=1?1:h,paddingBottom:y<=1?1:y,paddingLeft:b<=1?1:b}):"Panel"===i||"Tab"===i?r.css({paddingTop:v<=3?3:v,paddingRight:h<=3?3:h,paddingBottom:y<=1?1:y,paddingLeft:b<=3?3:b}):r.css({paddingTop:v,paddingRight:h,paddingBottom:y,paddingLeft:b});break;
+case"margins":var c=t[0],p=t[1],m=t[2],u=t[3],f="object"!=typeof t,g=f?t:c,v=f?t:p,h=f?t:m,y=f?t:u;"Dialog"===i?r.css({paddingTop:g<=6?1:g,paddingRight:v<=1?1:v,paddingBottom:h<=1?1:h,paddingLeft:y<=1?1:y}):"Panel"===i||"Tab"===i?r.css({paddingTop:g<=3?3:g,paddingRight:v<=3?3:v,paddingBottom:h<=1?1:h,paddingLeft:y<=3?3:y}):r.css({paddingTop:g,paddingRight:v,paddingBottom:h,paddingLeft:y});break;
 // PREFERRED SIZE
-case"preferredSize":d.width("auto").height("auto");var w=Math.round(d.width()),C=Math.round(d.height()),x=item.list[i.toLowerCase()](!1).parent,I=0==t[0]?"auto":"loadFromLocalStorage"!==e.event&&x&&t[0]<w?w:t[0],k=0==t[1]?"auto":"loadFromLocalStorage"!==e.event&&x&&t[1]<C?C:t[1];
+case"preferredSize":d.width("auto").height("auto");var b=Math.round(d.width()),w=Math.round(d.height()),C=item.list[i.toLowerCase()](!1).parent,x=0==t[0]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[0]<b?b:t[0],I=0==t[1]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[1]<w?w:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:I,height:k+("Dialog"===i&&23)}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),T=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var z=d.width(),P=T.outerWidth(!0),_=S.outerWidth(!0);d.removeClass("get-width");var D=P+_;D<I?(d.addClass("too-big"),_<z&&S.width("auto")):I<D&&(d.addClass("too-small"),z<_&&S.width(z-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:x,height:I+("Dialog"===i&&23)}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),k=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var T=d.width(),z=k.outerWidth(!0),P=S.outerWidth(!0);d.removeClass("get-width");var _=z+P;_<x?(d.addClass("too-big"),P<T&&S.width("auto")):x<_&&(d.addClass("too-small"),T<P&&S.width(T-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
 case"orientation":d.removeClass(function(e,t){return(t.match(/(^|\s)orientation-\S+/g)||[]).join(" ")}).addClass("orientation-"+t);break;
 // SPACING
-case"spacing":var j=d.find("> .padding-box"),L="> .padding-box";j.find("> style.spacing").remove();// Get rid of the old one.
-var V=0,B=e.data.items["item-"+n].parentId;if(!1!==B)"row"===e.data.items["item-"+B].style.orientation&&(V=2);t+=V,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+L+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+L+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(j);break;
+case"spacing":var D=d.find("> .padding-box"),j="> .padding-box";D.find("> style.spacing").remove();// Get rid of the old one.
+var L=0,V=e.data.items["item-"+n].parentId;if(!1!==V)"row"===e.data.items["item-"+V].style.orientation&&(L=2);t+=L,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(D);break;
 // ALIGN CHILDREN
 case"alignChildren":d.removeClass(function(e,t){return(t.match(/(^|\s)align-children-\S+/g)||[]).join(" ")}),d.addClass("align-children-horizontal-"+t[0]),d.addClass("align-children-vertical-"+t[1]);break;
 // ALIGNMENT
-case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var A="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+A[0]),d.addClass("alignment-vertical-"+A[1])}break}};var tabbedPanel={onCreate:function(e){
+case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var B="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+B[0]),d.addClass("alignment-vertical-"+B[1])}break}};var tabbedPanel={onCreate:function(e){
 // There's no point in having a tabbed panel with less than
 // two items, so this section makes sure that when a tabbed
 // panel is created, two child tabs are created as well.
@@ -732,11 +632,18 @@ var i=local_storage.get("dialog");edit_style_panel.build(i.items["item-"+t].styl
 // My man EditText needs some extra care to keep its public image.
 dialogElem.on("focus blur",'[data-item-type="EditText"] [contenteditable]',function(e){"focusin"===e.type?$(this).parent().parent().addClass("focused"):dialogElem.find(".focused").removeClass("focused")}),dialogElem.on("click",'[data-item-type="EditText"]',function(e){e.preventDefault(),$(this).find("[contenteditable]").focus()}),
 // MIRROR TEXT CHANGES TO EDIT PANEL FROM DIALOG CONTENTEDITABLE
-dialogElem.on("keydown","[contenteditable]",function(e){return lineBreakIntercept(e)}).on("keyup","[contenteditable]",function(){var e=$(this).text().indexOf("\n");$(this).removeClass("multiline"),0<e&&$(this).addClass("multiline");var t=$('#panel-edit-style-wrap [data-edit="text"]');
+dialogElem.on("keydown","[contenteditable]",function(e){return lineBreakIntercept(e)}).on("keyup","[contenteditable]",function(){
+// var linebreak = $(this).text().indexOf('\n');
+var e=$('#panel-edit-style-wrap [data-edit="text"]');
 // Properties panel is updated right here, and the funnel update below updates local storage + tree view
-t.html($(this).html().split("<br>").join("\n")),
+e.html($(this).html().split("<br>").join("\n"));
+// This is a bit dangerous... If I ever change the css of the text
+// container in these two, there may be issues. The more flexible
+// method I used elsewhere doesn't work here because the caret
+// position would be reset and it's just as slippery as this.
+var t=$(this).parent().hasClass("static-text"),i=$(this).parent().hasClass("edit-text");if(t||i){var a=$(this).height(),n=!1;t&&25.5<a?n=!0:i&&22.5<a&&(n=!0),n?$(this).addClass("multiline"):$(this).removeClass("multiline")}
 // Keeps textbox height up to date with the content
-autosize.update(t);item.funnel.update("text","dialog")}).on("paste","[contenteditable]",function(e){e.preventDefault();// Don't want to be pasting html into contenteditable
+autosize.update(e);item.funnel.update("text","dialog")}).on("paste","[contenteditable]",function(e){e.preventDefault();// Don't want to be pasting html into contenteditable
 }),
 // DIALOG TITLE ELLIPSIS (input/contenteditable with ellipsis) FIX:
 // Related code can be found in 'dialog-preview.scss' file. Search

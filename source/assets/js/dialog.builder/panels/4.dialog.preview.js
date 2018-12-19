@@ -66,15 +66,36 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
 }).on("keyup", "[contenteditable]", function() {
   
   
-  var linebreak = $(this).text().indexOf('\n');
-  $(this).removeClass('multiline');
-  if ( linebreak > 0 ) {
-    $(this).addClass('multiline');
-  }
-  
+  // var linebreak = $(this).text().indexOf('\n');
+	  
   var textBox = $('#panel-edit-style-wrap [data-edit="text"]');
   // Properties panel is updated right here, and the funnel update below updates local storage + tree view
   textBox.html( $(this).html().split('<br>').join('\n') );
+  
+  // This is a bit dangerous... If I ever change the css of the text
+  // container in these two, there may be issues. The more flexible
+  // method I used elsewhere doesn't work here because the caret
+  // position would be reset and it's just as slippery as this.
+	var parentST = $(this).parent().hasClass('static-text');
+	var parentET = $(this).parent().hasClass('edit-text');
+	if ( parentST || parentET ) {
+		var tcHeight = $(this).height();
+		var isMultiline = false;
+		if ( parentST && tcHeight > 25.5 ) {
+			isMultiline = true;
+		}
+		else if ( parentET && tcHeight > 22.5 ) {
+			isMultiline = true;
+		}
+    
+		if ( isMultiline ) {
+			$(this).addClass('multiline');
+		}
+		else {
+			$(this).removeClass('multiline');
+		}
+	}
+	
   // Keeps textbox height up to date with the content
   autosize.update( textBox );
   // Since dialog is being manipulated, it is ignored in the update pipeline...
