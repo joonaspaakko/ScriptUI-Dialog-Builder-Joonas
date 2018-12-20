@@ -41,7 +41,6 @@ item.update.set_values = function( params ) {
 				textContainer.html( val.split('\n').join("<br>") );
 				
 				var isMultiline = multilineCheck( params.dataItem.id )[0];
-				var linebreak = val.indexOf('\n');
 				if ( isMultiline ) {
 					textContainer.addClass('multiline');
 				}

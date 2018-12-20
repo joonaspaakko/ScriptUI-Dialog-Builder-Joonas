@@ -39,6 +39,7 @@ propsPanel.on("click", '.link-icon', function() {
 	var hiddenMargins = $('.margin-inputs .n-3-4');
   var isHidden = hiddenMargins.hasClass('hidden');
   
+  // ENABLE ALL
   if ( isHidden ) {
     $(this).removeClass('active');
     hiddenMargins.removeClass('hidden');
@@ -47,13 +48,16 @@ propsPanel.on("click", '.link-icon', function() {
       .val( $('.margin-inputs .n-1-4 input').val() );
 		$('#panel-edit-style-wrap .margins-desc').removeClass('hide');
   }
+  // ENABLE FIRST
   else {
     $(this).addClass('active');
     hiddenMargins.addClass('hidden');
     hiddenMargins.find('input').prop('disabled', true);
 		$('#panel-edit-style-wrap .margins-desc').addClass('hide');
   }
-	
+  
+  item.funnel.update( 'margins' );
+  
 });
 
 // ***********************

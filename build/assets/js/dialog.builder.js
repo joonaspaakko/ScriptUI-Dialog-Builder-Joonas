@@ -235,7 +235,7 @@ case"text":if("Dialog"===i)d.find("#dialog-title-bar div").text(t);else if("Pane
 // Makes sure the panel container is always wide enough to cover the title
 r.css({minWidth:l.width()+22})}
 // type === 'RadioButton' || type === 'Checkbox' || type === 'DropDownList'
-else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else if(item.list[i.toLowerCase()](!1).multiline){var o=d.find(".text-container");o.html(t.split("\n").join("<br>"));var s=multilineCheck(e.dataItem.id)[0];t.indexOf("\n");s?o.addClass("multiline"):o.removeClass("multiline")}else d.find(".text-container").html(t);break;
+else if(0<d.find("> label").length)d.find("label").text(t);else if("Tab"===i)d.parent().parent().find('> .tab-container [data-tab-id="'+n+'"]').text(t);else if("TreeItem"===i)d.find("> .item-wrap .text-container").text(t);else if(item.list[i.toLowerCase()](!1).multiline){var o=d.find(".text-container");o.html(t.split("\n").join("<br>")),multilineCheck(e.dataItem.id)[0]?o.addClass("multiline"):o.removeClass("multiline")}else d.find(".text-container").html(t);break;
 // LIST ITEMS
 case"listItems":"DropDownList"===i?
 /*global droplist*/
@@ -249,22 +249,22 @@ case"checked":!0===t&&d.find("input").prop("checked",!0);break;
 // JUSTIFY
 case"justify":d.removeClass(function(e,t){return(t.match(/(^|\s)justify-\S+/g)||[]).join(" ")}).addClass("justify-"+e.value);break;
 // MARGINS
-case"margins":var c=t[0],p=t[1],m=t[2],u=t[3],f="object"!=typeof t,g=f?t:c,v=f?t:p,h=f?t:m,y=f?t:u;"Dialog"===i?r.css({paddingTop:g<=6?1:g,paddingRight:v<=1?1:v,paddingBottom:h<=1?1:h,paddingLeft:y<=1?1:y}):"Panel"===i||"Tab"===i?r.css({paddingTop:g<=3?3:g,paddingRight:v<=3?3:v,paddingBottom:h<=1?1:h,paddingLeft:y<=3?3:y}):r.css({paddingTop:g,paddingRight:v,paddingBottom:h,paddingLeft:y});break;
+case"margins":var s=t[0],c=t[1],p=t[2],m=t[3],u="object"!=typeof t,f=u?t:s,g=u?t:c,v=u?t:p,h=u?t:m;"Dialog"===i?r.css({paddingTop:f<=6?1:f,paddingRight:g<=1?1:g,paddingBottom:v<=1?1:v,paddingLeft:h<=1?1:h}):"Panel"===i||"Tab"===i?r.css({paddingTop:f<=3?3:f,paddingRight:g<=3?3:g,paddingBottom:v<=1?1:v,paddingLeft:h<=3?3:h}):r.css({paddingTop:f,paddingRight:g,paddingBottom:v,paddingLeft:h});break;
 // PREFERRED SIZE
-case"preferredSize":d.width("auto").height("auto");var b=Math.round(d.width()),w=Math.round(d.height()),C=item.list[i.toLowerCase()](!1).parent,x=0==t[0]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[0]<b?b:t[0],I=0==t[1]?"auto":"loadFromLocalStorage"!==e.event&&C&&t[1]<w?w:t[1];
+case"preferredSize":d.width("auto").height("auto");var y=Math.round(d.width()),b=Math.round(d.height()),w=item.list[i.toLowerCase()](!1).parent,C=0==t[0]?"auto":"loadFromLocalStorage"!==e.event&&w&&t[0]<y?y:t[0],x=0==t[1]?"auto":"loadFromLocalStorage"!==e.event&&w&&t[1]<b?b:t[1];
 // Special treatment for Dropdownlist
-if(d.css({width:x,height:I+("Dialog"===i&&23)}),"DropDownList"===i){var S=d.find(".drop-list-wrap"),k=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var T=d.width(),z=k.outerWidth(!0),P=S.outerWidth(!0);d.removeClass("get-width");var _=z+P;_<x?(d.addClass("too-big"),P<T&&S.width("auto")):x<_&&(d.addClass("too-small"),T<P&&S.width(T-16),d.parent().parent().hasClass("orientation-row")&&
+if(d.css({width:C,height:x+("Dialog"===i&&23)}),"DropDownList"===i){var I=d.find(".drop-list-wrap"),S=d.find("label");d.removeClass("too-big"),d.removeClass("too-small"),d.addClass("get-width");var k=d.width(),T=S.outerWidth(!0),z=I.outerWidth(!0);d.removeClass("get-width");var P=T+z;P<C?(d.addClass("too-big"),z<k&&I.width("auto")):C<P&&(d.addClass("too-small"),k<z&&I.width(k-16),d.parent().parent().hasClass("orientation-row")&&
 // In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
 d.find("label").css({marginLeft:d.css("padding-left")}))}break;
 // ORIENTATION
 case"orientation":d.removeClass(function(e,t){return(t.match(/(^|\s)orientation-\S+/g)||[]).join(" ")}).addClass("orientation-"+t);break;
 // SPACING
-case"spacing":var D=d.find("> .padding-box"),j="> .padding-box";D.find("> style.spacing").remove();// Get rid of the old one.
-var L=0,V=e.data.items["item-"+n].parentId;if(!1!==V)"row"===e.data.items["item-"+V].style.orientation&&(L=2);t+=L,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+j+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+j+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(D);break;
+case"spacing":var _=d.find("> .padding-box"),D="> .padding-box";_.find("> style.spacing").remove();// Get rid of the old one.
+var j=0,L=e.data.items["item-"+n].parentId;if(!1!==L)"row"===e.data.items["item-"+L].style.orientation&&(j=2);t+=j,$('<style class="spacing">#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+D+" > div {padding-left: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-row '+D+' > div:first-of-type {padding-left: 0px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+D+" > div {padding-top: "+t+'px;}\n#dialog [data-item-id="'+d.data("item-id")+'"].orientation-column '+D+" > div:first-of-type {padding-top: 0px;}</style>").appendTo(_);break;
 // ALIGN CHILDREN
 case"alignChildren":d.removeClass(function(e,t){return(t.match(/(^|\s)align-children-\S+/g)||[]).join(" ")}),d.addClass("align-children-horizontal-"+t[0]),d.addClass("align-children-vertical-"+t[1]);break;
 // ALIGNMENT
-case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var B="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+B[0]),d.addClass("alignment-vertical-"+B[1])}break}};var tabbedPanel={onCreate:function(e){
+case"alignment":if(d.removeClass(function(e,t){return(t.match(/(^|\s)alignment-\S+/g)||[]).join(" ")}),null!==t){var V="left"===t&&["left","top"]||"top"===t&&["left","top"]||"right"===t&&["right","bottom"]||"bottom"===t&&["right","bottom"]||[t,t];d.addClass("alignment-horizontal-"+V[0]),d.addClass("alignment-vertical-"+V[1])}break}};var tabbedPanel={onCreate:function(e){
 // There's no point in having a tabbed panel with less than
 // two items, so this section makes sure that when a tabbed
 // panel is created, two child tabs are created as well.
@@ -422,7 +422,9 @@ propsPanel.on("change",".alignment-checkbox input",function(){var e=$(this).prop
 // PREFERRED SIZE → RESET BACK TO 0 (content size)
 propsPanel.on("click",".preferred-size-auto",function(){var e=propsPanel.find("input.width");e.val(0).change(),propsPanel.find("input.height").val(0).change(),item.funnel.update(e.data("edit"))}),
 // MARGINS TOGGLE → ALL SIDES / TOP, RIGHT, BOTTOM, LEFT
-propsPanel.on("click",".link-icon",function(){var e=$(".margin-inputs .n-3-4");e.hasClass("hidden")?($(this).removeClass("active"),e.removeClass("hidden"),e.find("input").prop("disabled",!1).val($(".margin-inputs .n-1-4 input").val()),$("#panel-edit-style-wrap .margins-desc").removeClass("hide")):($(this).addClass("active"),e.addClass("hidden"),e.find("input").prop("disabled",!0),$("#panel-edit-style-wrap .margins-desc").addClass("hide"))}),
+propsPanel.on("click",".link-icon",function(){var e=$(".margin-inputs .n-3-4");
+// ENABLE ALL
+e.hasClass("hidden")?($(this).removeClass("active"),e.removeClass("hidden"),e.find("input").prop("disabled",!1).val($(".margin-inputs .n-1-4 input").val()),$("#panel-edit-style-wrap .margins-desc").removeClass("hide")):($(this).addClass("active"),e.addClass("hidden"),e.find("input").prop("disabled",!0),$("#panel-edit-style-wrap .margins-desc").addClass("hide")),item.funnel.update("margins")}),
 // ***********************
 // UPDATE ITEM PROPERTIES
 // ***********************
