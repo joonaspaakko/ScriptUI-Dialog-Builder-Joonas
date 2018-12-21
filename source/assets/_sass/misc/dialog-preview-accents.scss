@@ -3,6 +3,9 @@
 // ACTIVE ITEM ACCENT COLOR
 // So that you can easily tell which items are active...
 #dialog {
+	.currently-active-tab {
+		color: $color-accent;
+	}
 	.active {
 		&.panel > .title,
 		> .button-border > .text-container,
@@ -33,9 +36,6 @@
 		&.edit-text > span > span {
 			color: #f1f1f1;
 		}
-	}
-	.currently-active-tab {
-		color: $color-accent;
 	}
 
 	.active[type=range]::-moz-range-thumb {
@@ -96,7 +96,6 @@
 	}
 
 }
-
 // GHOSTING
 // Hovering over items in the treeview highlights them in the dialog preview
 #dialog {
@@ -109,16 +108,16 @@
 		&.tree-view-item > .item-wrap .text-container,
 		> label,
 		&.tab {
-			color: $color-accent-2;
+			color: $color-accent-2 !important;
 		}
 		>  #dialog-title-bar {
-			border-bottom: 2px solid $color-accent-2;
-			box-shadow: 0 0 20px $color-accent-2;
+			border-bottom: 2px solid $color-accent-2 !important;
+			box-shadow: 0 0 20px $color-accent-2 !important;
 			animation: dlgShadowPulsateGhosting 2s ease-out infinite;
 			@keyframes dlgShadowPulsateGhosting {
-				0% { box-shadow  : 0 0 3px $color-accent-2; }
-				50% { box-shadow : 0 0 20px $color-accent-2; }
-				100% { box-shadow: 0 0 3px $color-accent-2; }
+				0% { box-shadow  : 0 0 3px $color-accent-2 !important; }
+				50% { box-shadow : 0 0 20px $color-accent-2 !important; }
+				100% { box-shadow: 0 0 3px $color-accent-2 !important; }
 			}
 
 		}
@@ -128,21 +127,21 @@
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
 		&.edit-text > span {
-			border: 1px solid $color-accent-2;
+			border: 1px solid $color-accent-2 !important;
 		}
 		&.edit-text > span > span {
-			color: #f1f1f1;
+			color: #f1f1f1 !important;
 		}
 	}
 	
 	.ghosting[type=range]::-moz-range-thumb {
-		border-color: $color-accent-2;
+		border-color: $color-accent-2 !important;
 	}
 	.ghosting[type=range]::-webkit-slider-thumb {
-		border-color: $color-accent-2;
+		border-color: $color-accent-2 !important;
 	}
 	.ghosting[type=range]::-ms-thumb {
-		border-color: $color-accent-2;
+		border-color: $color-accent-2 !important;
 	}
 	
 } // #dialog

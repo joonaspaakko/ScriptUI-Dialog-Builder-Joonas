@@ -683,10 +683,10 @@
         &:first-child {
           margin-left: 0px;
         }
-        &.active,
-        &:hover {
-          color: #46a0f5;
-        }
+        // &.active,
+        // &:hover {
+        //   color: #46a0f5;
+        // }
         &.visible {
     		  border-bottom: 2px solid #dadada;
         }
