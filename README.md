@@ -1,18 +1,27 @@
+
 ## Website
 
 [scriptui.joonas.me](https://scriptui.joonas.me)
 
-This epository includes a build folder, which contains the same files as in the website. So if the url doesn't work for some reason, you should be able to to download the repo and use it locally.
+> This epository includes a build folder that contains the same files as in the website. So if the url doesn't work for some reason, you should be able to download the repo and use it locally. It doesn't need any dependencies. Just open the `build\index.html` in your browser.
 
 ## Info
 
 Easily design and auto generate JSX code for Adobe Script UI dialogs.
 
-There are various limitations here and there, but the most important items/features, I would argue, are there and you should be able to make relatively complex dialogs with ease. Speaking of limitations, there are small differences between Adobe applications so the dialog preview may not entirely match what you will see in the application. The dialog preview was made using Illustrator CC dialog as the base, so that will have the least amount of differences. 
+Due to the fact that the builder simply simulates ScriptUI layout and behavior, there are various differences here and there. One major factor is also that there are small differences between Adobe applications so be aware that the dialog preview may not entirely match what you will see in the application. The dialog preview was made using Illustrator CC ScriptUI as the template, so that will have the least amount of differences. 
 
-It's designed to work in modern browsers, such as Chrome or Firefox and not so much Internet Explorer. Dialog data is saved locally by your browser (local storage). So if you refresh the page or come back later with the same browser, your dialog should still be there, as long as nothing goes wrong in the reconstruction of the dialog. There's always the off chance that an error of some kind wipes it clean. If you’re browsing in incognito mode, your browser will forget this data as soon as you close the tab or window.
+Dialog data is saved locally by your browser (local storage). So if you refresh the page or come back later with the same browser, your dialog should still be there, as long as nothing goes wrong in the reconstruction of the dialog. There's always the off chance that an error of some kind wipes it clean. If you’re browsing in incognito mode, your browser will forget this data as soon as you close the tab or window. Each code export also includes importable JSON at the top of the code, which means you can continue working on a dialog on another computer as long as you save the JSON.
 
-<sup><sub>I wouldn't expect anyone to contribute to the code because it's just a big mess. It's pretty much just all prototypes bundled into one.</sub></sup>
+## Browser support
+
+Chrome. _May work in other modern browsers._ No mobile support. 
+
+## Source folder
+
+Source contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). For the most part, Codekit is used to stitch together various `html`, `css` and `javascript` files just because it's convenient. 
+
+I wouldn't expect anyone to contribute to the code because it's just a big mess. It's pretty much just all prototypes rolled into one.
 
 ## Dialog examples (JSX+JSON)
 
