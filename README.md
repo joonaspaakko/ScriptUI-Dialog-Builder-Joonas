@@ -21,7 +21,7 @@ Chrome. _May work in other modern browsers._ No mobile support.
 
 Source contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). For the most part, Codekit is used to stitch together various `html`, `css` and `javascript` files just because it's convenient. 
 
-I wouldn't expect anyone to contribute to the code because it's just a big mess. It's pretty much just all prototypes rolled into one.
+I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes rolled into one.
 
 ## Dialog examples (JSX+JSON)
 
