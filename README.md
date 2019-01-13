@@ -7,7 +7,7 @@
 
 ## Info
 
-Easily design and auto generate JSX code for Adobe Script UI dialogs.
+Easily design and auto generate JSX code for Adobe Script UI dialogs. Does not handle events. That is something you need to do yourself.
 
 Due to the fact that the builder simply simulates ScriptUI layout and behavior, there are various differences here and there. One major factor is also that there are small differences between Adobe applications so be aware that the dialog preview may not entirely match what you will see in the application. The dialog preview was made using Illustrator CC ScriptUI as the template, so that will have the least amount of differences. 
 
@@ -19,9 +19,9 @@ Chrome. _May work in other modern browsers._ No mobile support.
 
 ## Source folder
 
-Source contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). For the most part, Codekit is used to stitch together various `html`, `css` and `javascript` files just because it's convenient. 
+Source contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). For the most part, Codekit is used to stitch together various `html`, `css` and `javascript` files just because it's convenient.
 
-I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes rolled into one.
+I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes rolled into one. So Codekit probably won't be an issue.
 
 ## Dialog examples (JSX+JSON)
 
