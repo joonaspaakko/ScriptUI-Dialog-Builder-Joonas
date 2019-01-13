@@ -127,14 +127,16 @@ item.update.set_values = function( params ) {
 		// PREFERRED SIZE
 		case 'preferredSize':
 			
-			active.width('auto').height('auto');
-			var contWidth = Math.round( active.width() );
-			var contHeight = Math.round( active.height() );
+			// active.width('auto').height('auto');
+			// var contWidth = Math.round( active.width() );
+			// var contHeight = Math.round( active.height() );
+			// var isParent = item.list[ type.toLowerCase() ](false).parent;
 			
-			var isParent = item.list[ type.toLowerCase() ](false).parent;
-			
-			var newWidth  = val[0] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[0] < contWidth  ) ? contWidth  : val[0];
-			var newHeight = val[1] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[1] < contHeight ) ? contHeight : val[1];
+			// Paren't can't be smaller than children
+			// var newWidth  = val[0] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[0] < contWidth  ) ? contWidth  : val[0];
+			// var newHeight = val[1] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[1] < contHeight ) ? contHeight : val[1];
+			var newWidth  = val[0] == 0 ? 'auto' : val[0];
+			var newHeight = val[1] == 0 ? 'auto' : val[1];
 			active.css({ width: newWidth, height: newHeight + ( type === 'Dialog' && 23 )});
 			
 			// Special treatment for Dropdownlist

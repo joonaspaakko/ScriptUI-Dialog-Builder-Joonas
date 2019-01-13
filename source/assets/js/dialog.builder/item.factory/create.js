@@ -116,14 +116,16 @@ item.create = {
 		
 		$( newItemHTML )[ method ]( target );
 		
+		var active = $('#dialog [data-item-id="'+ params.id +'"]');
+		
 		if ( params.type === 'DropDownList' ) {
-			droplist.init( $('#dialog [data-item-id="'+ params.id +'"]'), params.id );
+			droplist.init( active, params.id );
 		}
 		else if ( params.type === 'RadioButton' || params.type === 'Checkbox' ) {
-			radiocheck.init( $('#dialog [data-item-id="'+ params.id +'"]'), params.id, params.type );
+			radiocheck.init( active, params.id, params.type );
 		}
 		else if ( params.type === 'ListBox' ) {
-			listbox.init( $('#dialog [data-item-id="'+ params.id +'"]'), params.id );
+			listbox.init( active, params.id );
 		}
 		
 	}

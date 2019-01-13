@@ -1,10 +1,4 @@
 
-function processItemName( text, type ) {
-  // debugger;
-  var trimmedText = text === undefined ? type : text.trim();
-  return (type.toLowerCase() === trimmedText.toLowerCase() ) ? type : '<span class="type">' + type + ':</span> ' + '<span class="txt">' + text + '</span>';
-}
-
 var treeElem = $('#panel-tree-view-wrap');
 
 var dialog = $('#dialog');

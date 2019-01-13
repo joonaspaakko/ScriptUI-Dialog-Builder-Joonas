@@ -44,6 +44,20 @@
 // @codekit-prepend "dialog.builder/modules/legend.js";
 // @codekit-prepend "dialog.builder/modules/panels.collapse.js";
 
+$('.panel-wrap').each(function() {
+	
+	$(this).find('.overflow-wrap').overlayScrollbars({});
+	
+});
+
+$('#dialog-overlay-wrap').overlayScrollbars({
+  className: "os-theme-dark",
+  scrollbars: {
+    visibility: 'visible',
+		autoHide: "never"
+  }
+});
+
 var data = local_storage.get('dialog');
 
 // START FROM NOTHING...

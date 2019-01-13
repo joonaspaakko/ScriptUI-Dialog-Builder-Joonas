@@ -122,7 +122,7 @@ item.list.edittext = function( params ) {
 		},
 		previewHtml:
 			'<div class="edit-text" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
-				'<span><span class="text-container" contenteditable="true">'+ params.type +'</span></span>' +
+				'<span class="edit-text-inner-wrap"><span class="text-container" contenteditable="true">'+ params.type +'</span></span>' +
 			'</div>'
 	};
 	
@@ -279,14 +279,16 @@ item.list.listbox = function( params ) {
 		},
 		previewHtml:
 			'<div class="list-box" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
-				'<ul>' +
-					'<li>'+
-						'<span>Item 1</span>' +
-					'</li>' +
-					'<li>'+
-						'<span>Item 2</span>' +
-					'</li>' +
-				'</ul>' +
+				'<div class="inner-wrap">' +
+					'<ul>' +
+						'<li>'+
+							'<span>Item 1</span>' +
+						'</li>' +
+						'<li>'+
+							'<span>Item 2</span>' +
+						'</li>' +
+					'</ul>' +
+				'</div>' +
 			'</div>'
 	};
 	

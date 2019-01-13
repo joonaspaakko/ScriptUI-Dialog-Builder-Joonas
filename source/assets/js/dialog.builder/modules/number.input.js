@@ -176,26 +176,26 @@ function numberInputs() {
 	    
 	    number = parseInt( number, 10);
 	    
-			var active     = $('#dialog .active'),
-					contWidth  = active.width(),
-					widthInput = numberElement.hasClass('width'),
-					contHeight = active.height(),
-					heightInput = numberElement.hasClass('height');
+			// var active     = $('#dialog .active'),
+			// 		contWidth  = active.width(),
+			// 		widthInput = numberElement.hasClass('width'),
+			// 		contHeight = active.height(),
+			// 		heightInput = numberElement.hasClass('height');
 			
-			if (
-				number === 0 && numberElement.hasClass('danger-zone') ||
-				widthInput && number >= contWidth && numberElement.hasClass('danger-zone') || 
-				heightInput && number >= contHeight && numberElement.hasClass('danger-zone')
-			) {
-				numberElement.removeClass('danger-zone');
-			}
-			else if (
-				widthInput && number < contWidth && !numberElement.hasClass('danger-zone') ||
-				heightInput && number < contHeight && !numberElement.hasClass('danger-zone')
-			) {
-				numberElement.addClass('danger-zone');
-				// notification( 'error', "The current size you've set is smaller than the item's contents. <br> The size you're set will be is included in the export", 6.5 );
-			}
+			// if (
+			// 	number === 0 && numberElement.hasClass('danger-zone') ||
+			// 	widthInput && number >= contWidth && numberElement.hasClass('danger-zone') ||
+			// 	heightInput && number >= contHeight && numberElement.hasClass('danger-zone')
+			// ) {
+			// 	numberElement.removeClass('danger-zone');
+			// }
+			// else if (
+			// 	widthInput && number < contWidth && !numberElement.hasClass('danger-zone') ||
+			// 	heightInput && number < contHeight && !numberElement.hasClass('danger-zone')
+			// ) {
+			// 	numberElement.addClass('danger-zone');
+			// 	// notification( 'error', "The current size you've set is smaller than the item's contents. <br> The size you're set will be is included in the export", 6.5 );
+			// }
 			
 	    var numData = {
 	      min: parseInt( numberElement.attr('min'), 10),

@@ -4,7 +4,7 @@
 <head>
   
   <meta charset="UTF-8">
-  <link href="http://gmpg.org/xfn/11?ckcachebust=567074831" rel="profile">
+  <link href="http://gmpg.org/xfn/11?ckcachebust=569113374" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -12,12 +12,12 @@
   
   <meta name="description" content="A web app for designing ScriptUI dialogs with ease and export it as javascript.">
   
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=xQdrX8olYR&ckcachebust=d4fe278fc019ea93cc53aa98f5a5c3bd">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png?v=xQdrX8olYR&ckcachebust=624a3a6fc466785b7f7f6473c57f8b8e">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png?v=xQdrX8olYR&ckcachebust=4af036ab5930246601c941d8591c65d9">
-  <link rel="manifest" href="favicon/site.webmanifest?v=xQdrX8olYR&ckcachebust=55446cf77924da6fa42d34db20990ba8">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg?v=xQdrX8olYR&ckcachebust=c4d5a8f7fddb0cd5a014d98a803aaeb7" color="#5bbad5">
-  <link rel="shortcut icon" href="favicon/favicon.ico?v=xQdrX8olYR&ckcachebust=046e919c23976b426c3b2bfc38c22fbc">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=xQdrX8olYR&ckcachebust=0f584083f1d4281246fba184452b65c6">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png?v=xQdrX8olYR&ckcachebust=a253c7694c8e4dc8207e028a7dc3ab78">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png?v=xQdrX8olYR&ckcachebust=400fdde7f1d2f4ba2d06cb4b5b3f5f4b">
+  <link rel="manifest" href="favicon/site.webmanifest?v=xQdrX8olYR&ckcachebust=098c2a4031c803600b17cc6f29dc3c31">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg?v=xQdrX8olYR&ckcachebust=9cbec54195dc19fb9248e4d46ffa2e7b" color="#5bbad5">
+  <link rel="shortcut icon" href="favicon/favicon.ico?v=xQdrX8olYR&ckcachebust=3575eb88d78cb0a84bc2888c8cff828c">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-config" content="favicon/browserconfig.xml?v=xQdrX8olYR">
   <meta name="theme-color" content="#ffffff">
@@ -119,57 +119,56 @@
 			<div class="center-1">
 			  <div class="center-2">
 			    <div class="center-3">
+						
 						<div id="dialog" class="animated fadeIn"></div> <!-- #dialog -->
+						
+						<div id="bottom-left-toolbar">
+							<div class="grey-out-active animated fadeInRight" title="Toggle active item accent color visibility in the dialog preview.">
+								<i class="far fa-lightbulb"></i>
+							</div>
+							
+					    <div class="info animated fadeInRight" title="Instructions">
+					      <a target="_blank" class="icon" href="https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/wiki">
+									<img src="assets/images/graduation-cap-bold.svg" alt="">
+								</a>
+					    </div>
+							
+					    <div class="github animated fadeInRight" title="Github">
+					      <a target="_blank" href="https://github.com/joonaspaakko/ScriptUI-Builder-Joonas">
+									<i class="fab fa-github"></i>
+					      </a>
+					    </div>
+						</div>
+						
+						<div class="i-am-legend">
+							<table>
+								<tr class="l-export">
+									<td class="desc">Export to clipboard</td>
+									<td class="shortcut">Alt + E</td>
+								</tr>
+								<tr class="l-sort">
+									<td class="desc">Reorder items <small>(Treeview)</small></td>
+									<td class="shortcut">Drag</td>
+								</tr>
+								<tr class="l-duplicate">
+									<td class="desc">Duplicate item <small>(Treeview)</small></td>
+									<td class="shortcut">Alt + Drag</td>
+								</tr>
+							</table>
+						</div>
+						
 			    </div>
 			  </div>
 			</div>
 		</div>
-		
-		<div class="i-am-legend">
-			<table>
-				<tr class="l-export">
-					<td class="desc">Export to clipboard</td>
-					<td class="shortcut">Alt + E</td>
-				</tr>
-				<tr class="l-sort">
-					<td class="desc">Reorder items <small>(Treeview)</small></td>
-					<td class="shortcut">Drag</td>
-				</tr>
-				<tr class="l-duplicate">
-					<td class="desc">Duplicate item <small>(Treeview)</small></td>
-					<td class="shortcut">Alt + Drag</td>
-				</tr>
-			</table>
-		</div>
-		
-		<div id="bottom-left-toolbar">
-			
-			<div class="grey-out-active animated fadeInRight" title="Toggle active item accent color visibility in the dialog preview.">
-				<i class="far fa-lightbulb"></i>
-			</div>
-			
-	    <div class="info animated fadeInRight" title="Instructions">
-	      <a target="_blank" class="icon" href="https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/wiki">
-					<img src="assets/images/graduation-cap-bold.svg" alt="">
-				</a>
-	    </div>
-			
-	    <div class="github animated fadeInRight" title="Github">
-	      <a target="_blank" href="https://github.com/joonaspaakko/ScriptUI-Builder-Joonas">
-					<i class="fab fa-github"></i>
-	      </a>
-	    </div>
-			
-		</div>
-		
 		
 	</div>
 	
 </div>
 
 	
-	<link  href="assets/css/dialog.builder.css?ckcachebust=5f3f47c7b1457763ec8d0ba83259e7ca" rel="stylesheet">
-	<link  href="assets/css/libraries.css?ckcachebust=57f4a4988b1f4f16f166bb4d87884372" rel="stylesheet">
+	<link  href="assets/css/dialog.builder.css?ckcachebust=8b935c93a64eb345e2acd21e3fac6ba3" rel="stylesheet">
+	<link  href="assets/css/libraries.css?ckcachebust=5c2f0cb4d64bf16e6991e0ffa7a27f55" rel="stylesheet">
 	<script>
 	// Emergency services.
 	// Ctrl + Alt + L (4x) — Clears local_storage from dialog data refreshes the page.
@@ -188,8 +187,8 @@
 		
 	});
 </script>
-	<script src="assets/js/libraries.js?ckcachebust=422363ae9eb3e3fb52e7160ad6f4370d"></script>
-	<script src="assets/js/dialog.builder.js?ckcachebust=425edb451875c92023b42fea3d191c8c"></script>
+	<script src="assets/js/libraries.js?ckcachebust=69e290f5a5d53bf30db1999f135a43c8"></script>
+	<script src="assets/js/dialog.builder.js?ckcachebust=a871e6593448f04730adbc758e0a3989"></script>
 
 </body>
 </html>

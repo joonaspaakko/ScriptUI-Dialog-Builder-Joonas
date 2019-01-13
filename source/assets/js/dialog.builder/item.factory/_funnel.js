@@ -23,6 +23,34 @@ item.funnel = {
 		var isTreeView = params.type === 'TreeView';
 		if ( isTreeView ) treeView.onCreate( params.event );
 		
+		var active = $('#dialog [data-item-id="'+ params.id +'"]');
+		
+		if ( params.type === 'EditText' ) {
+			
+			var scroll = active.find('.edit-text-inner-wrap');
+			var editable =	active.find('[contenteditable]');
+			var instance;
+			var sizeDiv = $('<div class="et-double" style="height: 0; overflow: hidden;"></div>');
+			var sizeDivUpdate = function() {
+				sizeDiv.html( editable.html() );
+			}
+
+			instance = scroll.overlayScrollbars({
+				paddingAbsolute: true
+			}).overlayScrollbars();
+			$(instance.getElements().host).append(sizeDiv);
+			sizeDivUpdate();
+
+			editable.on('input', function() {
+				sizeDivUpdate();
+			});
+			
+			
+		}
+		else if ( params.type === 'ListBox' ) {
+			active.find('.inner-wrap').overlayScrollbars({});
+		}
+		
 		$("#dialog-section").backstretch("resize");
 		
 	},
@@ -85,7 +113,11 @@ item.funnel = {
 		// TREE VIEW - ITEM
 		treeViewItem.onUpdate( data, dataItem );
 		
-		$("#dialog-section").backstretch("resize");
+		// Background size was not always updating, so this be a quick fix for I am lazy...
+		// It was happening especially when the text changes from type to anything else.
+		setTimeout(function() {
+			$("#dialog-section").backstretch("resize");
+		}, 10);
 		
 	},
 	sort: function( id, parentId, type, method, targetId ) {

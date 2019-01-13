@@ -26,7 +26,7 @@
 			}
 		}
 		&.group > .padding-box,
-		&.list-box ul,
+		&.list-box > .inner-wrap,
 		&.divider-line > .padding-box,
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
@@ -73,7 +73,7 @@
 			border-color: #656666;
 		}
 		&.tree-view > .padding-box,
-		&.list-box ul {
+		&.list-box > .inner-wrap {
 			border-color: #737474;
 		}
 		&.tabbed-panel > .padding-box,
@@ -122,7 +122,7 @@
 
 		}
 		&.group > .padding-box,
-		&.list-box ul,
+		&.list-box > .inner-wrap,
 		&.divider-line > .padding-box,
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,

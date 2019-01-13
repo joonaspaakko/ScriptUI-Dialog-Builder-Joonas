@@ -233,7 +233,7 @@ function multilineCheck( id ) {
 	
 	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
 	var text = container.html();
-	var words = text.split(" ");
+	var words = text.replace(/<br>$/, "").split(" ");
 	
 	container.html('');
 	

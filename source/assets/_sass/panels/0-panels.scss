@@ -12,6 +12,9 @@
 	height: 100%;
 	user-select: none;
 	white-space: nowrap;
+  padding-top: 46px; // .panel-title → height
+  padding-bottom: 20px; // .collapse → height
+	box-sizing: border-box;
 	// &:after {
 	// 	content: "";
 	// 	position: absolute;
@@ -37,6 +40,7 @@
 		.panel-title,
 		.overflow-wrap {
 			visibility: hidden;
+			opacity: 0;
 		}
 		
 		.collapse i {
@@ -112,6 +116,6 @@
 		overflow-x: hidden;
 	}
 	.contents {
-		padding: 45+15px 17px 120px 17px;
+		padding: 15px 17px 120px 17px;
 	}
 }

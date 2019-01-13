@@ -68,13 +68,17 @@ propsPanel.on("keydown", '[data-edit="text"]', function( e ) {
   return lineBreakIntercept( e );
 });
 
-
 propsPanel.on("keyup", '[data-edit="text"]', function( e ) {
   
   var keycode = e.keyCode ? e.keyCode : e.which;
   
   if ( keycode != 18 ) { // Update if alt is released.
     item.funnel.update( $(this).data('edit') );
+    
+    var active = $('#dialog .active');
+    if ( active.data('item-type') === 'EditText' ) {
+      active.find('.et-double').html( active.find('[contenteditable]').html() );
+    }
   }
   
 });

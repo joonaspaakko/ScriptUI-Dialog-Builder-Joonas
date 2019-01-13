@@ -70,7 +70,13 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
 	  
   var textBox = $('#panel-edit-style-wrap [data-edit="text"]');
   // Properties panel is updated right here, and the funnel update below updates local storage + tree view
-  textBox.html( $(this).html().split('<br>').join('\n') );
+	// I'm not a 100% sure what is going on, but it seems that
+	// in this contenteditable div, when you make line break at
+	// the end, it actually adds 2 br tags, but when you remove
+	// the linebreak you made, it only removes one of them.
+  // So for now I'm going to just make sure it doesn't travel further up the chain...
+  var text = $(this).html().replace(/<br>$/, "").split('<br>').join('\n');
+  textBox.html( text );
   
   // This is a bit dangerous... If I ever change the css of the text
   // container in these two, there may be issues. The more flexible
@@ -104,6 +110,8 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
 	
 }).on("paste", "[contenteditable]", function( e ) {
   e.preventDefault(); // Don't want to be pasting html into contenteditable
+  notification( 'meh', "Sorry, you can't paste text here. <br> The textarea in Item Properties Panel has been focused, paste there instead.", 5.5 );
+  $('#panel-edit-style-wrap [data-edit="text"]').focus();
 });
 
 

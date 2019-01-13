@@ -115,12 +115,12 @@
     }
   }
   
-  li.path-sibling-node {
-    background: url('../images/indent-guides/indent-guide-path-t-junction-1.svg') no-repeat top left;
-    background-size: $indent-guide-bg-size;
-  }
   ul.path-parent-ul {
     background: url('../images/indent-guides/indent-guide-path.svg') repeat-y top left;
+    background-size: $indent-guide-bg-size;
+  }
+  li.path-sibling-node {
+    background: url('../images/indent-guides/indent-guide-path-t-junction-2.svg') no-repeat left -4px;
     background-size: $indent-guide-bg-size;
   }
   
@@ -149,10 +149,11 @@
     background-color: rgba(83,83,83, .80);
   }
 	
-	// li.path-end > .item-text {
-  //   color: #b67fdc;
-  //   font-weight: bold;
-	// }
+  
+	li.path-end > .item-text {
+    // color: #b67fdc;
+    // font-weight: bold;
+	}
 	
 	.active-parent > .item-text {
 		// color: desaturate( lighten( adjust-hue($color-accent, 25), 10), 10);

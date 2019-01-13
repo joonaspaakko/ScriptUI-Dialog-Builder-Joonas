@@ -19,9 +19,11 @@ item.update.style.treeView = function( prop, data, dataItem ) {
 	if ( prop === 'text' || prop === 'all' ) {
 		var text   = dataItem.style.text;
 		var textItem = $('#panel-tree-view-wrap [data-item-id="'+ dataItem.id +'"] > .item-text');
-		textItem.html( processItemName( text, dataItem.type ) );
+		var type = dataItem.type;
+		var trimmedText = text === undefined ? type : text.trim();
+		textItem.html( (type.toLowerCase() === trimmedText.toLowerCase() ) ? type : '<span class="type">' + type + ':</span> ' + '<span class="txt">' + text + '</span>' );
 	}
-	
+		
 };
 
 item.update.style.dialogPreview = function( prop, data, dataItem, event ) {

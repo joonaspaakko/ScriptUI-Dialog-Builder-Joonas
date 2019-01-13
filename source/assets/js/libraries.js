@@ -13,3 +13,17 @@ $("#dialog-section").backstretch([{ url: './assets/images/bg.jpg', alignX: 'cent
 // @codekit-prepend "_libraries/clipboard.min.js";
 // @codekit-prepend "_libraries/split_lines-master/jquery.splitlines.js";
 // @codekit-prepend "_libraries/jquery.breakLines.min.js";
+// @codekit-prepend "_libraries/OverlayScrollbars-master/js/jquery.overlayScrollbars.min.js";
+
+OverlayScrollbars.defaultOptions({
+	className: "os-theme-thin-light",
+	sizeAutoCapable: true,
+	// clipAlways: true,
+	paddingAbsolute: true,
+	scrollbars: {
+		visibility: 'auto',
+		// autoHide: "leave",
+		autoHide: "scroll",
+		autoHideDelay: 100
+	}
+});

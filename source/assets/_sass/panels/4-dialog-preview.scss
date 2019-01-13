@@ -369,17 +369,20 @@
   .dropdownlist {
     display: flex;
   }
-  
+	
   .static-text,
-  .edit-text > span {
-    display: inline-block;
+  .edit-text > .edit-text-inner-wrap {
+    // display: inline-block;
     vertical-align: middle;
-    &:before {
-      content: "";
-      display: inline-block;
-      vertical-align: middle;
-      height: 100%;
-    }
+    // &:before {
+    //   content: "";
+    //   display: inline-block;
+    //   vertical-align: middle;
+    //   height: 100%;
+    // }
+    // display:flex;
+    // justify-content:center;
+    // align-items:center;
     .text-container {
       display: inline-block !important;
       white-space: normal !important;
@@ -391,39 +394,68 @@
   
   .static-text {
     overflow: hidden;
+    // &:before {
+    //   content: "";
+    //   display: inline-block;
+    //   vertical-align: middle;
+    //   height: 100%;
+    // }
     .text-container {
       word-spacing: 0px;
       letter-spacing: 0.63px;
       line-height: 17.5px;
       font-size: 13.6px;
       font-weight: 300;
-      
       box-sizing: border-box;
       width: 100%;
     }
   }
   
   .edit-text{
-    .text-container {
+		span.edit-text-inner-wrap {
+      // display: block; height: 100%; width: 100%;
+      cursor: text;
+			overflow: auto;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      padding: 2px 7px 3px;
+      background: darken($color-bg,7);
+      border: 1px solid lighten($color-bg,7);
+      border-radius: 4px;
+      text-align: left;
+      // This before was originally put here to help with vertical elignment, but
+      // it caused issues with the scrollbar plugin. It was not in use because
+      // of ScriptUI behavior differences, so I decided to hide it for EditText elements.
+      // &:before {
+      //   display: none;
+      // }
+    }
+    .os-content-glue {
+      width: auto !important;
+    }
+    .os-content {
+      &:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+      }
+    }
+    .et-double,
+    span.text-container {
+      // white-space: inherit !important;
+			// overflow: auto;
+      // display: inline-block;
+			// box-sizing: border-box;
     	// color: yellow !important;
       font-size: 12.5px;
       word-spacing: 1.4px;
       letter-spacing: 0.58px;
       line-height: 15px;
       font-weight: 300;
-      vertical-align: top !important;
-    }
-		> span {
-      cursor: text;
-      overflow: auto;
-      width: 100%;
-      height: 100%;
-      padding: 1px 7px;
-      background: darken($color-bg,7);
-      border: 1px solid lighten($color-bg,7);
-      border-radius: 4px;
-			box-sizing: border-box;
-      text-align: left;
+      // vertical-align: top !important;
     }
 		&.focused span {
 			// background: #fff;
@@ -433,6 +465,15 @@
   }
   
   .list-box{
+    
+		.inner-wrap {
+			overflow: auto;
+	    background: $color-bg;
+	    border: 1px solid lighten($color-bg,10);
+	    border-radius: 4px;
+      height: 100%;
+		}
+		
     ul, li {
       list-style: none;
       padding: 0;
@@ -440,11 +481,6 @@
     }
     
     ul {
-      overflow: auto;
-      height: 100%;
-      background: $color-bg;
-      border: 1px solid lighten($color-bg,10);
-      border-radius: 4px;
       
       &:after {
         content: '';
