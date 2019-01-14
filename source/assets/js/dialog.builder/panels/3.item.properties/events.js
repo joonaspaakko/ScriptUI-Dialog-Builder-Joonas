@@ -87,7 +87,7 @@ propsPanel.on("keyup", '[data-edit="text"]', function( e ) {
   var isMultiline = false;
   var parentST = type === "StaticText";
   var parentET = type === "EditText";
-  console.log( parentET );
+  
   if ( parentST && tcHeight > 25.5 ) {
     isMultiline = true;
   }

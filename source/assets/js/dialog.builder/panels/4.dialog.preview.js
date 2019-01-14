@@ -93,7 +93,7 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
 		else if ( parentET && tcHeight > 22.5 ) {
 			isMultiline = true;
 		}
-    console.log( isMultiline );
+    
 		if ( isMultiline ) {
 			$(this).addClass('multiline');
 		}
