@@ -129,7 +129,7 @@ item.update.set_values = function( params ) {
 			// var newHeight = val[1] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[1] < contHeight ) ? contHeight : val[1];
 			var newWidth  = val[0] == 0 ? 'auto' : val[0];
 			var newHeight = val[1] == 0 ? 'auto' : val[1];
-			active.css({ width: newWidth, height: newHeight + ( type === 'Dialog' ? 23 : '' )});
+			active.css({ width: newWidth, height: newHeight + ( val[1] != 0 && type === 'Dialog' ? 23 : '' )});
 			
 			// Special treatment for Dropdownlist
 			if ( type === "DropDownList" ) {
@@ -219,6 +219,11 @@ item.update.set_values = function( params ) {
 			});
 			active.addClass('align-children-horizontal-' + val[0]);
 			active.addClass('align-children-vertical-' + val[1]);
+			break;
+		
+		// IMAGE
+		case 'image':
+			active.find('img').attr("src", val[0] );
 			break;
 		
 		// ALIGNMENT

@@ -56,6 +56,10 @@ item.update.get_values = function( prop ) {
 			data.alignChildren = [ acHor, acVer ];
 			break;
 			
+		case "image":
+			data.image = [ editPanel.find('.base64-bin').attr("src") ];
+			break;
+			
 		case "alignment":
 			
 			if ( _this.prop('disabled') === false  ) {

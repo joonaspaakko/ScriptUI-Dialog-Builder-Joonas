@@ -155,3 +155,41 @@ propsPanel.on("change", 'select[data-edit]', function() {
 	item.funnel.update( $(this).data('edit') );
   
 });
+
+propsPanel.on("click", '.custom-file-input', function() {
+	propsPanel.find('[data-edit="image"]').trigger("click");
+});
+
+propsPanel.on("change", '[data-edit="image"]', function() {
+    
+    var file = this.files[0];
+		
+		var image = {};
+
+		image.render = function( file, callback ) {
+
+		  var reader = new FileReader();
+		  reader.onload = function() {
+		    callback( reader.result );
+		  }
+		  reader.readAsDataURL(file);
+		  
+		};
+
+		image.getBinary = function( file, callback ) {
+
+		  var reader = new FileReader();
+		  reader.onload = function(){
+		    callback( encodeURIComponent( reader.result ) );
+		  };
+		  reader.readAsBinaryString( file );
+		  
+		};
+
+    image.render( file, function( base64 ){
+      propsPanel.find('.base64-bin').attr( "src", base64 );
+      item.funnel.update( 'image' );
+      
+    });
+    
+});

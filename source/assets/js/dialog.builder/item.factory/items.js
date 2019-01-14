@@ -296,6 +296,26 @@ item.list.listbox = function( params ) {
 	
 };
 
+
+item.list.image = function( params ) {
+	var obj = {
+		type: 'Image',
+		addPanelIconClass: 'fas fa-image',
+		editInfo: "Images are never actually uploaded anywhere, they stored locally in your browser. <br><br>Images can't be resized. It is actually possible to do this in ScriptUI, but takes quite a bit of trickery. I chose not to include it in favor of smaller filesize.",
+		defaultStyle: {
+			image: [ "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQdJREFUeNrslv0NgyAQxcV0AEZwBEdoN3AEu0E7iSN0hW6gG9gRuoFuQB8NtGg9QSL4R33JixcUf3zcEZiAkg2UJhvpYMRX+BGYl8PVOxJfHV164rsc5j5UydCwdEGnAu4QtnCH+OY7AOcZ410moeJXVegZFzAn2jfJah4afF/Yvg6YMfbE4wz3RnOjSjBcchnfcpUgWbRyUjPv4UatgDmYWtZ3tORSdVzDcrUWwVPLjyu4tEBzI8Pd4dQeq5NJq5zY61ZMq6Pg5h5PgkfQAdwCnYXPggmo1sUBSsJJsAXqowGcArcijD5wE8wiXX3kiXfSmR/z6jMuvYT93WVvB+/gHbyaXgIMAHWCmD3KjfSwAAAAAElFTkSuQmCC" ],
+			alignment: null
+		},
+		previewHtml:
+			'<div class="image-item" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
+				'<img src="" alt="" />' +
+			'</div>'
+	};
+	
+	return obj;
+	
+};
+
 item.list.tabbedpanel = function( params ) {
 	
 	var obj = {

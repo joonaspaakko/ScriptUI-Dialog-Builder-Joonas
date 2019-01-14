@@ -179,6 +179,11 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 			var addition = multilineText[0] ? ', [0,0, '+ (cW) +', '+ (cH) +' ], undefined, {multiline: true}' : '';
 			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ addition +'); \n';
 			break;
+		
+		case 'Image':
+			block += 'var '+ jsxVarName + '_array = ["'+ encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) ) +'"]; \n';
+			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ jsxVarName + '_array[0]' +') ); \n';
+			break;
 			
 		default:
 			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';

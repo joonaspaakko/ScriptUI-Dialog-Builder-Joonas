@@ -174,7 +174,7 @@
   
   // Style for dragged items when sorting. Dragging new elements or duplicating elements looks different.
   .dragged {
-    position: absolute;
+    position: fixed;
     opacity: .9;
     z-index: 2000;
     border: 1px solid $color-accent;

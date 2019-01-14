@@ -184,6 +184,20 @@ panel_edit_style_html.init = function( key, value ) {
 			html.find('#align-children-vertical option:contains("'+ verticalValue +'")').prop('selected', true);
 			break;
 			
+		case "image":
+			html = $(
+				'<div class="image-edit">' +
+					'<div class="img-wrapper">' +
+						'<img class="base64-bin" src="'+ value[0] +'" alt="" />' +
+					'</div>' +
+					'<div class="custom-file-input">' +
+						'<i class="fas fa-upload"></i>' + 'Choose file...' +
+					'</div>' +
+					'<input data-edit="image" type="file" accept="image/jpeg, image/png">' +
+				'</div>'
+			);
+			break;
+			
 		case "alignment":
 			
 			var parent = $('#dialog .active').parent('div').parent('div'),

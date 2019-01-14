@@ -501,5 +501,41 @@ body.update-styles .saving-icon {
     }
   }
   
+	.image-edit {
+    .img-wrapper {
+  		overflow: hidden;
+  		max-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // border: 3px dashed #222; // I liked this, but it made it look like a drop area and I don't want to deal with that now so...
+      background: rgba( #222, .3 );
+      border-radius: 5px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+      padding: 5px;
+      
+  		img {
+  			display: inline-block;
+  			max-width: 100%;
+  		}
+  	}
+    .custom-file-input {
+      cursor: pointer;
+      // border: 2px solid #fff;
+      // background: rgba( #fff, .1 );
+      background: $color-accent;
+      padding: 7px;
+      width: 150px;
+      color: #fff;
+      border-radius: 3px;
+      i {
+        padding-right: 5px;
+      }
+    }
+    input {
+      display: none;
+    }
+  }
 	
 } // #edit-style-contents
