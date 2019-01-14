@@ -383,6 +383,7 @@
     // display:flex;
     // justify-content:center;
     // align-items:center;
+		.et-double
     .text-container {
       display: inline-block !important;
       white-space: normal !important;
@@ -459,11 +460,11 @@
       // display: inline-block;
 			// box-sizing: border-box;
     	// color: yellow !important;
-      font-size: 12.5px;
-      word-spacing: 1.4px;
-      letter-spacing: 0.58px;
-      line-height: 15px;
-      font-weight: 300;
+	    font-size: 12.3px;
+	    word-spacing: 1.30px;
+	    letter-spacing: 0.54px;
+	    line-height: 15px;
+	    font-weight: 300;
       // vertical-align: top !important;
     }
 		&.focused span {
