@@ -74,11 +74,32 @@ propsPanel.on("keyup", '[data-edit="text"]', function( e ) {
   
   if ( keycode != 18 ) { // Update if alt is released.
     item.funnel.update( $(this).data('edit') );
-    
-    var active = $('#dialog .active');
-    if ( active.data('item-type') === 'EditText' ) {
-      active.find('.et-double').html( active.find('[contenteditable]').html() );
-    }
+  }
+  
+  var active = $('#dialog .active');
+  if ( active.data('item-type') === 'EditText' ) {
+    active.find('.os-content-glue').html( active.find('[contenteditable]').html() );
+  }
+  
+  var textContainer = active.find('.text-container');
+  var type = active.data('item-type');
+  var tcHeight = textContainer.height();
+  var isMultiline = false;
+  var parentST = type === "StaticText";
+  var parentET = type === "EditText";
+  console.log( parentET );
+  if ( parentST && tcHeight > 25.5 ) {
+    isMultiline = true;
+  }
+  else if ( parentET && tcHeight > 22.5 ) {
+    isMultiline = true;
+  }
+  
+  if ( isMultiline ) {
+    textContainer.addClass('multiline');
+  }
+  else {
+    textContainer.removeClass('multiline');
   }
   
 });

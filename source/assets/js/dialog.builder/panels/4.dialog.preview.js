@@ -82,8 +82,8 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
   // container in these two, there may be issues. The more flexible
   // method I used elsewhere doesn't work here because the caret
   // position would be reset and it's just as slippery as this.
-	var parentST = $(this).parent().hasClass('static-text');
-	var parentET = $(this).parent().hasClass('edit-text');
+	var parentST = $(this).closest('[data-item-type]').hasClass('static-text');
+	var parentET = $(this).closest('[data-item-type]').hasClass('edit-text');
 	if ( parentST || parentET ) {
 		var tcHeight = $(this).height();
 		var isMultiline = false;
@@ -93,7 +93,7 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
 		else if ( parentET && tcHeight > 22.5 ) {
 			isMultiline = true;
 		}
-    
+    console.log( isMultiline );
 		if ( isMultiline ) {
 			$(this).addClass('multiline');
 		}

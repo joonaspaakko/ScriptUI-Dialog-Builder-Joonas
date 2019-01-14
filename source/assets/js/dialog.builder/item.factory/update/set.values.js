@@ -40,14 +40,6 @@ item.update.set_values = function( params ) {
 				var textContainer = active.find('.text-container');
 				textContainer.html( val.split('\n').join("<br>") );
 				
-				var isMultiline = multilineCheck( params.dataItem.id )[0];
-				if ( isMultiline ) {
-					textContainer.addClass('multiline');
-				}
-				else {
-					textContainer.removeClass('multiline');
-				}
-				
 			}
 			else {
 				active.find('.text-container').html( val );
@@ -137,7 +129,7 @@ item.update.set_values = function( params ) {
 			// var newHeight = val[1] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[1] < contHeight ) ? contHeight : val[1];
 			var newWidth  = val[0] == 0 ? 'auto' : val[0];
 			var newHeight = val[1] == 0 ? 'auto' : val[1];
-			active.css({ width: newWidth, height: newHeight + ( type === 'Dialog' && 23 )});
+			active.css({ width: newWidth, height: newHeight + ( type === 'Dialog' ? 23 : '' )});
 			
 			// Special treatment for Dropdownlist
 			if ( type === "DropDownList" ) {

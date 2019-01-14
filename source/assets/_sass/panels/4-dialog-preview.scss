@@ -383,7 +383,7 @@
     // display:flex;
     // justify-content:center;
     // align-items:center;
-		.et-double
+		.os-content-glue,
     .text-container {
       display: inline-block !important;
       white-space: normal !important;
@@ -418,7 +418,7 @@
     }
   }
   
-  .edit-text{
+  .edit-text {
 		span.edit-text-inner-wrap {
       // display: block; height: 100%; width: 100%;
       cursor: text;
@@ -441,6 +441,9 @@
     }
     .os-content-glue {
       width: auto !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      visibility: hidden !important;
     }
     .os-content {
       &:before {
@@ -453,7 +456,7 @@
     .text-container.multiline {
       vertical-align: top !important;
     }
-    .et-double,
+    .os-content-glue,
     span.text-container {
       // white-space: inherit !important;
 			// overflow: auto;

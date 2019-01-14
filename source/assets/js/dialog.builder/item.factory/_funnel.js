@@ -29,16 +29,13 @@ item.funnel = {
 			
 			var scroll = active.find('.edit-text-inner-wrap');
 			var editable =	active.find('[contenteditable]');
-			var instance;
-			var sizeDiv = $('<div class="et-double" style="height: 0; overflow: hidden;"></div>');
+			var instance = scroll.overlayScrollbars({ paddingAbsolute: true }).overlayScrollbars();
+			var sizeDiv = $(instance.getElements().host).find('.os-content-glue').first();
+			
 			var sizeDivUpdate = function() {
 				sizeDiv.html( editable.html() );
 			}
-
-			instance = scroll.overlayScrollbars({
-				paddingAbsolute: true
-			}).overlayScrollbars();
-			$(instance.getElements().host).append(sizeDiv);
+			
 			sizeDivUpdate();
 
 			editable.on('input', function() {
