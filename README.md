@@ -3,15 +3,23 @@
 
 [scriptui.joonas.me](https://scriptui.joonas.me)
 
-> This epository includes a build folder that contains the same files as in the website. So if the url doesn't work for some reason, you should be able to download the repo and use it locally. It doesn't need any dependencies. Just open the `build\index.html` in your browser.
+> This repository includes a build folder that contains the same files as in the website. So if the url doesn't work for some reason, you should be able to download the repo and use it locally. Everything it needs to run is in the build folder. Just open the `build\index.html` in your browser.
 
 ## Info
 
-Easily design and auto generate JSX code for Adobe Script UI dialogs. Does not handle events. That is something you need to do yourself.
+SDB's purpose is to help design Adobe Script UI dialogs and auto generate ready to use Javascript. It doesn't handle events. You'll need to write events yourself.
 
-Due to the fact that the builder simply simulates ScriptUI layout and behavior, there are various differences here and there. One major factor is also that there are small differences between Adobe applications so be aware that the dialog preview may not entirely match what you will see in the application. The dialog preview was made using Illustrator CC ScriptUI as the template, so that will have the least amount of differences. 
+Because the builder simply _simulates_ ScriptUI layout and behavior, there are various differences here and there. One major factor is also that there are small differences between Adobe applications so be aware that the dialog preview may not entirely match what you will see in the application. As an example, a really easy to spot difference is that `tabs` look completely different in Photoshop than it does in other applications. The dialog preview was made using Illustrator CC ScriptUI as the template, so that will have the least amount of differences. I basically picked colors, and measurements of everything in order to replicate the layout + fiddled with the items and their various properties to see how they behave to replicate that as well. 
+
+There's one kinda big feature that I had to leave out because I just couldn't replicate the behavior. I got pretty close, but I wasn't satisfied with it. ScriptUI items can actually have "fill" on both `x` and `y` axis, but in the builder it's limited to one axis.
 
 Dialog data is saved locally by your browser (local storage). So if you refresh the page or come back later with the same browser, your dialog should still be there, as long as nothing goes wrong in the reconstruction of the dialog. There's always the off chance that an error of some kind wipes it clean. If you’re browsing in incognito mode, your browser will forget this data as soon as you close the tab or window. Each code export also includes importable JSON at the top of the code, which means you can continue working on a dialog on another computer as long as you save the JSON.
+
+## Usage
+
+A good rule of thumb is to use width and height sparingly. Sometimes `Align children: Fill` or `Alignment: Fill` can be used to get the desired result without setting a static width. You can easily make the dialog hard to work with if you have to keep adjusting width and/or height everytime you add new items or make other changes that would affect the size.
+
+For example, the sample dialog only uses width and height for various EditText fields to basically leave room for characters and the 4 panels so that they have equal height.
 
 ## Browser support
 
@@ -19,7 +27,7 @@ Chrome. _May work in other modern browsers._ No mobile support.
 
 ## Source folder
 
-Source contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). For the most part, Codekit is used to stitch together various `html`, `css` and `javascript` files just because it's convenient.
+Source contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). Codekit does have nifty features like compressing images and stuff, but the major thing is that it's used in order to stitch together various `html`, `css` and `javascript` files... just because it's convenient.
 
 I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes rolled into one. So Codekit probably won't be an issue.
 
