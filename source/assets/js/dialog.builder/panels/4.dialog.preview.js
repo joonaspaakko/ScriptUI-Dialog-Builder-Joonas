@@ -50,10 +50,24 @@ dialogElem.on("focus blur", '[data-item-type="EditText"] [contenteditable]', fun
   }
   
 });
+
+// So that the whitespace (padding) around edittext is clickable too...
 dialogElem.on("click", '[data-item-type="EditText"]', function( e ) {
 	
   e.preventDefault();
   $(this).find('[contenteditable]').focus();
+  
+});
+
+// Image click activate
+dialogElem.on("click", '[data-item-type="Image"]', function() {
+	
+  var id = $(this).data('item-id');
+	item.activate( id );
+
+  // Build Item Properties panel
+  var data  = local_storage.get('dialog');
+  edit_style_panel.build( data.items[ 'item-' + id ].style );
   
 });
 

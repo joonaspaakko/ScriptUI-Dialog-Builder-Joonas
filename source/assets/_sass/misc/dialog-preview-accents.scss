@@ -30,7 +30,8 @@
 		&.divider-line > .padding-box,
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
-		&.edit-text > span {
+		&.edit-text > span,
+		&.image-item img {
 			border: 1px solid $color-accent;
 		}
 		&.edit-text > span > span {
@@ -80,6 +81,7 @@
 		&.divider-line > .padding-box {
 			border-color: #464747;
 		}
+		&.image-item img,
 		&.group > .padding-box, {
 			border: none;
 		}
@@ -126,7 +128,8 @@
 		&.divider-line > .padding-box,
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
-		&.edit-text > span {
+		&.edit-text > span,
+		&.image-item img {
 			border: 1px solid $color-accent-2 !important;
 		}
 		&.edit-text > span > span {

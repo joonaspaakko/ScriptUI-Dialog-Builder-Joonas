@@ -48,7 +48,7 @@ function lightThePath( treeView, treeActive ) {
 	$('.path-start-node').removeClass('path-start-node');
 	$('.path-parent-ul').removeClass('path-parent-ul');
 	
-	if ( treeActive.data('item-type') !== "Dialog" ) {
+	if ( treeActive.data('item-type') !== "Dialog" && !treeActive.parent().parent().hasClass('tree-root') ) {
 		// PATH START
 		var pathEnd = treeView.find('.active-parent').first();
 		pathEnd.addClass('path-end');
@@ -59,7 +59,7 @@ function lightThePath( treeView, treeActive ) {
 		if ( pathStart.next().length < 1 ) {
 			pathStart.addClass('path-start-last');
 		}
-		else if( pathStart.data('parent') ) {
+		else if ( pathStart.data('parent') ) {
 			pathStart.addClass('path-start-node');
 		}
 		else {
