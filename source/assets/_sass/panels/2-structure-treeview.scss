@@ -131,7 +131,7 @@
   
   li.path-start-node,
   li.path-node {
-    background: url('../images/indent-guides/indent-guide-path-t-junction-3.svg') no-repeat left -4px;
+    background: url("../images/indent-guides/indent-guide-path-t-junction-3.svg") no-repeat left -4px, url("../images/indent-guides/indent-guide.svg") repeat-y top left;
     background-size: $indent-guide-bg-size;
   }
   
