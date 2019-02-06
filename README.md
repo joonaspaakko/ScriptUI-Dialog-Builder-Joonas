@@ -5,6 +5,24 @@
 
 > This repository includes a build folder that contains the same files as in the website. So if the url doesn't work for some reason, you should be able to download the repo and use it locally. Everything it needs to run is in the build folder. Just open the `build\index.html` in your browser.
 
+## Desktop applications?
+
+Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
+
+> These were created using [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium.
+
+**Benefits?**
+
+- You get an Icon you can use to launch the web app
+- You get to use the web app in its own window
+- If you’re knee deep in the Windows ecosystem and a devout user of Internet Explorer _(or any browser that is not Chrome)_, this desktop application has got your back, since it uses Chromium to display the website.
+
+**Things to know?**
+
+- You do still require an internet connection to use it. 
+- You don't have to worry about losing progress if you wipe your browser history. The app does allow you to do that too, the need arises.
+- There is a tiny hiccup on windows. When you try to duplicate item(s), it may jump a little causing you to grab the wrong items because the `alt` key shows the top menu on windows. Maybe I'll add a secondary modifier key at some point to get around that.
+
 ## Info
 
 SDB's purpose is to help design Adobe Script UI dialogs and auto generate ready to use Javascript. It doesn't handle events. You'll need to write events yourself.
