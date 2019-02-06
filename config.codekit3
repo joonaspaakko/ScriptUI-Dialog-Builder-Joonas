@@ -196,7 +196,7 @@
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
-		"ma": 0,
+		"ma": 1,
 		"oA": 0,
 		"oAP": "/build/assets/css/dialog.builder.css",
 		"oF": 3,
@@ -7141,6 +7141,16 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/assets/js/_libraries/html2canvas.min.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/_libraries/html2canvas.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/source/assets/js/_libraries/jquery-sortable.js": {
 		"ft": 64,
 		"ma": 0,
@@ -7445,7 +7455,7 @@
 		},
 	"/source/assets/js/dialog.builder.js": {
 		"ft": 64,
-		"ma": 0,
+		"ma": 1,
 		"mi": 1,
 		"oA": 0,
 		"oAP": "/build/assets/js/dialog.builder.js",
@@ -7583,6 +7593,26 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/assets/js/dialog.builder/item.factory/special.logic/danger.zone.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/item.factory/special.logic/danger.zone.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/item.factory/special.logic/force.size.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/item.factory/special.logic/force.size.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/source/assets/js/dialog.builder/item.factory/update/get.values.js": {
 		"ft": 64,
 		"ma": 0,
@@ -7690,6 +7720,16 @@
 		"oA": 1,
 		"oAP": "/build/assets/js/dialog.builder/modules/panels.collapse.min.js",
 		"oF": 1,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/modules/snapshot.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/snapshot.min.js",
+		"oF": 0,
 		"sC": 0,
 		"tS": 0
 		},
@@ -7857,7 +7897,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-fry",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 569167228.49702406
+	"lastBuiltDate": 571150590.94061697
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

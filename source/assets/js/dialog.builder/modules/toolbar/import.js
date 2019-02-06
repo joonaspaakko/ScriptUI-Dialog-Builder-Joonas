@@ -108,7 +108,7 @@ $('#toolbar .import').on("click", function() {
 			local_storage.remove('dialog');
 			local_storage.set('dialog', data );
 			modal.remove();
-			loadingScreen.init( 1.5, function() {
+			loadingScreen.init( null, function() {
 				location.reload();
 			});
 		}

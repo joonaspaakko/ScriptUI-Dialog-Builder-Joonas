@@ -23,7 +23,7 @@ function resetDialog() {
 			
 			local_storage.remove('dialog');
 			
-			loadingScreen.init( 1.5, function() {
+			loadingScreen.init( null, function() {
 				location.reload();
 			});
 			

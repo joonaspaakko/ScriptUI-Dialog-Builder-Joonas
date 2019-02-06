@@ -279,7 +279,5 @@ function multilineCheck( id ) {
 	
 	container.html( text ); // Just to make super sure the dialog text stays the same...
 	
-	console.log( exportText.join('') );
-	
 	return [ isMultiline, exportText.join('') ];
 }

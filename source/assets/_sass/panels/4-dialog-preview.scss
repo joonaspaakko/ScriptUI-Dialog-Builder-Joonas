@@ -84,6 +84,20 @@
 	  }
   }
   
+  .pb-shrink {
+    width: auto !important;
+    height: auto !important;
+    > .padding-box {
+	    flex-grow: 0 !important;
+	    justify-self: start !important;
+	    align-self: start !important;
+    }
+  }
+  
+  // .padding-box > div {
+  //   overflow: visible !important;
+  // }
+  
   .padding-box {
     > .divider-line {
       align-self: stretch;
@@ -201,7 +215,7 @@
     }
     &.align-children-vertical-fill > div {
       justify-content: stretch;
-      >div {
+      > div {
         flex: 1;
       }
     }
@@ -423,11 +437,11 @@
       // display: block; height: 100%; width: 100%;
       cursor: text;
 			overflow: auto;
-      display: block;
+      display: inline-block;
       box-sizing: border-box;
       width: 100%;
       height: 100%;
-      padding: 2px 7px 3px;
+      padding: 1px 7px 1px;
       background: darken($color-bg,7);
       border: 1px solid lighten($color-bg,7);
       border-radius: 4px;
@@ -440,21 +454,33 @@
       // }
     }
     .os-content-glue {
+      box-sizing: border-box !important;
+      // width: 100% !important;
+      // height: 100% !important;
+      border:none !important;
       width: auto !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
+      height: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      color: red;
+      overflow: hidden !important;
       visibility: hidden !important;
     }
-    .os-content {
-      &:before {
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        height: 100%;
-      }
+    .text-container:before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
     }
     .text-container.multiline {
       vertical-align: top !important;
+    }
+    .text-container {
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      position: absolute;
     }
     .os-content-glue,
     span.text-container {
@@ -780,9 +806,24 @@
 	}
 	
 	.image-item {
+    justify-items: center;
+    align-items: center;
 		img {
-      display: block;
+      display: inline-block;
 		}
+	}
+	
+	div.align-children-horizontal-fill.child-width-auto > .padding-box > div,
+	div.parent-width-auto,
+  div.align-children-horizontal-fill > .padding-box > .width-auto {
+		width: auto !important;
+    outline: 1px solid rgb(24,236,102);
+	}
+	div.align-children-vertical-fill.child-height-auto > .padding-box > div,
+	div.parent-height-auto,
+  div.align-children-vertical-fill > .padding-box > .height-auto {
+		height: auto !important;
+    outline: 1px solid red;
 	}
 	
 } // #dialog

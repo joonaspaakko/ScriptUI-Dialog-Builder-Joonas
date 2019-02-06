@@ -159,6 +159,7 @@ panel_edit_style_html.init = function( key, value ) {
 					'Align Children' +
 				'</h2>' +
 				'<div class="align-children">' +
+					'<span class="x-axis">X:</span>' +
 					'<select id="align-children-horizontal" data-edit="alignChildren" name="qty" class="pretty-classic">' +
 						'<option>left</option>' +
 						'<option>center</option>' +
@@ -166,6 +167,7 @@ panel_edit_style_html.init = function( key, value ) {
 						horizontalFill +
 					'</select>' +
 					
+					'<span class="y-axis">Y:</span>' +
 					'<select id="align-children-vertical" data-edit="alignChildren" name="qty" class="pretty-classic">' +
 						'<option>top</option>' +
 						'<option>center</option>' +

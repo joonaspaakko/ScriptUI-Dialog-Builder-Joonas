@@ -17,7 +17,7 @@ function numberInputs() {
 	  '<div class="number-overlay"></div>'
 	).appendTo( wrap );
 
-	var focusNumber;
+	var startNumber, startZero;
 	var numberInputs = wrap.find('.number');
 	var numberOverlays = wrap.find('.number-overlay');
 
@@ -38,6 +38,10 @@ function numberInputs() {
 	    dragging = true;
 	    dragWrapper = $(e.target).parent();
 	    dragStartElement = dragWrapper.find('> .number');
+			
+			startNumber = dragStartElement.val();
+			startZero = startNumber == 0 ? true : false;
+			
 	  }
 	  else if ( e.type === 'mousemove' ) {
 			
@@ -120,15 +124,12 @@ function numberInputs() {
 	  var numberElement = $(this);
 	  
 	  if ( e.type === 'focus' ) {
-	    focusNumber = $(this).val();
-			// if ( overlay_dblclick === true ) {
+	    startNumber = numberElement.val();
+			startZero = startNumber == 0 ? true : false;
 				$(this).select();
-				// overlay_dblclick = false;
-			// }
 	  }
 	  else {
 	    numberSwitch( numberElement, 'blur' );
-			// numberElement.removeClass('danger-zone');
 	  }
 	                        
 	});
@@ -138,6 +139,9 @@ function numberInputs() {
 	  var _this = $(this),
 	      numberElement = _this.parent().find('.number');
 	  
+    startNumber = numberElement.val();
+		startZero = startNumber == 0 ? true : false;
+		
 	  if ( _this.hasClass('plus') ) {
 	    numberSwitch( numberElement, 'up', e.shiftKey );
 	  }
@@ -152,6 +156,9 @@ function numberInputs() {
 	  var keycode = e.keyCode ? e.keyCode : e.which;
 	  var numberElement = $(this);
 		
+    startNumber = numberElement.val();
+		startZero = startNumber == 0 ? true : false;
+		
 	  if ( keycode === 38 ) { // Arrow Up
 	    numberSwitch( numberElement, 'up', e.shiftKey );
 	  }
@@ -162,10 +169,27 @@ function numberInputs() {
 	    numberSwitch( numberElement, 'numberEntry', e.shiftKey );
 		}
 		
-	  // if ( keycode == 13 ) { // Enter
-	  //   numberElement.blur();
-	  // }
+	});
+	
+	numberOverlays.on("wheel", function( e ) {
 		
+		// Because the modifier key for increasing step is Shift, which also
+		// reverses the scroll direction, both X and Y need to be checked...
+		var scrollY = e.originalEvent.deltaY,
+				scrollX = e.originalEvent.deltaX,
+				scrollUp = scrollY < 0 || scrollX < 0,
+				numberElement = $(this).parent().find('.number');
+		
+    startNumber = numberElement.val();
+		startZero = startNumber == 0 ? true : false;
+		
+		if ( scrollUp ) { // Scroll Up
+			numberSwitch( numberElement, 'up', e.shiftKey );
+		}
+		else { // Scroll Down
+			numberSwitch( numberElement, 'down', e.shiftKey );
+		}
+
 	});
 
 	function numberSwitch( numberElement, action, shift, dragSpeed ) {
@@ -175,27 +199,9 @@ function numberInputs() {
 	  if ( !isNaN(number) ) {
 	    
 	    number = parseInt( number, 10);
-	    
-			// var active     = $('#dialog .active'),
-			// 		contWidth  = active.width(),
-			// 		widthInput = numberElement.hasClass('width'),
-			// 		contHeight = active.height(),
-			// 		heightInput = numberElement.hasClass('height');
-			
-			// if (
-			// 	number === 0 && numberElement.hasClass('danger-zone') ||
-			// 	widthInput && number >= contWidth && numberElement.hasClass('danger-zone') ||
-			// 	heightInput && number >= contHeight && numberElement.hasClass('danger-zone')
-			// ) {
-			// 	numberElement.removeClass('danger-zone');
-			// }
-			// else if (
-			// 	widthInput && number < contWidth && !numberElement.hasClass('danger-zone') ||
-			// 	heightInput && number < contHeight && !numberElement.hasClass('danger-zone')
-			// ) {
-			// 	numberElement.addClass('danger-zone');
-			// 	// notification( 'error', "The current size you've set is smaller than the item's contents. <br> The size you're set will be is included in the export", 6.5 );
-			// }
+			var active      = $('#dialog .active'),
+					widthInput  = numberElement.hasClass('width'),
+					heightInput = numberElement.hasClass('height');
 			
 	    var numData = {
 	      min: parseInt( numberElement.attr('min'), 10),
@@ -203,11 +209,26 @@ function numberInputs() {
 	      step: dragSpeed || parseInt( numberElement.attr('step'), 10),
 	      modifierStep: parseInt( numberElement.attr('modifier-step'), 10)
 	    };
-	    
+			
+			
 	    var step = (shift ? numData.modifierStep : numData.step) || 1,
 	        belowMin = number < numData.min,
 	        aboveMax = number > numData.max,
 	        outOfRange = belowMin || aboveMax;
+			
+			// If value is 0 when the action starts → fetch
+			// visual size and then continue as normal...
+			if ( startZero ) {
+				startZero = false;
+				if ( widthInput ) {
+					number = Math.round( active.width() ) + ( action === 'down' ? 1 : 0 ) - ( action === 'up' ? 1 : 0 );
+				}
+				else if ( heightInput ) {
+					var startHeight = $('#dialog .active').data('item-type') === 'Dialog' ? active.find('> .padding-box').outerHeight() : active.height();
+					number = Math.round( startHeight ) + ( action === 'down' ? 1 : 0 ) - ( action === 'up' ? 1 : 0 );
+				}
+			}
+			
 	    switch ( action ) {
 	      case 'blur':
 	        if ( outOfRange ) {
@@ -220,25 +241,25 @@ function numberInputs() {
 	        if ( number < numData.max ) {
 	          number = number + step > numData.max ? numData.max : number + step;
 	          numberElement.val( number );
-	          focusNumber = number;
+	          startNumber = number;
 	        }
 	        break;
 	      case 'down':
 	        if ( number > numData.min ) {
 	          number = number - step < numData.min ? numData.min : number - step;
 	          numberElement.val( number );
-	          focusNumber = number;
+	          startNumber = number;
 	        }
 	        break;
 	    }
 	  
 	  }
 	  else {
-    	numberElement.val( focusNumber );
+    	numberElement.val( startNumber );
 	  }
 		
 		item.funnel.update( numberElement.data('edit') );
-
+		
 	}
 	
 }

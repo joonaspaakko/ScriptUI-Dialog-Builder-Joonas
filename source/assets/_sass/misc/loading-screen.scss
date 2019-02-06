@@ -1,5 +1,9 @@
 // http://tobiasahlin.com/spinkit/
 
+body.loading #wrap {
+  display: none;
+}
+
 #loader-bg {
   display: flex;
   align-items: center;

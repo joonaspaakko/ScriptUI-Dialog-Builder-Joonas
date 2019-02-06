@@ -97,7 +97,6 @@ item.funnel = {
 		data = ignore === 'localStorage' ? data : item.update.style.localStorage( prop, data );
 		var dataItem = data.items[ 'item-' + data.activeId ];
 		
-		
 		// TREE VIEW PANEL
 		item.update.style.treeView( prop, data, dataItem );
 		
@@ -109,6 +108,8 @@ item.funnel = {
 		
 		// TREE VIEW - ITEM
 		treeViewItem.onUpdate( data, dataItem );
+		
+		forceSize.onUpdate( prop, data, dataItem );
 		
 		// Background size was not always updating, so this be a quick fix for I am lazy...
 		// It was happening especially when the text changes from type to anything else.

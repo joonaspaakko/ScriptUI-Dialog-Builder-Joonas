@@ -43,6 +43,8 @@
 // @codekit-prepend "dialog.builder/modules/notifications.js";
 // @codekit-prepend "dialog.builder/modules/legend.js";
 // @codekit-prepend "dialog.builder/modules/panels.collapse.js";
+// @codekit-prepend "dialog.builder/item.factory/special.logic/danger.zone.js";
+// @codekit-prepend "dialog.builder/item.factory/special.logic/force.size.js";
 
 $('.panel-wrap').each(function() {
 	

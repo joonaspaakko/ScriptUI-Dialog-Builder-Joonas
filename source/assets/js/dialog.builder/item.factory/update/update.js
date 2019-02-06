@@ -48,6 +48,11 @@ item.update.style.dialogPreview = function( prop, data, dataItem, event ) {
 		item.update.set_values( params );
 	}
 	
+	// The dialog seems to collapse a bit when soft wrapping
+	// happens + #dialog-section is smaller than the dialog
+	// (when dialog doesn't quite fit and scrollbars come up)
+	$('#dialog-section .center-3').css({ minWidth: $('#dialog-container').width(), minHeight: $('#dialog-container').height() });
+	
 };
 
 item.update.order = function() {

@@ -21,16 +21,28 @@ propsPanel.on("change", '.alignment-checkbox input', function() {
   
 });
 
-// PREFERRED SIZE → RESET BACK TO 0 (content size)
+// PREFERRED SIZE (ICON) → RESET BACK TO 0 (content size)
 propsPanel.on("click", '.preferred-size-auto', function() {
-	
-  var width = propsPanel.find('input.width');
-  width.val(0).change();
-  var height = propsPanel.find('input.height');
-  height.val(0).change();
   
-  item.funnel.update( width.data('edit') ); // No need to update height. These two get updated as a pair.
-	
+	var width = propsPanel.find('input.width');
+	width.val(0).change();
+	var height = propsPanel.find('input.height');
+	height.val(0).change();
+  
+	item.funnel.update( width.data('edit') ); // No need to update height. These two get updated as a pair.
+  
+});
+
+// RESET NUMBER INPUTS BACK TO 0 (content size)
+propsPanel.on("dblclick", '.number-overlay', function() {
+  
+  var parent = $(this).parent(),
+      number = parent.find('.number');
+  
+  number.val(0).change();
+  
+  item.funnel.update( number.data('edit') ); // No need to update height. These two get updated as a pair.
+  
 });
 
 // MARGINS TOGGLE → ALL SIDES / TOP, RIGHT, BOTTOM, LEFT
@@ -133,23 +145,15 @@ propsPanel.on("change", 'select[data-edit]', function() {
       $('<option>fill</option>').appendTo( acHorizontal );
     }
     
-    $('#panel-edit-style-wrap .align-children select').each(function() {
-      $(this).clone().appendTo('#panel-edit-style-wrap .align-children');
-    });
-    
-    $('#panel-edit-style-wrap .align-children .prettydropdown').remove();
-    
-    $('#panel-edit-style-wrap .align-children .pretty-classic').each(function() {
-      
+    $('#panel-edit-style-wrap .align-children select').each( function() {
       $(this).trigger('change');
-      
       $(this).prettyDropdown({
         classic: true,
         customClass: 'arrow triangle',
         selectedMarker: '<i class="fas fa-check"></i>'
-      });
-      
+      }).refresh();
     });
+    
   }
   
 	item.funnel.update( $(this).data('edit') );

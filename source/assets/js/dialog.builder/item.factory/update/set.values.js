@@ -22,7 +22,7 @@ item.update.set_values = function( params ) {
 			else if ( type === 'Panel' ) {
 				var title = active.find('> .title');
 				title.text( val );
-				// Makes sure the panel container is always wide enough to cover the title
+				// Makes sure the panel container is always wide enough to hold the title
 				paddingBox.css({ minWidth: title.width() + 22 });
 			}
 			// type === 'RadioButton' || type === 'Checkbox' || type === 'DropDownList'
@@ -51,7 +51,7 @@ item.update.set_values = function( params ) {
 			if ( type === 'DropDownList' ) {
 				/*global droplist*/
 				/*eslint no-undef: ["error", { "typeof": true }] */
-				droplist.set( active, val, style );
+				droplist.set.items( active, val, style );
 			}
 			else if ( type === 'ListBox' ) {
 				/*global listbox*/
@@ -119,60 +119,27 @@ item.update.set_values = function( params ) {
 		// PREFERRED SIZE
 		case 'preferredSize':
 			
-			// active.width('auto').height('auto');
-			// var contWidth = Math.round( active.width() );
-			// var contHeight = Math.round( active.height() );
-			// var isParent = item.list[ type.toLowerCase() ](false).parent;
-			
-			// Paren't can't be smaller than children
-			// var newWidth  = val[0] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[0] < contWidth  ) ? contWidth  : val[0];
-			// var newHeight = val[1] == 0 ? 'auto' : ( params.event !== 'loadFromLocalStorage' && isParent && val[1] < contHeight ) ? contHeight : val[1];
 			var newWidth  = val[0] == 0 ? 'auto' : val[0];
-			var newHeight = val[1] == 0 ? 'auto' : val[1];
-			active.css({ width: newWidth, height: newHeight + ( val[1] != 0 && type === 'Dialog' ? 23 : '' )});
+			var newHeight = val[1] == 0 ? 'auto' : val[1] + (type === 'Dialog' ? $('#dialog-title-bar').outerHeight() : 0);
+			active.css({ minWidth: newWidth, minHeight: newHeight });
 			
-			// Special treatment for Dropdownlist
-			if ( type === "DropDownList" ) {
-				
-				var listWrap = active.find('.drop-list-wrap');
-				var label = active.find('label');
-				
-				active.removeClass('too-big');
-				active.removeClass('too-small');
-				
-				active.addClass('get-width');
-				var active_width = active.width();
-				var label_width = label.outerWidth( true );
-				var select_width = listWrap.outerWidth( true );
-				active.removeClass('get-width');
-				
-				var children_width = label_width + select_width;
-				
-				if ( newWidth > children_width ) {
-					active.addClass('too-big');
-					if ( select_width < active_width ) {
-						listWrap.width( 'auto' );
-					}
-				}
-				else if ( newWidth < children_width ) {
-					active.addClass('too-small');
-					if ( select_width > active_width ) {
-						listWrap.width( active_width - 16 );
-					}
-					if ( active.parent().parent().hasClass('orientation-row') ) {
-						// In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
-						active.find('label').css({ marginLeft: active.css('padding-left') })
-					}
-				}
-			}
+			/*global dangerZone*/
+			/*eslint no-undef: ["error", { "typeof": true }] */
+			dangerZone.set( params, active, paddingBox );
+			
+			/*global droplist*/
+			/*eslint no-undef: ["error", { "typeof": true }] */
+			droplist.set.size( active, val, style, type, newWidth, newHeight );
 			
 			break;
 		
 		// ORIENTATION
 		case 'orientation':
+		
 			active.removeClass(function(i, classy) {
 				return (classy.match(/(^|\s)orientation-\S+/g) || []).join(' ');
 			}).addClass('orientation-' + val );
+			
 			break;
 		
 		// SPACING
@@ -219,6 +186,7 @@ item.update.set_values = function( params ) {
 			});
 			active.addClass('align-children-horizontal-' + val[0]);
 			active.addClass('align-children-vertical-' + val[1]);
+			
 			break;
 		
 		// IMAGE

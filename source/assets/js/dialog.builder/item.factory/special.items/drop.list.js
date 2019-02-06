@@ -102,34 +102,75 @@ var droplist = {
 		
 	},
 	
-	set: function( active, val, style ) {
-		
-		var dropDownItems = active.find('.items');
-		dropDownItems.children().remove();
-		var ping = false;
-		// Rebuild the list
-		$.each( val.split(','), function( i, item ) {
-			var trimmedItem = item.trim();
-			var hr = trimmedItem == '-' ? ' horizontal-line' : '';
-			var selectedClass = (i === style.selection) ? ' selected test' : '';
-			if ( i === style.selection ) ping = true;
-			$('<div class="'+ selectedClass + hr +'">'+ trimmedItem +'</div>').appendTo( dropDownItems );
-		});
-		
-		// Makes it so that if the selected item is removed, the selected item is swapped to the first item.
-		// This will prevent bunch of other issues...
-		if ( !ping ) {
-			var data = local_storage.get('dialog');
-			var dataItem = data.items[ 'item-' + data.activeId ];
-			dataItem.style.selection = 0;
-			local_storage.set('dialog', data );
+	set: {
+		items: function( active, val, style ) {
 			
-			dropDownItems.find('> div:first').addClass('selected');
+			var dropDownItems = active.find('.items');
+			dropDownItems.children().remove();
+			var ping = false;
+			// Rebuild the list
+			$.each( val.split(','), function( i, item ) {
+				var trimmedItem = item.trim();
+				var hr = trimmedItem == '-' ? ' horizontal-line' : '';
+				var selectedClass = (i === style.selection) ? ' selected test' : '';
+				if ( i === style.selection ) ping = true;
+				$('<div class="'+ selectedClass + hr +'">'+ trimmedItem +'</div>').appendTo( dropDownItems );
+			});
+			
+			// Makes it so that if the selected item is removed, the selected item is swapped to the first item.
+			// This will prevent bunch of other issues...
+			if ( !ping ) {
+				var data = local_storage.get('dialog');
+				var dataItem = data.items[ 'item-' + data.activeId ];
+				dataItem.style.selection = 0;
+				local_storage.set('dialog', data );
+				
+				dropDownItems.find('> div:first').addClass('selected');
+			}
+			
+			var listWrap = active.find('.drop-list-wrap');
+			droplist.backbone( listWrap );
+			
+		},
+		
+		size: function( active, val, style, type, newWidth ) {
+			
+			// Special treatment for Dropdownlist
+			if ( type === "DropDownList" ) {
+				
+				var listWrap = active.find('.drop-list-wrap');
+				var label = active.find('label');
+				
+				active.removeClass('too-big');
+				active.removeClass('too-small');
+				
+				active.addClass('get-width');
+				var active_width = active.width();
+				var label_width = label.outerWidth( true );
+				var select_width = listWrap.outerWidth( true );
+				active.removeClass('get-width');
+				
+				var children_width = label_width + select_width;
+				
+				if ( newWidth > children_width ) {
+					active.addClass('too-big');
+					if ( select_width < active_width ) {
+						listWrap.width( 'auto' );
+					}
+				}
+				else if ( newWidth < children_width ) {
+					active.addClass('too-small');
+					if ( select_width > active_width ) {
+						listWrap.width( active_width - 16 );
+					}
+					if ( active.parent().parent().hasClass('orientation-row') ) {
+						// In this situation the label has position: absolute; so it doesn't respect the padding on the left side.
+						active.find('label').css({ marginLeft: active.css('padding-left') })
+					}
+				}
+			}
+			
 		}
-		
-		var listWrap = active.find('.drop-list-wrap');
-		droplist.backbone( listWrap );
-		
 	},
 	
 	hide: function() {

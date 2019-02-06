@@ -259,7 +259,10 @@ item.list.slider = function( params ) {
 		defaultStyle: false,
 		stylePropInfo: "This item doesn't have any adjustable properties.",
 		editInfo: "Export outputs a static range from 0 to 100 with current value of 50 every single time.",
-		previewHtml: '<div class="slider"><input type="range" min="0" max="100" value="" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'"  data-item-parent-id="'+ params.parentId +'"></div>'
+		previewHtml:
+			'<div class="slider" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
+				'<input type="range" min="0" max="100" value="" />' +
+			'</div>'
 	};
 	
 	return obj;

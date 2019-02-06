@@ -97,7 +97,7 @@ body.update-styles .saving-icon {
     overflow-y: auto;
     line-height: 15px;
     height: 15px;
-    width: 151px;
+    width: 150px;
     max-height: 160px;
     color: #fff;
     &:focus {
@@ -254,7 +254,7 @@ body.update-styles .saving-icon {
   }
   
   // PRETTY DROPDOWNS
-  $dropdown-mini-width: 79px;
+  $dropdown-mini-width: 66px;
   .prettydropdown {
     width: $dropdown-mini-width !important;
     max-width: $dropdown-mini-width !important;
@@ -342,6 +342,16 @@ body.update-styles .saving-icon {
     text-transform: capitalize;
 		.prettydropdown {
 			margin-right: 2px;
+		}
+    > span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+		.x-axis, .y-axis {
+      position: relative;
+      top: 1px;
+			vertical-align: middle;
+      display: inline-block;
 		}
   }
   
@@ -484,7 +494,7 @@ body.update-styles .saving-icon {
     }
     &.is-not-multiline textarea {
       padding-right: 19px;
-      width: 132px;
+      width: 137px;
     }
     // I SAID... NO LINE BREAKS...
     & .no-linebreaks-icon {

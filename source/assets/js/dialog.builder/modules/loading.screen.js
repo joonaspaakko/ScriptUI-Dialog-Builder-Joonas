@@ -5,6 +5,10 @@ var loadingScreen = {
   
 	init: function( delay, onComplete ) {
 		
+    delay = delay || 0.1;
+    
+		$('body').addClass('loading');
+		
 		var html =
       '<div id="loader-bg">' +
 				'<div class="loader">Loading...</div>' +
