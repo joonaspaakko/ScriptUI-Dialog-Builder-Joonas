@@ -22,6 +22,7 @@ Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/A
 - You do still require an internet connection to use it. 
 - You don't have to worry about losing progress if you wipe your browser history. The app does allow you to do that too, the need arises.
 - There is a tiny hiccup on windows. When you try to duplicate item(s), it may jump a little causing you to grab the wrong items because the `alt` key shows the top menu on windows. Maybe I'll add a secondary modifier key at some point to get around that.
+- For some reason the icons look kinda terrible, but it's too much work to do anything about it.
 
 ## Info
 
