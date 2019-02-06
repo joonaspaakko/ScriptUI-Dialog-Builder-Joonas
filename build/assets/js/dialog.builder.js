@@ -547,6 +547,7 @@ i=e.dataItem.type,a=e.value,n=a[0],d=a[1],r=0!==n,l=0!==d,o=t,s=Math.round(o.wid
 // @codekit-prepend "dialog.builder/modules/toolbar/import.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/reset.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/sample.dialog.js";
+// @codekit-prepend "dialog.builder/modules/toolbar/snapshot.js";
 // @codekit-prepend "dialog.builder/modules/custom.cursor.js";
 // @codekit-prepend "dialog.builder/modules/toggle.active.visibility.js";
 // @codekit-prepend "dialog.builder/modules/notifications.js";

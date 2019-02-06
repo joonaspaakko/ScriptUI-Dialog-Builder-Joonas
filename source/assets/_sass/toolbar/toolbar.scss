@@ -48,7 +48,7 @@
 		}
 		
 		&:nth-child(1) {
-		  animation-delay: .5s;
+		  animation-delay: .50s;
 		  animation-duration: .5s;
 			.icon {
 				// top: 1px;
@@ -56,7 +56,7 @@
 			}
 		}
 		&:nth-child(2) {
-		  animation-delay: .6s;
+		  animation-delay: .55s;
 		  animation-duration: .7s;
 			.icon {
 				// top: 2px;
@@ -65,17 +65,21 @@
 			}
 		}
 		&:nth-child(3) {
-		  animation-delay: .7s;
+		  animation-delay: .60s;
 		  animation-duration: .9s;
+		}
+		&:nth-child(4) {
+		  animation-delay: .65s;
+		  animation-duration: 1.2s;
 			.icon {
 				// top: 1px;
 				top: 0.5px;
 				// left: 2px;
 			}
 		}
-		&:nth-child(4) {
-		  animation-delay: .8s;
-		  animation-duration: 1.1s;
+		&:nth-child(5) {
+		  animation-delay: .70s;
+		  animation-duration: 1.3s;
 		}
 	}
 	

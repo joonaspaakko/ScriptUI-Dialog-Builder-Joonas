@@ -18,7 +18,7 @@
 		>  #dialog-title-bar {
 			border-bottom: 2px solid $color-accent;
 			box-shadow: 0 0 20px #33cc59;
-			animation: dlgShadowPulsate 2s ease-out infinite;
+			// animation: dlgShadowPulsate 2s ease-out infinite;
 			@keyframes dlgShadowPulsate {
 				0% { box-shadow  : 0 0 3px #33cc59; }
 				50% { box-shadow : 0 0 20px #33cc59; }
@@ -115,7 +115,7 @@
 		>  #dialog-title-bar {
 			border-bottom: 2px solid $color-accent-2 !important;
 			box-shadow: 0 0 20px $color-accent-2 !important;
-			animation: dlgShadowPulsateGhosting 2s ease-out infinite;
+			// animation: dlgShadowPulsateGhosting 2s ease-out infinite;
 			@keyframes dlgShadowPulsateGhosting {
 				0% { box-shadow  : 0 0 3px $color-accent-2 !important; }
 				50% { box-shadow : 0 0 20px $color-accent-2 !important; }

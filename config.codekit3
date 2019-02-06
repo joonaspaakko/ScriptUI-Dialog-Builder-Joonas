@@ -489,6 +489,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"/source/assets/_sass/toolbar/snapshot.scss": {
+		"aP": 1,
+		"bl": 1,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/build/assets/_sass/toolbar/snapshot.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/source/assets/_sass/toolbar/toolbar.scss": {
 		"aP": 1,
 		"bl": 1,
@@ -7723,16 +7736,6 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/source/assets/js/dialog.builder/modules/snapshot.js": {
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/dialog.builder/modules/snapshot.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
 	"/source/assets/js/dialog.builder/modules/toggle.active.visibility.js": {
 		"ft": 64,
 		"ma": 0,
@@ -7799,6 +7802,16 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/sample.dialog.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/modules/toolbar/snapshot.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/snapshot.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -7897,7 +7910,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-fry",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 571150590.94061697
+	"lastBuiltDate": 571179347.553213
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,

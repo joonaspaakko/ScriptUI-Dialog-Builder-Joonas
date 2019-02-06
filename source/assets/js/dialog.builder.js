@@ -38,6 +38,7 @@
 // @codekit-prepend "dialog.builder/modules/toolbar/import.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/reset.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/sample.dialog.js";
+// @codekit-prepend "dialog.builder/modules/toolbar/snapshot.js";
 // @codekit-prepend "dialog.builder/modules/custom.cursor.js";
 // @codekit-prepend "dialog.builder/modules/toggle.active.visibility.js";
 // @codekit-prepend "dialog.builder/modules/notifications.js";
