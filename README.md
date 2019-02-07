@@ -5,22 +5,21 @@
 
 > This repository includes a build folder that contains the same files as in the website. So if the url doesn't work for some reason, you should be able to download the repo and use it locally. Everything it needs to run is in the build folder. Just open the `build\index.html` in your browser.
 
-## Desktop applications?
+## Desktop applications
+
+These were created using [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium.
 
 Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
 
-> These were created using [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium.
-
 **Benefits?**
 
-- You get an Icon you can use to launch the web app
+- You get an Icon in your desktop you can use to launch the web app
 - You get to use the web app in its own window
 - If you’re knee deep in the Windows ecosystem and a devout user of Internet Explorer _(or any browser that is not Chrome)_, this desktop application has got your back, since it uses Chromium to display the website.
+- You don't have to worry about losing progress if you wipe your browser's browsing history. Although it may be good to know the app does allow you to do that too, if the need arises.
 
 **Things to know?**
 
-- You do still require an internet connection to use it. 
-- You don't have to worry about losing progress if you wipe your browser history. The app does allow you to do that too, the need arises.
 - There is a tiny hiccup on windows. When you try to duplicate item(s), it may jump a little causing you to grab the wrong items because the `alt` key shows the top menu on windows. Maybe I'll add a secondary modifier key at some point to get around that.
 - For some reason the icons look kinda terrible, but it's too much work to do anything about it.
 
@@ -42,13 +41,13 @@ For example, the sample dialog only uses width and height for various EditText f
 
 ## Browser support
 
-Chrome. _May work in other modern browsers._ No mobile support. 
+Chrome. _May work in other modern browsers._ No mobile support. Use the desktop app if you don't like to use Chrome. 
 
 ## Source folder
 
 Source contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). Codekit does have nifty features like compressing images and stuff, but the major thing is that it's used in order to stitch together various `html`, `css` and `javascript` files... just because it's convenient.
 
-I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes rolled into one. So Codekit probably won't be an issue.
+I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes held together by duct tape (So Codekit probably won't be an issue).
 
 ## Dialog examples (JSX+JSON)
 
