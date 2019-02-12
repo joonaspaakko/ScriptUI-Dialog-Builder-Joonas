@@ -13,6 +13,7 @@ item.list.dialog = function( params ) {
 		type: 'Dialog',
 		parent: true,
 		defaultStyle: {
+			varName: null,
 			text: 'Dialog',
 			preferredSize: [0,0],
 			margins: 16,
@@ -39,6 +40,7 @@ item.list.group = function( params ) {
 		parent: true,
 		addPanelIconClass: 'fas fa-object-group',
 		defaultStyle: {
+			varName: null,
 			preferredSize: [0,0],
 			margins: 0,
 			orientation: 'row',
@@ -65,6 +67,7 @@ item.list.panel = function( params ) {
 		addPanelDivider: 'below',
 		addPanelIconClass: 'fas fa-columns',
 		defaultStyle: {
+			varName: null,
 			text: 'Panel',
 			preferredSize: [0,0],
 			margins: 10,
@@ -92,6 +95,7 @@ item.list.statictext = function( params ) {
 		multiline: true,
 		editInfo: 'This item supports multiline text. <br><br>Due to issues with ScriptUI multiline text, the code export will not output "true" multiline. <br><br>Instead, multiline <code>statictext</code> will be sliced and diced into several <code>statictext</code> and put inside a <code>group</code>.',
 		defaultStyle: {
+			varName: null,
 			text: 'StaticText',
 			justify: 'left',
 			preferredSize: [0,0],
@@ -115,6 +119,7 @@ item.list.edittext = function( params ) {
 		multiline: true,
 		editInfo: "This item supports multiline text. <br><br>Multiline text flow may differ drastically from ScriptUI.",
 		defaultStyle: {
+			varName: null,
 			text: 'EditText',
 			// justify: 'left',
 			preferredSize: [0,0],
@@ -136,6 +141,7 @@ item.list.button = function( params ) {
 		type: 'Button',
 		addPanelIconClass: 'fas fa-toggle-on',
 		defaultStyle: {
+			varName: null,
 			text: 'Button',
 			justify: 'center',
 			preferredSize: [0,0],
@@ -160,7 +166,9 @@ item.list.divider = function( params ) {
 	var obj = {
 		type: 'Divider',
 		addPanelIconClass: 'fas fa-strikethrough',
-		defaultStyle: false,
+		defaultStyle: {
+			varName: null
+		},
 		stylePropInfo: "This item doesn't have any adjustable properties.",
 		editInfo: "Divider orientation is locked to the parent item orientation.",
 		previewHtml:
@@ -181,6 +189,7 @@ item.list.checkbox = function( params ) {
 		addPanelIconClass: 'fas fa-check-square',
 		editInfo: 'You can check the checkbox in the dialog preview.',
 		defaultStyle: {
+			varName: null,
 			text: 'Checkbox',
 			preferredSize: [0,0],
 			alignment: null
@@ -203,6 +212,7 @@ item.list.radiobutton = function( params ) {
 		addPanelIconClass: 'fas fa-dot-circle',
 		editInfo: "You can check the radiobutton in the dialog preview. <br><br> Radiobuttons are split into different groups if there is a different type of item between them.",
 		defaultStyle: {
+			varName: null,
 			text: 'RadioButton',
 			preferredSize: [0,0],
 			alignment: null
@@ -225,6 +235,7 @@ item.list.dropdownlist = function( params ) {
 		addPanelIconClass: 'fas fa-caret-square-down',
 		editInfo: 'You can select a dropdown item in the dialog preview. <br><br>You can make a divider by adding an item that is a single dash character: <code>-</code>.',
 		defaultStyle: {
+			varName: null,
 			text: 'DropDownList',
 			listItems: "Item 1, -, Item 2",
 			preferredSize: [0,0],
@@ -256,7 +267,9 @@ item.list.slider = function( params ) {
 	var obj = {
 		type: 'Slider',
 		addPanelIconClass: 'fas fa-sliders-h',
-		defaultStyle: false,
+		defaultStyle: {
+			varName: null
+		},
 		stylePropInfo: "This item doesn't have any adjustable properties.",
 		editInfo: "Export outputs a static range from 0 to 100 with current value of 50 every single time.",
 		previewHtml:
@@ -276,6 +289,7 @@ item.list.listbox = function( params ) {
 		addPanelIconClass: 'fas fa-list-alt',
 		editInfo: 'You can select item(s) in the dialog preview. <br><br> If you select multiple items, <code>multiline</code> property will be added on export.',
 		defaultStyle: {
+			varName: null,
 			listItems: "Item 1, Item 2",
 			preferredSize: [0,0],
 			alignment: null
@@ -306,6 +320,7 @@ item.list.image = function( params ) {
 		addPanelIconClass: 'fas fa-image',
 		editInfo: "Images are never actually uploaded anywhere, they are stored locally in your browser. <br><br>Make sure to resize images before uploading. <br /><br />It is actually possible to do this in ScriptUI, but takes quite a bit of trickery. I chose not to include it in favor of smaller filesize.",
 		defaultStyle: {
+			varName: null,
 			image: [ "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQdJREFUeNrslv0NgyAQxcV0AEZwBEdoN3AEu0E7iSN0hW6gG9gRuoFuQB8NtGg9QSL4R33JixcUf3zcEZiAkg2UJhvpYMRX+BGYl8PVOxJfHV164rsc5j5UydCwdEGnAu4QtnCH+OY7AOcZ410moeJXVegZFzAn2jfJah4afF/Yvg6YMfbE4wz3RnOjSjBcchnfcpUgWbRyUjPv4UatgDmYWtZ3tORSdVzDcrUWwVPLjyu4tEBzI8Pd4dQeq5NJq5zY61ZMq6Pg5h5PgkfQAdwCnYXPggmo1sUBSsJJsAXqowGcArcijD5wE8wiXX3kiXfSmR/z6jMuvYT93WVvB+/gHbyaXgIMAHWCmD3KjfSwAAAAAElFTkSuQmCC" ],
 			alignment: null
 		},
@@ -328,6 +343,7 @@ item.list.tabbedpanel = function( params ) {
 		addPanelIconClass: 'fas fa-folder',
 		editInfo: '<strong>Valid child item:</strong> <br><i class="far fa-folder"></i> Tab.' + reText.tabs,
 		defaultStyle: {
+			varName: null,
 			preferredSize: [0,0],
 			margins: 10,
 			alignment: null
@@ -353,6 +369,7 @@ item.list.tab = function( params ) {
 		addPanelIconClass: 'far fa-folder',
 		editInfo: "Can only be placed inside <br><i class='fas fa-folder'></i> TabbedPanel." + reText.tabs,
 		defaultStyle: {
+			varName: null,
 			text: 'Tab',
 			preferredSize: [0,0],
 			margins: 10,
@@ -379,6 +396,7 @@ item.list.treeview = function( params ) {
 		addPanelIconClass: 'fas fa-tree',
 		editInfo: '<strong>Valid child item:</strong> <br> <i class="fas fa-leaf"></i> TreeItem.',
 		defaultStyle: {
+			varName: null,
 			preferredSize: [0,0],
 			alignment: null
 		},
@@ -402,6 +420,7 @@ item.list.treeitem = function( params ) {
 		addPanelIconClass: 'fas fa-leaf',
 		editInfo: '<strong>Valid child item:</strong> <br> <i class="fas fa-leaf"></i> TreeItem. <br><br>You can expand or collapse these items in the dialog preview by clicking the arrows.',
 		defaultStyle: {
+			varName: null,
 			text: 'TreeItem'
 		},
 		previewHtml:

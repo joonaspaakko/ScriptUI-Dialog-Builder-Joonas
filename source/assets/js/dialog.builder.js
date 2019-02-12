@@ -1,6 +1,7 @@
 
 // CORE
 // ****
+// @codekit-prepend "dialog.builder/modules/local.storage.js";
 // @codekit-prepend "dialog.builder/item.factory/items.js";
 // @codekit-prepend "dialog.builder/item.factory/_funnel.js";
 // @codekit-prepend "dialog.builder/item.factory/create.js";
@@ -23,14 +24,14 @@
 // PANELS
 // ******
 // @codekit-prepend "dialog.builder/panels/1.add.items.js";
-// @codekit-append "dialog.builder/panels/2.structure.treeview.js";
+// @codekit-append  "dialog.builder/panels/2.structure.treeview.js";
 // @codekit-prepend "dialog.builder/panels/3.item.properties/build.js";
 // @codekit-prepend "dialog.builder/panels/3.item.properties/events.js";
-// @codekit-append "dialog.builder/panels/4.dialog.preview.js";
+// @codekit-prepend "dialog.builder/panels/4.snapshot.js";
+// @codekit-append  "dialog.builder/panels/5.dialog.preview.js";
 
 // MISCELLANEOUS
 // *************
-// @codekit-prepend "dialog.builder/modules/local.storage.js";
 // @codekit-prepend "dialog.builder/modules/loading.screen.js";
 // @codekit-prepend "dialog.builder/modules/number.input.js";
 // @codekit-prepend "dialog.builder/modules/modal.window.js";
@@ -38,7 +39,6 @@
 // @codekit-prepend "dialog.builder/modules/toolbar/import.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/reset.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/sample.dialog.js";
-// @codekit-prepend "dialog.builder/modules/toolbar/snapshot.js";
 // @codekit-prepend "dialog.builder/modules/custom.cursor.js";
 // @codekit-prepend "dialog.builder/modules/toggle.active.visibility.js";
 // @codekit-prepend "dialog.builder/modules/notifications.js";
@@ -117,6 +117,7 @@ else {
   // Reactivate the ye olde active item
   item.activate( oldActiveId );
   // Build Item Properties panel
+	data = local_storage.get('dialog');
   var oldItem = data.items[ 'item-' + oldActiveId ];
   edit_style_panel.build( oldItem.style );
 	

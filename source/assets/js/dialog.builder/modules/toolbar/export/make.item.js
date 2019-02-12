@@ -1,19 +1,28 @@
 
 // When the item type is not a fitting variable name...
-function customVarNames( type, parentType, counters ) {
+function customVarNames( style, type, parentType, counters ) {
+	
+	
+	
 	var result;
-	switch ( type ) {
-		case "dropdownlist":
-			result = 'dropdown' + counters[ type ];
-			break;
-		case "tabbedpanel":
-			result = 'tpanel' + counters[ type ];
-			break;
-		case "dialog": // This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
-			result = type;
-			break;
-		default:
-			result = type + counters[ type ];
+	if ( style.varName ) {
+		var cvCounter = counters[ style.varName.toLowerCase() ];
+		result = style.varName + ( cvCounter > 0 ? cvCounter : '' );
+	}
+	else {
+		switch ( type ) {
+			case "dropdownlist":
+				result = 'dropdown' + counters[ type ];
+				break;
+			case "tabbedpanel":
+				result = 'tpanel' + counters[ type ];
+				break;
+			case "dialog": // This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
+				result = type;
+				break;
+			default:
+				result = type + counters[ type ];
+		}
 	}
 	return result;
 }
@@ -25,9 +34,14 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 	var block = '';
 	var lowerCaseType = type.toLowerCase();
 	
-	++counters[ lowerCaseType ];
+	if ( style.varName ) {
+		++counters[ style.varName.toLowerCase() ];
+	}
+	else {
+		++counters[ lowerCaseType ];
+	}
 	
-	var jsxVarName = customVarNames( lowerCaseType, parentType, counters );
+	var jsxVarName = customVarNames( style, lowerCaseType, parentType, counters );
 	jsxParents[ id ] = jsxVarName;
 	var jsxParentName = jsxParents[ parentId ];
 	

@@ -6,7 +6,19 @@ var edit_style_panel = {};
 edit_style_panel.build = function( style, source ) {
 	
 	var edit_style_container = $('#edit-style-inner-container');
-	edit_style_container.html('');
+	edit_style_container.html(
+		'<span class="target-varName"></span>' +
+		'<span class="target-image"></span>' +
+		'<span class="target-text"></span>' +
+		'<span class="target-listItems"></span>' +
+		'<span class="target-justify"></span>' +
+		'<span class="target-preferredSize"></span>' +
+		'<span class="target-margins"></span>' +
+		'<span class="target-orientation"></span>' +
+		'<span class="target-spacing"></span>' +
+		'<span class="target-alignChildren"></span>' +
+		'<span class="target-alignment"></span>'
+	);
 	
 	var active = $('#panel-tree-view-wrap .active');
 	var lType = active.data('item-type').toLowerCase();
@@ -18,10 +30,9 @@ edit_style_panel.build = function( style, source ) {
 		
 		// Generate edit panel structure
 		$.each( style, function( key, val ) {
-		
 			var html = panel_edit_style_html.init( key, val );
 			if ( html !== undefined ) {
-				html.appendTo( edit_style_container );
+				html.appendTo( edit_style_container.find( '.target-' + key ) );
 			}
 		
 		});

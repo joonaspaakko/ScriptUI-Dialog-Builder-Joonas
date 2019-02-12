@@ -116,7 +116,7 @@ propsPanel.on("keyup", '[data-edit="text"]', function( e ) {
   
 });
 
-propsPanel.on("keyup", '[data-edit="listItems"]', function() {
+propsPanel.on("keyup", '[data-edit="listItems"], [data-edit="varName"]', function() {
   item.funnel.update( $(this).data('edit') );
 });
 

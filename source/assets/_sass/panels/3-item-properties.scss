@@ -1,7 +1,6 @@
 
 #panel-edit-style-wrap {
 	z-index: 10;
-	border-right: 2px solid #414141;
 	
   // Removes the arrows between panels from this one.
   &:before {
@@ -35,10 +34,10 @@ body.update-styles .saving-icon {
 		font-size: 15px;
 		font-weight: 400;
     margin: 19px 0 7px;
-    &:first-child {
-      margin-top: 4px;
-    }
 	}
+  .target-varName h2 {
+    margin-top: 4px;
+  }
   
   h4 {
     margin: 10px 0 0;
@@ -89,6 +88,25 @@ body.update-styles .saving-icon {
   .textarea {
     background-color: #292929;
     border: 1px solid $color-bg;
+    border-radius: 4px;
+    outline: none;
+    padding: 6px;
+    resize: vertical;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 15px;
+    height: 15px;
+    width: 150px;
+    max-height: 160px;
+    color: #fff;
+    &:focus {
+      border: 1px solid $color-accent;
+    }
+  }
+	
+  input[data-edit="varName"] {
+    background-color: #3a3a3a;
+    border: 1px solid #2b2b2b;
     border-radius: 4px;
     outline: none;
     padding: 6px;

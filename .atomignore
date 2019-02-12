@@ -3,4 +3,6 @@
 .atomignore
 config.codekit3
 README.md
-/wiki-images
+/source/wiki-images
+/source/open-graph
+/source/favicon

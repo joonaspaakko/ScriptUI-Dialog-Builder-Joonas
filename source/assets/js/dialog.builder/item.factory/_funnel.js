@@ -54,11 +54,10 @@ item.funnel = {
 	remove: function( id ) {
 		
 		var removedItem = $('#panel-tree-view-wrap [data-item-id="'+ id +'"]'),
-				prev = removedItem.prev(),
-				next = removedItem.next(),
-				parent = removedItem.parent('ul').parent('li'),
+				prev        = removedItem.prev(),
+				next        = removedItem.next(),
+				parent      = removedItem.parent('ul').parent('li'),
 				removedType = removedItem.data('item-type');
-		
 		
 		item.remove.treeView( id );
 		item.remove.dialogPreview( id, removedType );
@@ -84,7 +83,9 @@ item.funnel = {
 		  edit_style_panel.build( data.items[ 'item-' + id ].style );
 		}
 		
-		$("#dialog-section").backstretch("resize");
+		setTimeout(function(){
+			$("#dialog-section").backstretch("resize");
+		}, 1);
 		
 	},
 	update: function( prop, ignore ) {

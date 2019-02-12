@@ -41,6 +41,7 @@
 		.overflow-wrap {
 			visibility: hidden;
 			opacity: 0;
+			display: none;
 		}
 		
 		.collapse i {
@@ -49,6 +50,29 @@
 		
 	}
 	
+  .label {
+		animation-delay: 0ms;
+		animation-duration: 400ms;
+    display: none;
+		> span {
+			display: block;
+	    transform: rotate( 90deg );
+		}
+  }
+  &.collapse .label {
+		opacity: .5;
+    display: block;
+		position: absolute;
+		top: 10px;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		cursor: pointer;
+  }
+	&.collapse:hover .label {
+		opacity: .9;
+	}
+  
 	// Icon bar
 	.collapse {
 		cursor: pointer;
@@ -76,6 +100,7 @@
 }
 
 .panel-title {
+	cursor: pointer;
 	position: absolute;
 	z-index: 20;
 	top: 0;

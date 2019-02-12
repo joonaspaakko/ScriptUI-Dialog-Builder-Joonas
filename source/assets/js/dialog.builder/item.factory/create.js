@@ -40,6 +40,13 @@ item.create = {
 			
 		}
 		
+		data.items[ 'item-' + params.id ]
+		
+		// Adds varName to the style if it's missing
+		if ( data.items[ 'item-' + params.id ].style.varName === undefined ) {
+			data.items[ 'item-' + params.id ].style.varName = null;
+		}
+		
 		local_storage.set('dialog', data );
 		
 		// Always return style object, which is either default data or data that is saved in local storage

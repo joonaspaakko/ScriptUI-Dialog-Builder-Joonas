@@ -17,8 +17,8 @@ $("#dialog-section").backstretch([{ url: './assets/images/bg.jpg', alignX: 'cent
 OverlayScrollbars.defaultOptions({
 	className: "os-theme-thin-light",
 	sizeAutoCapable: true,
-	autoUpdate: true,
-	autoUpdateInterval: 0,
+	// autoUpdate: true,
+	// autoUpdateInterval: 0,
 	// clipAlways: true,
 	paddingAbsolute: true,
 	scrollbars: {

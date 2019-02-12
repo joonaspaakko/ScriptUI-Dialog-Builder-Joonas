@@ -144,8 +144,19 @@ function getJSX( data ) {
 			growTree = []; // JUST DO IT
 	
 	// Creates rest of the counters based on the "Add items" panel...
-	$('#panel-new-item-wrap ul li').each(function() {
-		counters[ $(this).data('item-type').toLowerCase() ] = 0;
+	$('[data-panel="treeview"] ul li').each(function() {
+		
+		var id      = $(this).data('item-id');
+		var type    = $(this).data('item-type');
+		var varName = data.items[ 'item-' + id ].style.varName;
+		
+		if ( varName ) {
+			counters[ varName.toLowerCase() ] = -1;
+		}
+		else {
+			counters[ type.toLowerCase() ] = 0;
+		}
+		
 	});
 	
 	var allItems = $('#panel-tree-view-wrap .tree-dialog li');

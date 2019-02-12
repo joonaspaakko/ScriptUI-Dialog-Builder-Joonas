@@ -35,4 +35,4 @@ $('#toolbar .sample-dialog').on("click", function() {
 		modal.remove();
 	});
 	
-	});
+});

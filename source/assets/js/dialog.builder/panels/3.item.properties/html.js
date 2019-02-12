@@ -13,6 +13,15 @@ panel_edit_style_html.init = function( key, value ) {
 	
 	switch ( key ) {
 		
+		case "varName":
+			html = $(
+				'<h2>' +
+					'Custom Variable Name' +
+				'</h2>' +
+				'<input type="text" data-edit="varName" value="'+ ( value == null ? '' : value ) +'" />'
+			);
+			break;
+		
 		case "text":
 			html = $(
 				'<h2 title="Initial text to be displayed in the control as the title, label, or contents, depending on the control type.">' +

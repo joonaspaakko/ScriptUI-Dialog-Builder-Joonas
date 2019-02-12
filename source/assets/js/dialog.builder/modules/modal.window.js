@@ -1,9 +1,9 @@
 
 var modal = {
 	
-	init: function( content ) {
+	init: function( content, customClass ) {
 		
-		modal.make( content );
+		modal.make( content, customClass );
 		
 		$('#modal-window-overlay').on("click", function() {
 			modal.remove();
@@ -12,12 +12,12 @@ var modal = {
 			
 	},
 	
-	make: function( content ) {
+	make: function( content, customClass ) {
 		
 		content = content === undefined ? '' : content;
 		
 		$(
-			'<div id="modal-window">' +
+			'<div id="modal-window" class="'+ (customClass ? customClass : '') +'">' +
 				'<div id="modal-window-overlay" data-esc></div>' +
 				'<div id="modal-window-content" class="animated fadeIn">' +
 					content +
@@ -29,13 +29,16 @@ var modal = {
 		
 	},
 	
-	remove: function() {
+	remove: function( callbach ) {
 		
 		$('#modal-window-content').addClass('fadeOut');
 		
 		setTimeout(function() {
 			$('#modal-window').remove();
 			$('body').removeClass('modal-window-active');
+			
+			callbach !== undefined && callbach();
+			
 		}, 100);
 	
 	}

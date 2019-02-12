@@ -466,21 +466,21 @@
       overflow: hidden !important;
       visibility: hidden !important;
     }
-    .text-container:before {
-      content: "";
-      display: inline-block;
-      vertical-align: middle;
-      height: 100%;
-    }
-    .text-container.multiline {
-      vertical-align: top !important;
-    }
+    // .text-container {
+    //   content: "";
+    //   display: inline-block;
+    //   vertical-align: middle;
+    //   height: 100%;
+    // }
+    // .text-container.multiline {
+    //   vertical-align: top !important;
+    // }
     .text-container {
-      top: 0px;
-      left: 0px;
-      right: 0px;
-      bottom: 0px;
-      position: absolute;
+      // top: 0px;
+      // left: 0px;
+      // right: 0px;
+      // bottom: 0px;
+      // position: absolute;
     }
     .os-content-glue,
     span.text-container {

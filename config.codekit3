@@ -29,114 +29,6 @@
 		"oAP": "/build/build",
 		"oF": 0
 		},
-	"/favicon/android-chrome-192x192.png": {
-		"ft": 32768,
-		"iS": 6023,
-		"oA": 2,
-		"oAP": "/build/favicon/android-chrome-192x192.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"/favicon/android-chrome-512x512.png": {
-		"ft": 32768,
-		"iS": 14261,
-		"oA": 2,
-		"oAP": "/build/favicon/android-chrome-512x512.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"/favicon/apple-touch-icon.png": {
-		"ft": 32768,
-		"iS": 5420,
-		"oA": 2,
-		"oAP": "/build/favicon/apple-touch-icon.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"/favicon/browserconfig.xml": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "/build/favicon/browserconfig.xml",
-		"oF": 1
-		},
-	"/favicon/favicon-16x16.png": {
-		"ft": 32768,
-		"iS": 1098,
-		"oA": 2,
-		"oAP": "/build/favicon/favicon-16x16.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"/favicon/favicon-32x32.png": {
-		"ft": 32768,
-		"iS": 1791,
-		"oA": 2,
-		"oAP": "/build/favicon/favicon-32x32.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"/favicon/favicon.ico": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "/build/favicon/favicon.ico",
-		"oF": 1
-		},
-	"/favicon/mstile-150x150.png": {
-		"ft": 32768,
-		"iS": 4584,
-		"oA": 2,
-		"oAP": "/build/favicon/mstile-150x150.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
-		},
-	"/favicon/safari-pinned-tab.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/build/favicon/safari-pinned-tab.svg",
-		"oF": 1,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/favicon/site.webmanifest": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "/build/favicon/site.webmanifest",
-		"oF": 1
-		},
-	"/open-graph/og-image.jpg": {
-		"ft": 16384,
-		"iS": 171143,
-		"jF": 0,
-		"oA": 0,
-		"oAP": "/build/open-graph/og-image.jpg",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 1,
-		"q": 100
-		},
 	"/README.md": {
 		"cB": 0,
 		"cS": 0,
@@ -155,6 +47,34 @@
 		"rFN": 0,
 		"uCM": 0
 		},
+	"/source/_includes/1-panel-new-item.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "/build/_includes/1-panel-new-item.html",
+		"oF": 1
+		},
+	"/source/_includes/2-panel-tree-view.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "/build/_includes/2-panel-tree-view.html",
+		"oF": 1
+		},
+	"/source/_includes/3-panel-edit-style.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "/build/_includes/3-panel-edit-style.html",
+		"oF": 1
+		},
+	"/source/_includes/4-panel-snapshots.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "/build/_includes/4-panel-snapshots.html",
+		"oF": 1
+		},
 	"/source/_includes/footer.kit": {
 		"cB": 0,
 		"ft": 2048,
@@ -167,27 +87,6 @@
 		"ft": 2048,
 		"oA": 1,
 		"oAP": "/build/_includes/header.html",
-		"oF": 1
-		},
-	"/source/_includes/panel-edit-style.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "/build/_includes/panel-edit-style.html",
-		"oF": 1
-		},
-	"/source/_includes/panel-new-item.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "/build/_includes/panel-new-item.html",
-		"oF": 1
-		},
-	"/source/_includes/panel-tree-view.html": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "/build/_includes/panel-tree-view.html",
 		"oF": 1
 		},
 	"/source/assets/_sass/dialog.builder.scss": {
@@ -437,7 +336,7 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"/source/assets/_sass/panels/4-dialog-preview.scss": {
+	"/source/assets/_sass/panels/4-snapshot.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
@@ -445,7 +344,20 @@
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
-		"oAP": "/build/assets/_sass/panels/4-dialog-preview.css",
+		"oAP": "/build/assets/_sass/panels/4-snapshot.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
+	"/source/assets/_sass/panels/5-dialog-preview.scss": {
+		"aP": 1,
+		"bl": 1,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/build/assets/_sass/panels/5-dialog-preview.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -485,19 +397,6 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/toolbar/reset.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
-	"/source/assets/_sass/toolbar/snapshot.scss": {
-		"aP": 1,
-		"bl": 1,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/build/assets/_sass/toolbar/snapshot.css",
 		"oF": 0,
 		"oS": 0,
 		"uL": 1
@@ -893,6 +792,14 @@
 		"opt": 1,
 		"plM": 3758088159,
 		"prP": 1
+		},
+	"/source/assets/images/snapshot-load.gif": {
+		"ft": 4194304,
+		"iS": 404,
+		"oA": 0,
+		"oAP": "/build/assets/images/snapshot-load.gif",
+		"oF": 0,
+		"opt": 1
 		},
 	"/source/assets/js/_libraries/autosize-master/.gitignore": {
 		"cB": 0,
@@ -7243,7 +7150,7 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/os-theme-thin-dark.css",
-		"oF": 0,
+		"oF": 1,
 		"oS": 0,
 		"uL": 1
 		},
@@ -7256,7 +7163,7 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/os-theme-thin-light.css",
-		"oF": 0,
+		"oF": 1,
 		"oS": 0,
 		"uL": 1
 		},
@@ -7269,7 +7176,7 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/OverlayScrollbars.min.css",
-		"oF": 0,
+		"oF": 1,
 		"oS": 0,
 		"uL": 1
 		},
@@ -7282,7 +7189,7 @@
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/OverlayScrollbars.css",
-		"oF": 0,
+		"oF": 1,
 		"oS": 0,
 		"uL": 1
 		},
@@ -7292,7 +7199,7 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/jquery.overlayScrollbars.min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
@@ -7302,7 +7209,7 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/jquery.overlayScrollbars.min.min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
@@ -7312,7 +7219,7 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/OverlayScrollbars.min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
@@ -7322,22 +7229,22 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/OverlayScrollbars.min.min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
 	"/source/assets/js/_libraries/OverlayScrollbars-master/LICENSE": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/LICENSE",
-		"oF": 0
+		"oF": 1
 		},
 	"/source/assets/js/_libraries/OverlayScrollbars-master/package.json": {
 		"ft": 524288,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/package-min.json",
-		"oF": 0,
+		"oF": 1,
 		"oO": 0,
 		"oS": 1
 		},
@@ -7349,9 +7256,9 @@
 		"ema": 1,
 		"eSQ": 1,
 		"ft": 4096,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/README.html",
-		"oF": 0,
+		"oF": 1,
 		"oFM": 0,
 		"oS": 0,
 		"pHT": 0,
@@ -7427,16 +7334,16 @@
 	"/source/assets/js/_libraries/split_lines-master/.gitignore": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/split_lines-master/.gitignore",
-		"oF": 0
+		"oF": 1
 		},
 	"/source/assets/js/_libraries/split_lines-master/demos.html": {
 		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/split_lines-master/demos.html",
-		"oF": 0
+		"oF": 1
 		},
 	"/source/assets/js/_libraries/split_lines-master/jquery.splitlines.js": {
 		"ft": 64,
@@ -7444,7 +7351,7 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/split_lines-master/jquery.splitlines.min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
@@ -7456,9 +7363,9 @@
 		"ema": 1,
 		"eSQ": 1,
 		"ft": 4096,
-		"oA": 0,
+		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/split_lines-master/README.html",
-		"oF": 0,
+		"oF": 1,
 		"oFM": 0,
 		"oS": 0,
 		"pHT": 0,
@@ -7806,16 +7713,6 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/source/assets/js/dialog.builder/modules/toolbar/snapshot.js": {
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/snapshot.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
 	"/source/assets/js/dialog.builder/panels/1.add.items.js": {
 		"ft": 64,
 		"ma": 0,
@@ -7866,12 +7763,22 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/source/assets/js/dialog.builder/panels/4.dialog.preview.js": {
+	"/source/assets/js/dialog.builder/panels/4.snapshot.js": {
 		"ft": 64,
 		"ma": 0,
 		"mi": 0,
 		"oA": 1,
-		"oAP": "/build/assets/js/dialog.builder/panels/4.dialog.preview.min.js",
+		"oAP": "/build/assets/js/dialog.builder/panels/4.snapshot.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/panels/5.dialog.preview.js": {
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/panels/5.dialog.preview.min.js",
 		"oF": 1,
 		"sC": 0,
 		"tS": 0
@@ -7886,6 +7793,103 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/favicon/android-chrome-192x192.png": {
+		"ft": 32768,
+		"iS": 6023,
+		"oA": 2,
+		"oAP": "/build/favicon/android-chrome-192x192.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/favicon/android-chrome-512x512.png": {
+		"ft": 32768,
+		"iS": 14261,
+		"oA": 2,
+		"oAP": "/build/favicon/android-chrome-512x512.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/favicon/apple-touch-icon.png": {
+		"ft": 32768,
+		"iS": 5420,
+		"oA": 2,
+		"oAP": "/build/favicon/apple-touch-icon.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/favicon/browserconfig.xml": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "/build/favicon/browserconfig.xml",
+		"oF": 1
+		},
+	"/source/favicon/favicon-16x16.png": {
+		"ft": 32768,
+		"iS": 1098,
+		"oA": 2,
+		"oAP": "/build/favicon/favicon-16x16.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/favicon/favicon-32x32.png": {
+		"ft": 32768,
+		"iS": 1791,
+		"oA": 2,
+		"oAP": "/build/favicon/favicon-32x32.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/favicon/favicon.ico": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "/build/favicon/favicon.ico",
+		"oF": 1
+		},
+	"/source/favicon/mstile-150x150.png": {
+		"ft": 32768,
+		"iS": 4584,
+		"oA": 2,
+		"oAP": "/build/favicon/mstile-150x150.png",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/favicon/safari-pinned-tab.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/favicon/safari-pinned-tab.svg",
+		"oF": 1,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/source/favicon/site.webmanifest": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "/build/favicon/site.webmanifest",
+		"oF": 1
+		},
 	"/source/index.kit": {
 		"cB": 1,
 		"ft": 2048,
@@ -7893,7 +7897,18 @@
 		"oAP": "/build/index.html",
 		"oF": 0
 		},
-	"/wiki-images": {
+	"/source/open-graph/og-image.jpg": {
+		"ft": 16384,
+		"iS": 171143,
+		"jF": 0,
+		"oA": 2,
+		"oAP": "/build/open-graph/og-image.jpg",
+		"oF": 1,
+		"oIPL": 0,
+		"opt": 1,
+		"q": 100
+		},
+	"/source/wiki-images": {
 		"ft": 65536,
 		"oA": 1,
 		"oAP": "/build/wiki-images",
@@ -7910,7 +7925,7 @@
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "meme-fry",
 	"iconImageWasSetByUser": 1,
-	"lastBuiltDate": 571179347.553213
+	"lastBuiltDate": 571667679.88816202
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
