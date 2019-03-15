@@ -107,6 +107,15 @@
   border-radius: 0;
   box-shadow: none;
   
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
   .id {
     
   }
@@ -115,6 +124,7 @@
   }
   
   img {
+		max-width: 90%;
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
     display: inline-block;

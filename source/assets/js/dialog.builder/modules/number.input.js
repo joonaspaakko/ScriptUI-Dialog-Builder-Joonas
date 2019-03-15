@@ -194,69 +194,70 @@ function numberInputs() {
 
 	function numberSwitch( numberElement, action, shift, dragSpeed ) {
 		
-	  var number = numberElement.val();
+		var numberRaw = numberElement.val();
+	  var number = parseInt( numberRaw.replace(/\D/g,''), 10);
+		number = !number ? 0 : number;
 		
-	  if ( !isNaN(number) ) {
-	    
-	    number = parseInt( number, 10);
-			var active      = $('#dialog .active'),
-					widthInput  = numberElement.hasClass('width'),
-					heightInput = numberElement.hasClass('height');
-			
-	    var numData = {
-	      min: parseInt( numberElement.attr('min'), 10),
-	      max: parseInt( numberElement.attr('max'), 10),
-	      step: dragSpeed || parseInt( numberElement.attr('step'), 10),
-	      modifierStep: parseInt( numberElement.attr('modifier-step'), 10)
-	    };
-			
-			
-	    var step = (shift ? numData.modifierStep : numData.step) || 1,
-	        belowMin = number < numData.min,
-	        aboveMax = number > numData.max,
-	        outOfRange = belowMin || aboveMax;
-			
-			// If value is 0 when the action starts → fetch
-			// visual size and then continue as normal...
-			if ( startZero ) {
-				startZero = false;
-				if ( widthInput ) {
-					number = Math.round( active.width() ) + ( action === 'down' ? 1 : 0 ) - ( action === 'up' ? 1 : 0 );
-				}
-				else if ( heightInput ) {
-					var startHeight = $('#dialog .active').data('item-type') === 'Dialog' ? active.find('> .padding-box').outerHeight() : active.height();
-					number = Math.round( startHeight ) + ( action === 'down' ? 1 : 0 ) - ( action === 'up' ? 1 : 0 );
-				}
+		var active      = $('#dialog .active'),
+				widthInput  = numberElement.hasClass('width'),
+				heightInput = numberElement.hasClass('height');
+		
+		var numData = {
+			min: parseInt( numberElement.attr('min'), 10),
+			max: parseInt( numberElement.attr('max'), 10),
+			step: dragSpeed || parseInt( numberElement.attr('step'), 10),
+			modifierStep: parseInt( numberElement.attr('modifier-step'), 10)
+		};
+		
+		var step = (shift ? numData.modifierStep : numData.step) || 1,
+				belowMin = number < numData.min,
+				aboveMax = number > numData.max,
+				outOfRange = belowMin || aboveMax;
+		
+		// If value is 0 when the action starts → fetch
+		// visual size and then continue as normal...
+		if ( startZero ) {
+			startZero = false;
+			if ( widthInput ) {
+				number = Math.round( active.width() ) + ( action === 'down' ? 1 : 0 ) - ( action === 'up' ? 1 : 0 );
 			}
-			
-	    switch ( action ) {
-	      case 'blur':
-	        if ( outOfRange ) {
-	          var n = belowMin && numData.min ||
-	                  aboveMax && numData.max
-	          numberElement.val( n );
-	        }
-	        break;
-	      case 'up':
-	        if ( number < numData.max ) {
-	          number = number + step > numData.max ? numData.max : number + step;
-	          numberElement.val( number );
-	          startNumber = number;
-	        }
-	        break;
-	      case 'down':
-	        if ( number > numData.min ) {
-	          number = number - step < numData.min ? numData.min : number - step;
-	          numberElement.val( number );
-	          startNumber = number;
-	        }
-	        break;
-	    }
-	  
-	  }
-	  else {
-    	numberElement.val( startNumber );
-	  }
+			else if ( heightInput ) {
+				var startHeight = $('#dialog .active').data('item-type') === 'Dialog' ? active.find('> .padding-box').outerHeight() : active.height();
+				number = Math.round( startHeight ) + ( action === 'down' ? 1 : 0 ) - ( action === 'up' ? 1 : 0 );
+			}
+		}
+		// Gets rid of non numeric characters
+		else if ( numberRaw !== number.toString() ) {
+			numberElement.val( number );
+		}
+		// If empty
+		else if ( !number ) {
+			numberElement.val( 0 );
+		}
+
+		switch ( action ) {
+			case 'up':
+				if ( number < numData.max ) {
+					number = number + step > numData.max ? numData.max : number + step;
+					numberElement.val( number );
+					startNumber = number;
+				}
+				break;
+			case 'down':
+				if ( number > numData.min ) {
+					number = number - step < numData.min ? numData.min : number - step;
+					numberElement.val( number );
+					startNumber = number;
+				}
+				break;
+		}
+		
+		// Is outside of the min max range defined in the input.number with a data-attribute...
+		if ( outOfRange ) {
+			var n = belowMin && numData.min ||
+							aboveMax && numData.max
+			numberElement.val( n );
+		}
 		
 		item.funnel.update( numberElement.data('edit') );
 		

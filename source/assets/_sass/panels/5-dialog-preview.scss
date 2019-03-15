@@ -361,7 +361,7 @@
 			border-radius: 9999px;
       .text-container {
         display: block;
-        padding: 0px 20px;
+        padding: 0px 14px;
       }
 			&:hover {
 				// background: #cdcdcd;
@@ -738,21 +738,24 @@
 
   .tabbed-panel {
     display: flex;
+    flex-direction: column;
     > .tab-container {
-      position: absolute;
-      z-index: 1;
-      top: auto;
-      left: auto;
-      margin-top: 8px;
-      margin-left: 13px;
-      text-align: left;
       display: block !important;
+      position: relative;
+      height: 0px;
+      top: 10px;
+      // padding: 0 13px 0 13px;
+      padding: 0 34px 0 12px;
+      margin: 0;
+      text-align: left;
       justify-self: flex-start;
       align-self: flex-start;
+      
     	.tab {
         cursor: default;
     		display: inline-block;
-        padding-bottom: 3px;
+        letter-spacing: 1px;
+        padding-bottom: 1px;
     		border-bottom: 2px solid transparent;
         margin-left: 28px;
         &:first-child {
@@ -770,6 +773,7 @@
     > .padding-box {
       display: flex;
       margin: 0 !important;
+			padding: 29px 1px 1px 1px !important;
     }
   	> .padding-box > .tab {
       flex: 1;
@@ -783,15 +787,17 @@
       border: none !important;
   	}
   }
-
+	.tab-width-auto {
+		min-width: auto !important;
+		width: auto !important;
+		min-height: auto !important;
+		height: auto !important;
+	}
   .visible-tab,
   .tab-temp-class {
     position: relative;
     z-index: 0;
     display: flex !important;
-    padding-top   : 25px !important;
-		padding-right : 27px !important;
-    padding-bottom: 27px !important;
   }
 	.tab-temp-class {
     align-self: flex-start !important;
@@ -800,9 +806,6 @@
 	}
 	.tab-temp-hide-class {
     display: none !important;
-    padding-top   : 0px !important;
-		padding-right : 0px !important;
-    padding-bottom: 0px !important;
 	}
 	
 	.image-item {
@@ -834,4 +837,9 @@
 // body.dialog-animate-changes #dialog,
 body.dialog-animate-changes #dialog * {
   transition: all 250ms ease;
+}
+
+
+.paint-target-for-deletion {
+	background: #d63e3e;
 }

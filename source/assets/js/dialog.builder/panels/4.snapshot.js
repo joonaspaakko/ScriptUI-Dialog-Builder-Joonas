@@ -66,6 +66,7 @@ var snapshot = {
 					'<span><strong>Date: </strong>'+ new Date( ssDataItem.date ).toLocaleString() +'</span>' +
 					'<br><div>Use left and right arrow keys to navigate between snapshots.</div>' +
 					'<div>When you load a snapshot it overwrites your current dialog, so you should take a new snapshot first if it has changes you want to keep.</div>' +
+					"<div>Sometimes these preview images have some weird clipping errors and such. Just wanted to acknowledge that it can happen, but it doesn't carry over to the loaded snapshot.</div>" +
 				'</div>' +
 				'<div class="btn-wrap">' +
 					'<span class="remove">Delete</span>' +

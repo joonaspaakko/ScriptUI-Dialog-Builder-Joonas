@@ -117,7 +117,31 @@ propsPanel.on("keyup", '[data-edit="text"]', function( e ) {
 });
 
 propsPanel.on("keyup", '[data-edit="listItems"], [data-edit="varName"]', function() {
+  
+  // Make sure varName is camelCase
+  if ( $(this).data('edit') === 'varName' ) {
+		// https://stackoverflow.com/a/32604073/603568
+		var toCamelCase = function (str) {
+			// Lower cases the string
+			return str//.toLowerCase()
+				// Replaces any - or _ characters with a space
+				// .replace( /[-_]+/g, ' ')
+				.replace( /[-]+/g, ' ')
+				// Remove number prefixes
+				.replace( /^[0-9]/g, '')
+				// Removes any non alphanumeric characters
+				.replace( /[^\w\s]/g, '')
+				// Uppercases the first character in each group immediately following a space
+				// (delimited by spaces)
+				.replace( / (.)/g, function($1) { return $1.toUpperCase(); })
+				// Removes spaces
+				.replace( / /g, '' );
+		}
+		$(this).val( toCamelCase( $(this).val() ) );
+  }
+  
   item.funnel.update( $(this).data('edit') );
+  
 });
 
 propsPanel.on("click", '[data-edit="justify"]', function() {

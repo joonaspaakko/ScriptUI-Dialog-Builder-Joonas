@@ -30,7 +30,7 @@ var tab = {
 		
 		var currentItem = $('#panel-tree-view-wrap [data-item-id="'+ id +'"]');
 		
-		// Shows the green "active" color on the tab text...
+		// Shows the green accent color on the tab text...
 		var currentTab = $('#dialog .tab-container [data-tab-id="'+ id +'"]');
 		$('#dialog .currently-active-tab').removeClass('currently-active-tab');
 		currentTab.addClass('currently-active-tab');
@@ -46,12 +46,54 @@ var tab = {
 				
 				tab.show( dataTab, dataTPanel );
 				
+				$(this).css({ minWidth: '', minHeight: '' });
+				
 				// Write back to local storage
 				dataTPanel.style.selection = dataTab.id;
 				local_storage.set('dialog', data);
-				
+			
 			});
 		}
+		
+		if ( currentItem.data('item-type') === 'Tab' ) {
+			tab.resizeActive( id );
+		}
+		
+	},
+	
+	resizeActive: function( id ) {
+		
+		var active = $('#dialog [data-item-id="'+ id +'"]'),
+				// parentId = active.data('item-parent-id'),
+				vtClass = 'visible-tab';
+		
+		active.addClass('tab-width-auto');
+		var activeW = active.width(),
+				activeH = active.height();
+		active.removeClass('tab-width-auto');
+		
+		var maxWidth = 0,
+				maxHeight = 0;
+		
+		active.removeClass( vtClass );
+		active.siblings('.tab').each(function() {
+			
+			$(this).addClass( vtClass + ' tab-width-auto');
+			if ( $(this).width()  > maxWidth )  maxWidth = $(this).width();
+			if ( $(this).height() > maxHeight ) maxHeight = $(this).height();
+			$(this).removeClass( vtClass + ' tab-width-auto');
+			
+			$(this).css({ minWidth: '', minHeight: '' });
+			
+		});
+		
+		if ( maxWidth > activeW ) active.css({ minWidth: maxWidth });
+		else { active.css({ minWidth: '' }) }
+		
+		if ( maxHeight > activeH ) active.css({ minHeight: maxHeight });
+		else { active.css({ minHeight: '' }) }
+		
+		active.addClass( vtClass );
 		
 	},
 	
@@ -69,23 +111,34 @@ var tab = {
 		var data = local_storage.get('dialog');
 		var tabId;
 		
+		var removedItem = $('#dialog [data-item-id="'+ id +'"]');
+		
+		
+		// var parent = removedItem.data('item-parent-id')
+				
 		if ( type === "Tab" ) {
 			tabId = id;
 			$('#dialog div[data-tab-id="'+ tabId +'"]').remove();
 			var dataItem = data.items['item-'+ id ];
 			var anotherTab = $('#panel-tree-view-wrap [data-item-id="'+ dataItem.parentId +'"] > ul > li:first');
 			tabId = anotherTab.data('item-id');
+			var visibleSiblingTab = removedItem.siblings('.visible-tab');
 			
-			$('#dialog [data-item-id="'+ id +'"]').remove();
-			tab.onUpdate.init( data, tabId );
-		}
-		else if ( $('#dialog [data-item-id="'+ id +'"]').closest('.tab').length > 0 ) {
-			tabId = $('#dialog [data-item-id="'+ id +'"]').closest('.tab').data('item-id');
+			var activeRelativeId =
+					removedItem.prev().length > 0 && removedItem.prev().data('item-id') ||
+					removedItem.next().length > 0 && removedItem.next().data('item-id') ||
+					removedItem.closest('.panel.tab').length > 0 && removedItem.closest('.panel.tab').data('item-id') ||
+					false;
 			
-			$('#dialog [data-item-id="'+ id +'"]').remove();
-			tab.onUpdate.init( data, tabId );
+			removedItem.remove();
+			visibleSiblingTab.length > 0 && tab.resizeActive( visibleSiblingTab.data('item-id') );
+			if ( visibleSiblingTab.length < 1 && activeRelativeId ) {
+				item.activate( activeRelativeId );
+			}
 		}
-		
+		else if ( removedItem.closest('.tab').length > 0 ) {
+			removedItem.remove();
+		}
 		
 	},
 	
@@ -98,14 +151,13 @@ var tab = {
 			
 			$('body').addClass('dragging-tab');
 			
-			var id = $item.data('item-id');
-			var data = local_storage.get('dialog');
-			// var itemData = data.items['item-'+ id ];
-			var dialogItem = $('#dialog [data-item-id="'+ id +'"]');
-
-			dialogItem.addClass('tab-temp-hide-class');
-			tab.onUpdate.init( data, id );
-			dialogItem.removeClass('tab-temp-hide-class');
+			var activeRelativeId =
+					$item.prev().length > 0 && $item.prev().data('item-id') ||
+					$item.next().length > 0 && $item.next().data('item-id') ||
+					$item.closest('.tab').length > 0 && $item.closest('.tab').data('item-id') ||
+					false;
+			if ( activeRelativeId ) $('#dialog [data-item-id="'+ activeRelativeId +'"]').addClass('dragged-tab-relative');
+			
 		}
 		
 	},
@@ -124,7 +176,6 @@ var tab = {
 			$('#dialog [data-item-id="'+ $item.data('item-id') +'"]').closest('.tab').length > 0
 		) {
 			
-		
 			$('body').removeClass('dragging-tab');
 			
 			var data     = local_storage.get('dialog');
@@ -143,13 +194,14 @@ var tab = {
 			var tabContent = tPanel.find('> .padding-box > .tab');
 			tab.containerSort( tabContent, tabShelf );
 			
+			// This tries to make sure the previous tabbed panel still has an active tab and js resized
+			var draggedRelative = $('#dialog .dragged-tab-relative').removeClass('dragged-tab-relative');
+			item.activate( draggedRelative.data('item-id') );
+			
 			item.activate( id );
 			
 			// Build Item Properties panel
 			edit_style_panel.build( data.items[ 'item-' + id ].style );
-			
-			// Update
-			tab.onUpdate.init( data, id );
 			
 		}
 		
@@ -160,53 +212,6 @@ var tab = {
 			var itemId = $(this).data('item-id');
 			tabShelf.find('[data-tab-id="'+ itemId +'"]').appendTo( tabShelf );
 		});
-	},
-	
-	onUpdate: {
-		init: function( data, id ) {
-			
-			// Start churning if updated item inside a tabbed panel...
-			// - Because any nested item can cause parents and the whole hecking family to bloat up
-			var currentItem = $('#panel-tree-view-wrap [data-item-id="'+ id +'"]');
-			if ( currentItem.closest('.tabbedpanel').length > 0 ) {
-				
-				// Inception
-				// Going through all the nested tabbed panels...
-				var allParentTpanels = currentItem.parentsUntil('.dialog').filter('.tabbedpanel');
-				allParentTpanels.each(function() {
-					
-					var dataItem = data.items['item-' + $(this).data('item-id') ];
-					var currentItem = $('#dialog [data-item-id="'+ dataItem.id +'"]');
-					
-					// Inception 2: The Inceptioning
-					// - Goes through every child tab checking which one is the biggest.
-					var padMinWidth = 0, padMinHeight = 0;
-					currentItem.find('> .padding-box > .tab').each(function() {
-						// Makes current tab visible so that dimensions return properly.
-						// Siblings are also hidden...
-						$(this).addClass('tab-temp-class');
-						var panelWidth = $(this).innerWidth();
-						var panelHeight = $(this).innerHeight();
-						$(this).removeClass('tab-temp-class');
-						// Collect max dimensions...
-						if ( panelWidth > padMinWidth ) padMinWidth = panelWidth;
-						if ( panelHeight > padMinHeight ) padMinHeight = panelHeight;
-					});
-					
-					// Sneak in the tab container width if it's bigger than the biggest tab container.
-					var tabContainer = currentItem.find('> .tab-container');
-					var tabContWidth = tabContainer.width() + (parseInt( tabContainer.css('margin-left'), 10) * 2);
-					if ( padMinWidth < tabContWidth ) padMinWidth = tabContWidth;
-					
-					// Apply width and height to tabbed panel so that everything stays within limits and thinds don't jump around.
-					currentItem.find('> .padding-box').css({ minWidth: padMinWidth, minHeight: padMinHeight });
-					
-				});
-			
-			}
-		
-		}
-	
 	}
 
 };

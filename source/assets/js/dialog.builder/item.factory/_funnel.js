@@ -42,7 +42,6 @@ item.funnel = {
 				sizeDivUpdate();
 			});
 			
-			
 		}
 		else if ( params.type === 'ListBox' ) {
 			active.find('.inner-wrap').overlayScrollbars({});
@@ -103,9 +102,6 @@ item.funnel = {
 		
 		// DIALOG PREVIEW
 		if ( ignore !== "dialog" ) item.update.style.dialogPreview( prop, data, dataItem );
-		
-		// TAB - ITEM
-		tab.onUpdate.init( data, dataItem.id );
 		
 		// TREE VIEW - ITEM
 		treeViewItem.onUpdate( data, dataItem );

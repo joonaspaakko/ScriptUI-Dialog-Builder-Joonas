@@ -7,14 +7,8 @@ item.update.get_values = function( prop ) {
 	
 	switch ( prop ) {
 		
-		
 		case "varName":
-			var camelCase = function(str) {
-			  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
-			    return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-			  }).replace(/\s+/g, '');
-			}
-			data.varName = camelCase( _this.val() );
+			data.varName = _this.val();
 			break;
 		
 		case "text":

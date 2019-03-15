@@ -129,7 +129,7 @@ dialogElem.on("keydown", "[contenteditable]", function( e ) {
 });
 
 
-// DIALOG TITLE ELLIPSIS (input/contenteditable with ellipsis) FIX:
+// A FIX FOR DIALOG TITLE ELLIPSIS (input/contenteditable with ellipsis):
 // Related code can be found in 'dialog-preview.scss' file. Search
 // for: #5945573415 The css already gets rid of the ellipsis
 // on focus, but that is only part of the problem. When user

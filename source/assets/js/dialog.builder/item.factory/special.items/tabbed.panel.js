@@ -22,7 +22,6 @@ var tabbedPanel = {
 			item.funnel.create( params ); // Filler tab N.1.
 			var firstTabId = treeView.find('.active').data('item-id');
 			
-			
 			item.activate( tabbedPanelId );
 			params.id = item.get.id();
 			item.funnel.create( params ); // Filler tab N.2.
@@ -83,6 +82,22 @@ var tabbedPanel = {
 		
 		return result;
 		
+	},
+	
+	set: {
+		margins: function( top, right, bottom, left, id, paddingBox ) {
+			
+			paddingBox.find('> .margins').remove();
+			
+			$(
+			'<style class="margins">' +
+				'#dialog [data-item-id="'+ id +'"] > .padding-box > .tab > .padding-box {' +
+					'padding: '+ (top <= 3 ? 3 : top) + 'px ' + (right <= 3 ? 3 : right) + 'px ' + (bottom <= 1 ? 1 : bottom) + 'px ' + (left <= 3 ? 3 : left) + 'px;' +
+				'}\n' +
+			'</style>'
+			).prependTo( paddingBox );
+			
+		}
 	}
 	
 };

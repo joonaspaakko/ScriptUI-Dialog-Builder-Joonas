@@ -2,8 +2,6 @@
 // When the item type is not a fitting variable name...
 function customVarNames( style, type, parentType, counters ) {
 	
-	
-	
 	var result;
 	if ( style.varName ) {
 		var cvCounter = counters[ style.varName.toLowerCase() ];
@@ -25,10 +23,12 @@ function customVarNames( style, type, parentType, counters ) {
 		}
 	}
 	return result;
+	
 }
 
 function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop ) {
 	
+	var tabsies = '    ';
 	var multilineText = [false];
 	
 	var block = '';
@@ -61,7 +61,6 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 	
 	// This is where each item is first added
 	switch ( type ) {
-		
 		
 		case 'Dialog':
 			block += 'var '+ jsxVarName +' = new Window("'+ lowerCaseType +'"); \n';
@@ -127,7 +126,6 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 			// Obviously it does make it harder to edit the text once it's been exported...
 			if ( multilineText[0] ) {
 				
-				var tabsies = '    ';
 				// ADD PARENT GROUP
 				block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
 				// PREFERRED SIZE
@@ -208,7 +206,7 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 	previousItem.parent = jsxParents[ parentId ];
 	
 	var lb = /*type === 'TreeView' ||*/ type === 'TreeItem' && !lastLoop ? '' : '\n';
-	block += (styleJSXitem( data, counters, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText )) + lb;
+	block += (styleJSXitem( data, counters, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies )) + lb;
 	
 	// Add in treeItem expanded properties if this is the last of treeItems in this group
 	var nextItemId = data.order[ index + 1 ];
@@ -240,6 +238,20 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 		
 	}
 	
+	if ( type === 'Tab' ) {
+		
+		// If the current tab is the last of its siblings → Generate the parent tpanel selection here.
+		var lastTabId = $('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab:last').data('tab-id');
+		if ( id === lastTabId ) {
+			block += '// '+ jsxParentName.toUpperCase() +'\n';
+			block += '// '+ Array(jsxParentName.length+1).join("=") +'\n';
+			block += jsxParents[ parentId ] +'.selection = '+ jsxParents[ data.items[ 'item-' + parentId ].style.selection ] +'; \n\n';
+		}
+		
+	}
+	
+	if ( lastLoop ) block += jsxParents[ 0 ] + '.show();';
+	
 	return block;
 }
 
@@ -252,8 +264,8 @@ function multilineCheck( id ) {
 	
 	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
 	var text = container.html();
+	container.width( container.width() ); // Give container width so it doesn't change while this function runs.
 	var words = text.replace(/<br>$/, "").split(" ");
-	
 	container.html('');
 	
 	$.each( words, function( i, nextWord ) {
@@ -272,8 +284,8 @@ function multilineCheck( id ) {
 		else {
 			
 			var heightBefore = container.height();
-			var linebreak = i === 0 ? '' : ' ';
-			container.html( container.html() + linebreak + nextWord );
+			var space = i === 0 ? '' : ' ';
+			container.html( container.html() + space + nextWord );
 			var heightAfter = container.height();
 			
 			// New line has appeared.
@@ -284,13 +296,14 @@ function multilineCheck( id ) {
 				exportText.splice( exportText.length-1, 0, "<br>"); // Add to second to last position
 			}
 			else {
-				exportText.push( linebreak + nextWord );
+				exportText.push( space + nextWord );
 			}
 			
 		}
 		
 	});
 	
+	container.width('');
 	container.html( text ); // Just to make super sure the dialog text stays the same...
 	
 	return [ isMultiline, exportText.join('') ];

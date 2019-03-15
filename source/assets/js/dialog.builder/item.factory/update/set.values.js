@@ -97,13 +97,18 @@ item.update.set_values = function( params ) {
 					paddingLeft: left <= 1 ? 1 : left
 				});
 			}
-			else if ( type === 'Panel' || type === 'Tab' ) {
+			else if ( type === 'Panel' ) {
 				paddingBox.css({
 					paddingTop: top <= 3 ? 3 : top,
 					paddingRight: right <= 3 ? 3 : right,
 					paddingBottom: bottom <= 1 ? 1 : bottom,
 					paddingLeft: left <= 3 ? 3 : left
 				});
+			}
+			else if ( type === 'TabbedPanel' ) {
+				
+				tabbedPanel.set.margins( top, right, bottom, left, id, paddingBox );
+				
 			}
 			else {
 				paddingBox.css({

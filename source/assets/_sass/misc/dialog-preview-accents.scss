@@ -1,4 +1,10 @@
 // I kinda wish I handled this accent color thing differently. It's kind of a hassle to manage....
+// A better way would've been to add a class to all items in place where the accent color should go.
+// Something like: .accent-border, .accent-text-color
+// ...and then target them with: .active .accent-text-color or .active.accent.border
+// This would reduce the risk of _errors_ on many levels... Would also make this way simpler. Right no
+// FIXME: Simplify accent color CSS
+
 
 // ACTIVE ITEM ACCENT COLOR
 // So that you can easily tell which items are active...

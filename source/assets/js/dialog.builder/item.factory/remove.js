@@ -49,7 +49,7 @@ item.remove = {
 		// Gets rid of the tab in dialog prev and also handles resizing
 		tab.onRemove( id, removedType );
 		
-		// Remove the clicked item...
+		// Remove the clicked item if it exists...
 		var dialog = $('#dialog');
 		var removedItem = dialog.find('[data-item-id="'+ id +'"]');
 		if ( removedItem.length > 0 ) {

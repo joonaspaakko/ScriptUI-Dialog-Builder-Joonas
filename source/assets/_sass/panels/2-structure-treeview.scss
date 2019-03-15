@@ -81,6 +81,7 @@
   }
   
 	// INDENT GUIDES
+  // FIXME: This whole thing could probably be so much less complex has I used multiple background in a single element since the beginning.
   $indent-guide-bg-size: 20px 26px;
   .tree-root {
     ul {
@@ -88,7 +89,7 @@
       background-size: $indent-guide-bg-size;
     }
     li {
-      background: url('../images/indent-guides/indent-guide-t-junction.svg') no-repeat left -4px;
+      background: url('../images/indent-guides/indent-guide-t-junction.svg') no-repeat left -4px, url("../images/indent-guides/indent-guide.svg") repeat-y top left;
       background-size: $indent-guide-bg-size;
     }
     li:last-child {

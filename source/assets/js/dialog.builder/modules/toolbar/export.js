@@ -8,25 +8,25 @@ $('#toolbar .export').on("click", function() {
 	
 	var content =
 		'<div id="export-box">' +
-				'<h2>Export.jsx</h2>' +
-				'<div class="code"></div>' +
-				'<div class="btns">' +
-				'<div class="download btn animated fadeInDown">' +
+			'<h2>Export.jsx</h2>' +
+			'<div class="code"></div>' +
+			'<div class="btns">' +
+			'<div class="download btn animated fadeInDown">' +
+				'<div class="icon">' +
+					'<i class="fas fa-check animated"></i>' +
+					'<i class="fas fa-download"></i>' +
+				'</div>' +
+				' <span>Download</span>' +
+			'</div>' +
+				'<div class="copy btn animated fadeInDown">' +
 					'<div class="icon">' +
 						'<i class="fas fa-check animated"></i>' +
-						'<i class="fas fa-download"></i>' +
+						'<i class="fas fa-times animated"></i>' +
+						'<i class="fas fa-clipboard-list"></i>' +
 					'</div>' +
-					' <span>Download</span>' +
+					' <span>Copy to Clipboard</span>' +
 				'</div>' +
-					'<div class="copy btn animated fadeInDown">' +
-						'<div class="icon">' +
-							'<i class="fas fa-check animated"></i>' +
-							'<i class="fas fa-times animated"></i>' +
-							'<i class="fas fa-clipboard-list"></i>' +
-						'</div>' +
-						' <span>Copy to Clipboard</span>' +
-					'</div>' +
-				'</div>' +
+			'</div>' +
 		'</div>';
 	
 	modal.init( content );
@@ -86,7 +86,7 @@ function exportCode() {
 	var data = local_storage.get('dialog');
 	var importJSON = '/* \nCode for Import https://scriptui.joonas.me — (Triple click to select): \n' + JSON.stringify( data ) + '\n*/ \n\n';
 	var jsxItems = getJSX( data );
-	var bundle = importJSON + jsxItems + 'dialog.show();';
+	var bundle = importJSON + jsxItems;
 	return bundle;
 }
 
