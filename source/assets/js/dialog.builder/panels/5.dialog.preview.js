@@ -60,7 +60,7 @@ dialogElem.on("click", '[data-item-type="EditText"]', function( e ) {
 });
 
 // Image click activate
-dialogElem.on("click", '[data-item-type="Image"]', function() {
+dialogElem.on("click", '[data-item-type="Image"], [data-item-type="IconButton"]', function() {
 	
   var id = $(this).data('item-id');
 	item.activate( id );

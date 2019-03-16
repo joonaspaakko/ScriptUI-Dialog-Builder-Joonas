@@ -37,7 +37,8 @@
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
 		&.edit-text > span,
-		&.image-item img {
+		&.image-item img,
+		&.icon-button .inner-wrap {
 			border: 1px solid $color-accent;
 		}
 		&.edit-text > span > span {
@@ -91,6 +92,9 @@
 		&.group > .padding-box, {
 			border: none;
 		}
+		&.icon-button .inner-wrap {
+			border-color: #fafafa;
+		}
 	}
 
 	&.hide-active .active[type=range]::-moz-range-thumb {
@@ -135,7 +139,8 @@
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
 		&.edit-text > span,
-		&.image-item img {
+		&.image-item img,
+		&.icon-button .inner-wrap {
 			border: 1px solid $color-accent-2 !important;
 		}
 		&.edit-text > span > span {

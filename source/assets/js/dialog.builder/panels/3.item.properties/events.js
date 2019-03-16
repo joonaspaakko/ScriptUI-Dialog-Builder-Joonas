@@ -116,6 +116,11 @@ propsPanel.on("keyup", '[data-edit="text"]', function( e ) {
   
 });
 
+// Data-edit just to make sure no stray checkboxes are listened. GET OUT OF HERE WITH YOUR STUPID STORIES, GARY!
+propsPanel.on("change", 'input[type="checkbox"][data-edit]', function() {
+  item.funnel.update( $(this).data('edit') );
+});
+  
 propsPanel.on("keyup", '[data-edit="listItems"], [data-edit="varName"]', function() {
   
   // Make sure varName is camelCase

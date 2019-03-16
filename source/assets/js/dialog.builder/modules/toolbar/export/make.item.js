@@ -193,8 +193,14 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 			break;
 		
 		case 'Image':
-			block += 'var '+ jsxVarName + '_array = ["'+ encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) ) +'"]; \n';
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ jsxVarName + '_array[0]' +') ); \n';
+			block += 'var '+ jsxVarName + '_string = "'+ encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) ) +'"; \n';
+			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ jsxVarName + '_string' +') ); \n';
+			break;
+		
+		case 'IconButton':
+			block += 'var '+ jsxVarName + '_string = "'+ encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) ) +'"; \n';
+			var ibStroke = style.iconButtonStroke ? ', {style: "button"}' : ', {style: "toolbutton"}';
+			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, File.decode('+ jsxVarName + '_string' +')'+ ibStroke +' ); \n';
 			break;
 			
 		default:

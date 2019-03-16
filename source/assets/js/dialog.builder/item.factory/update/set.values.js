@@ -60,6 +60,13 @@ item.update.set_values = function( params ) {
 			}
 			break;
 		
+		// ICON BUTTON STROKE
+		case 'iconButtonStroke':
+			var icsc = val ? 'addClass' : 'removeClass';
+			active[icsc]('icon-button-stroke');
+			break;
+		
+		
 		// CHECKED
 		case 'checked':
 			if ( val === true ) {

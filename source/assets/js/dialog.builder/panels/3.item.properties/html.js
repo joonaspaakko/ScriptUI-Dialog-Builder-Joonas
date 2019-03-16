@@ -9,6 +9,8 @@ var panel_edit_style_html = {};
 // decided what I wanted from it. Once a lazy boy, always a lazy boy.
 panel_edit_style_html.init = function( key, value ) {
 
+	// Order is specified by the premade containers in 'build.js'
+
 	var html;
 	
 	switch ( key ) {
@@ -18,7 +20,16 @@ panel_edit_style_html.init = function( key, value ) {
 				'<h2>' +
 					'Custom Variable Name' +
 				'</h2>' +
-				'<input type="text" data-edit="varName" value="'+ ( value == null ? '' : value ) +'" />'
+				'<input type="text" data-edit="varName" value="'+ ( value == null ? '' : value ) +'">'
+			);
+			break;
+			
+		case "iconButtonStroke":
+			html = $(
+				'<h2>' +
+					'Buttonify (Stroke): ' +
+					'<input style="float: right;" type="checkbox" data-edit="iconButtonStroke"'+ ( value ? 'checked' : '' ) +'>' +
+				'</h2>'
 			);
 			break;
 		

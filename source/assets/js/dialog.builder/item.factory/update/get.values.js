@@ -11,6 +11,10 @@ item.update.get_values = function( prop ) {
 			data.varName = _this.val();
 			break;
 		
+		case "iconButtonStroke":
+			data.iconButtonStroke = _this.prop('checked');
+			break;
+		
 		case "text":
 			data.text = _this.val();
 			break;

@@ -9,6 +9,7 @@ edit_style_panel.build = function( style, source ) {
 	edit_style_container.html(
 		'<span class="target-varName"></span>' +
 		'<span class="target-image"></span>' +
+		'<span class="target-iconButtonStroke"></span>' +
 		'<span class="target-text"></span>' +
 		'<span class="target-listItems"></span>' +
 		'<span class="target-justify"></span>' +

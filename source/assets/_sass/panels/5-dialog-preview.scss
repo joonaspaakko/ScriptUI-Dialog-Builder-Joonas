@@ -808,6 +808,7 @@
     display: none !important;
 	}
 	
+	.icon-button,
 	.image-item {
     justify-items: center;
     align-items: center;
@@ -815,6 +816,30 @@
       display: inline-block;
 		}
 	}
+  
+  .icon-button {
+    .inner-wrap {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      text-align: center;
+      overflow: hidden;
+      background-clip: padding-box;
+      border-radius: 999999px;
+      padding: 6px;
+    }
+    &.icon-button-stroke .inner-wrap {
+      border: 1px solid #fafafa;
+    }
+    &:hover .inner-wrap {
+      background: #fff;
+    }
+    &:active .inner-wrap {
+      background: #45a0f5;
+    }
+  }
 	
 	div.align-children-horizontal-fill.child-width-auto > .padding-box > div,
 	div.parent-width-auto,
