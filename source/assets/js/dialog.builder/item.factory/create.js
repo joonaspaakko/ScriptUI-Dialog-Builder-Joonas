@@ -42,12 +42,22 @@ item.create = {
 		
 		data.items[ 'item-' + params.id ]
 		
+		var defaultStyle = item.list[ params.type.toLowerCase() ](false).defaultStyle;
+		
+		// Cleaning lady
+		if ( defaultStyle.varName === undefined && data.items[ 'item-' + params.id ].style.varName !== undefined ) {
+			delete data.items[ 'item-' + params.id ].style.varName;
+		}
 		// Adds varName to the style if it's missing
-		if ( data.items[ 'item-' + params.id ].style.varName === undefined ) {
+		if ( defaultStyle.varName !== undefined && data.items[ 'item-' + params.id ].style.varName === undefined ) {
 			data.items[ 'item-' + params.id ].style.varName = null;
 		}
+		// Cleaning lady
+		if ( defaultStyle.helpTip === undefined && data.items[ 'item-' + params.id ].style.helpTip !== undefined ) {
+			delete data.items[ 'item-' + params.id ].style.helpTip;
+		}
 		// Adds helpTip to the style if it's missing
-		if ( data.items[ 'item-' + params.id ].style.helpTip === undefined ) {
+		if ( defaultStyle.helpTip !== undefined && data.items[ 'item-' + params.id ].style.helpTip === undefined ) {
 			data.items[ 'item-' + params.id ].style.helpTip = null;
 		}
 		
