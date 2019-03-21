@@ -169,7 +169,7 @@ var snapshot = {
 		if ( itemsLength !== null ) {
 			var snapshotsLabel = $('[data-panel="snapshots"] .label .ss-number');
 			if ( snapshots.ids.length > 0 ) {
-				snapshotsLabel.html( '('+ snapshots.ids.length +')' );
+				snapshotsLabel.html( '<div style="display: inline-block; padding: 0 7px;">|</div>' + snapshots.ids.length );
 			}
 			else {
 				snapshotsLabel.html('');
