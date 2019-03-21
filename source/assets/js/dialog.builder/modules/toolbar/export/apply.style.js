@@ -45,6 +45,10 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			styleBlock += tabsies + jsxVarName + '.alignChildren = "fill"; \n';
 		}
 		
+		// HELP TIP
+		if ( style.helpTip !== null && style.helpTip.length > 0 ) {
+			styleBlock += tabsies + jsxVarName +'.helpTip = "' + $('#dialog [data-item-id="'+ id +'"]').attr('title').replace('\n', '\\n') + '"; \n';
+		}
 		// TEXT
 		if ( style.text !== undefined && style.text.length > 0 ) {
 			if ( type === 'StaticText' && !multilineText[0] || type !== 'StaticText' ) {

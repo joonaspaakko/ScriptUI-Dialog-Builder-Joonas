@@ -99,7 +99,8 @@ item.list.statictext = function( params ) {
 			text: 'StaticText',
 			justify: 'left',
 			preferredSize: [0,0],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="static-text" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -123,7 +124,8 @@ item.list.edittext = function( params ) {
 			text: 'EditText',
 			// justify: 'left',
 			preferredSize: [0,0],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="edit-text" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -145,7 +147,8 @@ item.list.button = function( params ) {
 			text: 'Button',
 			justify: 'center',
 			preferredSize: [0,0],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="button" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -192,7 +195,8 @@ item.list.checkbox = function( params ) {
 			varName: null,
 			text: 'Checkbox',
 			preferredSize: [0,0],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="checkbox" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -215,7 +219,8 @@ item.list.radiobutton = function( params ) {
 			varName: null,
 			text: 'RadioButton',
 			preferredSize: [0,0],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="radiobutton" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -240,7 +245,8 @@ item.list.dropdownlist = function( params ) {
 			listItems: "Item 1, -, Item 2",
 			preferredSize: [0,0],
 			alignment: null,
-			selection: 0
+			selection: 0,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="dropdownlist" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -268,7 +274,8 @@ item.list.slider = function( params ) {
 		type: 'Slider',
 		addPanelIconClass: 'fas fa-sliders-h',
 		defaultStyle: {
-			varName: null
+			varName: null,
+			helpTip: null
 		},
 		stylePropInfo: "This item doesn't have any adjustable properties.",
 		editInfo: "Export outputs a static range from 0 to 100 with current value of 50 every single time.",
@@ -292,7 +299,8 @@ item.list.listbox = function( params ) {
 			varName: null,
 			listItems: "Item 1, Item 2",
 			preferredSize: [0,0],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="list-box" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -324,7 +332,8 @@ item.list.image = function( params ) {
 			image: [
 				"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQdJREFUeNrslv0NgyAQxcV0AEZwBEdoN3AEu0E7iSN0hW6gG9gRuoFuQB8NtGg9QSL4R33JixcUf3zcEZiAkg2UJhvpYMRX+BGYl8PVOxJfHV164rsc5j5UydCwdEGnAu4QtnCH+OY7AOcZ410moeJXVegZFzAn2jfJah4afF/Yvg6YMfbE4wz3RnOjSjBcchnfcpUgWbRyUjPv4UatgDmYWtZ3tORSdVzDcrUWwVPLjyu4tEBzI8Pd4dQeq5NJq5zY61ZMq6Pg5h5PgkfQAdwCnYXPggmo1sUBSsJJsAXqowGcArcijD5wE8wiXX3kiXfSmR/z6jMuvYT93WVvB+/gHbyaXgIMAHWCmD3KjfSwAAAAAElFTkSuQmCC"
 			],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="image-item" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
@@ -347,7 +356,8 @@ item.list.iconbutton = function( params ) {
 			image: [
 				"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQ1IDc5LjE2MzQ5OSwgMjAxOC8wOC8xMy0xNjo0MDoyMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTkgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NjAwRDg1RUYzRkFBMTFFOTk3MzFGMDEyRjUzNjA4NTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NjAwRDg1RjAzRkFBMTFFOTk3MzFGMDEyRjUzNjA4NTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MDBEODVFRDNGQUExMUU5OTczMUYwMTJGNTM2MDg1MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo2MDBEODVFRTNGQUExMUU5OTczMUYwMTJGNTM2MDg1MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PhJ5d1kAAAIwSURBVHjarJQ9S1tRGMefnHvJktxC5TZxCVTikKUWYjpUY7+AFFpw76QObhbrN2h0qEPdmqlUnDqUFjcdNNS5taGTYjAmaBrsNYaCIUn7/1/OCZcQh4IP/OCc87zc87ycG5qbn5cB4oARMAqG9NkFOATH4Krfwe7b3wEPwTSYAck+/RH4CLbAd9AYFOgueApWbdsenpyYkAdjY3LPdX3lr3pdfhwcJL/u7y+32+0XOFoGX8Bv6kM6Nd7kGXifSCRkbnZWYrHYoJSlVqvJu3xeyuUytwz4iTdTWs90Vhnk1dLSjUEo1NGGtvTRvqJ0YaeZDm8SDod7X64jHSNcn+OMQhva0kfX01G6OzOsibkJg7zO5SS3siLVatWH6xzOTDDa0kc3ZcTWLU6ysEaUUmJZljSbTXmztuafcR2NRsVSqmdHn929PXZ2VJk5Md2huFi/XFz0HRGgRLjmmRuwC/gMKbklUXpi/TkJFpYp6XTuE5NmsAEBnwulx/4Iw9Yz6Ha70ul0xKRj0uRZBzoj2ofTfmiNZzJ/WJZKpZJ9lMlIJBLxSafT8mRqSuLxuDiOI+PYT2azEg909sPGBj+ax/az0g9wC2N/xolttVq99rp9DTBBaENb+uh3d8UbUeeB00aj8bxYLEoqlfJvddMTebu+bp7IAtgF1ybQNTgBPxHscaFQiF56iB0KyV/UhIU+LpVkZ3vbT8fzvDMdhI/2Mvhob/U3IlpRAN/A5v/82P4JMAC5N/hnHN2zDwAAAABJRU5ErkJggg=="
 			],
-			alignment: null
+			alignment: null,
+			helpTip: null
 		},
 		previewHtml:
 			'<div class="icon-button" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +

@@ -18,7 +18,8 @@ edit_style_panel.build = function( style, source ) {
 		'<span class="target-orientation"></span>' +
 		'<span class="target-spacing"></span>' +
 		'<span class="target-alignChildren"></span>' +
-		'<span class="target-alignment"></span>'
+		'<span class="target-alignment"></span>' +
+		'<span class="target-helpTip"></span>'
 	);
 	
 	var active = $('#panel-tree-view-wrap .active');

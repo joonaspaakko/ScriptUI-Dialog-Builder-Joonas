@@ -84,7 +84,8 @@ body.update-styles .saving-icon {
     display: block;
     text-align: left;
   }
-	
+  
+	input[data-edit="helpTip"],
   .textarea {
     background-color: #292929;
     border: 1px solid $color-bg;
@@ -102,6 +103,9 @@ body.update-styles .saving-icon {
     &:focus {
       border: 1px solid $color-accent;
     }
+  }
+	input[data-edit="helpTip"] {
+    background: #2a2a2a;
   }
 	
   input[data-edit="varName"] {

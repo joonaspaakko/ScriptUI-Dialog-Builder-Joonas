@@ -46,6 +46,10 @@ item.create = {
 		if ( data.items[ 'item-' + params.id ].style.varName === undefined ) {
 			data.items[ 'item-' + params.id ].style.varName = null;
 		}
+		// Adds helpTip to the style if it's missing
+		if ( data.items[ 'item-' + params.id ].style.helpTip === undefined ) {
+			data.items[ 'item-' + params.id ].style.helpTip = null;
+		}
 		
 		local_storage.set('dialog', data );
 		

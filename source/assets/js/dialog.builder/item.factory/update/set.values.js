@@ -224,6 +224,13 @@ item.update.set_values = function( params ) {
 				active.addClass('alignment-vertical-' +  alignment[1] );
 			}
 			break;
+		
+		// HELP TIP
+		case 'helpTip':
+			if ( val != null ) {
+				active.attr('title', val.replace(/( \\n)/g,'\n').replace(/(\n )/g,'\n') );
+			}
+			break;
 	}
 			
 };

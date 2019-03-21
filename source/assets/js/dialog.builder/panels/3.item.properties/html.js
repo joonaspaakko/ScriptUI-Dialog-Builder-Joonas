@@ -17,17 +17,26 @@ panel_edit_style_html.init = function( key, value ) {
 		
 		case "varName":
 			html = $(
-				'<h2>' +
+				'<h2 title="Each item is given an automatically generated variable. Those variables are pretty generic. With this you can overwrite it with your own.">' +
 					'Custom Variable Name' +
 				'</h2>' +
 				'<input type="text" data-edit="varName" value="'+ ( value == null ? '' : value ) +'">'
 			);
 			break;
 			
+		case "helpTip":
+			html = $(
+				'<h2 title="The help text that is displayed when the mouse hovers over the element. You can add a linebreak by adding &#x5C;n">' +
+					'Tooltip' +
+				'</h2>' +
+				'<input type="text" data-edit="helpTip" value="'+ ( value == null ? '' : value ) +'">'
+			);
+			break;
+			
 		case "iconButtonStroke":
 			html = $(
-				'<h2>' +
-					'Buttonify (Stroke): ' +
+				'<h2 title="Changes style property into &#x22;button&#x22; which creates a border around the button. If unchecked, a style property will use &#x22;toolbutton&#x22;, which has a flat appearance">' +
+					'Buttonify (Border): ' +
 					'<input style="float: right;" type="checkbox" data-edit="iconButtonStroke"'+ ( value ? 'checked' : '' ) +'>' +
 				'</h2>'
 			);
