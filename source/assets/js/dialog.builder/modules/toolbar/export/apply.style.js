@@ -46,8 +46,8 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 		}
 		
 		// HELP TIP
-		if ( style.helpTip !== null && style.helpTip.length > 0 ) {
-			styleBlock += tabsies + jsxVarName +'.helpTip = "' + $('#dialog [data-item-id="'+ id +'"]').attr('title').replace('\n', '\\n') + '"; \n';
+		if ( style.helpTip !== undefined && style.helpTip !== null ) {
+			if ( style.helpTip.length > 0 ) styleBlock += tabsies + jsxVarName +'.helpTip = "' + $('#dialog [data-item-id="'+ id +'"]').attr('title').replace('\n', '\\n') + '"; \n';
 		}
 		// TEXT
 		if ( style.text !== undefined && style.text.length > 0 ) {
