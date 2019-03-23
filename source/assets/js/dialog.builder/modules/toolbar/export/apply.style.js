@@ -62,7 +62,9 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 		}
 		// PREFERRED SIZE
 		if ( type === 'TabbedPanel' && style.preferredSize[0] === 0 ) {
-			styleBlock += tabsies + jsxVarName + '.preferredSize.width = 1; /\/\ A trick for != Photoshop \n';
+			// Apparently this trick only works if the tab shelf is not wider than the widest child item.
+			// styleBlock += tabsies + jsxVarName + '.preferredSize.width = 1; /\/\ A trick for != Photoshop \n';
+			styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ $('#dialog [data-item-id="'+ id +'"]').outerWidth() +'; \n';
 		}
 		else if ( style.preferredSize !== undefined && type !== 'TreeView' ) {
 			var width = style.preferredSize[0];
