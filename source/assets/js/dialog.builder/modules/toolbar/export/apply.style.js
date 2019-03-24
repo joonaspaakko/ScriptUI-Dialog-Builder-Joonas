@@ -83,10 +83,8 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 		}
 		// JUSTIFY
 		if ( style.justify !== undefined && style.justify !== 'left' || type === "Button" && style.justify !== 'center' ) {
-			if ( !multilineText[0] && type !== 'StaticText' ) {
 				var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
 				styleBlock += tabsies + ( linebreak > 0 ? '// ' : ''  ) + jsxVarName + '.justify = "' + style.justify + '"; \n';
-			}
 		}
 		// ORIENTATION
 		if ( style.orientation !== undefined  ) {
