@@ -228,7 +228,7 @@ item.update.set_values = function( params ) {
 		// HELP TIP
 		case 'helpTip':
 			if ( val != null ) {
-				active.attr('title', val.replace(/( \\n)/g,'\n').replace(/(\n )/g,'\n') );
+				active.attr('title', val.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\n') );
 			}
 			break;
 	}

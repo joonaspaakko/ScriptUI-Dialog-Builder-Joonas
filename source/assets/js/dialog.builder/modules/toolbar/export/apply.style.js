@@ -47,7 +47,7 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 		
 		// HELP TIP
 		if ( style.helpTip !== undefined && style.helpTip !== null ) {
-			if ( style.helpTip.length > 0 ) styleBlock += tabsies + jsxVarName +'.helpTip = "' + $('#dialog [data-item-id="'+ id +'"]').attr('title').replace('\n', '\\n') + '"; \n';
+			if ( style.helpTip.length > 0 ) styleBlock += tabsies + jsxVarName +'.helpTip = "' + style.helpTip.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\\n') + '"; \n';
 		}
 		// TEXT
 		if ( style.text !== undefined && style.text.length > 0 ) {

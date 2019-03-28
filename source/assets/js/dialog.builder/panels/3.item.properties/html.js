@@ -28,7 +28,7 @@ panel_edit_style_html.init = function( key, value ) {
 			html = $(
 				'<h2 title="The help text that is displayed when the mouse hovers over the element. You can add a linebreak by adding &#x5C;n">' +
 					'Tooltip' +
-					'<span style="font-size: 12px; color: #b6c0c1;"> Line break " \\n "</span>' +
+					'<span style="font-size: 12px; color: #b6c0c1;"> forced line break " \\n "</span>' +
 				'</h2>' +
 				'<input type="text" data-edit="helpTip" value="'+ ( value == null ? '' : value ) +'">'
 			);
