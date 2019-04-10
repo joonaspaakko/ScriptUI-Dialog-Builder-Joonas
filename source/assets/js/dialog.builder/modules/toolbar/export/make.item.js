@@ -172,7 +172,6 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 				
 				// All softwrapped lines have been converted into forced linebreaks
 				var lines = multilineText[1].split('<br>');
-				console.log( lines );
 				$.each( lines, function( i, line ) {
 					// ADD EACH LINE AS SEPARATE STATIC TEXT ITEM
 					block += tabsies + jsxVarName +'.add("statictext", undefined, "'+ line +'"); \n';

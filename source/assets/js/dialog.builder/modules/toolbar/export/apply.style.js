@@ -83,7 +83,8 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 		}
 		// JUSTIFY
 		if ( type === 'StaticText' && multilineText[0] ) {
-			
+			// No justify for multiline static text.
+			// It's applied in make.item.js if needed.
 		}
 		else if ( style.justify !== undefined && style.justify !== 'left' || type === "Button" && style.justify !== 'center' ) {
 			var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
