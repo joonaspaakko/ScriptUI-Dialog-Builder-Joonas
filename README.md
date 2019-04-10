@@ -23,11 +23,11 @@ Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/A
 - There is a tiny hiccup on windows. When you try to duplicate item(s), it may jump a little causing you to grab the wrong items because the `alt` key shows the top menu on windows. Maybe I'll add a secondary modifier key at some point to get around that.
 - For some reason the icons look kinda terrible, but it's too much work to do anything about it.
 
-## Info
+## General info
 
 SDB's purpose is to help design Adobe Script UI dialogs and auto generate ready to use Javascript. It doesn't handle events. You'll need to write events yourself.
 
-Because the builder simply _simulates_ ScriptUI layout and behavior, there are various differences here and there. One major factor is also that there are small differences between Adobe applications so be aware that the dialog preview may not entirely match what you will see in the application. As an example, a really easy to spot difference is that `tabs` look completely different in Photoshop than it does in other applications. The dialog preview was made using Illustrator CC ScriptUI as the template, so that will have the least amount of differences. I basically picked colors, and measurements of everything in order to replicate the layout + fiddled with the items and their various properties to see how they behave to replicate that as well. 
+Because the builder simply _simulates_ ScriptUI layout and behavior, there are various differences here and there. One major factor is that there are small differences between Adobe applications so be aware that the dialog preview may not entirely match what you will see in the application. As an example, a really easy to spot difference is that `tabs` look completely different in Photoshop than it does in other applications. The dialog preview was made using Illustrator CC ScriptUI as the template, so that will have the least amount of differences. I made this interface by basically picking colors, and measurements of everything in order to replicate the layout and also fiddled with the items and their various properties to see how they behave and tried my best to replicated that as well. 
 
 There's one kinda big feature that I had to leave out because I just couldn't replicate the behavior. I got pretty close, but I wasn't satisfied with it. ScriptUI items can actually have "fill" on both `x` and `y` axis, but in the builder it's limited to one axis.
 
