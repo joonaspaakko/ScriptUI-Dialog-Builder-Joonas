@@ -54,6 +54,7 @@ edit_style_panel.build = function( style, source ) {
 		
 		// Style dropdowns
 		$('.pretty-classic').prettyDropdown({
+			hoverIntent: 1000,
 			classic: true,
 			customClass: 'arrow triangle',
 			selectedMarker: '<i class="fas fa-check"></i>'

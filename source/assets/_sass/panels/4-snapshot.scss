@@ -23,6 +23,7 @@
   
   .snapshots {
     margin-top: 15px;
+    margin-bottom: 15px;
   }
   
   .snapshot {
@@ -95,6 +96,19 @@
       }
     }
   }
+
+	.info {
+    border-radius: 4px;
+		padding: 5px 8px;
+    background: darken( $color-bg,15);
+    white-space: normal;
+    font-size: 12px;
+    transition: opacity 150ms;
+    opacity: .5;
+    &:hover {
+      opacity: 1;
+    }
+	}
   
 }
 
@@ -109,7 +123,7 @@
   
   * {
     -webkit-touch-callout: none;
-    -webkit-user-select: none; 
+    -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;

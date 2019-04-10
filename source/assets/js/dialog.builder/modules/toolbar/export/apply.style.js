@@ -82,9 +82,12 @@ function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentTyp
 			
 		}
 		// JUSTIFY
-		if ( style.justify !== undefined && style.justify !== 'left' || type === "Button" && style.justify !== 'center' ) {
-				var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
-				styleBlock += tabsies + ( linebreak > 0 ? '// ' : ''  ) + jsxVarName + '.justify = "' + style.justify + '"; \n';
+		if ( type === 'StaticText' && multilineText[0] ) {
+			
+		}
+		else if ( style.justify !== undefined && style.justify !== 'left' || type === "Button" && style.justify !== 'center' ) {
+			var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
+			styleBlock += tabsies + ( linebreak > 0 ? '// ' : ''  ) + jsxVarName + '.justify = "' + style.justify + '"; \n';
 		}
 		// ORIENTATION
 		if ( style.orientation !== undefined  ) {

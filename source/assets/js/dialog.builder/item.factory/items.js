@@ -326,7 +326,7 @@ item.list.image = function( params ) {
 	var obj = {
 		type: 'Image',
 		addPanelIconClass: 'fas fa-image',
-		editInfo: "Allowed formats: <code>jpg, png</code><br><br> Images are never uploaded to any server, they are stored locally in your browser.<br><br> Resize images before adding them to the dialog.<br><br> I would recommend small icon sizes. Any images will bump up the script file size quite a bit so you should likely use minimal amount of images.",
+		editInfo: "Allowed formats: <code>jpg, png</code><br><br> Images are never uploaded to any server, they are stored locally in your browser.<br><br> Resize images before adding them to the dialog.<br><br> I would recommend small icon sizes. Any number of images will bump up the script file size quite a bit so you should use minimal amount of images.",
 		defaultStyle: {
 			varName: null,
 			image: [

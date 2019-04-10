@@ -172,6 +172,7 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 				
 				// All softwrapped lines have been converted into forced linebreaks
 				var lines = multilineText[1].split('<br>');
+				console.log( lines );
 				$.each( lines, function( i, line ) {
 					// ADD EACH LINE AS SEPARATE STATIC TEXT ITEM
 					block += tabsies + jsxVarName +'.add("statictext", undefined, "'+ line +'"); \n';
@@ -269,6 +270,8 @@ function multilineCheck( id ) {
 	var exportText = [];
 	
 	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
+	// Had some extension adding extra classes in the <br> so I added this to protect against that
+	container.find('br').replaceWith('<br>');
 	var text = container.html();
 	container.width( container.width() ); // Give container width so it doesn't change while this function runs.
 	var words = text.replace(/<br>$/, "").split(" ");
@@ -282,8 +285,8 @@ function multilineCheck( id ) {
 			isMultiline = true;
 			$.each( stringWithFLB, function( i, nextWord ) {
 				var lastLoop = i === stringWithFLB.length-1;
-				container.html( container.html() + (lastLoop ? '' : ' ') + nextWord + (lastLoop ? '' : '<br>') );
-				exportText.push( (lastLoop ? '' : ' ') + nextWord + (lastLoop ? '' : '<br>') );
+				container.html( container.html() + nextWord + (lastLoop ? '' : '<br>') );
+				exportText.push( nextWord + (lastLoop ? '' : '<br>') );
 			});
 			
 		}
@@ -311,6 +314,5 @@ function multilineCheck( id ) {
 	
 	container.width('');
 	container.html( text ); // Just to make super sure the dialog text stays the same...
-	
 	return [ isMultiline, exportText.join('') ];
 }
