@@ -262,7 +262,6 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 }
 
 
-
 function multilineCheck( id ) {
 	
 	var isMultiline = false;
@@ -273,40 +272,25 @@ function multilineCheck( id ) {
 	container.find('br').replaceWith('<br>');
 	var text = container.html();
 	container.width( container.width() ); // Give container width so it doesn't change while this function runs.
-	var words = text.replace(/<br>$/, "").split(" ");
+	var words = text.replace(/<br>/g, ' <br>').split(" ");
 	container.html('');
-	
 	$.each( words, function( i, nextWord ) {
 		
-		var stringWithFLB = nextWord.split('<br>');
-		if ( stringWithFLB.length > 1 ) {
-			
+		var heightBefore = container.height();
+		var space = i === 0 ? '' : ' ';
+		container.html( container.html() + space + nextWord );
+		var heightAfter = container.height();
+		// New line has appeared.
+		// Joonas uses crushing depression. It's super effective!
+		if ( heightBefore < heightAfter ) {
+			exportText.push(
+				nextWord.replace('<br>', '') // To get rid of forced line break. Added back with splice.
+			);
 			isMultiline = true;
-			$.each( stringWithFLB, function( i, nextWord ) {
-				var lastLoop = i === stringWithFLB.length-1;
-				container.html( container.html() + nextWord + (lastLoop ? '' : '<br>') );
-				exportText.push( nextWord + (lastLoop ? '' : '<br>') );
-			});
-			
+			exportText.splice( exportText.length-1, 0, "<br>"); // Add to second to last position
 		}
 		else {
-			
-			var heightBefore = container.height();
-			var space = i === 0 ? '' : ' ';
-			container.html( container.html() + space + nextWord );
-			var heightAfter = container.height();
-			
-			// New line has appeared.
-			// Joonas uses crushing depression. It's super effective!
-			if ( heightBefore < heightAfter ) {
-				exportText.push( nextWord );
-				isMultiline = true;
-				exportText.splice( exportText.length-1, 0, "<br>"); // Add to second to last position
-			}
-			else {
-				exportText.push( space + nextWord );
-			}
-			
+			exportText.push( space + nextWord );
 		}
 		
 	});
