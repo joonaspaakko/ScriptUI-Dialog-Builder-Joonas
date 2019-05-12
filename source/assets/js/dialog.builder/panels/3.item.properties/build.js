@@ -34,7 +34,8 @@ edit_style_panel.build = function( style, source ) {
 		$.each( style, function( key, val ) {
 			var html = panel_edit_style_html.init( key, val );
 			if ( html !== undefined ) {
-				html.appendTo( edit_style_container.find( '.target-' + key ) );
+				var targetContainer = edit_style_container.find( '.target-' + key );
+				html.appendTo( targetContainer );
 			}
 		
 		});

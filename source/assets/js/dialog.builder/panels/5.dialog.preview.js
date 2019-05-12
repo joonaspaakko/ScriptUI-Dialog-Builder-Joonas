@@ -75,6 +75,15 @@ dialogElem.on("click", '[data-item-type="Image"], [data-item-type="IconButton"]'
 // MIRROR TEXT CHANGES TO EDIT PANEL FROM DIALOG CONTENTEDITABLE
 dialogElem.on("keydown", "[contenteditable]", function( e ) {
   
+  var keycode = e.keyCode ? e.keyCode : e.which;
+  var tab = keycode === 9;
+  if ( $(this).is('[contenteditable]:last') && (!e.shiftKey && tab) ) {
+    e.preventDefault();
+  }
+  else if ( $(this).is('[contenteditable]:first') && (e.shiftKey && tab) ) {
+    e.preventDefault();
+  }
+  
   return lineBreakIntercept( e );
 	
 }).on("keyup", "[contenteditable]", function() {
