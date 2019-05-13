@@ -3,11 +3,13 @@
 
 [scriptui.joonas.me](https://scriptui.joonas.me)
 
-## Offline use
+### Offline use
 
 This repository includes a build folder that contains the same files as the website. So if the URL doesn't work for some reason, you should be able to download the repo and use it locally (offline). Everything it needs to run is in the build folder. Just open the `build\index.html` in Chrome.
 
-## Desktop applications
+### Desktop applications
+
+<details><summary>Read mode...</summary>
 
 The desktop applications are only trying to fill a small slot of convenience, but they're not necessary. The desktop apps don't work offline though since they are only loading up the website. 
 
@@ -29,6 +31,8 @@ Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/A
 - Can't be used offline
 - There is a tiny hiccup on Windows. In Windows, the `Alt` key shows the top menu... and especially if you're duplicating items, the structure panel may shift vertically causing you to drop the item in the wrong place. 
 - For some reason, the icons look kinda terrible, but since these apps are generated using a 3rd party tool, there's nothing to be done about it.
+
+</details>
 
 ## General info about ScriptUI Dialog Builder (SDB)
 
@@ -54,7 +58,7 @@ For example, the sample dialog only uses width and height for various EditText f
 
 The `source`  folder contains the development files, which are stitched together using [Codekit](https://codekitapp.com/). Codekit does have nifty features like compressing images and stuff, but the major thing is that it's used in order to stitch together various `HTML`, `CSS` and `Javascript` files... just because it's convenient.
 
-I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes held together by duct tape (So Codekit probably won't be an issue). I hop off of Codekit in the future if demanded.
+I wouldn't expect anyone to contribute to the code because it's just a big mess. It's all pretty much just prototypes held together by duct tape (So Codekit probably won't be an issue). I may consider hopping off of Codekit in the future...
 
 ## Dialog examples (JSX+JSON)
 
