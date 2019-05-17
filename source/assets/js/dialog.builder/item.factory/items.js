@@ -1,7 +1,8 @@
 
 // TEXT INFO THAT IS USED FOR MULTIPLE ITEMS
 var reText = {
-	tabs: " <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG)."
+	tabs: " <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG).",
+  images: "Allowed formats: <code>jpg, png</code><br><br> Images are never uploaded to any server, they are stored locally in your browser.<br><br> Resize images before adding them to the dialog.<br><br> I would recommend small icon sizes. Any number of images will bump up the script file size quite a bit so you should use minimal amount of images. <br><br><strong class='warning'><span>Warning:</span> Photoshop CC 2015-219</strong> For some reason JPEG files don't work in some PS versions. PNG files seem to work fine.<br>"
 }
 
 var item = {};
@@ -326,7 +327,7 @@ item.list.image = function( params ) {
 	var obj = {
 		type: 'Image',
 		addPanelIconClass: 'fas fa-image',
-		editInfo: "Allowed formats: <code>jpg, png</code><br><br> Images are never uploaded to any server, they are stored locally in your browser.<br><br> Resize images before adding them to the dialog.<br><br> I would recommend small icon sizes. Any number of images will bump up the script file size quite a bit so you should use minimal amount of images.",
+		editInfo: reText.images,
 		defaultStyle: {
 			varName: null,
 			image: [
@@ -349,7 +350,7 @@ item.list.iconbutton = function( params ) {
 	var obj = {
 		type: 'IconButton',
 		addPanelIconClass: 'fas fa-times-circle',
-		editInfo: "Allowed formats: <code>jpg, png</code><br><br> Images are never uploaded to any server, they are stored locally in your browser.<br><br> Resize images before adding them to the dialog.<br><br> I would recommend small icon sizes. Any images will bump up the script file size quite a bit so you should likely use minimal amount of images.",
+    editInfo: reText.images,
 		defaultStyle: {
 			varName: null,
 			iconButtonStroke: false,
