@@ -373,8 +373,8 @@
 	[data-item-type="Checkbox"],
 	[data-item-type="RadioButton"] {
 		text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
 		div {
 			text-align: left;
 		}
@@ -386,21 +386,11 @@
 	
   .static-text,
   .edit-text > .edit-text-inner-wrap {
-    // display: inline-block;
     vertical-align: middle;
-    // &:before {
-    //   content: "";
-    //   display: inline-block;
-    //   vertical-align: middle;
-    //   height: 100%;
-    // }
-    // display:flex;
-    // justify-content:center;
-    // align-items:center;
 		.os-content-glue,
     .text-container {
-      display: inline-block !important;
-      white-space: normal !important;
+      display: inline-block;
+      white-space: normal;
 	    word-break: normal;
 	    overflow-wrap: normal;
       vertical-align: middle;
@@ -853,7 +843,13 @@
 		height: auto !important;
     outline: 1px solid red;
 	}
-	
+
+  .disable-soft-wrap,
+  .disable-soft-wrap .edit-text-inner-wrap,
+  .disable-soft-wrap .text-container {
+    white-space: nowrap !important;
+  }
+
 } // #dialog
 
 

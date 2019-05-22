@@ -89,10 +89,6 @@ propsPanel.on("keyup", '[data-edit="text"]', function( e ) {
   }
   
   var active = $('#dialog .active');
-  if ( active.data('item-type') === 'EditText' ) {
-    active.find('.os-content-glue').html( active.find('[contenteditable]').html() );
-  }
-  
   var textContainer = active.find('.text-container');
   var type = active.data('item-type');
   var tcHeight = textContainer.height();

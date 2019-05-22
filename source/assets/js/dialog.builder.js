@@ -47,20 +47,6 @@
 // @codekit-prepend "dialog.builder/item.factory/special.logic/danger.zone.js";
 // @codekit-prepend "dialog.builder/item.factory/special.logic/force.size.js";
 
-$('.panel-wrap').each(function() {
-	
-	$(this).find('.overflow-wrap').overlayScrollbars({});
-	
-});
-
-$('#dialog-overlay-wrap').overlayScrollbars({
-  className: "os-theme-dark",
-  scrollbars: {
-    visibility: 'visible',
-		autoHide: "never"
-  }
-});
-
 var data = local_storage.get('dialog');
 
 // START FROM NOTHING...

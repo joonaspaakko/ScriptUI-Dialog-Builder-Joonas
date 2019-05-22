@@ -90,6 +90,7 @@ item.list.panel = function( params ) {
 };
 
 item.list.statictext = function( params ) {
+
 	var obj = {
 		type: 'StaticText',
 		addPanelIconClass: 'fas fa-font',
@@ -97,6 +98,7 @@ item.list.statictext = function( params ) {
 		editInfo: 'This item supports multiline text. <br><br>Due to issues with ScriptUI multiline text, the code export will not output "true" multiline. <br><br>Instead, multiline <code>statictext</code> will be sliced and diced into several <code>statictext</code> and put inside a <code>group</code>.',
 		defaultStyle: {
 			varName: null,
+      softWrap: false,
 			text: 'StaticText',
 			justify: 'left',
 			preferredSize: [0,0],
@@ -104,7 +106,7 @@ item.list.statictext = function( params ) {
 			helpTip: null
 		},
 		previewHtml:
-			'<div class="static-text" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
+			'<div class="static-text disable-soft-wrap" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
 				'<span class="text-container" contenteditable="true">'+ params.type +'</span>' +
 			'</div>'
 	};
@@ -122,6 +124,7 @@ item.list.edittext = function( params ) {
 		editInfo: "This item supports multiline text. <br><br>Multiline text flow may differ drastically from ScriptUI.",
 		defaultStyle: {
 			varName: null,
+      softWrap: false,
 			text: 'EditText',
 			// justify: 'left',
 			preferredSize: [0,0],
@@ -129,7 +132,7 @@ item.list.edittext = function( params ) {
 			helpTip: null
 		},
 		previewHtml:
-			'<div class="edit-text" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
+			'<div class="edit-text disable-soft-wrap" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
 				'<span class="edit-text-inner-wrap"><span class="text-container" contenteditable="true">'+ params.type +'</span></span>' +
 			'</div>'
 	};

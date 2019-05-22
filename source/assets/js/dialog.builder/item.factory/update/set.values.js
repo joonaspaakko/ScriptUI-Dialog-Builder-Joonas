@@ -231,6 +231,15 @@ item.update.set_values = function( params ) {
 				active.attr('title', val.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\n') );
 			}
 			break;
+      
+		// SOFT WRAP
+		case 'softWrap':
+			if ( val != null ) {
+        // Softwrap = true
+        var arc = val ? 'removeClass' : 'addClass';
+        active[ arc ]('disable-soft-wrap');
+			}
+			break;
 	}
 			
 };

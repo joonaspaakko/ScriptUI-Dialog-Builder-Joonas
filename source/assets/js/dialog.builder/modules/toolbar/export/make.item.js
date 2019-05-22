@@ -272,7 +272,7 @@ function multilineCheck( id ) {
 	container.find('br').replaceWith('<br>');
 	var text = container.html();
 	container.width( container.width() ); // Give container width so it doesn't change while this function runs.
-	var words = text.replace(/<br>/g, ' <br>').split(" ");
+	var words = text.replace(/<br>/g, ' <br>').replace(/-/g, '- ').split(" ");
 	container.html('');
 	$.each( words, function( i, nextWord ) {
 		
@@ -297,5 +297,5 @@ function multilineCheck( id ) {
 	
 	container.width('');
 	container.html( text ); // Just to make super sure the dialog text stays the same...
-	return [ isMultiline, exportText.join('') ];
+	return [ isMultiline, exportText.join('').replace(/- /g, '-') ];
 }

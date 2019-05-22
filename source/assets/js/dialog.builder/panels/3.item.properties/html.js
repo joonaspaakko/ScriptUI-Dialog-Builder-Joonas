@@ -42,14 +42,21 @@ panel_edit_style_html.init = function( key, value ) {
 				'</h2>'
 			);
 			break;
+
+
+    case "softWrap":
+      // Defined below in the text case. They are always a pair.
+      break;
 		
 		case "text":
+      var softWrap = item.list[ $('#dialog .active[data-item-type]').data('item-type').toLowerCase() ](false).defaultStyle.softWrap;
 			html = $(
 				'<h2 title="Initial text to be displayed in the control as the title, label, or contents, depending on the control type.">' +
 					'Text' +
+          ( (softWrap === true || softWrap === false) ? '<label class="soft-wrap-wrap-wrap" style="color: #c1c1c1; font-size: 13px; float: right;" for="softWrapCheckbox">Soft Wrap: <input id="softWrapCheckbox" style="position: relative; top: -1px;" type="checkbox" data-edit="softWrap"'+ ( !$('#dialog .active').hasClass('disable-soft-wrap') ? 'checked' : '' ) +'></label>' : '' ) +
 				'</h2>' +
 				'<div class="edit-text-wrap">' +
-					'<div class="no-linebreaks-icon" title="This item does not support multiline, so no line breaks."><img src="assets/images/no-line-break-icon.svg" alt="" /></div>' +
+          '<div class="no-linebreaks-icon" title="This item does not support multiline, so no line breaks."><img src="assets/images/no-line-break-icon.svg" alt="" /></div>' +
 					'<textarea data-edit="text" class="textarea">' +
 						value +
 					'</textarea>' +

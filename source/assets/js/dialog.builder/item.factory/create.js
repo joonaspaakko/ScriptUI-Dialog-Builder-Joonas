@@ -60,6 +60,14 @@ item.create = {
 		if ( defaultStyle.helpTip !== undefined && data.items[ 'item-' + params.id ].style.helpTip === undefined ) {
 			data.items[ 'item-' + params.id ].style.helpTip = null;
 		}
+		// Cleaning lady
+		if ( defaultStyle.softWrap === undefined && data.items[ 'item-' + params.id ].style.softWrap !== undefined ) {
+			delete data.items[ 'item-' + params.id ].style.softWrap;
+		}
+		// Adds softWrap to the style if it's missing
+		if ( defaultStyle.softWrap !== undefined && data.items[ 'item-' + params.id ].style.softWrap === undefined ) {
+			data.items[ 'item-' + params.id ].style.softWrap = true;
+		}
 		
 		local_storage.set('dialog', data );
 		

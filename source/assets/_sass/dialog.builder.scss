@@ -115,4 +115,28 @@ img {
 	-o-user-drag: none;
 	user-drag: none;
 }
-	
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #a0a0a0;
+  border-radius: 50px;
+  display: none;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+*:hover::-webkit-scrollbar-thumb { display: block; }
+#dialog-overlay-wrap::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+#dialog-overlay-wrap::-webkit-scrollbar-track {
+  background: #474747;
+}

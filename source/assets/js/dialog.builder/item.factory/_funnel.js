@@ -23,29 +23,7 @@ item.funnel = {
 		var isTreeView = params.type === 'TreeView';
 		if ( isTreeView ) treeView.onCreate( params.event );
 		
-		var active = $('#dialog [data-item-id="'+ params.id +'"]');
-		
-		if ( params.type === 'EditText' ) {
-			
-			var scroll = active.find('.edit-text-inner-wrap');
-			var editable =	active.find('[contenteditable]');
-			var instance = scroll.overlayScrollbars({ paddingAbsolute: true }).overlayScrollbars();
-			var sizeDiv = $(instance.getElements().host).find('.os-content-glue').first();
-			
-			var sizeDivUpdate = function() {
-				sizeDiv.html( editable.html() );
-			}
-			
-			sizeDivUpdate();
-
-			editable.on('input', function() {
-				sizeDivUpdate();
-			});
-			
-		}
-		else if ( params.type === 'ListBox' ) {
-			active.find('.inner-wrap').overlayScrollbars({});
-		}
+		// var active = $('#dialog [data-item-id="'+ params.id +'"]');
 		
 		$("#dialog-section").backstretch("resize");
 		

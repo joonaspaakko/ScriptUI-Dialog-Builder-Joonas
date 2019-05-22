@@ -18,6 +18,10 @@ item.update.get_values = function( prop ) {
 		case "iconButtonStroke":
 			data.iconButtonStroke = _this.prop('checked');
 			break;
+
+		case "softWrap":
+			data.softWrap = _this.prop('checked');
+			break;
 		
 		case "text":
 			data.text = _this.val();
