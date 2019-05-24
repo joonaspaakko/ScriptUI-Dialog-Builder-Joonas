@@ -44,30 +44,41 @@ item.create = {
 		
 		var defaultStyle = item.list[ params.type.toLowerCase() ](false).defaultStyle;
 		
-		// Cleaning lady
-		if ( defaultStyle.varName === undefined && data.items[ 'item-' + params.id ].style.varName !== undefined ) {
-			delete data.items[ 'item-' + params.id ].style.varName;
-		}
-		// Adds varName to the style if it's missing
-		if ( defaultStyle.varName !== undefined && data.items[ 'item-' + params.id ].style.varName === undefined ) {
-			data.items[ 'item-' + params.id ].style.varName = null;
-		}
-		// Cleaning lady
-		if ( defaultStyle.helpTip === undefined && data.items[ 'item-' + params.id ].style.helpTip !== undefined ) {
-			delete data.items[ 'item-' + params.id ].style.helpTip;
-		}
-		// Adds helpTip to the style if it's missing
-		if ( defaultStyle.helpTip !== undefined && data.items[ 'item-' + params.id ].style.helpTip === undefined ) {
-			data.items[ 'item-' + params.id ].style.helpTip = null;
-		}
-		// Cleaning lady
-		if ( defaultStyle.softWrap === undefined && data.items[ 'item-' + params.id ].style.softWrap !== undefined ) {
-			delete data.items[ 'item-' + params.id ].style.softWrap;
-		}
-		// Adds softWrap to the style if it's missing
-		if ( defaultStyle.softWrap !== undefined && data.items[ 'item-' + params.id ].style.softWrap === undefined ) {
-			data.items[ 'item-' + params.id ].style.softWrap = true;
-		}
+    // CLEANING LADY
+    if ( defaultStyle.varName === undefined && data.items[ 'item-' + params.id ].style.varName !== undefined ) {
+      delete data.items[ 'item-' + params.id ].style.varName;
+    }
+    // Adds varName to the style if it's missing
+    if ( defaultStyle.varName !== undefined && data.items[ 'item-' + params.id ].style.varName === undefined ) {
+      data.items[ 'item-' + params.id ].style.varName = null;
+    }
+
+    // CLEANING LADY
+    if ( defaultStyle.helpTip === undefined && data.items[ 'item-' + params.id ].style.helpTip !== undefined ) {
+      delete data.items[ 'item-' + params.id ].style.helpTip;
+    }
+    // Adds helpTip to the style if it's missing
+    if ( defaultStyle.helpTip !== undefined && data.items[ 'item-' + params.id ].style.helpTip === undefined ) {
+      data.items[ 'item-' + params.id ].style.helpTip = null;
+    }
+
+    // CLEANING LADY
+    if ( defaultStyle.softWrap === undefined && data.items[ 'item-' + params.id ].style.softWrap !== undefined ) {
+      delete data.items[ 'item-' + params.id ].style.softWrap;
+    }
+    // Adds softWrap to the style if it's missing
+    if ( defaultStyle.softWrap !== undefined && data.items[ 'item-' + params.id ].style.softWrap === undefined ) {
+      data.items[ 'item-' + params.id ].style.softWrap = true;
+    }
+
+    // CLEANING LADY
+    if ( defaultStyle.typeName === undefined && data.items[ 'item-' + params.id ].style.typeName !== undefined ) {
+      delete data.items[ 'item-' + params.id ].style.softWrap;
+    }
+    // Adds softWrap to the style if it's missing
+    if ( defaultStyle.typeName !== undefined && data.items[ 'item-' + params.id ].style.typeName === undefined ) {
+      data.items[ 'item-' + params.id ].style.typeName = null;
+    }
 		
 		local_storage.set('dialog', data );
 		
