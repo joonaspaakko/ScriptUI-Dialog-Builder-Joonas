@@ -204,7 +204,7 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 			break;
 
     case 'Button':
-      if ( style.typeName != "null" ) {
+      if ( style.typeName == 'Ok' || style.typeName == 'Cancel'  ) {
         block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, undefined, {name:"'+ style.typeName +'"}); \n';
       }
       else {
