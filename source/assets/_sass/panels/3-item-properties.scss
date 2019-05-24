@@ -284,7 +284,7 @@ body.update-styles .saving-icon {
     vertical-align: middle;
     position: relative;
     top: -1px;
-    margin-left: 2px;
+    margin-left: 0px;
     &:first-child {
       margin-left: 0px;
     }
@@ -577,6 +577,13 @@ body.update-styles .saving-icon {
 
   .soft-wrap-wrap-wrap {
     // 
+  }
+  .target-typeName {
+    .prettydropdown, ul, li,
+    .prettydropdown > ul > li {
+      width: 162px !important;
+      max-width: 162px !important;
+    }
   }
 	
 } // #edit-style-contents

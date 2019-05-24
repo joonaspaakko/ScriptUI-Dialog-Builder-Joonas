@@ -202,10 +202,19 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 			var ibStroke = style.iconButtonStroke ? ', {style: "button"}' : ', {style: "toolbutton"}';
 			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, File.decode('+ jsxVarName + '_string' +')'+ ibStroke +' ); \n';
 			break;
+
+    case 'Button':
+      if ( style.typeName != "null" ) {
+        block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, undefined, {name:"'+ style.typeName +'"}); \n';
+      }
+      else {
+        block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
+      }
+      break; 
 			
 		default:
 			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
-	
+    
 	}
 	
 	previousItem.name = jsxVarName;

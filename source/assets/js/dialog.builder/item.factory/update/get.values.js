@@ -4,7 +4,7 @@ item.update.get_values = function( prop ) {
 	var data = {};
 	var editPanel = $('#panel-edit-style-wrap');
 	var _this = editPanel.find('[data-edit^="'+ prop +'"]');
-	
+
 	switch ( prop ) {
 		
 		case "varName":
@@ -33,6 +33,10 @@ item.update.get_values = function( prop ) {
 			
 		case "justify":
 			data.justify = editPanel.find('[data-edit^="justify"].active').data('value');
+			break;
+
+		case "typeName":
+      data.typeName = _this.find('option:selected').val();
 			break;
 			
 		case "margins":

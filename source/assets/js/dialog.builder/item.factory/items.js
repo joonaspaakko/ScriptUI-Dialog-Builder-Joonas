@@ -152,7 +152,8 @@ item.list.button = function( params ) {
 			justify: 'center',
 			preferredSize: [0,0],
 			alignment: null,
-			helpTip: null
+			helpTip: null,
+      typeName: null
 		},
 		previewHtml:
 			'<div class="button" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +

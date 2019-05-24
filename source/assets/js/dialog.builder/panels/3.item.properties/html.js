@@ -42,8 +42,7 @@ panel_edit_style_html.init = function( key, value ) {
 				'</h2>'
 			);
 			break;
-
-
+    
     case "softWrap":
       // Defined below in the text case. They are always a pair.
       break;
@@ -63,7 +62,7 @@ panel_edit_style_html.init = function( key, value ) {
 				'<div>'
 			);
 			break;
-		
+
 		case "listItems":
 			html = $(
 				'<h2 title="The array of choice items displayed in the drop-down or pop-up list.">' +
@@ -94,7 +93,20 @@ panel_edit_style_html.init = function( key, value ) {
 			);
 			html.find('[data-value="'+ value +'"]').addClass('active');
 			break;
-		
+
+    case "typeName":
+      html = $(
+        '<h2 title="The user can typically dismiss a modal dialog by clicking an OK or Cancel button, or by typing certain keyboard shortcuts. By convention, typing ENTER is the same as clicking OK or the default button, and typing ESC is the same as clicking Cancel. The keyboard shortcut has the same effect as calling notify for the associated button control.">' +
+          'Button name' +
+        '</h2>' +
+        '<select name="qty" class="pretty-classic" data-edit="typeName" >' +
+          '<option '+ (value == null ? 'selected' : '') +' value="null">Empty</option>' +
+          '<option '+ (value == "Ok" ? 'selected' : '') +' value="Ok">Ok</option>' +
+          '<option '+ (value == "Cancel" ? 'selected' : '') +' value="Cancel">Cancel</option>' +
+        '</select>'
+      );
+      break;
+
 		case "margins":
 			var singleVal = typeof value !== 'object';
 			html = $(

@@ -14,6 +14,7 @@ edit_style_panel.build = function( style, source ) {
 		'<span class="target-text"></span>' +
 		'<span class="target-listItems"></span>' +
 		'<span class="target-justify"></span>' +
+		'<span class="target-typeName"></span>' +
 		'<span class="target-preferredSize"></span>' +
 		'<span class="target-margins"></span>' +
 		'<span class="target-orientation"></span>' +
