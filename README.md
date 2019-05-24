@@ -1,3 +1,4 @@
+[![](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/blob/master/source/wiki-images/github-cover.png?raw=true)](https://scriptui.joonas.me)
 
 ## Website (web app)
 
@@ -34,6 +35,14 @@ Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/A
 
 </details>
 
+## SDB Layout PSD files
+
+Maybe there's not a whole lot of need for this, but figured I might as well share it. It could be helpful if you wanna suggest a new feature or something. Font files included in the download folder.
+
+Dropbox download link: [ScriptUI Dialog Builder PSD files](https://www.dropbox.com/sh/htrtgdiv2rauyuw/AABo7Z4HHL9-RR4LOmSu7RuHa?dl=0)
+
+> This was generated using [Page Layers](https://www.pagelayers.com/). I did clean it up a bit but some of the layer structure may be unnecessarily complicated because it follows the html structure. Because it's essentially a fancy layered screenshot, it doesn't include anything but the visible elements. So no modal windows.
+
 ## General info about ScriptUI Dialog Builder (SDB)
 
 SDB helps you design and build ScriptUI dialogs without writing code. It auto-generates ready to be used Javascript on export. It doesn't handle events. You'll need to write events yourself.
@@ -52,7 +61,7 @@ For example, the sample dialog only uses width and height for various EditText f
 
 ## Browser support
 
-**Chrome.** _May work in other modern browsers, but the development has shifted to focus on Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome. 
+**Chrome.** _The development has shifted focus to Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome. 
 
 ## Source folder
 
