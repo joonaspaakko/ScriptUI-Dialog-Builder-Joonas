@@ -47,8 +47,6 @@ code {
 	// MISC
 	'misc/dialog-preview-accents.scss',
 	'misc/number-input.scss',
-	'misc/drop-list.scss',
-	'misc/radiocheck.scss',
 	'misc/loading-screen.scss',
 	'misc/custom-cursor.scss',
 	'misc/modal-window.scss',
@@ -81,6 +79,7 @@ code {
 }
 
 .backstretch img {
+	transition: opacity 200ms ease-in-out;
 	opacity: .8;
   animation: bg-hue-animation 30s ease infinite;
   @keyframes bg-hue-animation {

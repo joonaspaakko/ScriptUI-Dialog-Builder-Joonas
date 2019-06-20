@@ -133,7 +133,7 @@ item.list.edittext = function( params ) {
 		},
 		previewHtml:
 			'<div class="edit-text disable-soft-wrap" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
-				'<span class="edit-text-inner-wrap"><span class="text-container" contenteditable="true">'+ params.type +'</span></span>' +
+				'<span class="edit-text-inner-wrap"><span class="text-container edittext-text-cont" contenteditable="true">'+ params.type +'</span></span>' +
 			'</div>'
 	};
 	
@@ -205,8 +205,10 @@ item.list.checkbox = function( params ) {
 		},
 		previewHtml:
 			'<div class="checkbox" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
-				'<div class="radiocheck checkbox"><i class="fas fa-check"></i></i></div>' +
-				'<label contenteditable="true">'+ params.type +'</label>' +
+				'<div class="radiocheck checkbox">' +
+					'\n<svg class="font-awesome-check" enable-background="new 0 0 512 381.8" viewBox="0 0 512 381.8" xmlns="http://www.w3.org/2000/svg"><path d="m173.9 374.3-166.4-166.4c-10-10-10-26.2 0-36.2l36.2-36.2c10-10 26.2-10 36.2 0l112.1 112.1 240.1-240.1c10-10 26.2-10 36.2 0l36.2 36.2c10 10 10 26.2 0 36.2l-294.4 294.4c-10 10-26.2 10-36.2 0z" fill="#535353"/></svg>\n' +
+				'</div>' +
+				'\n<label contenteditable="true">'+ params.type +'</label>' +
 			'</div>'
 	};
 	
@@ -229,8 +231,10 @@ item.list.radiobutton = function( params ) {
 		},
 		previewHtml:
 			'<div class="radiobutton" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
-				'<div class="radiocheck radiobutton"><i class="fas fa-circle"></i></div>' +
-				'<label contenteditable="true">'+ params.type +'</label>' +
+				'<div class="radiocheck radiobutton">' +
+					'\n<svg class="font-awesome-circle" enable-background="new 0 0 496 496" viewBox="0 0 496 496" xmlns="http://www.w3.org/2000/svg"><path d="m248 0c-137 0-248 111-248 248s111 248 248 248 248-111 248-248-111-248-248-248z" fill="#535353"/></svg>\n' +
+				'</div>' +
+				'\n<label contenteditable="true">'+ params.type +'</label>' +
 			'</div>'
 	};
 	
@@ -263,7 +267,7 @@ item.list.dropdownlist = function( params ) {
 						'<div>Item 2</div>' +
 					'</div>' +
 					'<div class="arrow">' +
-						'<i class="fas fa-chevron-down"></i>' +
+						'\n<svg class="font-awesome-chevron-down" enable-background="new 0 0 436.7 265" viewBox="0 0 436.7 265" xmlns="http://www.w3.org/2000/svg"><path d="m201.4 258-194.4-194.4c-9.4-9.4-9.4-24.6 0-33.9l22.7-22.7c9.4-9.4 24.5-9.4 33.9 0l154.7 154 154.8-154c9.4-9.3 24.5-9.3 33.9 0l22.7 22.7c9.4 9.4 9.4 24.6 0 33.9l-194.4 194.4c-9.4 9.4-24.6 9.4-33.9 0z" fill="#d6d6d6"/></svg>\n' +
 					'</div>' +
 				'</div>' +
 			'</div>'
@@ -466,11 +470,13 @@ item.list.treeitem = function( params ) {
 		previewHtml:
 			'<div class="tree-view-item" data-parent="true" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
 				'<div class="item-wrap">' +
-					'<span class="tree-view-arrow"><i class="fas fa-chevron-right"></i></span>' +
-					'<span class="text-container" contenteditable="true">' +
+					'\n<span class="tree-view-arrow">' +
+						'\n<svg class="font-awesome-chevron-right" enable-background="new 0 0 265 436.7" viewBox="0 0 265 436.7" xmlns="http://www.w3.org/2000/svg"><path d="m258 235.3-194.4 194.4c-9.4 9.4-24.6 9.4-33.9 0l-22.7-22.7c-9.4-9.4-9.4-24.5 0-33.9l154-154.7-154-154.8c-9.3-9.4-9.3-24.5 0-33.9l22.7-22.7c9.4-9.4 24.6-9.4 33.9 0l194.4 194.4c9.4 9.3 9.4 24.5 0 33.9z" fill="#dadada"/></svg>' +
+					'\n</span>' +
+					'\n<span class="text-container" contenteditable="true">' +
 						params.type +
 					'</span>' +
-				'</div>' +
+				'\n</div>' +
 				'<div class="padding-box">' +
 				'</div>' +
 			'</div>'

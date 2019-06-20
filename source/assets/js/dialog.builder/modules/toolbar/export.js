@@ -4,6 +4,7 @@
 // @codekit-append "export/apply.style.js";
 
 // IMPORT EVENT
+var myCodeMirror, sdbExport, cmMode;
 $('#toolbar .export').on("click", function() {
 	
 	var content =
@@ -11,53 +12,69 @@ $('#toolbar .export').on("click", function() {
 			'<h2>Export.jsx</h2>' +
 			'<div class="code"></div>' +
 			'<div class="btns">' +
-			'<div class="download btn animated fadeInDown">' +
-				'<div class="icon">' +
-					'<i class="fas fa-check animated"></i>' +
-					'<i class="fas fa-download"></i>' +
-				'</div>' +
-				' <span>Download</span>' +
-			'</div>' +
-				'<div class="copy btn animated fadeInDown">' +
-					'<div class="icon">' +
-						'<i class="fas fa-check animated"></i>' +
-						'<i class="fas fa-times animated"></i>' +
-						'<i class="fas fa-clipboard-list"></i>' +
-					'</div>' +
+        '<div class="download btn animated fadeInDown">' +
+          '<div class="icon">' +
+            '<i class="fas fa-check animated"></i>' +
+            '<i class="fas fa-download"></i>' +
+						' <span>Download</span>' +
+          '</div>' +
+        '</div>' +
+      '<div class="copy btn animated fadeInDown">' +
+        '<div class="icon">' +
+          '<i class="fas fa-check animated"></i>' +
+          '<i class="fas fa-times animated"></i>' +
+          '<i class="fas fa-clipboard-list"></i>' +
 					' <span>Copy to Clipboard</span>' +
-				'</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="settings btn animated fadeInDown">' +
+        '<div class="icon">' +
+          '<i class="fas fa-cog"></i>' +
+					' <span>Settings</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="settings-window">' +
+        '<div>' +
+          settings.html() +
+        '</div>' +
+      '</div>' +
 			'</div>' +
 		'</div>';
 	
-	modal.init( content );
+	modal.init( content, 'export-modal' );
+	
+	$('#modal-window-content').on("click", function( e ) {
+		if ( $(e.target).attr('id') === 'modal-window-content' ) {
+			modal.remove();
+		}
+	});
+		
+	sdbExport = getExportCode();
+	cmMode = (sdbExport.language === 'javascript') ? {
+		name: sdbExport.language,
+		json: true
+	} : sdbExport.language;
 	
 	/*global CodeMirror*/
 	/*eslint no-undef: ["error", { "typeof": true }] */
-	var myCodeMirror = CodeMirror(
-		$("#export-box .code")[0]
-	, {
-		mode: {
-			name: 'javascript',
-			json: true
-		},
+	myCodeMirror = CodeMirror( $("#export-box .code")[0], {
+		mode: cmMode,
 		theme: 'monokai',
 		autofocus: true,
 		lineNumbers: true,
-		// I really wanted to used this to avoid the sideways scrolling, but even with
-		// a few items the JSON gets super bulky at the top, so... no wrappity wraps...
-		// lineWrapping: true,
-		value: exportCode()
+		value: sdbExport.code,
+		readOnly: true
 	});
 	
 	// This section makes sure the #export-box doesn't spill past the viewport
-	var winH = $(window).height();
+	// var winH = $(window).height();
 	var exportBox = $('#export-box');
-	var exportBoxH = exportBox.height();
-	var extraMargins = 80;
-	if ( winH < exportBoxH+60 ) {
-		var cmMaxHeight = $(window).height() - ( exportBoxH-exportBox.find('.CodeMirror').height() );
-		exportBox.find('.code').css({ maxHeight: cmMaxHeight - (extraMargins*2) });
-	}
+	// var exportBoxH = exportBox.outerHeight(true);
+	// var extraMargins = 30;
+	// if ( winH < (exportBoxH+extraMargins) ) {
+	// 	var cmMaxHeight = $(window).height() - ( exportBoxH-exportBox.find('.CodeMirror').height() );
+	// 	exportBox.find('.code').css({ maxHeight: cmMaxHeight - (extraMargins*2) });
+	// }
 	
 	clipBoardEvent( myCodeMirror );
 	
@@ -65,7 +82,7 @@ $('#toolbar .export').on("click", function() {
 		
 		/*global download*/
 		/*eslint no-undef: ["error", { "typeof": true }] */
-		download( exportCode(), "ScriptUI Dialog Builder - Export.jsx", "application/javascript");
+		download( sdbExport.code, sdbExport.filename, "text/" + sdbExport.language);
 		
 		var _this = $(this);
 		var faCheck = _this.find('.fa-check');
@@ -78,16 +95,47 @@ $('#toolbar .export').on("click", function() {
 		}, 750);
 		
 	});
+
+  exportBox.find('.settings').on("click", function() {
+    
+    var settingsWindow = exportBox.find('.settings-window');
+    var toggle = settingsWindow.hasClass('open') ? 'removeClass' : 'addClass';
+    settingsWindow[ toggle ]('open');
+
+  });
 	
+  exportBox.find('.settings-window input').on("change", function() {
+    settings.toggleEvent( $(this) );
+  });
 	
 });
 
-function exportCode() {
+function getExportCode() {
+	
+	customVar.init();
+	
 	var data = local_storage.get('dialog');
-	var importJSON = '/* \nCode for Import https://scriptui.joonas.me — (Triple click to select): \n' + JSON.stringify( data ) + '\n*/ \n\n';
-	var jsxItems = getJSX( data );
-	var bundle = importJSON + jsxItems;
+	var importJSON = '\nCode for Import https://scriptui.joonas.me — (Triple click to select): \n' + JSON.stringify( data ) + '\n';
+  
+	var bundle = {};
+	// HTML
+  if ( data.settings.cepExport ) {
+		importJSON = data.settings.importJSON ? ('<!-- ' + importJSON + '--> \n\n') : '';
+		bundle.code = settings.cepExport.onExport( data, importJSON );
+		bundle.language = 'htmlmixed';
+		bundle.filename = 'ScriptUI Dialog Builder - Export.html';
+	}
+	// JAVASCRIPT
+	else {
+		var jsxItems = getJSX( data );
+		importJSON = data.settings.importJSON ? ('/*' + importJSON + '*/ \n\n') : '';
+		bundle.code = importJSON + jsxItems;
+		bundle.language = 'javascript';
+		bundle.filename = 'ScriptUI Dialog Builder - Export.jsx';
+	}
+	
 	return bundle;
+
 }
 
 function clipBoardEvent( myCodeMirror ) {
@@ -136,28 +184,11 @@ function getJSX( data ) {
 	
 	var cornucopia = '',
 			jsxParents = {},
-			counters = { dialog: '', tab: '' }, // Can't remember why I added tab here, but oh well. Let's not mess with this jenga tower.
 			previousItem = {
 				name: '',
 				parent: ''
 			},
 			growTree = []; // JUST DO IT
-	
-	// Creates rest of the counters based on the "Add items" panel...
-	$('[data-panel="treeview"] ul li').each(function() {
-		
-		var id      = $(this).data('item-id');
-		var type    = $(this).data('item-type');
-		var varName = data.items[ 'item-' + id ].style.varName;
-		
-		if ( varName ) {
-			counters[ varName.toLowerCase() ] = -1;
-		}
-		else {
-			counters[ type.toLowerCase() ] = 0;
-		}
-		
-	});
 	
 	var allItems = $('#panel-tree-view-wrap .tree-dialog li');
 	var itemsLength = allItems.length;
@@ -179,7 +210,7 @@ function getJSX( data ) {
 			lastLoop = true;
 		}
 		
-		cornucopia += makeJSXitem( index, data, counters, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop );
+		cornucopia += makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop );
 		
 	});
 	

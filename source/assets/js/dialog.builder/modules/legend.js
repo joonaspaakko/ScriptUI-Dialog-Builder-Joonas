@@ -29,7 +29,7 @@ shortcutExport();
 function shortcutExport() {
   var clipboard = new ClipboardJS('.l-export', {
     text: function() {
-      return exportCode();
+      return getExportCode().code;
     }
   });
   

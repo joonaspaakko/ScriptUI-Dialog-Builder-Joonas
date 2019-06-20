@@ -10,9 +10,9 @@ This repository includes a build folder that contains the same files as the webs
 
 ### Desktop applications
 
-<details><summary>Read mode...</summary>
+<details><summary>Read more...</summary>
 
-The desktop applications are only trying to fill a small slot of convenience, but they're not necessary. The desktop apps don't work offline though since they are only loading up the website. 
+The desktop applications are only trying to fill a small slot of convenience, but they're not necessary. The desktop apps don't work offline though since they are only loading up the website.
 
 > These were created using [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium.
 
@@ -30,7 +30,7 @@ Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/A
 **Desktop app cons**
 
 - Can't be used offline
-- There is a tiny hiccup on Windows. In Windows, the `Alt` key shows the top menu... and especially if you're duplicating items, the structure panel may shift vertically causing you to drop the item in the wrong place. 
+- There is a tiny hiccup on Windows. In Windows, the `Alt` key shows the top menu... and especially if you're duplicating items, the structure panel may shift vertically causing you to drop the item in the wrong place.
 - For some reason, the icons look kinda terrible, but since these apps are generated using a 3rd party tool, there's nothing to be done about it.
 
 </details>
@@ -47,7 +47,7 @@ Dropbox download link: [ScriptUI Dialog Builder PSD files](https://www.dropbox.c
 
 SDB helps you design and build ScriptUI dialogs without writing code. It auto-generates ready to be used Javascript on export. It doesn't handle events. You'll need to write events yourself.
 
-Because the builder simply _simulates_ ScriptUI layout and behavior, there are various differences here and there. One major factor is that there are small differences between Adobe applications so be aware that the dialog preview may look completely different depending on the application you're using. As an example, a really easy to spot difference is that `tabs` look completely different in Photoshop they do in other applications. Illustrator CC will be closest since SDB was built using it as the template. 
+Because the builder simply _simulates_ ScriptUI layout and behavior, there are various differences here and there. One major factor is that there are small differences between Adobe applications so be aware that the dialog preview may look completely different depending on the application you're using. As an example, a really easy to spot difference is that `tabs` look completely different in Photoshop they do in other applications. Illustrator CC will be closest since SDB was built using it as the template.
 
 There's a one kinda big feature that I had to leave out (for now) because I just couldn't replicate the behavior. I got pretty close, but I wasn't satisfied with it. ScriptUI items can actually have "fill" on both `x` and `y` axis, but in the builder, it's limited to one axis.
 
@@ -61,7 +61,7 @@ For example, the sample dialog only uses width and height for various EditText f
 
 ## Browser support
 
-**Chrome.** _The development has shifted focus to Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome. 
+**Chrome.** _The development has shifted focus to Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome.
 
 ## Source folder
 

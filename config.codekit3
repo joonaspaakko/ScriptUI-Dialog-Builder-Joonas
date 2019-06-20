@@ -359,16 +359,16 @@
 		"uL": 1
 		},
 	"/source/assets/_sass/panels/5-dialog-preview.scss": {
-		"aP": 1,
-		"bl": 1,
+		"aP": 0,
+		"bl": 0,
 		"dP": 10,
 		"dS": 0,
 		"ft": 4,
 		"ma": 0,
-		"oA": 1,
-		"oAP": "/build/assets/_sass/panels/5-dialog-preview.css",
-		"oF": 0,
-		"oS": 0,
+		"oA": 0,
+		"oAP": "/build/assets/css/sdb.cep.css",
+		"oF": 3,
+		"oS": 3,
 		"uL": 1
 		},
 	"/source/assets/_sass/toolbar/export.scss": {
@@ -967,6 +967,28 @@
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/autosize-master/src/autosize.min.js",
 		"oF": 1,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/_libraries/beautify-html.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/_libraries/beautify-html.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/_libraries/beautify.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/_libraries/beautify.min.min.js",
+		"oF": 0,
 		"sC": 0,
 		"tS": 0
 		},
@@ -7703,137 +7725,6 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/css/os-theme-thin-dark.scss": {
-		"aP": 1,
-		"bl": 1,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/os-theme-thin-dark.css",
-		"oF": 1,
-		"oS": 0,
-		"uL": 1
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/css/os-theme-thin-light.scss": {
-		"aP": 1,
-		"bl": 1,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/os-theme-thin-light.css",
-		"oF": 1,
-		"oS": 0,
-		"uL": 1
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/css/OverlayScrollbars.min.scss": {
-		"aP": 1,
-		"bl": 1,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/OverlayScrollbars.min.css",
-		"oF": 1,
-		"oS": 0,
-		"uL": 1
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/css/OverlayScrollbars.scss": {
-		"aP": 1,
-		"bl": 1,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/css/OverlayScrollbars.css",
-		"oF": 1,
-		"oS": 0,
-		"uL": 1
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/js/jquery.overlayScrollbars.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/jquery.overlayScrollbars.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/js/jquery.overlayScrollbars.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/jquery.overlayScrollbars.min.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/js/OverlayScrollbars.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/OverlayScrollbars.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/js/OverlayScrollbars.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/js/OverlayScrollbars.min.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/LICENSE": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/LICENSE",
-		"oF": 1
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/package.json": {
-		"ft": 524288,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/package-min.json",
-		"oF": 1,
-		"oO": 0,
-		"oS": 1
-		},
-	"/source/assets/js/_libraries/OverlayScrollbars-master/README.md": {
-		"cB": 0,
-		"cS": 0,
-		"eF": 1,
-		"eL": 1,
-		"ema": 1,
-		"eSQ": 1,
-		"ft": 4096,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/OverlayScrollbars-master/README.html",
-		"oF": 1,
-		"oFM": 0,
-		"oS": 0,
-		"pHT": 0,
-		"pME": 1,
-		"rFN": 0,
-		"uCM": 0
-		},
 	"/source/assets/js/_libraries/pretty-dropdowns/_config.yml": {
 		"cB": 0,
 		"ft": 8192,
@@ -8247,6 +8138,17 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/assets/js/dialog.builder/modules/settings.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/settings.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/source/assets/js/dialog.builder/modules/toggle.active.visibility.js": {
 		"bF": 0,
 		"ft": 64,
@@ -8276,6 +8178,17 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/export/apply.style.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/modules/toolbar/export/custom.var.names.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/export/custom.var.names.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -8412,105 +8325,94 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/source/favicon/android-chrome-192x192.png": {
-		"ft": 32768,
-		"iS": 6023,
-		"oA": 2,
-		"oAP": "/build/favicon/android-chrome-192x192.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
+	"/source/assets/js/sdb.cep.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/build/assets/js/sdb.cep.js",
+		"oF": 3,
+		"sC": 0,
+		"tS": 0
 		},
-	"/source/favicon/android-chrome-512x512.png": {
-		"ft": 32768,
-		"iS": 14261,
-		"oA": 2,
-		"oAP": "/build/favicon/android-chrome-512x512.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
+	"/source/assets/js/sdb.cep/dropdownlist.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/sdb.cep/dropdownlist.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
 		},
-	"/source/favicon/apple-touch-icon.png": {
-		"ft": 32768,
-		"iS": 5420,
-		"oA": 2,
-		"oAP": "/build/favicon/apple-touch-icon.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
+	"/source/assets/js/sdb.cep/helper.functions.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/sdb.cep/helper.functions.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
 		},
-	"/source/favicon/browserconfig.xml": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 2,
-		"oAP": "/build/favicon/browserconfig.xml",
-		"oF": 1
+	"/source/assets/js/sdb.cep/listbox.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/sdb.cep/listbox.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
 		},
-	"/source/favicon/favicon-16x16.png": {
-		"ft": 32768,
-		"iS": 1098,
-		"oA": 2,
-		"oAP": "/build/favicon/favicon-16x16.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
+	"/source/assets/js/sdb.cep/radiocheck.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/sdb.cep/radiocheck.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
 		},
-	"/source/favicon/favicon-32x32.png": {
-		"ft": 32768,
-		"iS": 1791,
-		"oA": 2,
-		"oAP": "/build/favicon/favicon-32x32.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
+	"/source/assets/js/sdb.cep/tabbedpanel.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/sdb.cep/tabbedpanel.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
 		},
-	"/source/favicon/favicon.ico": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 2,
-		"oAP": "/build/favicon/favicon.ico",
-		"oF": 1
+	"/source/assets/js/sdb.cep/treeview.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/sdb.cep/treeview.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
 		},
-	"/source/favicon/mstile-150x150.png": {
-		"ft": 32768,
-		"iS": 4584,
-		"oA": 2,
-		"oAP": "/build/favicon/mstile-150x150.png",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
+	"/source/docs": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/docs",
+		"oF": 0
 		},
-	"/source/favicon/safari-pinned-tab.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/build/favicon/safari-pinned-tab.svg",
-		"oF": 1,
-		"opt": 0,
-		"plM": 3758088159,
-		"prP": 0
-		},
-	"/source/favicon/site.webmanifest": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 2,
-		"oAP": "/build/favicon/site.webmanifest",
-		"oF": 1
+	"/source/favicon": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/favicon",
+		"oF": 0
 		},
 	"/source/index.kit": {
 		"cB": 1,
@@ -8520,16 +8422,11 @@
 		"oAP": "/build/index.html",
 		"oF": 0
 		},
-	"/source/open-graph/og-image.jpg": {
-		"ft": 16384,
-		"iS": 171143,
-		"jF": 0,
-		"oA": 2,
-		"oAP": "/build/open-graph/og-image.jpg",
-		"oF": 1,
-		"oIPL": 0,
-		"opt": 1,
-		"q": 100
+	"/source/open-graph": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "/build/open-graph",
+		"oF": 0
 		},
 	"/source/wiki-images": {
 		"ft": 65536,
@@ -10591,7 +10488,7 @@
 		],
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
-	"skippedFoldersString": "_ASSET_STORAGE,_cache,cache,.idea,log,_logs,logs,node_modules,/storage/framework/sessions,wiki-images",
+	"skippedFoldersString": "_ASSET_STORAGE,_cache,cache,docs,.idea,log,_logs,logs,node_modules,/storage/framework/sessions,wiki-images,favicon,open-graph",
 	"sourceFolderName": "source",
 	"susyVersion": 3,
 	"tsAllowSyntheticDefaultImports": 0,

@@ -1,10 +1,18 @@
 
+$color-gray: #c1c1c1;
+$color-bg: #535353;
+
 #dialog-section {
   overflow: hidden;
   height: 100%;
   position: relative;
 	* {
-	  @extend %noselection;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 	}
 }
 
@@ -89,8 +97,8 @@
     height: auto !important;
     > .padding-box {
 	    flex-grow: 0 !important;
-	    justify-self: start !important;
-	    align-self: start !important;
+	    justify-self: flex-start !important;
+	    align-self: flex-start !important;
     }
   }
   
@@ -370,6 +378,8 @@
 		}
   }
 	
+  [data-item-type="checkbox"],
+	[data-item-type="radiobutton"],
 	[data-item-type="Checkbox"],
 	[data-item-type="RadioButton"] {
 		text-align: left;
@@ -574,6 +584,10 @@
         font-size: 10px;
         line-height: 10px;
         transition: transform .10s ease;
+        svg.font-awesome-chevron-right {
+          height: 9px;
+          display: inline-block;
+        }
       }
       .text-container {
 				padding: 1px 3px 3px 0;
@@ -624,11 +638,15 @@
 	  margin: 6px 0;
     background: transparent;
 	}
-  .orientation-row .padding-box input[type=range] {
-    width: auto;
+	.orientation-row > .padding-box > .slider {
+    &, input[type=range] {
+      width: auto;
+    }
   }
-  input[type="range"].alignment-horizontal-fill {
-    width: 100% !important;
+	.orientation-column > .padding-box > .slider {
+    &, input[type=range] {
+      width: 100% !important;
+    }
   }
 	input[type=range]:focus {
 	  outline: none;
@@ -860,7 +878,132 @@ body.dialog-animate-changes #dialog * {
   transition: all 250ms ease;
 }
 
-
+// Idea that didn't work out
 .paint-target-for-deletion {
 	background: #d63e3e;
+}
+
+@import
+	'../misc/drop-list.scss',
+	'../misc/radiocheck.scss';
+
+#dialog.cep-mode {
+  display: flex;
+  align-items: flex-start;
+  justify-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
+  margin: 0;
+  background: $color-bg;
+
+  #dialog-container {
+    margin: auto;
+    overflow: unset;
+    box-shadow: none;
+    border-radius: 0;
+    position: relative;
+  }
+  
+  [data-item-type],
+  [contenteditable="false"] {
+    cursor: default;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .edit-text-inner-wrap,
+  [contenteditable="true"] {
+    -webkit-touch-callout: default;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+  
+  .disable-item {
+    position: relative;
+    opacity: .40;
+    .disable-item { opacity: 1; } // Normalizes nested/disabled items
+    filter: grayscale(100%);
+    &:before {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    &.icon-button:hover .inner-wrap,
+    &.icon-button:active .inner-wrap {
+      background: transparent;
+    }
+  }
+  
+  [data-item-type="dropdownlist"],
+  [data-item-type="DropDownList"] {
+    .drop-list-wrap {
+      min-height: 14px;
+      min-width: 6px;
+    }
+    label:empty {
+      display: none;
+    }
+  }
+  
+  .tree-view-item > .item-wrap .tree-view-arrow {
+    margin-left: 4px;
+  }
+  .tree-view-item.expanded > .item-wrap .tree-view-arrow {
+    margin-left: 3px;
+  }
+  &.tree-view-arrow, * { cursor: default; }
+  
+  .drop-list-wrap .items.getSize {
+    min-width: auto !important;
+  	max-height: 16px;
+    > div {
+    	position: relative;
+    }
+  }
+  
+  .static-text .text-container {
+    letter-spacing: normal;
+  }
+  
+  &,
+  #drop-list,
+  .edit-text .text-container,
+  .static-text .text-container {
+    font-weight: 400;
+  }
+	
+} // #dialog.cep-mode
+
+#sdb-inspector {
+  position: fixed;
+  z-index: 9999999999;
+  bottom: 0;
+  left: 0;
+  padding: 3px;
+  border: 1px solid rgba(#fff, .5);
+  background: rgba(#000, .7);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  &.top-right {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+  }
 }

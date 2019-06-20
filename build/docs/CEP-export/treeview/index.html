@@ -1,0 +1,323 @@
+<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../../images/favicon.ico"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.1"><title>Treeview - SDB Documentation</title><link rel="stylesheet" href="../../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#ef5350"><script src="../../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../../assets/fonts/material-icons.css"><link rel="stylesheet" href="../../js/lity-2.3.1/dist/lity.min.css"></head><body dir="ltr" data-md-color-primary="red" data-md-color-accent="indigo"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#treeview" tabindex="1" class="md-skip">Skip to content </a><header class="md-header" data-md-component="header"><nav class="md-header-nav md-grid"><div class="md-flex"><div class="md-flex__cell md-flex__cell--shrink"><a href="../.." title="SDB Documentation" class="md-header-nav__button md-logo"><img src="../../images/SDB-logo-white.svg" width="24" height="24"></a></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label></div><div class="md-flex__cell md-flex__cell--stretch"><div class="md-flex__ellipsis md-header-nav__title" data-md-component="title"><span class="md-header-nav__topic">SDB Documentation</span><span class="md-header-nav__topic">Treeview</span></div></div><div class="md-flex__cell md-flex__cell--shrink"><label class="md-icon md-icon--search md-header-nav__button" for="__search"></label><div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Type to start searching</div><ol class="md-search-result__list"></ol></div></div></div></div></div></div><div class="md-flex__cell md-flex__cell--shrink"><div class="md-header-nav__source"><a href="https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">ScriptUI-Dialog-Builder-Joonas</div></a></div></div></div></nav></header><div class="md-container"><nav class="md-tabs md-tabs--active" data-md-component="tabs"><div class="md-tabs__inner md-grid"><ul class="md-tabs__list"><li class="md-tabs__item"><a href="../.." title="SDB" class="md-tabs__link">SDB</a></li><li class="md-tabs__item"><a href="../getting-started/" title="CEP" class="md-tabs__link md-tabs__link--active">CEP</a></li></ul></div></nav><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0"><label class="md-nav__title md-nav__title--site" for="__drawer"><a href="../.." title="SDB Documentation" class="md-nav__button md-logo"><img src="../../images/SDB-logo-white.svg" width="48" height="48"></a>SDB Documentation</label><div class="md-nav__source"><a href="https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">ScriptUI-Dialog-Builder-Joonas</div></a></div><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../.." title="SDB" class="md-nav__link">SDB</a></li><li class="md-nav__item md-nav__item--active md-nav__item--nested"><input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked><label class="md-nav__link" for="nav-2">CEP</label><nav class="md-nav" data-md-component="collapsible" data-md-level="1"><label class="md-nav__title" for="nav-2">CEP</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="../getting-started/" title="Getting Started" class="md-nav__link">Getting Started</a></li><li class="md-nav__item"><a href="../helper-functions/" title="Helper functions" class="md-nav__link">Helper functions</a></li><li class="md-nav__item"><a href="../dropdownlist/" title="Dropdownlist" class="md-nav__link">Dropdownlist</a></li><li class="md-nav__item"><a href="../listbox/" title="Listbox" class="md-nav__link">Listbox</a></li><li class="md-nav__item"><a href="../radiocheck/" title="Radiobutton & Checkbox" class="md-nav__link">Radiobutton & Checkbox</a></li><li class="md-nav__item"><a href="../tabbedpanel/" title="Tabbedpanel" class="md-nav__link">Tabbedpanel</a></li><li class="md-nav__item md-nav__item--active"><input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc"><label class="md-nav__link md-nav__link--active" for="__toc">Treeview</label><a href="./" title="Treeview" class="md-nav__link md-nav__link--active">Treeview</a><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#methods" title="Methods" class="md-nav__link">Methods</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add" title="add()" class="md-nav__link">add()</a></li><li class="md-nav__item"><a href="#remove" title="remove()" class="md-nav__link">remove()</a></li><li class="md-nav__item"><a href="#expand" title="expand()" class="md-nav__link">expand()</a></li><li class="md-nav__item"><a href="#collapse" title="collapse()" class="md-nav__link">collapse()</a></li><li class="md-nav__item"><a href="#text" title="text()" class="md-nav__link">text()</a></li><li class="md-nav__item"><a href="#empty" title="empty()" class="md-nav__link">empty()</a></li><li class="md-nav__item"><a href="#expandall" title="expandAll()" class="md-nav__link">expandAll()</a></li><li class="md-nav__item"><a href="#collapseall" title="collapseAll()" class="md-nav__link">collapseAll()</a></li><li class="md-nav__item"><a href="#onclick-eventlistener" title="onClick eventListener" class="md-nav__link">onClick eventListener</a></li></ul></nav></li><li class="md-nav__item"><a href="#real-world-examples" title="Real world examples" class="md-nav__link">Real world examples</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add-new-item-expand" title="Add new item &amp; expand" class="md-nav__link">Add new item &amp; expand</a></li><li class="md-nav__item"><a href="#add-new-item-inside-another" title="Add new item inside another" class="md-nav__link">Add new item inside another</a></li><li class="md-nav__item"><a href="#custom-onclick-event" title="Custom onClick event" class="md-nav__link">Custom onClick event</a></li><li class="md-nav__item"><a href="#remove-item" title="Remove item" class="md-nav__link">Remove item</a></li><li class="md-nav__item"><a href="#data-attribute" title="Data-attribute" class="md-nav__link">Data-attribute</a></li><li class="md-nav__item"><a href="#populating-with-an-array" title="Populating with an array" class="md-nav__link">Populating with an array</a></li><li class="md-nav__item"><a href="#populating-with-an-array-2" title="Populating with an array #2" class="md-nav__link">Populating with an array #2</a></li><li class="md-nav__item"><a href="#expand-everything" title="Expand Everything" class="md-nav__link">Expand Everything</a></li><li class="md-nav__item"><a href="#collapse-at-a-specific-node" title="Collapse at a specific node" class="md-nav__link">Collapse at a specific node</a></li><li class="md-nav__item"><a href="#empty-a-node" title="Empty a node" class="md-nav__link">Empty a node</a></li></ul></nav></li><li class="md-nav__item"><a href="#html-structure" title="HTML structure" class="md-nav__link">HTML structure</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#simplified-html" title="Simplified HTML" class="md-nav__link">Simplified HTML</a></li><li class="md-nav__item"><a href="#full-html" title="Full HTML" class="md-nav__link">Full HTML</a></li></ul></nav></li></ul></nav></li></ul></nav></li></ul></nav></div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">Table of contents</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#methods" title="Methods" class="md-nav__link">Methods</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add" title="add()" class="md-nav__link">add()</a></li><li class="md-nav__item"><a href="#remove" title="remove()" class="md-nav__link">remove()</a></li><li class="md-nav__item"><a href="#expand" title="expand()" class="md-nav__link">expand()</a></li><li class="md-nav__item"><a href="#collapse" title="collapse()" class="md-nav__link">collapse()</a></li><li class="md-nav__item"><a href="#text" title="text()" class="md-nav__link">text()</a></li><li class="md-nav__item"><a href="#empty" title="empty()" class="md-nav__link">empty()</a></li><li class="md-nav__item"><a href="#expandall" title="expandAll()" class="md-nav__link">expandAll()</a></li><li class="md-nav__item"><a href="#collapseall" title="collapseAll()" class="md-nav__link">collapseAll()</a></li><li class="md-nav__item"><a href="#onclick-eventlistener" title="onClick eventListener" class="md-nav__link">onClick eventListener</a></li></ul></nav></li><li class="md-nav__item"><a href="#real-world-examples" title="Real world examples" class="md-nav__link">Real world examples</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#add-new-item-expand" title="Add new item &amp; expand" class="md-nav__link">Add new item &amp; expand</a></li><li class="md-nav__item"><a href="#add-new-item-inside-another" title="Add new item inside another" class="md-nav__link">Add new item inside another</a></li><li class="md-nav__item"><a href="#custom-onclick-event" title="Custom onClick event" class="md-nav__link">Custom onClick event</a></li><li class="md-nav__item"><a href="#remove-item" title="Remove item" class="md-nav__link">Remove item</a></li><li class="md-nav__item"><a href="#data-attribute" title="Data-attribute" class="md-nav__link">Data-attribute</a></li><li class="md-nav__item"><a href="#populating-with-an-array" title="Populating with an array" class="md-nav__link">Populating with an array</a></li><li class="md-nav__item"><a href="#populating-with-an-array-2" title="Populating with an array #2" class="md-nav__link">Populating with an array #2</a></li><li class="md-nav__item"><a href="#expand-everything" title="Expand Everything" class="md-nav__link">Expand Everything</a></li><li class="md-nav__item"><a href="#collapse-at-a-specific-node" title="Collapse at a specific node" class="md-nav__link">Collapse at a specific node</a></li><li class="md-nav__item"><a href="#empty-a-node" title="Empty a node" class="md-nav__link">Empty a node</a></li></ul></nav></li><li class="md-nav__item"><a href="#html-structure" title="HTML structure" class="md-nav__link">HTML structure</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#simplified-html" title="Simplified HTML" class="md-nav__link">Simplified HTML</a></li><li class="md-nav__item"><a href="#full-html" title="Full HTML" class="md-nav__link">Full HTML</a></li></ul></nav></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset"><a href="https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/source/CEP-export/treeview.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1 id="treeview">Treeview<a class="headerlink" href="#treeview" title="Permanent link">&para;</a></h1>
+<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<h3 id="add">add()<a class="headerlink" href="#add" title="Permanent link">&para;</a></h3>
+<p>The element can be either <code class="codehilite"><span class="na">.tree-view</span></code> or <code class="codehilite"><span class="na">.tree-view-item</span></code>. Target element = <code class="codehilite"><span class="na">.tree-view</span></code> or <code class="codehilite"><span class="na">.tree-view-item</span></code>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">element</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span> <span class="p">);</span> <span class="c1">// returns the added element.</span>
+</pre></div>
+
+<p>You can also feed it an array, in which case it adds multiple items. Target element = <code class="codehilite"><span class="na">.tree-view</span></code> or <code class="codehilite"><span class="na">.tree-view-item</span></code>.
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">element</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;string 1&#39;</span><span class="p">,</span> <span class="s1">&#39;string 2&#39;</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// returns the added element.</span>
+</pre></div></p>
+<blockquote>
+<p>Exported <code class="codehilite"><span class="na">.tree-view-item</span></code> elements will have all kinds of <code class="codehilite"><span class="k">data</span><span class="o">-</span><span class="n">attributes</span></code> but this method doesn't add any of them.</p>
+</blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each item is given a new: <code class="codehilite"><span class="k">data</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">item</span><span class="o">-</span><span class="n">id</span></code> attribute so you can hook into that if necessary. This is is unique in the scope of the <code class="codehilite"><span class="na">.tree-view</span></code>. Meaning that you can have any number of <code class="codehilite"><span class="na">.tree-view</span></code> items with identical amount of items and they all contains the same ids. So be sure to target the specific <code class="codehilite"><span class="na">.tree-view</span></code> when using these IDs.</p>
+</div>
+<h3 id="remove">remove()<a class="headerlink" href="#remove" title="Permanent link">&para;</a></h3>
+<p>Target element = <code class="codehilite"><span class="na">.tree-view-item</span></code>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span> <span class="nx">element</span> <span class="p">);</span>
+</pre></div>
+
+<h3 id="expand">expand()<a class="headerlink" href="#expand" title="Permanent link">&para;</a></h3>
+<p>Show child elements. Target element = <code class="codehilite"><span class="na">.tree-view-item</span></code>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">expand</span><span class="p">(</span> <span class="nx">element</span> <span class="p">);</span>
+</pre></div>
+
+<h3 id="collapse">collapse()<a class="headerlink" href="#collapse" title="Permanent link">&para;</a></h3>
+<p>Hide child elements. Target element = <code class="codehilite"><span class="na">.tree-view-item</span></code>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">collapse</span><span class="p">(</span> <span class="nx">element</span> <span class="p">);</span>
+</pre></div>
+
+<h3 id="text">text()<a class="headerlink" href="#text" title="Permanent link">&para;</a></h3>
+<p>Retrieve text from the specified item. Target element = <code class="codehilite"><span class="na">.tree-view-item</span></code>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">collapse</span><span class="p">(</span> <span class="nx">element</span> <span class="p">);</span>
+</pre></div>
+
+<h3 id="empty">empty()<a class="headerlink" href="#empty" title="Permanent link">&para;</a></h3>
+<p>Empties the whole treeview or node, so the target element can be either <code class="codehilite"><span class="na">.tree-view</span></code> or <code class="codehilite"><span class="na">.tree-node</span></code>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">empty</span><span class="p">(</span> <span class="nx">element</span> <span class="p">);</span>
+</pre></div>
+
+<h3 id="expandall">expandAll()<a class="headerlink" href="#expandall" title="Permanent link">&para;</a></h3>
+<p>Target element can be <code class="codehilite"><span class="na">.tree-view</span></code> or <code class="codehilite"><span class="na">.tree-view-item</span></code>;</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">TreeView</span><span class="p">.</span><span class="nx">expandAll</span><span class="p">(</span> <span class="nx">element</span> <span class="p">);</span> <span class="c1">// Returns an array with the expanded nodes</span>
+</pre></div>
+
+<h3 id="collapseall">collapseAll()<a class="headerlink" href="#collapseall" title="Permanent link">&para;</a></h3>
+<p>Target element can be <code class="codehilite"><span class="na">.tree-view</span></code> or <code class="codehilite"><span class="na">.tree-view-item</span></code>;</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">TreeView</span><span class="p">.</span><span class="nx">collapseAll</span><span class="p">(</span> <span class="nx">element</span> <span class="p">);</span> <span class="c1">// Returns an array with the collapsed nodes</span>
+</pre></div>
+
+<h3 id="onclick-eventlistener">onClick eventListener<a class="headerlink" href="#onclick-eventlistener" title="Permanent link">&para;</a></h3>
+<p>Always attached to the <code class="codehilite"><span class="na">.tree-view</span></code> element. Never to <code class="codehilite"><span class="na">.tree-view-item</span></code>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onClick&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">e</span><span class="p">.</span><span class="nx">detail</span> <span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<hr />
+<h2 id="real-world-examples">Real world examples<a class="headerlink" href="#real-world-examples" title="Permanent link">&para;</a></h2>
+<h3 id="add-new-item-expand">Add new item &amp; expand<a class="headerlink" href="#add-new-item-expand" title="Permanent link">&para;</a></h3>
+<p>Tree view items can be expanded before any child items are added...</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">treeview</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">treeview</span><span class="p">,</span> <span class="s1">&#39;New item&#39;</span><span class="p">);</span>
+<span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">expand</span><span class="p">(</span> <span class="nx">node</span> <span class="p">);</span>
+</pre></div>
+
+<hr />
+<h3 id="add-new-item-inside-another">Add new item inside another<a class="headerlink" href="#add-new-item-inside-another" title="Permanent link">&para;</a></h3>
+<p>In this case, since the <code class="codehilite"><span class="k">add</span><span class="p">()</span></code> method returns the added item, we are using the variable defined in the previous code block above. To make an item a parent (node), you don't need to prepare it in any way. Just add a new item.</p>
+<blockquote>
+<p>Also in this example I added a new class...</p>
+</blockquote>
+<p>The <code class="codehilite"><span class="n">node</span></code> variable is defined in the first example under the heading: <a href="#add-new-item-expand">Add new item &amp; expand</a>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">node</span><span class="p">,</span> <span class="s1">&#39;Another item)&#39;</span><span class="p">).</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;remove-on-click&#39;</span><span class="p">);</span>
+</pre></div>
+
+<hr />
+<h3 id="custom-onclick-event">Custom <code class="codehilite"><span class="n">onClick</span></code> event<a class="headerlink" href="#custom-onclick-event" title="Permanent link">&para;</a></h3>
+<p>This can only be attached to the treeview element: <code class="codehilite"><span class="na">.tree-view</span></code>. <em>It can't be attached to <code class="codehilite"><span class="na">.tree-view-item</span></code> elements.</em> Continuing from the last 2 examples, we check if the clicked item has a class <code class="codehilite"><span class="n">remove</span><span class="o">-</span><span class="k">on</span><span class="o">-</span><span class="n">click</span></code> and if it does, the item is removed when clicked.</p>
+<blockquote>
+<p>Here I'm using <code class="codehilite"><span class="nx">item</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span></code> instead of <code class="codehilite"><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span> <span class="nx">item</span> <span class="p">);</span></code>. Either one will work just fine. The latter method has an added check to see it is a <code class="codehilite"><span class="na">.tree-view-item</span></code>, but otherwise it's the same.</p>
+</blockquote>
+<p>The <code class="codehilite"><span class="n">treeview</span></code> is defined in the first example under the heading: <a href="#add-new-item-expand">Add new item &amp; expand</a>.</p>
+<div class="codehilite"><pre><span></span><span class="nx">treeview</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;onClick&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span>  <span class="nx">e</span><span class="p">.</span><span class="nx">detail</span><span class="p">.</span><span class="nx">element</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="nx">item</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="s1">&#39;remove-on-click&#39;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">item</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+
+<hr />
+<h3 id="remove-item">Remove item<a class="headerlink" href="#remove-item" title="Permanent link">&para;</a></h3>
+<p>Each tree item has a unique id <code class="codehilite"><span class="k">data</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">item</span><span class="o">-</span><span class="n">id</span></code> within the scope of its parent treeview. This probably your best bet if you need to target a specific node and you didn't get a chance to store it in a variable when added.</p>
+<div class="codehilite"><pre><span></span><span class="nx">pick</span><span class="p">(</span><span class="s1">&#39;[data-tree-item-id=&quot;1&quot;]&#39;</span><span class="p">,</span> <span class="nx">treeview</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+</pre></div>
+
+<hr />
+<h3 id="data-attribute">Data-attribute<a class="headerlink" href="#data-attribute" title="Permanent link">&para;</a></h3>
+<p>Each tree item has a unique id <code class="codehilite"><span class="k">data</span><span class="o">-</span><span class="n">tree</span><span class="o">-</span><span class="n">item</span><span class="o">-</span><span class="n">id</span></code> within the scope of its parent treeview. This probably your best bet if you need to target a specific node and you didn't get a chance to store it in a variable when added.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">pick</span><span class="p">(</span><span class="s1">&#39;[data-tree-item-id=&quot;3&quot;]&#39;</span><span class="p">,</span> <span class="nx">treeview</span><span class="p">),</span> <span class="s1">&#39;New item&#39;</span><span class="p">);</span>
+</pre></div>
+
+<hr />
+<h3 id="populating-with-an-array">Populating with an array<a class="headerlink" href="#populating-with-an-array" title="Permanent link">&para;</a></h3>
+<p>First item of each array becomes a parent (tree-node). This is <a data-lity="data-lity" data-lity-desc="First level of the array is highlighted in green" href="../img/treeview-regular-array.png">the output</a>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">itemList</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;List (A)&#39;</span><span class="p">,</span> <span class="c1">// This becomes a node</span>
+  <span class="s1">&#39;List (A1)&#39;</span><span class="p">,</span>
+  <span class="p">[</span>
+    <span class="s1">&#39;List (A2)&#39;</span><span class="p">,</span>  <span class="c1">// This becomes a node</span>
+    <span class="s1">&#39;List (B1)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;List (B2)&#39;</span><span class="p">,</span>
+    <span class="p">[</span>
+      <span class="s1">&#39;List (B3)&#39;</span><span class="p">,</span>  <span class="c1">// This becomes a node</span>
+      <span class="s1">&#39;List (C1)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C2)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C3)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C4)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C5)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C6)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C7)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C8)&#39;</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s1">&#39;List (A3)&#39;</span>
+<span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">treeview</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">treeview</span><span class="p">,</span> <span class="nx">itemList</span><span class="p">);</span>
+</pre></div>
+
+<hr />
+<h3 id="populating-with-an-array-2">Populating with an array #2<a class="headerlink" href="#populating-with-an-array-2" title="Permanent link">&para;</a></h3>
+<p>Same thing as before except to preserve the first level, each item of that first level is added separately using for loop. First item of each array becomes a parent (tree-node), but doing it this way makes an exception for the first level. This is <a data-lity="data-lity" data-lity-desc="First level of the array is highlighted in green" href="../img/treeview-ignore-1st-lvl-array.png">the output</a>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">itemList</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s1">&#39;List (A1)&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;List (A2)&#39;</span><span class="p">,</span>
+  <span class="p">[</span>
+    <span class="s1">&#39;List (A3)&#39;</span><span class="p">,</span> <span class="c1">// This becomes a node</span>
+    <span class="s1">&#39;List (B1)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;List (B2)&#39;</span><span class="p">,</span>
+    <span class="p">[</span>
+      <span class="s1">&#39;List (B3)&#39;</span><span class="p">,</span> <span class="c1">// This becomes a node</span>
+      <span class="s1">&#39;List (C1)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C2)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C3)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C4)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C5)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C6)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C7)&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;List (C8)&#39;</span>
+    <span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s1">&#39;List (A4)&#39;</span>
+<span class="p">];</span>
+
+<span class="kd">var</span> <span class="nx">treeview</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">text</span> <span class="k">of</span> <span class="nx">itemList</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">treeview</span><span class="p">,</span> <span class="nx">text</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<hr />
+<h3 id="expand-everything">Expand Everything<a class="headerlink" href="#expand-everything" title="Permanent link">&para;</a></h3>
+<p>Target element can be <code class="codehilite"><span class="na">.tree-view</span></code> or <code class="codehilite"><span class="na">.tree-view-item</span></code>;</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">treeview</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">expandedNodes</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">expandAll</span><span class="p">(</span> <span class="nx">treeview</span> <span class="p">);</span>
+</pre></div>
+
+<hr />
+<h3 id="collapse-at-a-specific-node">Collapse at a specific node<a class="headerlink" href="#collapse-at-a-specific-node" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">treeview</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">id</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">pick</span><span class="p">(</span><span class="s1">&#39;[data-tree-item-id=&quot;1&quot;]&#39;</span><span class="p">,</span> <span class="nx">treeview</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">collapsedNodes</span> <span class="o">=</span> <span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">collapseAll</span><span class="p">(</span> <span class="nx">node</span> <span class="p">);</span>
+</pre></div>
+
+<hr />
+<h3 id="empty-a-node">Empty a node<a class="headerlink" href="#empty-a-node" title="Permanent link">&para;</a></h3>
+<p>When a node is emptied, it loses the little chevron.</p>
+<div class="codehilite"><pre><span></span><span class="nx">SDB</span><span class="p">.</span><span class="nx">Treeview</span><span class="p">.</span><span class="nx">empty</span><span class="p">(</span> <span class="nx">pick</span><span class="p">(</span><span class="s1">&#39;[data-tree-item-id=&quot;2&quot;]&#39;</span><span class="p">)</span> <span class="p">);</span>
+</pre></div>
+
+<hr />
+<h2 id="html-structure">HTML structure<a class="headerlink" href="#html-structure" title="Permanent link">&para;</a></h2>
+<p>I made some manual changes to the HTML to make it more readable. All parent tree items are marked with <code class="codehilite"><span class="p">(</span><span class="n">node</span><span class="p">)</span></code> in the comments.</p>
+<table>
+<thead>
+<tr>
+<th>Classes</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div style="width: 80px;"><code class="codehilite"><span class="na">.tree-node</span></code></div></td>
+<td>Every time <code class="codehilite"><span class="p">.</span><span class="nc">tree-view-item</span></code> has the class <code class="codehilite"><span class="p">.</span><span class="nc">tree-node</span></code> it has at least one child item.</td>
+</tr>
+<tr>
+<td><code class="codehilite"><span class="na">.expanded</span></code></td>
+<td>Children are hidden by default. This class makes them visible.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="simplified-html">Simplified HTML<a class="headerlink" href="#simplified-html" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Where it says <code class="codehilite">Item text lives here</code>, there's actually two child <code class="codehilite"><span class="n">span</span></code> elements  there.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;panel tree-view&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Item 1 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span><span class="c">&lt;!-- Item text lives here --&gt;</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Item 2 (node)--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item tree-node expanded&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span><span class="c">&lt;!-- Item text lives here --&gt;</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;</span>
+
+        <span class="c">&lt;!-- Item 3--&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span><span class="c">&lt;!-- Item text lives here --&gt;</span><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / .padding-box--&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / Item 2 (node)--&gt;</span>
+
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / .padding-box--&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / Treeview--&gt;</span>
+</pre></div>
+
+<h3 id="full-html">Full HTML<a class="headerlink" href="#full-html" title="Permanent link">&para;</a></h3>
+<details><summary>Expand code here</summary><div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;panel tree-view&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeview&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;treeView1&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- Tree item 1 (node)--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item tree-node expanded&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem1&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;</span>
+
+        <span class="c">&lt;!-- Tree item 2 (node)--&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item tree-node&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem2&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;4&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;</span>
+
+            <span class="c">&lt;!-- Tree item 3 --&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem3&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;5&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;4&quot;</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+              <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="c">&lt;!-- Tree item 4 (node)--&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item tree-node expanded&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem4&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;6&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;4&quot;</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+              <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+              <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;</span>
+
+                <span class="c">&lt;!-- Tree item 5 --&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item active&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem5&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;9&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;4&quot;</span><span class="p">&gt;</span>
+                  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+                  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+              <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / .padding-box--&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / Tree item 4 (node)--&gt;</span>
+
+          <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / .padding-box--&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / Tree item 2 (node)--&gt;</span>
+
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / .padding-box--&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / Tree item 1 (node)--&gt;</span>
+
+    <span class="c">&lt;!-- Tree item 6 (node)--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item tree-node expanded&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem6&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;3&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;1&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;</span>
+
+        <span class="c">&lt;!-- Tree item 7 --&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem7&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;7&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="c">&lt;!-- Tree item 8 --&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-item&quot;</span> <span class="na">data-parent</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="na">data-item-type</span><span class="o">=</span><span class="s">&quot;treeitem&quot;</span> <span class="na">data-item-name</span><span class="o">=</span><span class="s">&quot;tvItem8&quot;</span> <span class="na">data-item-id</span><span class="o">=</span><span class="s">&quot;8&quot;</span> <span class="na">data-item-parent-id</span><span class="o">=</span><span class="s">&quot;7&quot;</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;item-wrap&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;tree-view-arrow&quot;</span><span class="p">&gt;&lt;</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">svg</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-container&quot;</span> <span class="na">contenteditable</span><span class="o">=</span><span class="s">&quot;false&quot;</span><span class="p">&gt;</span>TreeItem<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+          <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;padding-box&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / .padding-box--&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / Tree item 6 (node) --&gt;</span>
+
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / .padding-box--&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="c">&lt;!-- / Treeview --&gt;</span>
+</pre></div>
+
+</details></article></div></div></main><footer class="md-footer"><div class="md-footer-nav"><nav class="md-footer-nav__inner md-grid"><a href="../tabbedpanel/" title="Tabbedpanel" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev"><div class="md-flex__cell md-flex__cell--shrink"><i class="md-icon md-icon--arrow-back md-footer-nav__button"></i></div><div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span class="md-flex__ellipsis"><span class="md-footer-nav__direction">Previous</span>Tabbedpanel</span></div></a></nav></div><div class="md-footer-meta md-typeset"><div class="md-footer-meta__inner md-grid"><div class="md-footer-copyright">powered by <a href="https://www.mkdocs.org">MkDocs</a> and <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></div></div></div></footer></div><script src="../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script><script src="../../js/jquery-3.4.1.min.js"></script><script src="../../js/lity-2.3.1/dist/lity.min.js"></script><script src="../../js/extra.js"></script></body></html>

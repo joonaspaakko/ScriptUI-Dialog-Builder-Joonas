@@ -1,206 +1,219 @@
+#dialog {
+	
+	// This is sort of the mask put on top of the original <select>
+	.alignment-horizontal-fill > .drop-list-wrap {
+		flex: 1;
+	}
 
-// This is sort of the mask put on top of the original <select>
-.alignment-horizontal-fill > .drop-list-wrap {
-	flex: 1;
-}
-.drop-list-wrap {
-	@extend %noselection;
-	cursor: pointer;
-	position: relative;
-	z-index: 2;
-	background: darken($color-bg,7);
-	color: #d6d6d6;
-	border: 1px solid lighten($color-bg,7);
-	border-radius: 4px;
-	padding: 2px 7px 1px;
-	overflow: hidden;
-	text-align: left;
-	.items,
-	.selected {
-		display: inline-block;
-	}
-	.items > div {
-		visibility: hidden;
-		position: absolute;
-	}
-	.items > div {
-		white-space: nowrap;
-	}
-	div.selected {
-		position: relative;
-		visibility: visible;
-		padding-right: 13px;
-	}
-	.arrow {
-		font-size: 9px;
-		float: right;
-    padding-left: 5px;
-    display: inline;
-    font-size: 9px;
-    background: #3f4141;
-    z-index: 1;
-    position: absolute;
-    padding-right: 6px;
-    right: 0;
-	}
-}
-
-// This is the list that "attaches" itself to any clicked .drop-list-wrap in the dialog preview.
-#drop-list {
-	position: absolute;
-	z-index: 99;
-	top: 0;
-	left: 0;
-	
-	color: #d6d6d6;
-	background: $color-bg;
-	border: 1px solid lighten($color-bg,7);
-	border-radius: 1px;
-	padding: 1px;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 13px;
-	line-height: 13px;
-	font-weight: 400;
-	box-shadow: 0 5px 15px rgba(0,0,0,.6);
-	
-	ul, li {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-	
-	li {
+	.drop-list-wrap {
+	  -webkit-touch-callout: none;
+	  -webkit-user-select: none;
+	  -khtml-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
 		cursor: pointer;
-		padding: 2px 0px 2px 5px;
-		&:hover {
-			background: lighten($color-bg,7);
-		}
-	}
-	.selected,
-	.selected:hover {
-		// background: #466077;
-		background: #345c80;
-	}
-}
-
-// Further ScriptUI customization...
-.dropdownlist {
-	overflow: hidden;
-	position: relative;
-	label,
-	.items > div {
-		white-space: nowrap;
-    align-self: center;
-	}
-	.drop-list-wrap {
-		display: flex;
-		flex-direction: row;
-		justify-items: center;
-		align-items: center;
-	}
-	&.get-width {
-		width: auto !important;
-		display: inline-block !important;
-		.drop-list-wrap {
-			flex-shrink: 1;
-			.items div {
-				position: relative;
-			}
-		}
-	}
-	&.too-big {
-		display: flex;
-		direction: row;
-	}
-	&.too-big .drop-list-wrap {
-		flex-grow: 1;
-	}
-	label {
-    line-height: 21px;
 		position: relative;
-		z-index: 0;
-		left: 0;
-		padding-right: 5px;
-	}
-	&.too-small {
-		display: block !important;
-	}
-	&.too-small .drop-list-wrap {
-		flex-grow: 0 !important;
-	}
-	.drop-list-wrap {
-		position: relative;
-		z-index: 1;
-		float: right;
-		// Another little cheat... This makes sure there's
-		// always a gap between these two elements.‡
-		box-shadow: 0px 0 3px 4px $color-bg;
-	}
-}
-
-.dropdownlist.too-small label {
-	position: absolute !important;
-}
-.dropdownlist.too-big > label {
-	position: relative !important;
-}
-
-.drop-list-wrap {
-	ul {
+		z-index: 2;
 		background: darken($color-bg,7);
 		color: #d6d6d6;
 		border: 1px solid lighten($color-bg,7);
 		border-radius: 4px;
-	}
-	li {
-		line-height: 21px;
-		height: 21px;
-		&.selected:before {
-			top: 13px;
+		padding: 2px 7px 1px;
+		overflow: hidden;
+		text-align: left;
+		.items,
+		.selected {
+			display: inline-block;
 		}
-		&.selected:after {
-			top: 9px;
-			border-top-color: darken($color-bg,7);
+		.items > div {
+			visibility: hidden;
+			position: absolute;
 		}
-		&.selected:before,
-		&.selected:after {
-			border-width: 5px;
+		.items > div {
+			white-space: nowrap;
+		}
+		div.selected {
+			position: relative;
+			visibility: visible;
+			padding-right: 13px;
+		}
+		.arrow {
+			float: right;
+	    padding-left: 5px;
+	    display: inline;
+	    font-size: 9px;
+	    background: #3f4141;
+	    z-index: 1;
+	    position: absolute;
+	    padding-right: 6px;
+	    right: 0;
+	    line-height: 12px;
+			svg {
+				width: 8px;
+				display: inline-block;
+			}
 		}
 	}
-}
 
-
-.align-children-horizontal-fill > .padding-box > .dropdownlist {
-	display: flex;
-	.drop-list-wrap {
-		flex-grow: 1;
-	}
-}
-.orientation-row.align-children-horizontal-fill > .padding-box > .dropdownlist {
-	.drop-list-wrap {
-		display: flex;
-		> div {
-			align-self: center;
+	// This is the list that "attaches" itself to any clicked .drop-list-wrap in the dialog preview.
+	#drop-list {
+		position: absolute;
+		z-index: 99;
+		top: 0;
+		left: 0;
+		
+		color: #d6d6d6;
+		background: $color-bg;
+		border: 1px solid lighten($color-bg,7);
+		border-radius: 1px;
+		padding: 1px;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 13px;
+		line-height: 13px;
+		font-weight: 400;
+		box-shadow: 0 5px 15px rgba(0,0,0,.6);
+		
+		ul, li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		
+		li {
+			cursor: pointer;
+			padding: 2px 0px 2px 5px;
+			&:hover {
+				background: lighten($color-bg,7);
+			}
+		}
+		.selected,
+		.selected:hover {
+			// background: #466077;
+			background: #345c80;
 		}
 	}
-}
 
-
-#drop-list,
-.drop-list-wrap {
-	.horizontal-line {
-		visibility: hidden !important;
-		height: 8px;
-	}
-	.horizontal-line:before {
-		content: '';
-		visibility: visible;
-		display: block;
-		height: 1px;
-		/* background: #a2a2a2; */
-		background: #454545;
+	// Further ScriptUI customization...
+	.dropdownlist {
+		overflow: hidden;
 		position: relative;
-		top: 2px;
-		margin-right: 5px;
+		label,
+		.items > div {
+			white-space: nowrap;
+	    align-self: center;
+		}
+		.drop-list-wrap {
+			display: flex;
+			flex-direction: row;
+			justify-items: center;
+			align-items: center;
+		}
+		&.get-width {
+			width: auto !important;
+			display: inline-block !important;
+			.drop-list-wrap {
+				flex-shrink: 1;
+				.items div {
+					position: relative;
+				}
+			}
+		}
+		&.too-big {
+			display: flex;
+			direction: row;
+		}
+		&.too-big .drop-list-wrap {
+			flex-grow: 1;
+		}
+		label {
+	    line-height: 21px;
+			position: relative;
+			z-index: 0;
+			left: 0;
+			padding-right: 5px;
+		}
+		&.too-small {
+			display: block !important;
+		}
+		&.too-small .drop-list-wrap {
+			flex-grow: 0 !important;
+		}
+		.drop-list-wrap {
+			position: relative;
+			z-index: 1;
+			float: right;
+			// Another little cheat... This makes sure there's
+			// always a gap between these two elements.‡
+			box-shadow: 0px 0 3px 4px $color-bg;
+		}
 	}
+
+	.dropdownlist.too-small label {
+		position: absolute !important;
+	}
+	.dropdownlist.too-big > label {
+		position: relative !important;
+	}
+
+	.drop-list-wrap {
+		ul {
+			background: darken($color-bg,7);
+			color: #d6d6d6;
+			border: 1px solid lighten($color-bg,7);
+			border-radius: 4px;
+		}
+		li {
+			line-height: 21px;
+			height: 21px;
+			&.selected:before {
+				top: 13px;
+			}
+			&.selected:after {
+				top: 9px;
+				border-top-color: darken($color-bg,7);
+			}
+			&.selected:before,
+			&.selected:after {
+				border-width: 5px;
+			}
+		}
+	}
+
+
+	.align-children-horizontal-fill > .padding-box > .dropdownlist {
+		display: flex;
+		.drop-list-wrap {
+			flex-grow: 1;
+		}
+	}
+	.orientation-row.align-children-horizontal-fill > .padding-box > .dropdownlist {
+		.drop-list-wrap {
+			display: flex;
+			> div {
+				align-self: center;
+			}
+		}
+	}
+
+
+	#drop-list,
+	.drop-list-wrap {
+		.horizontal-line {
+			visibility: hidden !important;
+			height: 8px;
+		}
+		.horizontal-line:before {
+			content: '';
+			visibility: visible;
+			display: block;
+			height: 1px;
+			/* background: #a2a2a2; */
+			background: #454545;
+			position: relative;
+			top: 2px;
+			margin-right: 5px;
+		}
+	}
+
 }

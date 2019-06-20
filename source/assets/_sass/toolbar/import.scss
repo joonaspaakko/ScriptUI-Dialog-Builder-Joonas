@@ -3,7 +3,8 @@ $import-bg: $color-bg;
 /* $import-bg: #ff4242; */
 
 #import-box {
-  width: 550px;
+  width: 100%;
+  max-width: 850px;
 	text-align: center;
   .ta {
     position: relative;
@@ -14,7 +15,6 @@ $import-bg: $color-bg;
   .placeholder {
     color: lighten(desaturate($import-bg,70),17);
     background: darken(desaturate($import-bg,20),15);
-    display: inline-block;
     padding: 20px 30px;
     border-bottom: 1px solid #404040;
     strong {

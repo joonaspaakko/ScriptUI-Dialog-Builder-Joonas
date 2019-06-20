@@ -1,7 +1,6 @@
 
-function styleJSXitem( data, counters, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies ) {
+function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies ) {
 	var styleBlock = '';
-	// var counter = counters[ type.toLowerCase() ];
 	
 	if ( type === "TreeItem" ) {
 		

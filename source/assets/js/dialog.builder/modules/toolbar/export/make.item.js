@@ -1,50 +1,16 @@
 
-// When the item type is not a fitting variable name...
-function customVarNames( style, type, parentType, counters ) {
+function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop ) {
 	
-	var result;
-	if ( style.varName ) {
-		var cvCounter = counters[ style.varName.toLowerCase() ];
-		result = style.varName + ( cvCounter > 0 ? cvCounter : '' );
-	}
-	else {
-		switch ( type ) {
-			case "dropdownlist":
-				result = 'dropdown' + counters[ type ];
-				break;
-			case "tabbedpanel":
-				result = 'tpanel' + counters[ type ];
-				break;
-			case "dialog": // This otherwise fine as is, I just forgot that dialog doesn't need the counters :/
-				result = type;
-				break;
-			default:
-				result = type + counters[ type ];
-		}
-	}
-	return result;
-	
-}
-
-function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop ) {
-	
-	var tabsies = '    ';
+	var indentSize2 = data.settings.indentSize;
+	var tabsies = indentSize2 ? '  ' : '    ';
 	var multilineText = [false];
 	
 	var block = '';
 	var lowerCaseType = type.toLowerCase();
 	
-	if ( style.varName ) {
-		++counters[ style.varName.toLowerCase() ];
-	}
-	else {
-		++counters[ lowerCaseType ];
-	}
-	
-	var jsxVarName = customVarNames( style, lowerCaseType, parentType, counters );
+	var jsxVarName = customVar.names[ id ];
 	jsxParents[ id ] = jsxVarName;
 	var jsxParentName = jsxParents[ parentId ];
-	
 	// If current item is a parent...
 	if ( type !== "TreeItem" ) {
 		if ( item.list[ type.toLowerCase() ](false).parent ) {
@@ -210,7 +176,7 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
       else {
         block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
       }
-      break; 
+      break;
 			
 		default:
 			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
@@ -221,7 +187,7 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 	previousItem.parent = jsxParents[ parentId ];
 	
 	var lb = /*type === 'TreeView' ||*/ type === 'TreeItem' && !lastLoop ? '' : '\n';
-	block += (styleJSXitem( data, counters, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies )) + lb;
+	block += (styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies )) + lb;
 	
 	// Add in treeItem expanded properties if this is the last of treeItems in this group
 	var nextItemId = data.order[ index + 1 ];
@@ -265,7 +231,7 @@ function makeJSXitem( index, data, counters, jsxParents, type, id, parentId, par
 		
 	}
 	
-	if ( lastLoop ) block += jsxParents[ 0 ] + '.show();';
+	if ( data.settings.showDialog && lastLoop ) block += jsxParents[ 0 ] + '.show();';
 	
 	return block;
 }

@@ -1,0 +1,66 @@
+site_name: SDB Documentation
+
+edit_uri: 'source/'
+docs_dir: 'mkdocs'
+site_dir: '../../build/docs'
+
+extra_css:
+  - 'js/lity-2.3.1/dist/lity.min.css'
+
+extra_javascript:
+  - 'js/jquery-3.4.1.min.js'
+  - 'js/lity-2.3.1/dist/lity.min.js'
+  - 'js/extra.js'
+  
+extra:
+  search:
+    language: 'en'
+
+theme:
+  name: 'material'
+  palette:
+    primary: 'red'
+    accent: 'indigo'
+  logo: 'images/SDB-logo-white.svg'
+  favicon: 'images/favicon.ico'
+  language: 'en'
+  feature:
+    tabs: true
+
+repo_name: 'ScriptUI-Dialog-Builder-Joonas'
+repo_url: 'https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas'
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: true
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - attr_list
+
+nav:
+  - SDB: index.md
+  - CEP:
+    - Getting Started: CEP-export/getting-started.md
+    - Helper functions: CEP-export/helper-functions.md
+    - Dropdownlist: CEP-export/dropdownlist.md
+    - Listbox: CEP-export/listbox.md
+    - Radiobutton & Checkbox: CEP-export/radiocheck.md
+    - Tabbedpanel: CEP-export/tabbedpanel.md
+    - Treeview: CEP-export/treeview.md

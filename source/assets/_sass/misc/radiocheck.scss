@@ -1,58 +1,71 @@
 
 // Checks the radio for latest hits.
-
-.radiocheck {
-	@extend %noselection;
-	cursor: pointer;
-	position: relative;
-	top: -1px;
-	vertical-align: middle;
-	display: inline-block;
-	margin-right: 7px;
-	text-align: center !important;
-	border-radius: 2px;
-	> i {
-		display: none;
-	}
-	&.on {
-		> i {
-			display: block;
-				background: $color-gray;
-		}
-	}
+#dialog {
 	
-	&.checkbox {
-		width: 9px;
-		height: 9px;
-		line-height: 11px;
-		border: 1px solid $color-gray;
-		i {
+	.radiocheck {
+	  -webkit-touch-callout: none;
+	  -webkit-user-select: none;
+	  -khtml-user-select: none;
+	  -moz-user-select: none;
+	  -ms-user-select: none;
+	  user-select: none;
+		cursor: pointer;
+		position: relative;
+		top: -1px;
+		vertical-align: middle;
+		display: inline-block;
+		margin-right: 7px;
+		text-align: center !important;
+		border-radius: 2px;
+		> svg,
+		> i {
+			display: none;
+		}
+		&.on {
+			> svg,
+			> i {
+				display: block !important;
+				background: $color-gray;
+			}
+		}
+		
+		&.checkbox {
 			width: 9px;
 			height: 9px;
 			line-height: 11px;
-			color: $color-bg;
-			font-size: 8px;
+			border: 1px solid $color-gray;
+			svg,
+			i {
+				width: 9px;
+				height: 9px;
+				line-height: 11px;
+				color: $color-bg;
+				font-size: 8px;
+			}
 		}
-	}
-	&.radiobutton {
-		width: 9px;
-		height: 9px;
-		line-height: 12px;
-		border: 1px solid $color-gray;
-		border-radius: 300px;
-		&.on {
-			width: 11px;
-			height: 11px;
+		&.radiobutton {
+			width: 9px;
+			height: 9px;
 			line-height: 12px;
-			border: none;
-		}
-		i {
-			width: 11px;
-			height: 11px;
-			line-height: 12px;
+			border: 1px solid $color-gray;
 			border-radius: 300px;
-			color: $color-bg;
-			font-size: 4px;
+			&.on {
+				width: 11px;
+				height: 11px;
+				line-height: 12px;
+				border: none;
+			}
+			svg,
+			i {
+		    width: 5px;
+		    height: 5px;
+	    	border: 3px solid #c1c1c1;
+				line-height: 12px;
+				border-radius: 300px;
+				color: $color-bg;
+				font-size: 4px;
+			}
 		}
 	}
+
 }

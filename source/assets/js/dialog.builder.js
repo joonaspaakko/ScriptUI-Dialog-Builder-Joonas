@@ -35,7 +35,9 @@
 // @codekit-prepend "dialog.builder/modules/loading.screen.js";
 // @codekit-prepend "dialog.builder/modules/number.input.js";
 // @codekit-prepend "dialog.builder/modules/modal.window.js";
+// @codekit-prepend "dialog.builder/modules/toolbar/export/custom.var.names.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/export.js";
+// @codekit-prepend "dialog.builder/modules/settings.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/import.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/reset.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/sample.dialog.js";
@@ -106,6 +108,7 @@ else {
 	data = local_storage.get('dialog');
   var oldItem = data.items[ 'item-' + oldActiveId ];
   edit_style_panel.build( oldItem.style );
-	
-
+  
 }
+
+settings.setDefaults( data );
