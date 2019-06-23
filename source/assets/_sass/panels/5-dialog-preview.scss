@@ -1007,3 +1007,112 @@ body.dialog-animate-changes #dialog * {
     left: auto;
   }
 }
+
+
+$ic-4: #323232;
+$ic-3: #535353;
+$ic-2: #b8b8b8;
+$ic-1: #f0f0f0;
+
+@mixin interfaceColor( $ic-color ) {
+  #dialog-container>.padding-box {
+    background: $ic-color;
+  }
+  .panel .title {
+    background: $ic-color;
+  }
+  .edit-text span.edit-text-inner-wrap {
+    background: rgba(#000, .24);
+  }
+  
+  .edit-text span.edit-text-inner-wrap,
+  .dropdownlist .drop-list-wrap {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #3e3e3e;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #5f5f5f;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #a8a8a8;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #dcdcdc;
+    }
+    border-color: $color;
+  }
+  .radiocheck.checkbox {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #999999;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #c7c7c7;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #4a4a4a;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #484848;
+    }
+    border-color: $color;
+    svg { background: $color; }
+    svg path { fill: $ic-color; }
+  }
+  .dropdownlist .drop-list-wrap {
+    box-shadow: 0px 0 3px 4px $ic-color;
+  }
+  .drop-list-wrap,
+  .drop-list-wrap .arrow {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #2a2a2a;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #c7c7c7;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #4a4a4a;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #484848;
+    }
+    background: $color;
+  }
+  .panel > .padding-box {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #2a2a2a;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #4b4b4b;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #a8a8a8;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #dcdcdc;
+    }
+    border-color: $color;
+  }
+}
+
+#dialog {
+  &.color-theme-4,
+  &.color-theme-darkest {
+    @include interfaceColor( $ic-4 );
+  }
+  &.color-theme-3,
+  &.color-theme-dark {
+  	background: #535353;
+  }
+  &.color-theme-2,
+  &.color-theme-light {
+  	background: #b8b8b8;
+  }
+  &.color-theme-1,
+  &.color-theme-lightest {
+  	background: #f0f0f0;
+  }
+}

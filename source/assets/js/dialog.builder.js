@@ -112,3 +112,6 @@ else {
 }
 
 settings.setDefaults( data );
+
+
+// $('#dialog').addClass('color-theme-4');

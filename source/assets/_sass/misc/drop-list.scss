@@ -56,44 +56,6 @@
 		}
 	}
 
-	// This is the list that "attaches" itself to any clicked .drop-list-wrap in the dialog preview.
-	#drop-list {
-		position: absolute;
-		z-index: 99;
-		top: 0;
-		left: 0;
-		
-		color: #d6d6d6;
-		background: $color-bg;
-		border: 1px solid lighten($color-bg,7);
-		border-radius: 1px;
-		padding: 1px;
-		font-family: 'Source Sans Pro', sans-serif;
-		font-size: 13px;
-		line-height: 13px;
-		font-weight: 400;
-		box-shadow: 0 5px 15px rgba(0,0,0,.6);
-		
-		ul, li {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-		}
-		
-		li {
-			cursor: pointer;
-			padding: 2px 0px 2px 5px;
-			&:hover {
-				background: lighten($color-bg,7);
-			}
-		}
-		.selected,
-		.selected:hover {
-			// background: #466077;
-			background: #345c80;
-		}
-	}
-
 	// Further ScriptUI customization...
 	.dropdownlist {
 		overflow: hidden;
@@ -195,25 +157,61 @@
 			}
 		}
 	}
+}
 
-
-	#drop-list,
-	.drop-list-wrap {
-		.horizontal-line {
-			visibility: hidden !important;
-			height: 8px;
-		}
-		.horizontal-line:before {
-			content: '';
-			visibility: visible;
-			display: block;
-			height: 1px;
-			/* background: #a2a2a2; */
-			background: #454545;
-			position: relative;
-			top: 2px;
-			margin-right: 5px;
+// This is the list that "attaches" itself to any clicked .drop-list-wrap in the dialog preview.
+#drop-list {
+	position: absolute;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	
+	color: #d6d6d6;
+	background: $color-bg;
+	border: 1px solid lighten($color-bg,7);
+	border-radius: 1px;
+	padding: 1px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 13px;
+	line-height: 13px;
+	font-weight: 400;
+	box-shadow: 0 5px 15px rgba(0,0,0,.6);
+	
+	ul, li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	
+	li {
+		cursor: pointer;
+		padding: 2px 0px 2px 5px;
+		&:hover {
+			background: lighten($color-bg,7);
 		}
 	}
+	.selected,
+	.selected:hover {
+		// background: #466077;
+		background: #345c80;
+	}
+}
 
+#drop-list,
+#dialog .drop-list-wrap {
+	.horizontal-line {
+		visibility: hidden !important;
+		height: 8px;
+	}
+	.horizontal-line:before {
+		content: '';
+		visibility: visible;
+		display: block;
+		height: 1px;
+		/* background: #a2a2a2; */
+		background: #454545;
+		position: relative;
+		top: 2px;
+		margin-right: 5px;
+	}
 }
