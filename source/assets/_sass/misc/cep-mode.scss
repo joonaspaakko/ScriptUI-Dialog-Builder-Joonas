@@ -1,0 +1,121 @@
+
+#dialog.cep-mode {
+  display: flex;
+  align-items: flex-start;
+  justify-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
+  margin: 0;
+  background: $color-bg;
+
+  #dialog-container {
+    margin: auto;
+    overflow: unset;
+    box-shadow: none;
+    border-radius: 0;
+    position: relative;
+  }
+  
+  [data-item-type],
+  [contenteditable="false"] {
+    cursor: default;
+  }
+  
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .edit-text-inner-wrap,
+  [contenteditable="true"] {
+    -webkit-touch-callout: default;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+  
+  .disable-item {
+    position: relative;
+    opacity: .40;
+    .disable-item { opacity: 1; } // Normalizes nested/disabled items
+    filter: grayscale(100%);
+    &:before {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    &.icon-button:hover .inner-wrap,
+    &.icon-button:active .inner-wrap {
+      background: transparent;
+    }
+  }
+  
+  [data-item-type="dropdownlist"],
+  [data-item-type="DropDownList"] {
+    .drop-list-wrap {
+      min-height: 14px;
+      min-width: 6px;
+    }
+    label:empty {
+      display: none;
+    }
+  }
+  
+  .tree-view-item > .item-wrap .tree-view-arrow {
+    margin-left: 4px;
+  }
+  .tree-view-item.expanded > .item-wrap .tree-view-arrow {
+    margin-left: 3px;
+  }
+  &.tree-view-arrow, * { cursor: default; }
+  
+  .drop-list-wrap .items.getSize {
+    min-width: auto !important;
+  	max-height: 16px;
+    > div {
+    	position: relative;
+    }
+  }
+  
+  .static-text .text-container {
+    letter-spacing: normal;
+  }
+  
+  &,
+  #drop-list,
+  .edit-text .text-container,
+  .static-text .text-container {
+    font-weight: 400;
+  }
+	
+} // #dialog.cep-mode
+
+#sdb-inspector {
+  position: fixed;
+  z-index: 9999999999;
+  bottom: 0;
+  left: 0;
+  padding: 3px;
+  border: 1px solid rgba(#fff, .5);
+  background: rgba(#000, .7);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  &.top-right {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+  }
+}

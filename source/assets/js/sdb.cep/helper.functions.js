@@ -247,8 +247,38 @@ var SDB = {
         (item.name ? '<div class="name">Name: <span>'+ item.name +'</span></div>' : '')
       ;
     }
-  }
+  },
   
+  // https://github.com/undavide/PS-Panels-Boilerplate/blob/master/src/com.undavide.topcoat/js/themeManager.js
+  themeManager: {
+    init: function( csi ) {
+    	SDB.themeManager.changeColor( csi.hostEnvironment.appSkinInfo );
+    	csi.addEventListener( CSInterface.THEME_COLOR_CHANGED_EVENT, function() {
+        var skinInfo = JSON.parse(window.__adobe_cep__.getHostEnvironment()).appSkinInfo;
+        SDB.themeManager.changeColor(skinInfo);
+      });
+    },
+    
+  	changeColor: function( appSkinInfo ) {
+
+  		var themeShade = "",
+  			redShade = appSkinInfo.panelBackgroundColor.color.red;
+  		if (redShade > 200) {
+  			themeShade = "lightest";
+  		} else if (redShade > 180) {
+  			themeShade = "light";
+
+  		} else if (redShade > 80) {
+  			themeShade = "dark";
+  		
+  		} else {
+  			themeShade = "darkest";
+  		}
+      
+      $('html').attr('data-theme-color', themeShade);
+      
+  	}
+  }
 };
 
 SDB.init();

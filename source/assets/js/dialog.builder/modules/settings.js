@@ -249,7 +249,7 @@ var settings = {
       
       function processCSSandJS() {
         
-        var ajaxVersion = 1;
+        var ajaxVersion = 2.1;
         var ajaxCache = true;
         var combinedCSSandJS = '';
         

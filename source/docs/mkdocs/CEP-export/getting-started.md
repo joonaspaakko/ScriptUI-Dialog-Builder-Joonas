@@ -9,13 +9,16 @@ After you turn on the CEP export, there's not much to it:
    - I strongly advice to turn off word wrap in your editor, because the CSS and JS take up a lot of space. Unless of course you choose to link the files instead.
 3. You're good to go.
 
-**Just make sure to include the `JS` and `CSS`.**
+**Just make sure the `JS` and `CSS` is included.**
+
+!!! error "Theme Manager"
+		Automatic theme switching is built in, but it needsto be triggered manually. Read more at [Theme Manager](/docs/CEP-export/thememanager/).
 
 > The `HTML` obviously changes every single time you make changes in SDB, but the `JS` and `CSS` will not change very often if at all. So you may way to export `HTML` only after the first export. You'll likely want to put the `JS` file above your own Javascript. `CSS` isn't that picky.
 
 ## The required CSS and JS files
 
-Be default the export will include `HTML` + `CSS` & `JS`, but you can also export the `HTML` only. You can download the required `CSS` and `JS` files using these links.
+By default the export will include `HTML` + `CSS` & `JS`, but you can also export the `HTML` only. You can download the required `CSS` and `JS` files using these links.
 
 - [CSS: `ScriptUI-Dialog-Builder-Joonas-master/build/assets/css/sdb.cep.css`](https://raw.githubusercontent.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/master/build/assets/css/sdb.cep.css)
 - [JS: `ScriptUI-Dialog-Builder-Joonas-master/build/assets/js/sdb.cep.js`](https://raw.githubusercontent.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/master/build/assets/js/sdb.cep.js)

@@ -1,0 +1,435 @@
+
+@mixin interfaceColor( $ic-color ) {
+  #dialog.cep-mode {
+    background: $ic-color;
+  }
+  
+  #dialog-container > .padding-box,
+  .list-box .inner-wrap {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #dedede;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #fafafa;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #1a1a1a;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #353535;
+    }
+    color: $color !important;
+    background: $ic-color !important;
+  }
+  div.panel span.title {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #dedede;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #fafafa;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #1a1a1a;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #353535;
+    }
+    color: $color !important;
+    background: $ic-color !important;
+  }
+  .edit-text span.edit-text-inner-wrap,
+  .edit-text.focused span {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #262626;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #454545;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #f0f0f0;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #ffffff;
+    }
+    background: $color !important;
+  }
+  
+  .edit-text span.edit-text-inner-wrap,
+  .dropdownlist .drop-list-wrap {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #3e3e3e;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #5f5f5f;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #a8a8a8;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #dcdcdc;
+    }
+    border-color: $color !important;
+  }
+  
+  .active.edit-text > span > span {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #cdcdcd;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #ffffff;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #232323;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #484848;
+    }
+    color: $color !important;
+  }
+  
+  .radiocheck.radiobutton,
+  .radiocheck.checkbox {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #999999;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #c7c7c7;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #4a4a4a;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #484848;
+    }
+    border-color: $color !important;
+    svg {
+      background: $color !important;
+      border-color: $color !important;
+    }
+    svg path { fill: $ic-color !important; }
+  }
+  
+  .dropdownlist .drop-list-wrap {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #d6d6d6;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #ffffff;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #303030;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #6c6c6c;
+    }
+    box-shadow: 0px 0 3px 4px $ic-color !important;
+		color: $color !important;
+  }
+  .drop-list-wrap,
+  .drop-list-wrap .arrow {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #2a2a2a;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #4b4b4b;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #f0f0f0;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #ffffff;
+    }
+    background: $color !important;
+  }
+  
+  .drop-list-wrap .arrow svg path {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #bfbfbf;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #f0f0f0;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #303030;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #575757;
+    }
+    fill: $color !important;
+  }
+  
+  .list-box li,
+  .list-box .inner-wrap,
+  .panel > .padding-box,
+  .tree-view-item .item-wrap:before {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #2a2a2a;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #4b4b4b;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #a8a8a8;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #dcdcdc;
+    }
+    border-color: $color !important;
+  }
+  #drop-list {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #d6d6d6;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #ffffff;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #2e2e2e;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #5a5a5a;
+    }
+    color: $color !important;
+    background: $ic-color !important;
+
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #3e3e3e;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #5f5f5f;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #a8a8a8;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #dcdcdc;
+    }
+    border-color: $color !important;
+    
+    li:hover {
+      $color: "";
+      @if $ic-color == $ic-4 {
+        $color: #3e3e3e;
+      }
+      @else if $ic-color == $ic-3 {
+        $color: #5f5f5f;
+      }
+      @else if $ic-color == $ic-2 {
+        $color: #a8a8a8;
+      }
+      @else if $ic-color == $ic-1 {
+        $color: #dcdcdc;
+      }
+      background: $color !important;
+    }
+    .selected {
+      $color: "";
+      @if $ic-color == $ic-4 {
+        $color: #354d62;
+      }
+      @else if $ic-color == $ic-3 {
+        $color: #4e667b;
+      }
+      @else if $ic-color == $ic-2 {
+        $color: #90a2be;
+      }
+      @else if $ic-color == $ic-1 {
+        $color: #b9ceeb;
+      }
+      background: $color !important;
+    }
+  }
+	
+	.tree-view-item .tree-view-arrow svg path {
+		$color: "";
+		@if $ic-color == $ic-4 {
+			$color: #c1c1c1;
+		}
+		@else if $ic-color == $ic-3 {
+			$color: #f0f0f0;
+		}
+		@else if $ic-color == $ic-2 {
+			$color: #303030;
+		}
+		@else if $ic-color == $ic-1 {
+			$color: #565656;
+		}
+		fill: $color !important;
+	}
+  
+
+	$color: "";
+	@if $ic-color == $ic-4 {
+		$color: #cdcdcd;
+	}
+	@else if $ic-color == $ic-3 {
+		$color: #ffffff;
+	}
+	@else if $ic-color == $ic-2 {
+		$color: #232323;
+	}
+	@else if $ic-color == $ic-1 {
+		$color: #484848;
+	}
+  .tabbed-panel>.tab-container .tab.visible {
+    border-color: $color !important;
+  }
+  .button .button-border:hover,
+  .icon-button .inner-wrap:hover {
+    background: $color !important;
+  }
+  
+  .button .button-border:hover {
+  	$color: "";
+  	@if $ic-color == $ic-4 {
+  		$color: #383838;
+  	}
+  	@else if $ic-color == $ic-3 {
+  		$color: #5d5d5d;
+  	}
+  	@else if $ic-color == $ic-2 {
+  		$color: #cfcfcf;
+  	}
+  	@else if $ic-color == $ic-1 {
+  		$color: #fcfcfc;
+  	}
+    color: $color !important;
+  }
+  
+  .button .button-border {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #cdcdcd;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #ffffff;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #232323;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #484848;
+    }
+    border-color: $color !important;
+  }
+  
+  #drop-list .horizontal-line::before,
+  .drop-list-wrap .horizontal-line::before {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #2a2a2a;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #4b4b4b;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #a8a8a8;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #dcdcdc;
+    }
+    background: $color !important;
+  }
+  
+  .list-box li.selected,
+  .list-box li:active {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #354d62;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #4e667b;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #90a2be;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #b9ceeb;
+    }
+    background: $color !important;
+  }
+  
+	input[type=range]::-webkit-slider-thumb {
+    $color: "";
+    @if $ic-color == $ic-4 {
+      $color: #999999;
+    }
+    @else if $ic-color == $ic-3 {
+      $color: #c7c7c7;
+    }
+    @else if $ic-color == $ic-2 {
+      $color: #4a4a4a;
+    }
+    @else if $ic-color == $ic-1 {
+      $color: #6d6d6d;
+    }
+    border-color: $color !important;
+    box-shadow: 0px 0px 0px 3px $ic-color, 0px 0px 0px $ic-color !important;
+    background: $ic-color !important;
+  }
+  
+} // Mixin
+
+$ic-4: #323232;
+$ic-3: #535353;
+$ic-2: #b8b8b8;
+$ic-1: #f0f0f0;
+
+// DARKEST
+.color-theme-4,
+.color-theme-darkest,
+[data-theme-color="darkest"],
+[data-interface-color="darkest"] {
+  @include interfaceColor( $ic-4 );
+  &, body { background: $ic-4; }
+  ::-webkit-scrollbar-thumb { background: lighten($ic-3,10); }
+  body::-webkit-scrollbar-track { background: $ic-4; }
+}
+// DARK
+.color-theme-3,
+.color-theme-dark,
+[data-theme-color="dark"],
+[data-interface-color="dark"] {
+  @include interfaceColor( $ic-3 );
+  &, body { background: $ic-3; }
+  ::-webkit-scrollbar-thumb { background: lighten($ic-3,30); }
+  body::-webkit-scrollbar-track { background: $ic-3; }
+}
+// LIGHT
+.color-theme-2,
+.color-theme-light,
+[data-theme-color="light"],
+[data-interface-color="light"] {
+  @include interfaceColor( $ic-2 );
+  &, body { background: $ic-2; }
+  ::-webkit-scrollbar-thumb { background: darken($ic-3,15); }
+  body::-webkit-scrollbar-track { background: $ic-2; }
+}
+// LIGHTEST
+.color-theme-1,
+.color-theme-lightest,
+[data-theme-color="lightest"],
+[data-interface-color="lightest"] {
+  @include interfaceColor( $ic-1 );
+  &, body { background: $ic-1; }
+  ::-webkit-scrollbar-thumb { background: darken($ic-3,10); }
+  body::-webkit-scrollbar-track { background: $ic-1; }
+}
+
+#dialog .edit-text span.text-container,
+#dialog .static-text span.text-container {
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}

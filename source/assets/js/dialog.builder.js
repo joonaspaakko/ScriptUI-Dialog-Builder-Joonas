@@ -114,4 +114,26 @@ else {
 settings.setDefaults( data );
 
 
-// $('#dialog').addClass('color-theme-4');
+// Warning for people not using chrome
+var isChromium = window.chrome;
+var winNav = window.navigator;
+var vendorName = winNav.vendor;
+var isOpera = typeof window.opr !== "undefined";
+var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
+var isIOSChrome = winNav.userAgent.match("CriOS");
+if (isIOSChrome) {
+  // is Google Chrome on IOS
+} else if(
+  isChromium !== null &&
+  typeof isChromium !== "undefined" &&
+  vendorName === "Google Inc." &&
+  isOpera === false &&
+  isIEedge === false
+) {
+  // is Google Chrome
+} else {
+  // not Google Chrome
+  setTimeout(function() {
+    notification( 'failure', "<strong>WARNING</strong>: This browser is not fully supported. Please use Google Chrome .", 20 );
+  }, 200);
+}

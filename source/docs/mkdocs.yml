@@ -1,6 +1,6 @@
 site_name: SDB Documentation
 
-edit_uri: 'source/'
+edit_uri: 'tree/master/source/docs/mkdocs/'
 docs_dir: 'mkdocs'
 site_dir: '../../build/docs'
 
@@ -58,6 +58,7 @@ nav:
   - SDB: index.md
   - CEP:
     - Getting Started: CEP-export/getting-started.md
+    - Theme Manager: CEP-export/thememanager.md
     - Helper functions: CEP-export/helper-functions.md
     - Dropdownlist: CEP-export/dropdownlist.md
     - Listbox: CEP-export/listbox.md
