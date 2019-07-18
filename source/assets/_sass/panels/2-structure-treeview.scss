@@ -237,6 +237,21 @@
 		color: rgba( #fff, .5 ) !important;
 	}
 	
+	li.collapsed {
+    padding-bottom: 8px !important;
+		.collapsed-icon {
+      width: 16px;
+      height: 8px;
+      float: left;
+      position: relative;
+      top: -.5px;
+      left: 15px;
+		}
+		> ul {
+			display: none;
+		}
+	}
+	
 } // #tree-view-contents
 
 

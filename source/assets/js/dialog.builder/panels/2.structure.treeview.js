@@ -22,6 +22,34 @@ $('#panel-tree-view-wrap').on("mouseenter mouseleave", ".item-text", function( e
   
 });
 
+// TREEVIEW PARENT COLLAPSE
+treeElem.on("dblclick", 'li[data-parent="true"] > .item-text, li[data-parent="true"] > .collapsed-icon', function() {
+  
+  var treeItem = $(this).parent('li');
+  var isCollapsed = treeItem.hasClass('collapsed');
+  
+  var id = treeItem.data('item-id');
+	var data = local_storage.get('dialog');
+  var dataItem = data.items[ 'item-' + id ];
+  
+  var toggle = !isCollapsed ? 'add' : 'remove';
+  treeItem[ toggle+'Class' ]('collapsed');
+  
+  if ( !isCollapsed ) {
+    dataItem.collapsed = true;
+    $('<img class="collapsed-icon" src="assets/images/parent-collapsed.svg">').appendTo( treeItem );
+  }
+  else {
+    treeItem.find('> .collapsed-icon').remove();
+    if ( dataItem.collapsed != undefined ) delete dataItem.collapsed;
+  }
+  
+  local_storage.set('dialog', data );
+  
+  $("#dialog-section").backstretch("resize");
+  
+});
+
 // TREEVIEW NEW ITEM ACTIVATE CLICK EVENT
 treeElem.on("click", ".item-text", function() {
   
@@ -71,6 +99,11 @@ treeRootUl.sortable({
     var tv = treeView.onDragValid( $item, container );
     
     result = tp || tv ? false : true;
+    
+    // Prevents dropping inside a collapsed parent
+    if ( container.el.parent('li').hasClass('collapsed') ) {
+      result = false;
+    }
     
     // TRUE = Droppable
     // FALSE = No dropsies

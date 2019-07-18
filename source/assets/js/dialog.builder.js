@@ -91,6 +91,12 @@ else {
     };
     item.funnel.create( params );
     
+    // Makes sure collapsed items are actually collapsed
+		if ( currentItem.collapsed ) {
+			$('[data-panel="treeview"] [data-item-id="'+ currentId +'"]').addClass('collapsed');
+      $('<img class="collapsed-icon" src="assets/images/parent-collapsed.svg">').appendTo('[data-panel="treeview"] [data-item-id="'+ currentId +'"]');
+		}
+    
 	});
   
 	// Update preferred size now that all items/elements are created
