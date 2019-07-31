@@ -35,6 +35,7 @@
 // @codekit-prepend "dialog.builder/modules/loading.screen.js";
 // @codekit-prepend "dialog.builder/modules/number.input.js";
 // @codekit-prepend "dialog.builder/modules/modal.window.js";
+// @codekit-prepend "dialog.builder/modules/legend.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/export/custom.var.names.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/export.js";
 // @codekit-prepend "dialog.builder/modules/settings.js";
@@ -44,7 +45,6 @@
 // @codekit-prepend "dialog.builder/modules/custom.cursor.js";
 // @codekit-prepend "dialog.builder/modules/toggle.active.visibility.js";
 // @codekit-prepend "dialog.builder/modules/notifications.js";
-// @codekit-prepend "dialog.builder/modules/legend.js";
 // @codekit-prepend "dialog.builder/modules/panels.collapse.js";
 // @codekit-prepend "dialog.builder/item.factory/special.logic/danger.zone.js";
 // @codekit-prepend "dialog.builder/item.factory/special.logic/force.size.js";
@@ -143,3 +143,87 @@ if (isIOSChrome) {
     notification( 'failure', "<strong>WARNING</strong>: This browser is not fully supported. Please use Google Chrome .", 20 );
   }, 200);
 }
+
+// Something something no ragrets 2019
+var cep = {
+  fetch: {
+    dependencies: function() {
+      
+      var ajaxOpt = {
+        version: 2.1,
+        cache: true
+      };
+      var lsname = 'sdb-cep-dependencies';
+      
+      var data = local_storage.get( lsname ) || {};
+      
+      cep.fetch.css( ajaxOpt, function( css ) {
+        cep.fetch.js( ajaxOpt, function( js ) {
+          
+          data.css = css;
+          data.js = js;
+          
+          local_storage.set( lsname, data );
+          
+        });
+      });
+      
+    },
+    // CSS
+    css: function( ajaxOpt, callback ) {
+      
+      var output = '';
+      jQuery.ajax({
+        // async: false,
+        cache: ajaxOpt.cache,
+        url: 'https://scriptui.joonas.me/assets/css/sdb.cep.css?v=' + ajaxOpt.version,
+        success: function( css ) {
+          
+          var styleElement = $('<style/>');
+          styleElement.text( getFonts() + css );
+          output += styleElement.prop('outerHTML').replace('\n','');
+          styleElement.remove();
+          callback( output );
+          
+        },
+        error: function() {
+          
+          var linkElement = $('<link/>');
+          linkElement.attr('href', 'ScriptUI-Dialog-Builder-Joonas-master/build/assets/css/sdb.cep.css');
+          output += linkElement.prop('outerHTML');
+          linkElement.remove();
+          callback( output );
+          
+        }
+      });
+    },
+    // JAVASCRIPT
+    js: function( ajaxOpt, callback ) {
+      var scriptElement = $('<script/>');
+      var outputJS = '';
+      jQuery.ajax({
+        // async: false,
+        cache: ajaxOpt.cache,
+        url: 'https://scriptui.joonas.me/assets/js/sdb.cep.js?v=' + ajaxOpt.version,
+        success: function( js ) {
+          
+          scriptElement.text( js );
+          outputJS += scriptElement.prop('outerHTML');
+          scriptElement.remove();
+          callback( outputJS );
+          
+        },
+        error: function() {
+          
+          scriptElement.attr('src', 'ScriptUI-Dialog-Builder-Joonas-master/build/assets/js/sdb.cep.js');
+          outputJS += scriptElement.prop('outerHTML');
+          scriptElement.remove();
+          callback( outputJS );
+          
+        }
+      });
+    }
+  }
+};
+
+cep.fetch.dependencies();

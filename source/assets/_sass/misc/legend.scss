@@ -48,6 +48,7 @@ body.shortcut-export-failure #dialog-overlay-wrap {
    background: rgba( #e83f34, .6 );
 }
 
+#clipboard-export-spinner,
 #export-success-icon {
 	position: absolute;
 	z-index: 9999;
@@ -65,5 +66,12 @@ body.shortcut-export-failure #dialog-overlay-wrap {
 		display: inline-block;
 		width: 100px;
 		height: 100px;
+	}
+}
+#clipboard-export-spinner .circle {
+	padding: 20px;
+	img {
+		width: 32px;
+		height: 32px;
 	}
 }

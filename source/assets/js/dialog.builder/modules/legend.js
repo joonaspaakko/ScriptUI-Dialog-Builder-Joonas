@@ -1,77 +1,133 @@
 
 
-// var shortcuts = {
-//   init: function() {
-//
-//   },
-//
-//   // Visual indicator so user knows he pressed a shortcut and something happened, probably...
-//   flash: function() {
-//
-//   }
-//
-// };
-
 // GLOBAL SHORTCUT(S)
 $(document).on("keydown", function( e ) {
     
   // Export code
   var keycode = e.keyCode ? e.keyCode : e.which;
   var alt_e = keycode == 69 && e.altKey;
-  if ( alt_e ) $('.l-export').trigger('click');
+  if ( alt_e && $('#export-box').length < 1 ) exportToClipboard( 'shortcut' );
   
 });
 
-var bgTimeout;
-var iconTimeout;
-shortcutExport();
 
-function shortcutExport() {
-  var clipboard = new ClipboardJS('.l-export', {
-    text: function() {
-      return getExportCode().code;
-    }
-  });
+// https://developers.google.com/web/updates/2015/04/cut-and-copy-commands#simple_example
+function exportToClipboard( exportOrigin ) {
   
-  var l_export = $('.l-export');
-  clipboard.on('success', function() {
+  var faClipboard;
+  var xportBox = $('#export-box');
+  var exportWindow = exportOrigin === 'export-window';
+  
+  if ( exportWindow ) {
+    var copyBtn = xportBox.find('.copy.btn');
+    copyBtn.find('.fa-clipboard-list').hide();
+    copyBtn.find('img').show();
+  }
+  
+  var clipboardSpinner = $('#clipboard-export-spinner');
+  clipboardSpinner.show();
+  
+  $('<textarea id="clipboard-export-temp" style="opacity: 0; position: absolute; z-index: 9999999; top: -9999px; left: -9999px;"></textarea>').appendTo('body');
+  var clipboardExportTemp = $('#clipboard-export-temp');
+  
+  setTimeout(function() {
     
-    clearTimeout( bgTimeout );
-    l_export.addClass('success');
-    $('body').addClass('successful-shortcut-export');
-    bgTimeout = setTimeout(function() {
-      l_export.removeClass('success');
-	    $('body').removeClass('successful-shortcut-export');
-    }, 350);
-		
-    clearTimeout( iconTimeout );
-    $('#dialog-section #export-success-icon').remove();
-		$(
-      '<div id="export-success-icon">' +
-        '<div class="center-1">' +
-          '<div class="center-2">' +
-            '<div class="center-3">' +
-              '<div class="circle">' +
-                '<img src="assets/images/export-shortcut-icon.svg?'+ new Date().getTime() +'" alt="" />' +
+    var bgTimeout;
+    var iconTimeout;
+    var l_export = $('.l-export');
+    
+    clipboardExportTemp.val( getExportCode().code );
+    clipboardExportTemp.select();
+    
+    var copySuccess = false;
+    try {
+      var copy = document.execCommand('copy');
+      if ( copy ) copySuccess = true;
+    } catch(e) {/**/}
+    
+    if ( exportWindow ) {
+      xportBox.find('.copy.btn img').hide();
+    }
+    
+    clipboardSpinner.hide();
+      
+    if ( copySuccess ) {
+      
+      if ( exportWindow ) {
+        
+    		var _this = xportBox.find('.btn.copy');
+    		var faCheck = _this.find('.fa-check');
+    		faClipboard = _this.find('.fa-clipboard-list');
+    		faCheck.addClass('rotateIn');
+    		faClipboard.hide();
+    		setTimeout(function() {
+    			faCheck.removeClass('rotateIn');
+    			faClipboard.show();
+    		}, 750);
+        
+      }
+      
+      clearTimeout( bgTimeout );
+      l_export.addClass('success');
+      $('body').addClass('successful-shortcut-export');
+      bgTimeout = setTimeout(function() {
+        l_export.removeClass('success');
+  	    $('body').removeClass('successful-shortcut-export');
+      }, 350);
+  		
+      clearTimeout( iconTimeout );
+      $('#dialog-section #export-success-icon').remove();
+  		$(
+        '<div id="export-success-icon">' +
+          '<div class="center-1">' +
+            '<div class="center-2">' +
+              '<div class="center-3">' +
+                '<div class="circle">' +
+                  '<img src="assets/images/export-shortcut-icon.svg?'+ new Date().getTime() +'" alt="" />' +
+                '</div>' +
               '</div>' +
             '</div>' +
           '</div>' +
-        '</div>' +
-      '</div>'
-    ).appendTo('#dialog-section');
-		iconTimeout = setTimeout(function() {
-	    $('#export-success-icon').remove();
-    }, 950);
+        '</div>'
+      ).appendTo('#dialog-section');
+  		iconTimeout = setTimeout(function() {
+  	    $('#export-success-icon').remove();
+        if ( exportWindow ) {
+    			$('#toolbar .export').trigger('click');
+        }
+      }, 950);
+      
+    }
+    else {
+      
+      if ( exportWindow ) {
+        
+    		var copyBtn = xportBox.find('.btn.copy');
+    		var faTimes = copyBtn.find('.fa-times');
+    		faClipboard = copyBtn.find('.fa-clipboard-list');
+    		faTimes.addClass('tada');
+    		faClipboard.hide();
+    		setTimeout(function() {
+    			myCodeMirror.execCommand('selectAll');
+    			faTimes.removeClass('tada');
+    			faClipboard.show();
+    		}, 750);
+      }
+      
+      l_export.addClass('failure');
+      $('body').addClass('shortcut-export-failure');
+      setTimeout(function() {
+        l_export.removeClass('failure');
+  	    $('body').removeClass('shortcut-export-failure');
+        
+        if ( exportWindow ) {
+    			$('#toolbar .export').trigger('click');
+        }
+      }, 350);
+      
+    }
     
-  });
-  clipboard.on('error', function() {
-     
-    l_export.addClass('failure');
-    $('body').addClass('shortcut-export-failure');
-    setTimeout(function() {
-      l_export.removeClass('failure');
-	    $('body').removeClass('shortcut-export-failure');
-    }, 350);
+    clipboardExportTemp.remove();
     
-  });
+  }, 200);
 }

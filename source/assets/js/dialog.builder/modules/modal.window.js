@@ -3,6 +3,8 @@ var modal = {
 	
 	init: function( content, customClass ) {
 		
+		$('#modal-window').remove();
+		
 		modal.make( content, customClass );
 		
 		$('#modal-window-overlay').on("click", function() {

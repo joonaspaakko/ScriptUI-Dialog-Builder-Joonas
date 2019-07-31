@@ -27,6 +27,7 @@
 	box-shadow: 0 0 30px rgba(0,0,0, .5);
   > h2 { top: 0; }
   .btns {
+    height: 37px;
     background: rgba( #272822, 1 );
     // box-shadow: 0 0 10px 1px rgba( #272822, 1 );
     border-radius: 999px 0 0 999px;
@@ -52,7 +53,7 @@
       animation-timing-function: ease-in-out;
     }
     .icon {
-      display: inline-block;
+      float: left;
       width: 36px;
       // padding: 7px 12px;
       height: 36px;
@@ -61,6 +62,7 @@
       border-radius: 999px;
     }
     .copy .icon {
+      position: relative;
       // border: 2px solid #3099fb;
       background: #3099fb;
       background: -moz-linear-gradient(top, #3099fb 0%, #2a75d6 100%);
@@ -70,6 +72,16 @@
   		&:hover {
         background: #3099fb;
   		}
+			img {
+        display: none;
+				width: 20px;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px;
+			}
     }
     .download .icon {
       // border: 2px solid #50bf4e;

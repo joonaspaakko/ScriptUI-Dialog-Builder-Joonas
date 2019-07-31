@@ -7,7 +7,7 @@
 		"uuidString": "9213C40B-0B87-469E-84C6-B065A93AF7EB"
 		}
 	],
-"creatorBuild": "29156",
+"creatorBuild": "31491",
 "files": {
 	"/.atomignore": {
 		"cB": 0,
@@ -712,6 +712,14 @@
 		"opt": 1,
 		"q": 100
 		},
+	"/source/assets/images/clipboard-copy-spinner.gif": {
+		"ft": 4194304,
+		"iS": 3144,
+		"oA": 0,
+		"oAP": "/build/assets/images/clipboard-copy-spinner.gif",
+		"oF": 0,
+		"opt": 1
+		},
 	"/source/assets/images/cursor-bg-white-checker.png": {
 		"ft": 32768,
 		"iS": 136,
@@ -1025,17 +1033,6 @@
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/beautify.min.min.js",
 		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/assets/js/_libraries/clipboard.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 0,
-		"oA": 1,
-		"oAP": "/build/assets/js/_libraries/clipboard.min.min.js",
-		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
@@ -8485,6 +8482,7 @@
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
+	"allowInjectionReloads": 1,
 	"alwaysUseExternalServer": 0,
 	"animateCSSInjections": 1,
 	"autoBuildNewItems": 1,
@@ -8496,6 +8494,7 @@
 	"babelConfigType": 0,
 	"babelCustomPluginsList": "",
 	"babelCustomPresetsList": "",
+	"babelExcludeString": "/\\/node_modules\\//, /\\/core-js\\//, /\\/bower_components\\//",
 	"babelInsertModuleIDs": 0,
 	"babelModuleID": "",
 	"babelNoComments": 0,
@@ -8635,6 +8634,9 @@
 		"modules-umd": {
 			"active": 0
 			},
+		"named-capturing-groups-regex": {
+			"active": 0
+			},
 		"new-target": {
 			"active": 0
 			},
@@ -8666,6 +8668,9 @@
 			"active": 0
 			},
 		"parameters": {
+			"active": 0
+			},
+		"partial-application": {
 			"active": 0
 			},
 		"pipeline-operator": {
@@ -8760,11 +8765,10 @@
 			}
 		},
 	"babelRetainLines": 0,
+	"babelUseBuiltInsType": 0,
 	"bowerAbbreviatedPath": "bower_components",
-	"bowerAutoCreateInfoFile": 1,
-	"bowerInstallDevDependencies": 0,
-	"bowerSaveDependencies": 1,
-	"bowerSaveDevDependencies": 0,
+	"bowerForceLatestOnConflict": 1,
+	"bowerTargetDependencyListType": 1,
 	"bowerUseExactVersion": 0,
 	"browserRefreshDelay": 0,
 	"browserslistString": ">0.2%, last 2 versions, Firefox ESR, not dead",
@@ -9769,6 +9773,10 @@
 			"active": 0,
 			"optionString": "{'array': true, 'object': true}, {'enforceForRenamedProperties': false}"
 			},
+		"prefer-named-capture-group": {
+			"active": 0,
+			"optionString": ""
+			},
 		"prefer-numeric-literals": {
 			"active": 0,
 			"optionString": ""
@@ -10522,6 +10530,11 @@
 		},
 	"languageDefaultsUserDefined": [
 		],
+	"npmAbbreviatedPath": "",
+	"npmCreatePackageLock": 1,
+	"npmInstallOptionalDependencies": 0,
+	"npmSaveExactVersion": 0,
+	"npmTargetDependencyListType": 1,
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
 	"skippedFoldersString": "_ASSET_STORAGE,_cache,cache,docs,.idea,log,_logs,logs,node_modules,/storage/framework/sessions,wiki-images,favicon,open-graph",

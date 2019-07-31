@@ -49,13 +49,9 @@ item.update.set_values = function( params ) {
 		// LIST ITEMS
 		case 'listItems':
 			if ( type === 'DropDownList' ) {
-				/*global droplist*/
-				/*eslint no-undef: ["error", { "typeof": true }] */
 				droplist.set.items( active, val, style );
 			}
 			else if ( type === 'ListBox' ) {
-				/*global listbox*/
-				/*eslint no-undef: ["error", { "typeof": true }] */
 				listbox.set( active, val, style );
 			}
 			break;
@@ -135,12 +131,8 @@ item.update.set_values = function( params ) {
 			var newHeight = val[1] == 0 ? 'auto' : val[1] + (type === 'Dialog' ? $('#dialog-title-bar').outerHeight() : 0);
 			active.css({ minWidth: newWidth, minHeight: newHeight });
 			
-			/*global dangerZone*/
-			/*eslint no-undef: ["error", { "typeof": true }] */
 			dangerZone.set( params, active, paddingBox );
 			
-			/*global droplist*/
-			/*eslint no-undef: ["error", { "typeof": true }] */
 			droplist.set.size( active, val, style, type, newWidth, newHeight );
 			
 			break;
