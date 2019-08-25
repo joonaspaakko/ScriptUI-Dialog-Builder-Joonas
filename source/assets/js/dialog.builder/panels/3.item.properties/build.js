@@ -6,27 +6,36 @@ var edit_style_panel = {};
 edit_style_panel.build = function( style, source ) {
 	
 	var edit_style_container = $('#edit-style-inner-container');
-	edit_style_container.html(
-		'<span class="target-varName"></span>' +
-		'<span class="target-image"></span>' +
-		'<span class="target-iconButtonStroke"></span>' +
-		'<span class="target-softWrap"></span>' +
-		'<span class="target-text"></span>' +
-		'<span class="target-listItems"></span>' +
-		'<span class="target-justify"></span>' +
-		'<span class="target-typeName"></span>' +
-		'<span class="target-preferredSize"></span>' +
-		'<span class="target-margins"></span>' +
-		'<span class="target-orientation"></span>' +
-		'<span class="target-spacing"></span>' +
-		'<span class="target-alignChildren"></span>' +
-		'<span class="target-alignment"></span>' +
-		'<span class="target-helpTip"></span>'
-	);
+	var styleContainer = [
+		'varName',
+		'image',
+		'iconButtonStroke',
+		'softWrap',
+		'text',
+		'listItems',
+		'justify',
+		'typeName',
+		'preferredSize',
+		'margins',
+		'orientation',
+		'spacing',
+		'alignChildren',
+		'alignment',
+		'helpTip',
+		'windowType',
+		'enabled',
+		'creationProps'
+	];
+	var styleTargetContainers = ''
+	$.each( styleContainer, function( key, value ) {
+		styleTargetContainers += '<span class="target-'+ value +'"></span>';
+	});
 	
-	var active = $('#panel-tree-view-wrap .active');
-	var lType = active.data('item-type').toLowerCase();
-	var typeData = item.list[ lType ](false);
+	edit_style_container.html( styleTargetContainers );
+	
+	var treeActive = $('#panel-tree-view-wrap .active');
+	var lowerCaseType = treeActive.data('item-type').toLowerCase();
+	var typeData = item.list[ lowerCaseType ](false);
 	if ( style === false ) {
 		$("<div class='no-properties'>"+ typeData.stylePropInfo +"</div>").appendTo( edit_style_container );
 	}
@@ -34,7 +43,8 @@ edit_style_panel.build = function( style, source ) {
 		
 		// Generate edit panel structure
 		$.each( style, function( key, val ) {
-			var html = panel_edit_style_html.init( key, val );
+			
+			var html = panel_edit_style_html.init( key, val, source, treeActive, lowerCaseType, typeData  );
 			if ( html !== undefined ) {
 				var targetContainer = edit_style_container.find( '.target-' + key );
 				html.appendTo( targetContainer );
@@ -45,8 +55,8 @@ edit_style_panel.build = function( style, source ) {
 		// Style number inputs
 		numberInputs();
 		
-		var hasDefaultText = item.list[ lType ](false).defaultStyle.text;
-		var multilineItem  = item.list[ lType ](false).multiline;
+		var hasDefaultText = item.list[ lowerCaseType ](false).defaultStyle.text;
+		var multilineItem  = item.list[ lowerCaseType ](false).multiline;
 		var editText       = $('#panel-edit-style-wrap [data-edit="text"]');
 		var editTextParent = editText.parent();
 		
@@ -83,5 +93,7 @@ edit_style_panel.build = function( style, source ) {
 	if ( editInfo ) {
 		$('<div class="edit-info">'+ editInfo +'</div>').appendTo( edit_style_container );
 	}
+	
+	droplist.onActivate( treeActive, style );
 	
 };

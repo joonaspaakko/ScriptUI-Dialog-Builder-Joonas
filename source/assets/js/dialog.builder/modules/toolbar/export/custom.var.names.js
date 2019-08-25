@@ -34,8 +34,9 @@ var customVar = {
 					customVar.names[ id ] = varName + (varNameCounter > 0 ? varNameCounter : '');
 				}
 				else {
-					var typeNameCounter = customVar.counters[ itemData.type ];
-					customVar.names[ id ] = customVar.customType( itemData.type ).toLowerCase() + (itemData.id == 0 ? '' : typeNameCounter);
+					var typeNameCounter = itemData.id == 0 ? '' : customVar.counters[ itemData.type ];
+					var typeName = customVar.customType( itemData.type, itemData ).toLowerCase();
+					customVar.names[ id ] = typeName + typeNameCounter;
 				}
 				
 			});
@@ -45,18 +46,22 @@ var customVar = {
 	
 	// Automatic naming is based on item types.
 	// Some types could be better (shorter), so here's the chance to customize them.
-	customType: function( type) {
-		
+	customType: function( type, itemData ) {
+		var lowerCaseType = type.toLowerCase();
 		var result;
-		switch ( type ) {
+		switch ( lowerCaseType ) {
 			case "dropdownlist":
 				result = 'dropdown';
 				break;
 			case "tabbedpanel":
 				result = 'tpanel';
 				break;
+			case "dialog":
+				var typeName = itemData.style.windowType.toLowerCase();
+				result = (typeName == 'window' ? 'win' : typeName);
+				break;
 			default:
-				result = type;
+				result = lowerCaseType;
 		}
 		return result;
 		

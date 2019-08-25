@@ -1,7 +1,7 @@
 
 item.activate = function( id ) {
 	
-	droplist.hide();
+	// droplist.hide();
 	
   // Write active item id to local storage
 	var data = local_storage.get('dialog');

@@ -19,6 +19,7 @@ $("#dialog-section").backstretch([{
 // @codekit-prepend "_libraries/codemirror-5.39.2/mode/htmlmixed/htmlmixed.js";
 // @codekit-prepend "_libraries/flexibility.min.js";
 // @codekit-prepend "_libraries/download.js";
+// @codekit-prepend "_libraries/clipboard.min.js";
 // @codekit-prepend "_libraries/html2canvas.min.js";
 // @codekit-prepend "_libraries/beautify.min.js";
 // @codekit-prepend "_libraries/beautify-html.min.js";

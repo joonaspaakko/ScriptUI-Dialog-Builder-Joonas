@@ -1,6 +1,16 @@
 
 function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies ) {
 	var styleBlock = '';
+
+	// ENABLED
+	if ( !style.enabled ) {
+		styleBlock += tabsies + jsxVarName + '.enabled = false; \n';
+	}
+	
+	// HELP TIP
+	if ( style.helpTip !== undefined && style.helpTip !== null ) {
+		if ( style.helpTip.length > 0 ) styleBlock += tabsies + jsxVarName +'.helpTip = "' + style.helpTip.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\\n') + '"; \n';
+	}
 	
 	if ( type === "TreeItem" ) {
 		
@@ -44,16 +54,22 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 			styleBlock += tabsies + jsxVarName + '.alignChildren = "fill"; \n';
 		}
 		
-		// HELP TIP
-		if ( style.helpTip !== undefined && style.helpTip !== null ) {
-			if ( style.helpTip.length > 0 ) styleBlock += tabsies + jsxVarName +'.helpTip = "' + style.helpTip.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\\n') + '"; \n';
-		}
 		// TEXT
+		var addText = false;
 		if ( style.text !== undefined && style.text.length > 0 ) {
-			if ( type === 'StaticText' && !multilineText[0] || type !== 'StaticText' ) {
-				var text = type === 'EditText' && multilineText[0] ? style.text.split('\n').join('\\r') : style.text;
-				styleBlock += tabsies + jsxVarName +'.text = "' + text + '"; \n';
+			addText = true;
+			// When statictext is multiline, the text is added when the item is made in make.item.js
+			// Creation property 'multiline' doesn't affect this...
+			if ( type === 'StaticText' && multilineText[0] ) {
+				addText = false;
 			}
+			if ( type === 'DropDownList' ) {
+				addText = false;
+			}
+		}
+		if ( addText ) {
+			var text = type === 'EditText' && multilineText[0] ? style.text.split('\n').join('\\r') : style.text;
+			styleBlock += tabsies + jsxVarName +'.text = "' + text + '"; \n';
 		}
 		// CHECKED
 		if ( style.checked === true ) {
@@ -85,9 +101,9 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 			// No justify for multiline static text.
 			// It's applied in make.item.js if needed.
 		}
-		else if ( style.justify !== undefined && style.justify !== 'left' || type === "Button" && style.justify !== 'center' ) {
-			var linebreak = style.text === undefined ? 0 : style.text.indexOf('\n');
-			styleBlock += tabsies + ( linebreak > 0 ? '// ' : ''  ) + jsxVarName + '.justify = "' + style.justify + '"; \n';
+		// Right now button is the only item type that gets justify from here...
+		else if ( type === "Button" && style.justify !== 'center' ) {
+			styleBlock += tabsies + jsxVarName + '.justify = "' + style.justify + '"; \n';
 		}
 		// ORIENTATION
 		if ( style.orientation !== undefined  ) {

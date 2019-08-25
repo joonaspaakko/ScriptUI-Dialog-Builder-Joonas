@@ -57,7 +57,7 @@ If you try to do an export locally without an internet connection, your export w
 
 ## Helper methods?
 
-The included javascript has bunch of helper methods that make it easier to for example add new items. _That documentation starts from [Helper functions](/CEP-export/b.helper-functions/) in the left sidebar._ Only some of the items have these helper functions since the others don't really need them.
+The included javascript has bunch of helper methods that make it easier to for example add new items. _That documentation starts from [Helper functions](/CEP-export/helper-functions/) in the left sidebar._ Only some of the items have these helper functions since the others don't really need them.
 
 ??? "What about other items?"
     I'm not planning to write a full library of commands for every single item. I strongly feel this is enough. I don't think it's necessary since this CEP export is part of SDB, so you can make the items there. But for example `Dropdownlist` has these helper methods because you can't populate it with data coming from the application or other outside sources in SDB. Plus you could spend a whole day trying to figure out how you can populate it. The premade `add()` method makes sure it functions without you having to Sherlock Holmes your way through the HTML/SDB to try and figure it out.

@@ -38,7 +38,8 @@
 		&.tree-view > .padding-box,
 		&.edit-text > span,
 		&.image-item img,
-		&.icon-button .inner-wrap {
+		&.icon-button .inner-wrap,
+		&.dropdownlist .drop-list-wrap {
 			border: 1px solid $color-accent;
 		}
 		&.edit-text > span > span {
@@ -76,7 +77,9 @@
 			box-shadow: none;
 			animation: none;
 		}
-		
+		&.dropdownlist .drop-list-wrap {
+			border-color: #656565;
+		}
 		&.edit-text > span  {
 			border-color: #656666;
 		}
@@ -140,7 +143,8 @@
 		&.tree-view > .padding-box,
 		&.edit-text > span,
 		&.image-item img,
-		&.icon-button .inner-wrap {
+		&.icon-button .inner-wrap,
+		&.dropdownlist .drop-list-wrap {
 			border: 1px solid $color-accent-2 !important;
 		}
 		&.edit-text > span > span {

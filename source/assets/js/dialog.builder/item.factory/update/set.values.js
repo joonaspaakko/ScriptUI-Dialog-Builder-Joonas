@@ -25,7 +25,10 @@ item.update.set_values = function( params ) {
 				// Makes sure the panel container is always wide enough to hold the title
 				paddingBox.css({ minWidth: title.width() + 22 });
 			}
-			// type === 'RadioButton' || type === 'Checkbox' || type === 'DropDownList'
+			else if ( type === 'DropDownList') {
+				// Droplist is no more
+			}
+			// type === 'RadioButton' || type === 'Checkbox'
 			else if ( active.find('> label').length > 0 ) {
 				active.find('label').text( val );
 			}
@@ -55,13 +58,6 @@ item.update.set_values = function( params ) {
 				listbox.set( active, val, style );
 			}
 			break;
-		
-		// ICON BUTTON STROKE
-		case 'iconButtonStroke':
-			var icsc = val ? 'addClass' : 'removeClass';
-			active[icsc]('icon-button-stroke');
-			break;
-		
 		
 		// CHECKED
 		case 'checked':
@@ -231,6 +227,23 @@ item.update.set_values = function( params ) {
         var arc = val ? 'removeClass' : 'addClass';
         active[ arc ]('disable-soft-wrap');
 			}
+			break;
+			
+		// CUSTOM VARIABLE NAME
+		case 'varName':
+			var lowerCaseName = typeof val == 'string' ? val.toLowerCase() : val;
+			if ( type === 'Button' ) {
+				if ( lowerCaseName === 'ok' )
+					active.addClass('default-button');
+				else if ( lowerCaseName !== 'ok' && active.hasClass('default-button') )
+					active.removeClass('default-button');
+			}
+			break;
+			
+		// ENABLED
+		case 'enabled':
+			var classy = val ? 'removeClass' : 'addClass';
+			active[ classy ]('disable-item');
 			break;
 	}
 			

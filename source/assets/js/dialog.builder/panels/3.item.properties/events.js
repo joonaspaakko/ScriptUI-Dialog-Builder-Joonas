@@ -117,7 +117,7 @@ propsPanel.on("change", 'input[type="checkbox"][data-edit]', function() {
   item.funnel.update( $(this).data('edit') );
 });
   
-propsPanel.on("keyup", '[data-edit="listItems"], [data-edit="varName"], [data-edit="helpTip"]', function() {
+propsPanel.on("keyup", '[data-edit="listItems"], [data-edit="varName"], [data-edit="helpTip"], .creation-props-inner-wrap input[type="text"]', function() {
   
   // Make sure varName is camelCase
   if ( $(this).data('edit') === 'varName' ) {

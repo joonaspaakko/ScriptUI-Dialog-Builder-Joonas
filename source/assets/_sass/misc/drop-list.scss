@@ -6,6 +6,8 @@
 	}
 
 	.drop-list-wrap {
+		flex-grow: 1;
+		min-height: 21px;
 	  -webkit-touch-callout: none;
 	  -webkit-user-select: none;
 	  -khtml-user-select: none;

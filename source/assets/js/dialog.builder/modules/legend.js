@@ -1,19 +1,30 @@
 
 
+document.addEventListener('copy', function( e ){
+  if ( $('body').hasClass('sdb-code-export') ) {
+    e.preventDefault();
+    e.clipboardData.setData('text/plain', getExportCode().code);
+    $('body').removeClass('sdb-code-export');
+  }
+});
+
 // GLOBAL SHORTCUT(S)
 $(document).on("keydown", function( e ) {
     
   // Export code
   var keycode = e.keyCode ? e.keyCode : e.which;
   var alt_e = keycode == 69 && e.altKey;
-  if ( alt_e && $('#export-box').length < 1 ) exportToClipboard( 'shortcut' );
+  if ( alt_e && $('#export-box').length < 1 ) {
+    e.preventDefault();
+    exportToClipboard( 'shortcut' );
+  }
   
 });
 
-
-// https://developers.google.com/web/updates/2015/04/cut-and-copy-commands#simple_example
 function exportToClipboard( exportOrigin ) {
   
+  $('body').addClass('sdb-code-export');
+
   var faClipboard;
   var xportBox = $('#export-box');
   var exportWindow = exportOrigin === 'export-window';
@@ -27,8 +38,8 @@ function exportToClipboard( exportOrigin ) {
   var clipboardSpinner = $('#clipboard-export-spinner');
   clipboardSpinner.show();
   
-  $('<textarea id="clipboard-export-temp" style="opacity: 0; position: absolute; z-index: 9999999; top: -9999px; left: -9999px;"></textarea>').appendTo('body');
-  var clipboardExportTemp = $('#clipboard-export-temp');
+  // $('<textarea id="clipboard-export-temp" style="opacity: 0; position: absolute; z-index: 9999999; top: -9999px; left: -9999px;"></textarea>').appendTo('body');
+  // var clipboardExportTemp = $('#clipboard-export-temp');
   
   setTimeout(function() {
     
@@ -36,8 +47,8 @@ function exportToClipboard( exportOrigin ) {
     var iconTimeout;
     var l_export = $('.l-export');
     
-    clipboardExportTemp.val( getExportCode().code );
-    clipboardExportTemp.select();
+    // clipboardExportTemp.val( getExportCode().code );
+    // clipboardExportTemp.select();
     
     var copySuccess = false;
     try {
@@ -55,15 +66,15 @@ function exportToClipboard( exportOrigin ) {
       
       if ( exportWindow ) {
         
-    		var _this = xportBox.find('.btn.copy');
-    		var faCheck = _this.find('.fa-check');
-    		faClipboard = _this.find('.fa-clipboard-list');
-    		faCheck.addClass('rotateIn');
-    		faClipboard.hide();
-    		setTimeout(function() {
-    			faCheck.removeClass('rotateIn');
-    			faClipboard.show();
-    		}, 750);
+        var _this = xportBox.find('.btn.copy');
+        var faCheck = _this.find('.fa-check');
+        faClipboard = _this.find('.fa-clipboard-list');
+        faCheck.addClass('rotateIn');
+        faClipboard.hide();
+        setTimeout(function() {
+          faCheck.removeClass('rotateIn');
+          faClipboard.show();
+        }, 750);
         
       }
       
@@ -72,12 +83,12 @@ function exportToClipboard( exportOrigin ) {
       $('body').addClass('successful-shortcut-export');
       bgTimeout = setTimeout(function() {
         l_export.removeClass('success');
-  	    $('body').removeClass('successful-shortcut-export');
+        $('body').removeClass('successful-shortcut-export');
       }, 350);
-  		
+      
       clearTimeout( iconTimeout );
       $('#dialog-section #export-success-icon').remove();
-  		$(
+      $(
         '<div id="export-success-icon">' +
           '<div class="center-1">' +
             '<div class="center-2">' +
@@ -90,10 +101,10 @@ function exportToClipboard( exportOrigin ) {
           '</div>' +
         '</div>'
       ).appendTo('#dialog-section');
-  		iconTimeout = setTimeout(function() {
-  	    $('#export-success-icon').remove();
+      iconTimeout = setTimeout(function() {
+        $('#export-success-icon').remove();
         if ( exportWindow ) {
-    			$('#toolbar .export').trigger('click');
+          $('#toolbar .export').trigger('click');
         }
       }, 950);
       
@@ -102,32 +113,40 @@ function exportToClipboard( exportOrigin ) {
       
       if ( exportWindow ) {
         
-    		var copyBtn = xportBox.find('.btn.copy');
-    		var faTimes = copyBtn.find('.fa-times');
-    		faClipboard = copyBtn.find('.fa-clipboard-list');
-    		faTimes.addClass('tada');
-    		faClipboard.hide();
-    		setTimeout(function() {
-    			myCodeMirror.execCommand('selectAll');
-    			faTimes.removeClass('tada');
-    			faClipboard.show();
-    		}, 750);
+        var copyBtn = xportBox.find('.btn.copy');
+        var faTimes = copyBtn.find('.fa-times');
+        faClipboard = copyBtn.find('.fa-clipboard-list');
+        faTimes.addClass('tada');
+        faClipboard.hide();
+        setTimeout(function() {
+          myCodeMirror.execCommand('selectAll');
+          faTimes.removeClass('tada');
+          faClipboard.show();
+        }, 750);
       }
       
       l_export.addClass('failure');
       $('body').addClass('shortcut-export-failure');
       setTimeout(function() {
         l_export.removeClass('failure');
-  	    $('body').removeClass('shortcut-export-failure');
+        $('body').removeClass('shortcut-export-failure');
         
         if ( exportWindow ) {
-    			$('#toolbar .export').trigger('click');
+          
+          notification( 'failure', 'Try copying the code manually from the export window', 3 );
+          setTimeout(function() {
+            $('#toolbar .export').trigger('click');
+          }, 3000);
+        }
+        else {
+          notification( 'failure', 'Try copying the code manually from the export window.', 3 );
         }
       }, 350);
       
     }
     
-    clipboardExportTemp.remove();
+    // clipboardExportTemp.remove();
     
   }, 200);
+  
 }

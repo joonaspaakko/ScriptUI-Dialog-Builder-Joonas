@@ -1,25 +1,81 @@
 
-function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop ) {
+function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop, tabsies, wrapperTabsies ) {
 	
-	var indentSize2 = data.settings.indentSize;
-	var tabsies = indentSize2 ? '  ' : '    ';
+	var windowType = data.items['item-0'].style.windowType.toLowerCase();
 	var multilineText = [false];
-	
 	var block = '';
 	var lowerCaseType = type.toLowerCase();
 	
 	var jsxVarName = customVar.names[ id ];
 	jsxParents[ id ] = jsxVarName;
 	var jsxParentName = jsxParents[ parentId ];
+	
+	function creationProps( addUndefined, noCurclyBrackets ) {
+		
+		var defaultCreationProps = item.list[ lowerCaseType ](false).defaultStyle.creationProps;
+		var props = '';
+		
+		switch ( lowerCaseType ) {
+			case 'iconbutton':
+				// Use old iconbutton style if the data exists... as long as the new creation property is not set.
+				var cpStyleNotSet = defaultCreationProps.style === style.creationProps.style;
+				if ( cpStyleNotSet ) {
+					var ibStroke = '';
+					if ( style.iconButtonStroke )
+						ibStroke = 'style: "button"';
+					else
+						ibStroke = 'style: "toolbutton"';
+					props += ', ' + ibStroke;
+				}
+				break;
+			case 'dropdownlist':
+				if ( style.listItems ) props += ', items: '+ jsxVarName +'_array';
+				break;
+			case 'listbox':
+				if ( style.listItems ) props += ', items: '+ jsxVarName +'_array';
+				
+				if ( style.selection !== undefined && !style.creationProps.multiselect ) {
+					if ( style.selection.length > 1 ) {
+						props += ', multiselect: true';
+					}
+				}
+				break;
+		}
+		
+		// Creation Property-o-matic
+		// - If the local storage data matches default values, don't add the property
+		var userCProps = '';
+		$.each( style.creationProps, function( prop, value) {
+			var defaultValue = defaultCreationProps[ prop ];
+			if ( defaultValue != value ) {
+				var isString = typeof value == 'string';
+				var doubleQuotes = isString ? '"' : '';
+				userCProps += ', ' + prop + ': ' + doubleQuotes + value + doubleQuotes;
+			}
+		});
+		
+		// No name for Dialog
+		if ( lowerCaseType === 'dialog' ) {
+			if ( userCProps === '' )
+				return '';
+			else
+				return ', undefined, undefined, ' + (noCurclyBrackets ? '' : '{') + userCProps.replace(', ','') + (noCurclyBrackets ? '' : '}'); // Dialog doesn't have a name prefix, so the first comma is taken out. Agent 47, I choose you!
+		}
+		else {
+			return ( addUndefined ? ', undefined, undefined' : '' ) + (noCurclyBrackets ? '' : ', {') +'name: "'+ jsxVarName +'"' + props + userCProps + (noCurclyBrackets ? '' : '}');
+		}
+		
+	} // creationProps();
+	
 	// If current item is a parent...
 	if ( type !== "TreeItem" ) {
-		if ( item.list[ type.toLowerCase() ](false).parent ) {
-			block += '// '+ jsxVarName.toUpperCase() +'\n';
-			block += '// '+ Array(jsxVarName.length+1).join("=") +'\n';
+		if ( item.list[ lowerCaseType ](false).parent ) {
+			block += wrapperTabsies + '// '+ jsxVarName.toUpperCase() +'\n';
+			block += wrapperTabsies + '// '+ Array(jsxVarName.length+1).join("=") +'\n';
 		}
 		else if ( previousItem.parent !== jsxParentName && previousItem.name !== jsxParentName ) {
-			block += '// '+ jsxParentName.toUpperCase() +'\n';
-			block += '// '+ Array(jsxParentName.length+1).join("=") +'\n';
+			block += wrapperTabsies + '// '+ jsxParentName.toUpperCase() +'\n';
+			block += wrapperTabsies + '// '+ Array(jsxParentName.length+1).join("=") +'\n';
 		}
 	}
 	
@@ -29,46 +85,41 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 	switch ( type ) {
 		
 		case 'Dialog':
-			block += 'var '+ jsxVarName +' = new Window("'+ lowerCaseType +'"); \n';
+			block += wrapperTabsies + 'var '+ jsxVarName +' = new Window("'+ windowType +'"'+ creationProps( true ) +'); \n';
 			break;
 			
 		case 'ListBox':
 		case 'DropDownList':
-			var list = style.listItems.split('\n').join('').split(',');
-			$.each( list, function( i ) {
-				list[ i ] = list[ i ].trim();
-			});
-			block += 'var '+ jsxVarName +'_array = ["' + list.join('","') + '"]; \n';
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, '+ jsxVarName +'_array';
-			if ( style.selection !== undefined ) {
-				if ( type === 'ListBox' && style.selection.length > 1 ) {
-					block += ', {multiselect: true}';
-				}
+			if ( style.listItems.trim() ) {
+				var list = style.listItems.split('\n').join('').split(',');
+				$.each( list, function( i ) {
+					list[ i ] = list[ i ].trim();
+				});
+				block += wrapperTabsies + 'var '+ jsxVarName +'_array = ["' + list.join('","') + '"]; \n';
 			}
-			block += '); \n';
+			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
 			break;
 			
 		case 'Divider':
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("panel"); \n';
+			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("panel"'+ creationProps( true ) +'); \n';
 			break;
 			
 		case 'TreeView':
 			var dialogTreeViewItem = dialog.find('[data-item-id="'+ id +'"]');
-			var width = style.preferredSize[0] > 0 ? style.preferredSize[0] : Math.round( dialogTreeViewItem.width() );
-			var height = style.preferredSize[1] > 0 ? style.preferredSize[1] : Math.round( dialogTreeViewItem.height() );
+			var width = style.preferredSize[0] > 0 ? style.preferredSize[0] : Math.round( dialogTreeViewItem.width() ) + 12;
+			var height = style.preferredSize[1] > 0 ? style.preferredSize[1] : Math.round( dialogTreeViewItem.height() ) + 12;
 			var extra = 0;
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ type.toLowerCase() +'", [0,0,'+ (width+extra) +','+ (height+extra) +']); \n';
+			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ type.toLowerCase() +'", [0,0,'+ (width+extra) +','+ (height+extra) +'], undefined' + creationProps() +'); \n';
 			break;
 			
 		case 'TreeItem':
 			var dialogTreeItem = dialog.find('[data-item-id="'+ id +'"]');
 			var itemName = dialogTreeItem.hasClass('tree-node') ? 'node' : 'item';
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ itemName +'", "'+ style.text +'"); \n';
+			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ itemName +'", "'+ style.text +'"); \n';
 			break;
 			
 		case 'StaticText':
 			multilineText = multilineCheck( id );
-			
 			// ScriptUI has issues with multiline text if you don't define both
 			// width and height. Let's say you only set width... what it appears to
 			// do is it creates the item, applies width and height to the bounds
@@ -93,7 +144,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			if ( multilineText[0] ) {
 				
 				// ADD PARENT GROUP
-				block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
+				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
 				// PREFERRED SIZE
 				if ( style.preferredSize !== undefined  ) {
 					if ( style.preferredSize[0] > 0 ) {
@@ -140,46 +191,63 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 				var lines = multilineText[1].split('<br>');
 				$.each( lines, function( i, line ) {
 					// ADD EACH LINE AS SEPARATE STATIC TEXT ITEM
-					block += tabsies + jsxVarName +'.add("statictext", undefined, "'+ line +'"); \n';
+					block += tabsies + jsxVarName +'.add("statictext", undefined, "'+ line +'"'+ creationProps() +'); \n';
 				});
 			
 			}
 			else {
-				block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
+				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
 			}
 			break;
-			
+		
 		case 'EditText':
 			multilineText = multilineCheck( id );
 			var container = $('#dialog [data-item-id="'+ id +'"]');
-			var cW = Math.round( container.width() );
-			var cH = Math.round( container.height() );
-			var addition = multilineText[0] ? ', [0,0, '+ (cW) +', '+ (cH) +' ], undefined, {multiline: true}' : '';
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ addition +'); \n';
+			var cW = container.width();
+			var cH = container.height();
+			var multilineSize = multilineText[0] ? 'size: ['+cW+','+cH+'], ' : '';
+			var multilineMultiline = (multilineText[0] && !style.creationProps.multiline) ? ', multiline: true' : '';
+			
+			// PS test because PS doesn't like multiline: true + justify: 'center' or 'right';
+			// With this the script would still work in PS...
+			var edittextMultilineJustify =
+					(multilineText[0] || style.creationProps.multiline) && style.justify !== 'left' ?
+					("'+ (app.name === 'Adobe Photoshop' ? '' : 'justify: "+ '"' + style.justify + '"' +", ') +'") :
+					("justify: "+ '"' + style.justify + '"' +", ");
+			var edittextJustify = style.justify.toLowerCase() === 'left' ? '' : edittextMultilineJustify;
+			// The reason why EditText is now in a stringy string format is
+			// that for some weird ass reason justify: "center/right" works
+			// more consistently if justify if fed in a resource string...
+			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add('+ "'" + 'EditText {'+ multilineSize + edittextJustify + 'properties: {'+ creationProps( false, true ) + multilineMultiline +'}}' + "'" +'); \n';
 			break;
 		
 		case 'Image':
-			block += 'var '+ jsxVarName + '_string = "'+ encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) ) +'"; \n';
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ jsxVarName + '_string' +') ); \n';
-			break;
-		
 		case 'IconButton':
-			block += 'var '+ jsxVarName + '_string = "'+ encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) ) +'"; \n';
-			var ibStroke = style.iconButtonStroke ? ', {style: "button"}' : ', {style: "toolbutton"}';
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, File.decode('+ jsxVarName + '_string' +')'+ ibStroke +' ); \n';
+			var imageString = encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) );
+			imageString = imageDuplicateCheck.init( jsxVarName, imageString );
+			if ( imageString.length === 2 ) {
+				block += wrapperTabsies + 'var '+ jsxVarName + '_imgString = "'+ imageString[1] +'"; \n';
+			}
+			
+			if ( lowerCaseType === 'image' ) {
+				
+				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ imageString[0] + '_imgString' +')'+ creationProps() +'); \n';
+			}
+			else {
+				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, File.decode('+ imageString[0] + '_imgString' +')' + creationProps() +'); \n';
+			}
 			break;
 
-    case 'Button':
-      if ( style.typeName == 'Ok' || style.typeName == 'Cancel'  ) {
-        block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, undefined, {name:"'+ style.typeName +'"}); \n';
-      }
-      else {
-        block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
-      }
+    case 'Group':
+      block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined'+ creationProps() +'); \n';
       break;
 			
+		case 'Slider':
+			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, undefined'+ creationProps( true ) +'); \n';
+			break;
+			
 		default:
-			block += 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"); \n';
+			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
     
 	}
 	
@@ -230,8 +298,6 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 		}
 		
 	}
-	
-	if ( data.settings.showDialog && lastLoop ) block += jsxParents[ 0 ] + '.show();';
 	
 	return block;
 }

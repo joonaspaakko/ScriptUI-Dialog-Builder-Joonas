@@ -176,6 +176,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"/source/assets/_sass/misc/context-menu.scss": {
+		"aP": 1,
+		"bl": 1,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 1,
+		"oAP": "/build/assets/_sass/misc/context-menu.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/source/assets/_sass/misc/custom-cursor.scss": {
 		"aP": 1,
 		"bl": 1,
@@ -1032,6 +1045,17 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/beautify.min.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/_libraries/clipboard.min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/_libraries/clipboard.min.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -8083,6 +8107,28 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/assets/js/dialog.builder/modules/clipboard.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/clipboard.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/modules/context.menu.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/context.menu.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/source/assets/js/dialog.builder/modules/custom.cursor.js": {
 		"bF": 0,
 		"ft": 64,
@@ -8222,6 +8268,17 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/export/custom.var.names.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/assets/js/dialog.builder/modules/toolbar/export/image.duplicate.check.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/modules/toolbar/export/image.duplicate.check.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0

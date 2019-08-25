@@ -49,9 +49,9 @@
 		border: 1px solid rgba( darken(desaturate(#01d54f,20),10), .8 );
 	}
 	&.failure {
-		color: lighten(#e91e4f, 50);
-		background: rgba(#e91e4f,.8 );
-		border: 1px solid rgba( darken(desaturate(#e91e4f,20),10), .8 );
+		color: lighten(#e91e31, 50);
+		background: rgba(#e91e31,.8);
+		border: 1px solid rgba( darken(desaturate(#e91e31,20),10), .8 );
 	}
 	&.info {
 		color: lighten(#7400e8, 50);
@@ -68,6 +68,33 @@
 		color: lighten(#005ae0, 50);
 		background: rgba(#005ae0,.8);
 		border: 1px solid rgba( darken(desaturate(#005ae0,20),10), .8 );
+	}
+	&.clipboard {
+		color: lighten(#353535, 70);
+		background: rgba(#353535,.8);
+		border: 1px solid rgba( darken(desaturate(#353535,20),10), .8 );
+		strong {
+			font-weight: 400;
+			color: lighten(#353535, 50);
+		}
+		.fade {
+			color: rgba(#fff, .3);
+			font-weight: bold;
+			// color: red;
+		}
+		.highlight,
+		.highlight-1 {
+			font-weight: 400;
+			color: $color-accent;
+		}
+		.highlight-2 {
+			font-weight: 400;
+			color: $color-accent-2;
+		}
+		.highlight-3 {
+			font-weight: 400;
+			color: $color-accent-3;
+		}
 	}
 	
 	.icon {

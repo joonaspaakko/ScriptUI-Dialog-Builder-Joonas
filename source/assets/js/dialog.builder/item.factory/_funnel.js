@@ -67,7 +67,7 @@ item.funnel = {
 	},
 	update: function( prop, ignore ) {
 		
-		droplist.hide();
+		// droplist.hide();
 		
 		// LOCAL STORAGE
 		var data = local_storage.get('dialog');

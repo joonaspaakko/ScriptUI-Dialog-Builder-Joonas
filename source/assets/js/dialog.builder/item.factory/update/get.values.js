@@ -6,37 +6,19 @@ item.update.get_values = function( prop ) {
 	var _this = editPanel.find('[data-edit^="'+ prop +'"]');
 
 	switch ( prop ) {
-		
-		case "varName":
-			data.varName = _this.val();
-			break;
-		
-		case "helpTip":
-			data.helpTip = _this.val();
-			break;
-		
-		case "iconButtonStroke":
-			data.iconButtonStroke = _this.prop('checked');
-			break;
 
 		case "softWrap":
 			data.softWrap = _this.prop('checked');
-			break;
-		
-		case "text":
-			data.text = _this.val();
-			break;
-			
-		case "listItems":
-			data.listItems = _this.val();
 			break;
 			
 		case "justify":
 			data.justify = editPanel.find('[data-edit^="justify"].active').data('value');
 			break;
-
+		
 		case "typeName":
-      data.typeName = _this.find('option:selected').val();
+		case "windowType":
+		case "orientation":
+      data[ prop ] = _this.find('option:selected').val();
 			break;
 			
 		case "margins":
@@ -60,10 +42,6 @@ item.update.get_values = function( prop ) {
 			var width = parseInt( editPanel.find('input.width').val(), 10);
 			var height = parseInt( editPanel.find('input.height').val(), 10);
 			data.preferredSize = [ width, height ];
-			break;
-			
-		case "orientation":
-			data.orientation = _this.find('option:selected').val();
 			break;
 		
 		case "spacing":
@@ -89,6 +67,14 @@ item.update.get_values = function( prop ) {
 				data.alignment = null;
 			}
 			break;
+			
+		default:
+			if ( _this.attr('type') === 'checkbox' ) {
+				data[ prop ] = _this.prop('checked');
+			}
+			else {
+				data[ prop ] = _this.val();
+			}
 	}
 	// console.table( data );
 	return data;

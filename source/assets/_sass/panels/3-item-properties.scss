@@ -85,6 +85,7 @@ body.update-styles .saving-icon {
     text-align: left;
   }
   
+  .creation-props-inner-wrap .creation-prop input[type="text"],
 	input[data-edit="helpTip"],
   .textarea {
     background-color: #292929;
@@ -576,7 +577,7 @@ body.update-styles .saving-icon {
   }
 
   .soft-wrap-wrap-wrap {
-    // 
+    //
   }
   .target-typeName {
     .prettydropdown, ul, li,
@@ -586,4 +587,64 @@ body.update-styles .saving-icon {
     }
   }
 	
+	.creation-props-inner-wrap {
+		white-space: normal;
+		.creation-prop {
+      display: flex;
+      flex-direction: row;
+      input[type="text"] {
+        // width: 100px;
+        flex-grow: 1;
+        padding: 0px 3px;
+      }
+      // label .input-sibling {
+			// 	margin-right: 4px;
+			// }
+		}
+	}
+  
+	.input-sibling {
+    display: inline-block;
+    width : 12px;
+    height: 12px;
+    // border: 1px solid #dadada;
+    background: #2a2a2a;
+    vertical-align: middle;
+    position: relative;
+    top: -.5px;
+    
+    &:before, &:after {
+      visibility: hidden;
+      float: left;
+      font-size  : 9px;
+      line-height: 9px;
+      font-weight: 900;
+      font-family: "Font Awesome 5 Free";
+      color: $color-accent;
+		}
+	}
+  
+  .input-sibling.checkbox {
+    border-radius: 3px;
+    &:after {
+      content: '\f00c';
+      position: relative;
+      left: 1.5px;
+      top : 1.5px;
+    }
+  }
+  
+  input:checked + .input-sibling {
+    &:before, &:after {
+      visibility: visible;
+    }
+  }
+  
+  .creation-prop > span:first-child,
+  .creation-prop > label > span:first-child {
+    line-height: 19px;
+    display: inline-block;
+    padding-right: 3px;
+  }
+  
 } // #edit-style-contents

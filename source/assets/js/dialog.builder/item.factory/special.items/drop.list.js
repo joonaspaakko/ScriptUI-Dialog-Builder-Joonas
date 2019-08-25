@@ -11,7 +11,7 @@ function droplistOnWindowResize() {
 
 var droplist = {
 	
-	init: function( active, id ) {
+	init: function( active ) {
 		
 		var listWrap = active.find('.drop-list-wrap');
 		
@@ -21,12 +21,20 @@ var droplist = {
 			$('#drop-list').remove();
 			
 			var listWrap = $(this);
+			var isOpen = listWrap.hasClass('open');
+			// Activate item if textbox doesn't exist
+			var id = listWrap.parent().data('item-id');
+			var data  = local_storage.get('dialog');
+			var itemData = data.items[ 'item-' + id ];
+			item.activate( id );
+			edit_style_panel.build( itemData.style );
 			
-			if ( !listWrap.hasClass('open') ) {
+			if ( !isOpen ) {
 				
 				listWrap.addClass('open');
 				
 				var items = droplist.inspector( id, listWrap );
+				
 				droplist.makeList( id, listWrap, items );
 				
 				$('#drop-list ul li').on('click', function() {
@@ -177,6 +185,27 @@ var droplist = {
 		
 		$('#drop-list').remove();
 		$('.drop-list-wrap.open').removeClass('open');
+		
+	},
+	
+	onActivate: function( active ) {
+		if ( active.data('item-type') === 'DropDownList' && !$('[data-panel="edit"] .target-text').is(':empty') ) {
+			$('<small title="Use staticText instead. For more info check issue: #56" style="color: red;"> Deprecated!</small>').appendTo('[data-panel="edit"] .target-text > h2');
+		}
+	},
+	
+	onExport: function() {
+		
+		var data = local_storage.get('dialog');
+		$.each( data.items, function( item, itemData ) {
+			if ( itemData.type === 'DropDownList' && itemData.style.text != undefined ) {
+				if ( itemData.style.text.trim() == '' ) {
+					delete itemData.style.text;
+				}
+			}
+		});
+		
+		local_storage.set('dialog', data);
 		
 	}
 	

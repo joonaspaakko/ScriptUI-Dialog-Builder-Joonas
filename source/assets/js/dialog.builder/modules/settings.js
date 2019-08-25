@@ -33,7 +33,7 @@ var settings = {
     functionWrapper: {
       divider: false,
       status: false,
-      label: '<s style="color: #bfbfbf;">Function wrapper</s> <span title="Not released yet...">?</span>',
+      label: 'Function wrapper',
       settingFor: 'SUI'
     },
     compactCode: {

@@ -40,45 +40,44 @@ item.create = {
 			
 		}
 		
-		data.items[ 'item-' + params.id ]
+		var laundryTime = [
+			'varName',
+			'helpTip',
+			'softWrap',
+			'typeName',
+			'windowType',
+			'creationProps',
+			'enabled'
+		];
+		
+		if ( params.type === 'EditText' ) {
+			laundryTime.push('justify');
+		}
+		else if ( params.type === 'IconButton' ) {
+			laundryTime.push('text');
+		}
 		
 		var defaultStyle = item.list[ params.type.toLowerCase() ](false).defaultStyle;
+		$.each( laundryTime, function( key, prop ) {
+			cleaningLady( prop );
+		});
 		
-    // CLEANING LADY
-    if ( defaultStyle.varName === undefined && data.items[ 'item-' + params.id ].style.varName !== undefined ) {
-      delete data.items[ 'item-' + params.id ].style.varName;
-    }
-    // Adds varName to the style if it's missing
-    if ( defaultStyle.varName !== undefined && data.items[ 'item-' + params.id ].style.varName === undefined ) {
-      data.items[ 'item-' + params.id ].style.varName = null;
-    }
-
-    // CLEANING LADY
-    if ( defaultStyle.helpTip === undefined && data.items[ 'item-' + params.id ].style.helpTip !== undefined ) {
-      delete data.items[ 'item-' + params.id ].style.helpTip;
-    }
-    // Adds helpTip to the style if it's missing
-    if ( defaultStyle.helpTip !== undefined && data.items[ 'item-' + params.id ].style.helpTip === undefined ) {
-      data.items[ 'item-' + params.id ].style.helpTip = null;
-    }
-
-    // CLEANING LADY
-    if ( defaultStyle.softWrap === undefined && data.items[ 'item-' + params.id ].style.softWrap !== undefined ) {
-      delete data.items[ 'item-' + params.id ].style.softWrap;
-    }
-    // Adds softWrap to the style if it's missing
-    if ( defaultStyle.softWrap !== undefined && data.items[ 'item-' + params.id ].style.softWrap === undefined ) {
-      data.items[ 'item-' + params.id ].style.softWrap = true;
-    }
-
-    // CLEANING LADY
-    if ( defaultStyle.typeName === undefined && data.items[ 'item-' + params.id ].style.typeName !== undefined ) {
-      delete data.items[ 'item-' + params.id ].style.softWrap;
-    }
-    // Adds softWrap to the style if it's missing
-    if ( defaultStyle.typeName !== undefined && data.items[ 'item-' + params.id ].style.typeName === undefined ) {
-      data.items[ 'item-' + params.id ].style.typeName = null;
-    }
+		// CLEANING LADY
+		// Cleaning lady makes sure discarded properties are thrown away and new properties show up in the right place.
+		function cleaningLady( property ) {
+			
+			var itemData = data.items[ 'item-' + params.id ];
+			
+	    // If default style for this property doesn't exist, remove it from local storage data
+	    if ( defaultStyle[ property ] === undefined && itemData.style[ property ] !== undefined ) {
+	      delete itemData.style[ property ];
+	    }
+	    // Add default style to local storage if this property exists in default styles
+	    if ( defaultStyle[ property ] !== undefined && itemData.style[ property ] === undefined ) {
+	      itemData.style[ property ] = defaultStyle[ property ];
+	    }
+			
+		}
 		
 		local_storage.set('dialog', data );
 		

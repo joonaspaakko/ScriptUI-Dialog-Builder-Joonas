@@ -13,7 +13,7 @@ function notification( type, message, hangtime ) {
 	var msg = $(
 		'<div class="notification '+ type +' animated">' +
 			'<div>' +
-				'<i class="fas fa-info-circle icon"></i>' +
+				get_icon() +
 				'<div class="msg">'+ message +'<div>' +
 			'</div>' +
 		'</div>'
@@ -56,6 +56,20 @@ function notification( type, message, hangtime ) {
 
 	function secToMs( seconds ) {
 	    return seconds * 1000;
+	}
+
+	function get_icon() {
+		
+		var result = '';
+		switch (type) {
+			case 'clipboard':
+				result = '<i class="fas fa-clipboard icon"></i>';
+				break;
+			default:
+			result = '<i class="fas fa-info-circle icon"></i>';
+		}
+		return result;
+		
 	}
 	
 }

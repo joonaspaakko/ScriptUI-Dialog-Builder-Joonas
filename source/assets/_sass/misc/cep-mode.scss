@@ -41,8 +41,6 @@
   
   .disable-item {
     position: relative;
-    opacity: .40;
-    .disable-item { opacity: 1; } // Normalizes nested/disabled items
     filter: grayscale(100%);
     &:before {
       content: '';
@@ -52,10 +50,6 @@
       right: 0;
       bottom: 0;
       left: 0;
-    }
-    &.icon-button:hover .inner-wrap,
-    &.icon-button:active .inner-wrap {
-      background: transparent;
     }
   }
   

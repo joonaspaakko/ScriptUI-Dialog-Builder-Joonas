@@ -33,10 +33,12 @@
 // MISCELLANEOUS
 // *************
 // @codekit-prepend "dialog.builder/modules/loading.screen.js";
+// @codekit-prepend "dialog.builder/modules/clipboard.js";
 // @codekit-prepend "dialog.builder/modules/number.input.js";
 // @codekit-prepend "dialog.builder/modules/modal.window.js";
 // @codekit-prepend "dialog.builder/modules/legend.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/export/custom.var.names.js";
+// @codekit-prepend "dialog.builder/modules/toolbar/export/image.duplicate.check.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/export.js";
 // @codekit-prepend "dialog.builder/modules/settings.js";
 // @codekit-prepend "dialog.builder/modules/toolbar/import.js";
@@ -45,6 +47,7 @@
 // @codekit-prepend "dialog.builder/modules/custom.cursor.js";
 // @codekit-prepend "dialog.builder/modules/toggle.active.visibility.js";
 // @codekit-prepend "dialog.builder/modules/notifications.js";
+// @codekit-prepend "dialog.builder/modules/context.menu.js";
 // @codekit-prepend "dialog.builder/modules/panels.collapse.js";
 // @codekit-prepend "dialog.builder/item.factory/special.logic/danger.zone.js";
 // @codekit-prepend "dialog.builder/item.factory/special.logic/force.size.js";
@@ -113,7 +116,7 @@ else {
   // Build Item Properties panel
 	data = local_storage.get('dialog');
   var oldItem = data.items[ 'item-' + oldActiveId ];
-  edit_style_panel.build( oldItem.style );
+  edit_style_panel.build( oldItem.style, "loadFromLocalStorage" );
   
 }
 
@@ -121,26 +124,10 @@ settings.setDefaults( data );
 
 
 // Warning for people not using chrome
-var isChromium = window.chrome;
-var winNav = window.navigator;
-var vendorName = winNav.vendor;
-var isOpera = typeof window.opr !== "undefined";
-var isIEedge = winNav.userAgent.indexOf("Edge") > -1;
-var isIOSChrome = winNav.userAgent.match("CriOS");
-if (isIOSChrome) {
-  // is Google Chrome on IOS
-} else if(
-  isChromium !== null &&
-  typeof isChromium !== "undefined" &&
-  vendorName === "Google Inc." &&
-  isOpera === false &&
-  isIEedge === false
-) {
-  // is Google Chrome
-} else {
-  // not Google Chrome
+if ( window.navigator.vendor !== "Google Inc." ) {
   setTimeout(function() {
-    notification( 'failure', "<strong>WARNING</strong>: This browser is not fully supported. Please use Google Chrome .", 20 );
+    notification( 'failure',
+    "<strong>WARNING</strong>: Please use Chrome to avoid potential errors.", 10 );
   }, 200);
 }
 

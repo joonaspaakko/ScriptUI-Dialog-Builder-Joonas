@@ -8,7 +8,17 @@ item.update.style = {};
 item.update.style.localStorage = function( prop, data ) {
 	
 	var val = item.update.get_values( prop );
-	data.items[ 'item-' + data.activeId ].style[ prop ] = val[ prop ];
+	
+	// Not super proud of how I handled this...
+	var editPanel = $('#panel-edit-style-wrap');
+	var _this = editPanel.find('[data-edit^="'+ prop +'"]');
+	if ( _this.closest('.creation-props-inner-wrap').length > 0 ) { 
+		data.items[ 'item-' + data.activeId ].style.creationProps[ prop ] = val[ prop ];
+	}
+	else {
+		data.items[ 'item-' + data.activeId ].style[ prop ] = val[ prop ];
+	}
+		
 	local_storage.set('dialog', data );
 	return data; // Changed data is force fed to the two functions below
 	

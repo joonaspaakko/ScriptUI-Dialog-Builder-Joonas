@@ -72,7 +72,7 @@ $('#toolbar .export').on("click", function() {
 	// COPY TO CLIPBOARD
 	exportBox.find('.btn.copy').on("click", function() {
 		modal.remove(function() {
-			exportToClipboard( 'export-window' );
+			exportToClipboard( 'export-window' ); // → legend.js
 		});
 	});
 	
@@ -112,11 +112,27 @@ $('#toolbar .export').on("click", function() {
 
 function getExportCode() {
 	
+	// init functio is run every time an image item is created. This purges the records on every export.
+	imageDuplicateCheck.images = [];
+	droplist.onExport();
+	
 	customVar.init();
 	
 	var data = local_storage.get('dialog');
-	var importJSON = '\nCode for Import https://scriptui.joonas.me — (Triple click to select): \n' + JSON.stringify( data ) + '\n';
-  
+	
+	var indentSize2 = data.settings.indentSize;
+	var tabsies = indentSize2 ? '  ' : '    ';
+	var wrapperTabsies = '';
+	
+	// Double the indentation if function wrapper is on...
+	if ( !data.settings.cepExport && data.settings.functionWrapper ) {
+		wrapperTabsies = '  ';
+		tabsies = wrapperTabsies + tabsies;
+	}
+	
+	var jsxItems = getJSX( data, tabsies, wrapperTabsies );
+	var importJSON = '\n'+ wrapperTabsies +'Code for Import https://scriptui.joonas.me — (Triple click to select): \n' + wrapperTabsies + JSON.stringify( data ) + '\n';
+	
 	var bundle = {};
 	// HTML
   if ( data.settings.cepExport ) {
@@ -127,18 +143,28 @@ function getExportCode() {
 	}
 	// JAVASCRIPT
 	else {
-		var jsxItems = getJSX( data );
-		importJSON = data.settings.importJSON ? ('/*' + importJSON + '*/ \n\n') : '';
-		bundle.code = importJSON + jsxItems;
+		importJSON = data.settings.importJSON ? (wrapperTabsies + '/*' + importJSON + wrapperTabsies + '*/ \n\n') : '';
 		bundle.language = 'javascript';
 		bundle.filename = 'ScriptUI Dialog Builder - Export.jsx';
+		var showDialog = (data.settings.showDialog ? ( wrapperTabsies + customVar.names[ 0 ] + '.show();') : '');
+		var dialogBody = importJSON + jsxItems + showDialog;
+		
+		if ( data.settings.functionWrapper ) {
+			bundle.code = 'var '+ customVar.names[ 0 ] +' = (function () {\n\n';
+			bundle.code += dialogBody + (data.settings.showDialog ? '\n\n' : '');
+			bundle.code += wrapperTabsies + 'return '+ customVar.names[ 0 ] +';';
+			bundle.code += '\n\n}());';
+		}
+		else {
+			bundle.code = dialogBody;
+		}
 	}
 	
 	return bundle;
 
 }
 
-function getJSX( data ) {
+function getJSX( data, tabsies, wrapperTabsies ) {
 	
 	var cornucopia = '',
 			jsxParents = {},
@@ -168,7 +194,7 @@ function getJSX( data ) {
 			lastLoop = true;
 		}
 		
-		cornucopia += makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop );
+		cornucopia += makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop, tabsies, wrapperTabsies );
 		
 	});
 	

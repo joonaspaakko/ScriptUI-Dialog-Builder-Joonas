@@ -376,6 +376,9 @@ $color-bg: #535353;
         // color: $color-bg !important;
 			}
 		}
+		&.default-button .button-border {
+			border-width: 2px;
+		}
   }
 	
   [data-item-type="checkbox"],
@@ -433,54 +436,34 @@ $color-bg: #535353;
   }
   
   .edit-text {
-		span.edit-text-inner-wrap {
-      // display: block; height: 100%; width: 100%;
-      cursor: text;
-			overflow: auto;
-      display: inline-block;
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      padding: 1px 7px 1px;
-      background: darken($color-bg,7);
-      border: 1px solid lighten($color-bg,7);
-      border-radius: 4px;
-      text-align: left;
-      // This before was originally put here to help with vertical elignment, but
-      // it caused issues with the scrollbar plugin. It was not in use because
-      // of ScriptUI behavior differences, so I decided to hide it for EditText elements.
-      // &:before {
-      //   display: none;
-      // }
-    }
-    .os-content-glue {
-      box-sizing: border-box !important;
-      // width: 100% !important;
-      // height: 100% !important;
-      border:none !important;
-      width: auto !important;
-      height: auto !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      color: red;
-      overflow: hidden !important;
-      visibility: hidden !important;
-    }
-    // .text-container {
+    // &:before {
     //   content: "";
     //   display: inline-block;
     //   vertical-align: middle;
     //   height: 100%;
     // }
-    // .text-container.multiline {
-    //   vertical-align: top !important;
-    // }
-    .text-container {
-      // top: 0px;
-      // left: 0px;
-      // right: 0px;
-      // bottom: 0px;
-      // position: absolute;
+    line-height: 19px;
+		span.edit-text-inner-wrap {
+      display: inline-block;
+      // display: flex;
+      align-items: center;
+      cursor: text;
+			overflow: auto;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+			min-height: 23px;
+      padding: 0px 7px 0px;
+      background: darken($color-bg,7);
+      border: 1px solid lighten($color-bg,7);
+      border-radius: 4px;
+      text-align: left;
+      &:before {
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+      }
     }
     .os-content-glue,
     span.text-container {
@@ -500,6 +483,16 @@ $color-bg: #535353;
 			// background: #fff;
       background: darken($color-bg,12);
 			// color: #fff !important;
+		}
+		
+		&.justify-left > span {
+      text-align: left;
+		}
+		&.justify-center > span {
+			text-align: center;
+		}
+		&.justify-right > span {
+			text-align: right;
 		}
   }
   
@@ -633,21 +626,25 @@ $color-bg: #535353;
 	
 	input[type=range] {
 	  -webkit-appearance: none;
-	  width: 100%;
+	  width: 30px;
+    flex-grow: 1;
     height: 13px;
 	  margin: 6px 0;
     background: transparent;
 	}
-	.orientation-row > .padding-box > .slider {
-    &, input[type=range] {
-      width: auto;
-    }
+  .slider {
+    display: flex;
   }
-	.orientation-column > .padding-box > .slider {
-    &, input[type=range] {
-      width: 100% !important;
-    }
-  }
+	// .orientation-row > .padding-box > .slider {
+  //   &, input[type=range] {
+  //     // width: auto;
+  //   }
+  // }
+	// .orientation-column > .padding-box > .slider {
+  //   &, input[type=range] {
+  //     // width: 100% !important;
+  //   }
+  // }
 	input[type=range]:focus {
 	  outline: none;
 	}
@@ -826,8 +823,13 @@ $color-bg: #535353;
 	}
   
   .icon-button {
+		display: flex;
+    justify-items: stretch;
+    align-items: stretch;
     .inner-wrap {
       display: flex;
+      flex-direction: row;
+			flex-grow: 1;
       justify-items: center;
       align-items: center;
       justify-content: center;
@@ -836,13 +838,17 @@ $color-bg: #535353;
       overflow: hidden;
       background-clip: padding-box;
       border-radius: 999999px;
-      padding: 6px;
+      padding: 6px 10px;
+			span {
+				padding-right: 3px;
+			}
     }
     &.icon-button-stroke .inner-wrap {
       border: 1px solid #fafafa;
     }
     .inner-wrap:hover  {
       background: #fff;
+      color: $color-bg;
     }
     &:active .inner-wrap {
       background: #45a0f5;
@@ -867,7 +873,32 @@ $color-bg: #535353;
   .disable-soft-wrap .text-container {
     white-space: nowrap !important;
   }
-
+	
+	.item-disabled {
+		// position: relative;
+		opacity: .40;
+    
+		.item-disabled { opacity: 1; } // Normalizes nested/disabled items
+    
+	}
+  
+  .disable-item {
+    opacity: .40;
+    .disable-item { opacity: 1; } // Normalizes nested/disabled items
+    img {
+      filter: grayscale(100%);
+    }
+    &.icon-button:hover .inner-wrap,
+    &.icon-button:active .inner-wrap {
+      background: transparent;
+    }
+    &#dialog-container {
+      opacity: 1;
+      > .padding-box > * {
+    		opacity: .40;
+      }
+    }
+  }
 } // #dialog
 
 
