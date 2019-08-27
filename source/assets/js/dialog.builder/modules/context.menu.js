@@ -21,7 +21,7 @@ var contextMenu = {
 		
 		$(window).on("contextmenu", function( e ) {
 			var _this = $(e.target);
-			var targetItem = _this.closest('[data-item-type]');
+			var targetItem = _this.closest('[data-item-id]');
 			
 			contextMenu.close();
 			if ( targetItem.length > 0 ) {
