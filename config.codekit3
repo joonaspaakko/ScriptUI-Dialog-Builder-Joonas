@@ -176,19 +176,6 @@
 		"oS": 0,
 		"uL": 1
 		},
-	"/source/assets/_sass/misc/context-menu.scss": {
-		"aP": 1,
-		"bl": 1,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "/build/assets/_sass/misc/context-menu.css",
-		"oF": 0,
-		"oS": 0,
-		"uL": 1
-		},
 	"/source/assets/_sass/misc/custom-cursor.scss": {
 		"aP": 1,
 		"bl": 1,
@@ -725,14 +712,6 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/assets/images/clipboard-copy-spinner.gif": {
-		"ft": 4194304,
-		"iS": 3144,
-		"oA": 0,
-		"oAP": "/build/assets/images/clipboard-copy-spinner.gif",
-		"oF": 0,
-		"opt": 1
-		},
 	"/source/assets/images/cursor-bg-white-checker.png": {
 		"ft": 32768,
 		"iS": 136,
@@ -1056,7 +1035,7 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/clipboard.min.min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
