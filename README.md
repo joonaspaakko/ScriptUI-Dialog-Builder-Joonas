@@ -8,17 +8,22 @@
 
 This repository includes a build folder that contains the same files as the website. So if the URL doesn't work for some reason, you should be able to download the repo and use it locally (offline). Everything it needs to run is in the build folder. Just open the `build\index.html` in Chrome.
 
-### Desktop applications
+### Desktop applications / Chrome app
 
 <details><summary>Read more...</summary>
+  
+The desktop apps won't work offline since each version of the app is only loading up the website and not a full fledged desktop app. The desktop applications are only trying to fill a small slot of convenience.
 
-The desktop applications are only trying to fill a small slot of convenience, but they're not necessary. The desktop apps don't work offline though since they are only loading up the website.
+[**Download desktop applications** (Dropbox link)](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
 
-> These were created using [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium.
+> The desktop apps were created using an online tool that converts websites into desktop applications: [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium. Also, I believe they inject their own google analytics. SDB by itself doesn't gather any data. 
 
-Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
+**Chrome App**
 
-> The download folder also now includes a Chrome App. The great thing about it is that you can sync it to other computers. The downside is that it's tied to Chrome.
+The download folder also includes a Chrome App. The great thing about it is that you can sync it to other computers. The downside is that it's tied to Chrome.
+
+[**Download desktop applications** (Dropbox link)](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
+
 
 **Desktop app pros**
 
@@ -35,6 +40,22 @@ Download [**desktop applications**](https://www.dropbox.com/sh/4wy71qv8e08deh1/A
 
 </details>
 
+## General info about ScriptUI Dialog Builder (SDB)
+
+#### Description
+
+SDB helps you design and build ScriptUI dialogs without writing code. It auto-generates ready to use Javascript on export. It doesn't handle events though, you'll need to write events yourself.
+
+#### What to expect
+
+Because SDB simply _emulates_ ScriptUI layout and behavior, there are various differences here and there. This is to be expected. So be aware that the dialog preview may look completely different depending on the application you're passing the code through. There are also some differences between applications. As an example, a really easy to spot difference is that `tabs` look completely different in Photoshop than they do in other applications. While no application will be 100% accurate, Illustrator CC will be closest since SDB was built using it as the template.
+
+In my experience, even when you run the code through ESTK, which is completely different looking than CC applications, SDB is still better than hand coding the dialog.
+
+#### Data handling
+
+Dialog data is saved locally by your browser (local storage). So if you refresh the page or come back later with the same browser, your dialog should still be there, as long as nothing goes wrong in the reconstruction of the dialog. There's always the off chance that an error of some kind wipes it clean. If you’re browsing in incognito mode, your browser will forget this data as soon as you close the tab or window. Each code export also includes importable JSON at the top of the code, which means you can continue working on a dialog on another computer as long as you store the importable JSON somewhere. I've been just leaving it in my scripts. Though if you're using images you might not want to do that since it could make the script size incredibly large (for a script anyway). [Here's an example](https://github.com/joonaspaakko/Photoshop-Rename-Layers-Script/blob/59e725e3830e3567b7c1f5ef3d45af3b2a9ee03e/Rename%20Layers.jsx#L272) of one of my scripts where I left the import JSON in place.
+
 ## SDB Layout PSD files
 
 Maybe there's not a whole lot of need for this, but figured I might as well share it. It could be helpful if you wanna suggest a new feature or something. Font files included in the download folder.
@@ -43,25 +64,17 @@ Dropbox download link: [ScriptUI Dialog Builder PSD files](https://www.dropbox.c
 
 > This was generated using [Page Layers](https://www.pagelayers.com/). I did clean it up a bit but some of the layer structure may be unnecessarily complicated because it follows the html structure. Because it's essentially a fancy layered screenshot, it doesn't include anything but the visible elements. So no modal windows.
 
-## General info about ScriptUI Dialog Builder (SDB)
-
-SDB helps you design and build ScriptUI dialogs without writing code. It auto-generates ready to be used Javascript on export. It doesn't handle events. You'll need to write events yourself.
-
-Because the builder simply _simulates_ ScriptUI layout and behavior, there are various differences here and there. One major factor is that there are small differences between Adobe applications so be aware that the dialog preview may look completely different depending on the application you're using. As an example, a really easy to spot difference is that `tabs` look completely different in Photoshop they do in other applications. Illustrator CC will be closest since SDB was built using it as the template.
-
-There's a one kinda big feature that I had to leave out (for now) because I just couldn't replicate the behavior. I got pretty close, but I wasn't satisfied with it. ScriptUI items can actually have "fill" on both `x` and `y` axis, but in the builder, it's limited to one axis.
-
-Dialog data is saved locally by your browser (local storage). So if you refresh the page or come back later with the same browser, your dialog should still be there, as long as nothing goes wrong in the reconstruction of the dialog. There's always the off chance that an error of some kind wipes it clean. If you’re browsing in incognito mode, your browser will forget this data as soon as you close the tab or window. Each code export also includes importable JSON at the top of the code, which means you can continue working on a dialog on another computer as long as you store the importable JSON somewhere. I've been just leaving it in my scripts. Though if you're using images you might not want to do that since it could make the script size incredibly large (for a script anyway). [Here's an example](https://github.com/joonaspaakko/Photoshop-Rename-Layers-Script/blob/59e725e3830e3567b7c1f5ef3d45af3b2a9ee03e/Rename%20Layers.jsx#L272) of one of my scripts where I left the import JSON in place.
-
 ## Usage
 
-A good rule of thumb is to use width and height sparingly. Sometimes `Align children: Fill` or `Alignment: Fill` can be used to get the desired result without setting a static width. You can easily make the dialog hard to work with if you have to keep adjusting the width and/or height values every time you add new items or make other changes that would affect the size.
+A good rule of thumb is to use width and height sparingly. Sometimes `Align children: Fill` or `Alignment: Fill` can be used to get the desired result without setting a static width. You can easily make the dialog hard to work with if you have to keep adjusting the width and/or height values every time you add new items or make other changes that would affect the size. 
+
+There's also the fact that while SDB gets fairly close in imitating SUI, it's not perfect and therefore things may end up shifting around, but the width or height you've set wont. There's a good example of this in the sample dialog. The two bottom panels are given the same height, but the bottom left panel ends up being tad bigger in Indesign CC, because the children end up taking more room than they do in SDB.
 
 For example, the sample dialog only uses width and height for various EditText fields to basically leave room for characters and the 4 panels so that they have equal height.
 
 ## Browser support
 
-**Chrome.** _The development has shifted focus to Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome.
+**Chrome.** _The development has shifted focus to Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome. If [this issue](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/issues/26) gets implemented, it could be a way to alleviate the problem, by making sure items that are supposed to be the same size actually end up that way. 
 
 ## Source folder
 
