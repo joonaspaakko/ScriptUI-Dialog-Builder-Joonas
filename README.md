@@ -70,11 +70,11 @@ A good rule of thumb is to use width and height sparingly. Sometimes `Align chil
 
 There's also the fact that while SDB gets fairly close in imitating SUI, it's not perfect and therefore things may end up shifting around, but the width or height you've set wont. There's a good example of this in the sample dialog. The two bottom panels are given the same height, but the bottom left panel ends up being tad bigger in Indesign CC, because the children end up taking more room than they do in SDB.
 
-For example, the sample dialog only uses width and height for various EditText fields to basically leave room for characters and the 4 panels so that they have equal height.
+For example, the sample dialog only uses width and height for various EditText fields to basically leave room for characters and the 4 panels so that they have equal height. That said, if [this issue](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/issues/26) gets implemented, it would be a way to get around the issue, by making sure items that are supposed to be the same size actually end up that way. 
 
 ## Browser support
 
-**Chrome.** _The development has shifted focus to Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome. If [this issue](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/issues/26) gets implemented, it could be a way to alleviate the problem, by making sure items that are supposed to be the same size actually end up that way. 
+**Chrome.** _The development has shifted focus to Chrome so you probably shouldn't push your luck with Firefox either._ No mobile support. Try [the desktop app](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/#desktop-applications) if you don't like to use Chrome.
 
 ## Source folder
 
