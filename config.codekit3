@@ -731,7 +731,7 @@
 		"oA": 0,
 		"oAP": "/build/assets/images/clipboard-copy-spinner.gif",
 		"oF": 0,
-		"opt": 0
+		"opt": 1
 		},
 	"/source/assets/images/cursor-bg-white-checker.png": {
 		"ft": 32768,
@@ -1056,7 +1056,7 @@
 		"mi": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/clipboard.min.min.js",
-		"oF": 1,
+		"oF": 0,
 		"sC": 0,
 		"tS": 0
 		},

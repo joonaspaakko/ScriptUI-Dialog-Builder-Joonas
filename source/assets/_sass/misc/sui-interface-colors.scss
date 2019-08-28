@@ -428,6 +428,8 @@ $ic-1: #f0f0f0;
   body::-webkit-scrollbar-track { background: $ic-1; }
 }
 
+#dialog .checkbox,
+#dialog .radiobutton,
 #dialog .edit-text span.text-container,
 #dialog .static-text span.text-container {
   font-weight: 400;
