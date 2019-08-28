@@ -1,8 +1,22 @@
 [![](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/blob/master/source/wiki-images/github-cover.png?raw=true)](https://scriptui.joonas.me)
 
-## Website (web app)
+## Website (web app) 
 
-[scriptui.joonas.me](https://scriptui.joonas.me)
+ScriptUI Dialog Builder (SDB) - [scriptui.joonas.me](https://scriptui.joonas.me)
+
+## Documentation
+
+For now SDB's general documentation is in the [github wiki](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/wiki), but I'm planning to move that over to [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) at some point.
+
+There's not much to write about in the SDB documentation, but I'm planning to perhaps include a changelog and sort of hidden or hard to find out features.
+
+## CEP Documentation
+
+SDB has a CEP export: `Export button (above dialog preview) > Gear icon (bottom right in the modal window) > CEP export (When this is turned on, the export comes out as html, css and js)`. It does not export you a fully functional extension, rather just a SUI style layout with some js helper functions to make it easier for you to work with it. You just paste the exported code into your CEP boilerplate's `index.html` and the rest is up to you writing the interaction logic. 
+
+This CEP documenation is in [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) → Look for CEP in the top menu.
+
+> [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) is also included in the repo: `source/docs` and `build/docs`.
 
 ### Offline use
 
