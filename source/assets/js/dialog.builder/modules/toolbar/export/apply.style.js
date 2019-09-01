@@ -1,15 +1,15 @@
 
-function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies ) {
+function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies, commentOut ) {
 	var styleBlock = '';
 
 	// ENABLED
 	if ( !style.enabled ) {
-		styleBlock += tabsies + jsxVarName + '.enabled = false; \n';
+		styleBlock += tabsies + commentOut + jsxVarName + '.enabled = false; \n';
 	}
 	
 	// HELP TIP
 	if ( style.helpTip !== undefined && style.helpTip !== null ) {
-		if ( style.helpTip.length > 0 ) styleBlock += tabsies + jsxVarName +'.helpTip = "' + style.helpTip.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\\n') + '"; \n';
+		if ( style.helpTip.length > 0 ) styleBlock += tabsies + commentOut + jsxVarName +'.helpTip = "' + style.helpTip.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\\n') + '"; \n';
 	}
 	
 	if ( type === "TreeItem" ) {
@@ -27,31 +27,31 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 		});
 		
 		if ( expanded && dam === false ) {
-			growTree.push( tabsies + jsxVarName + '.expanded = true; \n' );
+			growTree.push( tabsies + commentOut + jsxVarName + '.expanded = true; \n' );
 		}
 	}
 	else if ( type === "Divider" ) {
-		styleBlock += tabsies + jsxVarName + '.alignment = "fill"; \n';
+		styleBlock += tabsies + commentOut + jsxVarName + '.alignment = "fill"; \n';
 	}
 	else if ( type === "Slider" ) {
-		styleBlock += tabsies + jsxVarName + '.minvalue = 0; \n';
-		styleBlock += tabsies + jsxVarName + '.maxvalue = 100; \n';
-		styleBlock += tabsies + jsxVarName + '.value = 50; \n';
+		styleBlock += tabsies + commentOut + jsxVarName + '.minvalue = 0; \n';
+		styleBlock += tabsies + commentOut + jsxVarName + '.maxvalue = 100; \n';
+		styleBlock += tabsies + commentOut + jsxVarName + '.value = 50; \n';
 	}
 	else {
 		
 		// DROP LIST SELECTION
 		if ( type === "DropDownList" && style.selection !== undefined ) {
-			styleBlock += tabsies + jsxVarName +'.selection = '+ style.selection +'; \n';
+			styleBlock += tabsies + commentOut + jsxVarName +'.selection = '+ style.selection +'; \n';
 		}
 		if ( type === "ListBox" && style.selection !== undefined && style.selection.length > 0 ) {
 			var addSelection = (style.selection.length > 1) ? JSON.stringify(style.selection) : style.selection;
-			styleBlock += tabsies + jsxVarName +'.selection = '+ addSelection +'; \n';
+			styleBlock += tabsies + commentOut + jsxVarName +'.selection = '+ addSelection +'; \n';
 		}
 		
 		// TABBED PANEL ALIGN CHILDREN
 		if ( type === "TabbedPanel" ) {
-			styleBlock += tabsies + jsxVarName + '.alignChildren = "fill"; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.alignChildren = "fill"; \n';
 		}
 		
 		// TEXT
@@ -69,17 +69,17 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 		}
 		if ( addText ) {
 			var text = type === 'EditText' && multilineText[0] ? style.text.split('\n').join('\\r') : style.text;
-			styleBlock += tabsies + jsxVarName +'.text = "' + text + '"; \n';
+			styleBlock += tabsies + commentOut + jsxVarName +'.text = "' + text + '"; \n';
 		}
 		// CHECKED
 		if ( style.checked === true ) {
-			styleBlock += tabsies + jsxVarName +'.value = ' + style.checked + '; \n';
+			styleBlock += tabsies + commentOut + jsxVarName +'.value = ' + style.checked + '; \n';
 		}
 		// PREFERRED SIZE
 		if ( type === 'TabbedPanel' && style.preferredSize[0] === 0 ) {
 			// Apparently this trick only works if the tab shelf is not wider than the widest child item.
 			// styleBlock += tabsies + jsxVarName + '.preferredSize.width = 1; /\/\ A trick for != Photoshop \n';
-			styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ $('#dialog [data-item-id="'+ id +'"]').outerWidth() +'; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.preferredSize.width = '+ $('#dialog [data-item-id="'+ id +'"]').outerWidth() +'; \n';
 		}
 		else if ( style.preferredSize !== undefined && type !== 'TreeView' ) {
 			var width = style.preferredSize[0];
@@ -88,10 +88,10 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 			var isMultiline = type === 'EditText' ? multilineText[0] : false;
 			if ( !isMultiline ) {
 				if ( width > 0 ) {
-					styleBlock += tabsies + jsxVarName + '.preferredSize.width = '+ width +'; \n';
+					styleBlock += tabsies + commentOut + jsxVarName + '.preferredSize.width = '+ width +'; \n';
 				}
 				if ( height > 0 ) {
-					styleBlock += tabsies + jsxVarName + '.preferredSize.height = '+ height +'; \n';
+					styleBlock += tabsies + commentOut + jsxVarName + '.preferredSize.height = '+ height +'; \n';
 				}
 			}
 			
@@ -103,34 +103,34 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 		}
 		// Right now button is the only item type that gets justify from here...
 		else if ( type === "Button" && style.justify !== 'center' ) {
-			styleBlock += tabsies + jsxVarName + '.justify = "' + style.justify + '"; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.justify = "' + style.justify + '"; \n';
 		}
 		// ORIENTATION
 		if ( style.orientation !== undefined  ) {
-			styleBlock += tabsies + jsxVarName + '.orientation = "' + style.orientation + '"; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.orientation = "' + style.orientation + '"; \n';
 		}
 		// ALIGN CHILDREN
 		if ( style.alignChildren !== undefined ) {
-			styleBlock += tabsies + jsxVarName + '.alignChildren = ' + '["'+ style.alignChildren[0] + '","' + style.alignChildren[1] +'"]; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.alignChildren = ' + '["'+ style.alignChildren[0] + '","' + style.alignChildren[1] +'"]; \n';
 		}
 		// SPACING
 		if ( style.spacing !== undefined ) {
-			styleBlock += tabsies + jsxVarName + '.spacing = ' + style.spacing + '; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.spacing = ' + style.spacing + '; \n';
 		}
 		// MARGINS
 		var marginsArray;
 		if ( style.margins !== undefined && type !== 'TabbedPanel' ) {
 			marginsArray = typeof style.margins === 'object';
-			styleBlock += tabsies + jsxVarName + '.margins = ' + (marginsArray ? '['+ style.margins[3] +','+ style.margins[0] +','+ style.margins[1] +','+ style.margins[2] +']' : style.margins) + '; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.margins = ' + (marginsArray ? '['+ style.margins[3] +','+ style.margins[0] +','+ style.margins[1] +','+ style.margins[2] +']' : style.margins) + '; \n';
 		}
 		// Tab
 		else if ( type === 'Tab' && data.items[ 'item-' + parentId ].style.margins !== undefined ) {
 			var margins = data.items[ 'item-' + parentId ].style.margins;
 			marginsArray = typeof margins === 'object';
-			styleBlock += tabsies + jsxVarName + '.margins = ' + (marginsArray ? '['+ margins[3] +','+ margins[0] +','+ margins[1] +','+ margins[2] +']' : margins) + '; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.margins = ' + (marginsArray ? '['+ margins[3] +','+ margins[0] +','+ margins[1] +','+ margins[2] +']' : margins) + '; \n';
 		}
 		else if ( type === 'TabbedPanel' ) {
-			styleBlock += tabsies + jsxVarName + '.margins = 0; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.margins = 0; \n';
 		}
 		// ALIGNMENT
 		if ( style.alignment != null && !multilineText[0] ) {
@@ -152,7 +152,7 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 			var alignC = data.items[ 'item-' + parentId ].style.alignChildren;
 			alignment = parentOrientation === 'column' ? ('["' + alignment + '","' + alignC[1] + '"]') : ('["' +alignC[0] + '","' + alignment + '"]');
 			
-			styleBlock += tabsies + jsxVarName + '.alignment = ' + alignment + '; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.alignment = ' + alignment + '; \n';
 		}
 	}
 	

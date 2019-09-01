@@ -52,6 +52,16 @@
 		-ms-user-select: none;
 		user-select: none;
 	}
+	
+	li i {
+		display: inline-block;
+		width: 14px;
+		text-align: center;
+		padding-right: 4px;
+		border-right: 1px solid #f1f1f1;
+		margin-right: 4px;
+	}
+	
 } // #context-menu
 
 .context-menu-target {

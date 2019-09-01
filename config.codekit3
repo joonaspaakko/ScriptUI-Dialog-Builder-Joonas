@@ -8074,6 +8074,17 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/source/assets/js/dialog.builder/item.factory/special.logic/hide.item.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/assets/js/dialog.builder/item.factory/special.logic/hide.item.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/source/assets/js/dialog.builder/item.factory/update/get.values.js": {
 		"bF": 0,
 		"ft": 64,

@@ -251,6 +251,11 @@
 			display: none;
 		}
 	}
+
+	.sdb-hidden > .item-text {
+		text-decoration: line-through !important;
+    opacity: .7 !important;
+	}
 	
 } // #tree-view-contents
 

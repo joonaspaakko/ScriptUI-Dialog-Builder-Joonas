@@ -51,6 +51,7 @@
 // @codekit-prepend "dialog.builder/modules/panels.collapse.js";
 // @codekit-prepend "dialog.builder/item.factory/special.logic/danger.zone.js";
 // @codekit-prepend "dialog.builder/item.factory/special.logic/force.size.js";
+// @codekit-prepend "dialog.builder/item.factory/special.logic/hide.item.js";
 
 var data = local_storage.get('dialog');
 

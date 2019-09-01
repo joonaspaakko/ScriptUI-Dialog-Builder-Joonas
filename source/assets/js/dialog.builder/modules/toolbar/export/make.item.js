@@ -1,6 +1,8 @@
 
 function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop, tabsies, wrapperTabsies ) {
 	
+	var commentOut = hideItem.onExport( data.items[ 'item-'+id ] );
+	
 	var windowType = data.items['item-0'].style.windowType.toLowerCase();
 	var multilineText = [false];
 	var block = '';
@@ -85,7 +87,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 	switch ( type ) {
 		
 		case 'Dialog':
-			block += wrapperTabsies + 'var '+ jsxVarName +' = new Window("'+ windowType +'"'+ creationProps( true ) +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = new Window("'+ windowType +'"'+ creationProps( true ) +'); \n';
 			break;
 			
 		case 'ListBox':
@@ -95,13 +97,13 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 				$.each( list, function( i ) {
 					list[ i ] = list[ i ].trim();
 				});
-				block += wrapperTabsies + 'var '+ jsxVarName +'_array = ["' + list.join('","') + '"]; \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +'_array = ["' + list.join('","') + '"]; \n';
 			}
-			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
 			break;
 			
 		case 'Divider':
-			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("panel"'+ creationProps( true ) +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("panel"'+ creationProps( true ) +'); \n';
 			break;
 			
 		case 'TreeView':
@@ -109,13 +111,13 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			var width = style.preferredSize[0] > 0 ? style.preferredSize[0] : Math.round( dialogTreeViewItem.width() ) + 12;
 			var height = style.preferredSize[1] > 0 ? style.preferredSize[1] : Math.round( dialogTreeViewItem.height() ) + 12;
 			var extra = 0;
-			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ type.toLowerCase() +'", [0,0,'+ (width+extra) +','+ (height+extra) +'], undefined' + creationProps() +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ type.toLowerCase() +'", [0,0,'+ (width+extra) +','+ (height+extra) +'], undefined' + creationProps() +'); \n';
 			break;
 			
 		case 'TreeItem':
 			var dialogTreeItem = dialog.find('[data-item-id="'+ id +'"]');
 			var itemName = dialogTreeItem.hasClass('tree-node') ? 'node' : 'item';
-			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ itemName +'", "'+ style.text +'"); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ itemName +'", "'+ style.text +'"); \n';
 			break;
 			
 		case 'StaticText':
@@ -144,24 +146,24 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			if ( multilineText[0] ) {
 				
 				// ADD PARENT GROUP
-				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
 				// PREFERRED SIZE
 				if ( style.preferredSize !== undefined  ) {
 					if ( style.preferredSize[0] > 0 ) {
-						block += tabsies + jsxVarName +'.preferredSize.width = '+ style.preferredSize[0] +'; \n';
+						block += tabsies + commentOut + jsxVarName +'.preferredSize.width = '+ style.preferredSize[0] +'; \n';
 					}
 					if ( style.preferredSize[1] > 0 ) {
-						block += tabsies + jsxVarName +'.preferredSize.height = '+ style.preferredSize[1] +'; \n';
+						block += tabsies + commentOut + jsxVarName +'.preferredSize.height = '+ style.preferredSize[1] +'; \n';
 					}
 				}
 				// ORIENTATION
-				block += tabsies + jsxVarName +'.orientation = "column"; \n';
+				block += tabsies + commentOut + jsxVarName +'.orientation = "column"; \n';
 				// ALIGN CHILDREN
 				if ( style.justify !== undefined ) {
-					block += tabsies + jsxVarName + '.alignChildren = ["'+ style.justify +'","center"]; \n';
+					block += tabsies + commentOut + jsxVarName + '.alignChildren = ["'+ style.justify +'","center"]; \n';
 				}
 				// SPACING
-				block += tabsies + jsxVarName +'.spacing = 0; \n';
+				block += tabsies + commentOut + jsxVarName +'.spacing = 0; \n';
 				// ALIGNMENT
 				if ( style.alignment != null ) {
 					var parentOrientation = data.items[ 'item-' + parentId ].style.orientation;
@@ -182,7 +184,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 					var alignC = data.items[ 'item-' + parentId ].style.alignChildren;
 					alignment = parentOrientation === 'column' ? ('["' + alignment + '","' + alignC[1] + '"]') : ('["' +alignC[0] + '","' + alignment + '"]');
 					
-					block += tabsies + jsxVarName + '.alignment = ' + alignment + '; \n';
+					block += tabsies + commentOut + jsxVarName + '.alignment = ' + alignment + '; \n';
 				}
 				// SPACER
 				block += '\n';
@@ -191,12 +193,12 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 				var lines = multilineText[1].split('<br>');
 				$.each( lines, function( i, line ) {
 					// ADD EACH LINE AS SEPARATE STATIC TEXT ITEM
-					block += tabsies + jsxVarName +'.add("statictext", undefined, "'+ line +'"'+ creationProps() +'); \n';
+					block += tabsies + commentOut + jsxVarName +'.add("statictext", undefined, "'+ line +'"'+ creationProps() +'); \n';
 				});
 			
 			}
 			else {
-				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
 			}
 			break;
 		
@@ -218,7 +220,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			// The reason why EditText is now in a stringy string format is
 			// that for some weird ass reason justify: "center/right" works
 			// more consistently if justify if fed in a resource string...
-			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add('+ "'" + 'EditText {'+ multilineSize + edittextJustify + 'properties: {'+ creationProps( false, true ) + multilineMultiline +'}}' + "'" +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add('+ "'" + 'EditText {'+ multilineSize + edittextJustify + 'properties: {'+ creationProps( false, true ) + multilineMultiline +'}}' + "'" +'); \n';
 			break;
 		
 		case 'Image':
@@ -226,28 +228,28 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			var imageString = encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) );
 			imageString = imageDuplicateCheck.init( jsxVarName, imageString );
 			if ( imageString.length === 2 ) {
-				block += wrapperTabsies + 'var '+ jsxVarName + '_imgString = "'+ imageString[1] +'"; \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName + '_imgString = "'+ imageString[1] +'"; \n';
 			}
 			
 			if ( lowerCaseType === 'image' ) {
 				
-				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ imageString[0] + '_imgString' +')'+ creationProps() +'); \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ imageString[0] + '_imgString' +')'+ creationProps() +'); \n';
 			}
 			else {
-				block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, File.decode('+ imageString[0] + '_imgString' +')' + creationProps() +'); \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, File.decode('+ imageString[0] + '_imgString' +')' + creationProps() +'); \n';
 			}
 			break;
 
     case 'Group':
-      block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined'+ creationProps() +'); \n';
+      block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined'+ creationProps() +'); \n';
       break;
 			
 		case 'Slider':
-			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, undefined'+ creationProps( true ) +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, undefined'+ creationProps( true ) +'); \n';
 			break;
 			
 		default:
-			block += wrapperTabsies + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
     
 	}
 	
@@ -255,7 +257,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 	previousItem.parent = jsxParents[ parentId ];
 	
 	var lb = /*type === 'TreeView' ||*/ type === 'TreeItem' && !lastLoop ? '' : '\n';
-	block += (styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies )) + lb;
+	block += (styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies, commentOut )) + lb;
 	
 	// Add in treeItem expanded properties if this is the last of treeItems in this group
 	var nextItemId = data.order[ index + 1 ];
@@ -294,7 +296,11 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 		if ( id === lastTabId ) {
 			block += '// '+ jsxParentName.toUpperCase() +'\n';
 			block += '// '+ Array(jsxParentName.length+1).join("=") +'\n';
-			block += jsxParents[ parentId ] +'.selection = '+ jsxParents[ data.items[ 'item-' + parentId ].style.selection ] +'; \n\n';
+			var selectionId = data.items[ 'item-' + parentId ].style.selection;
+			var selectionItem = data.items[ 'item-' + selectionId ];
+			var tpanelCommentOut = (selectionItem.hidden || $('[data-panel="treeview"] [data-item-id="'+ selectionId  +'"]').closest('.sdb-hidden').length > 0 ) ? '// ' : '';
+			// console.log( selectionItem.hidden );
+			block += wrapperTabsies + tpanelCommentOut + jsxParents[ parentId ] +'.selection = '+ jsxParents[ selectionId ] +'; \n\n';
 		}
 		
 	}
@@ -308,7 +314,16 @@ function multilineCheck( id ) {
 	var isMultiline = false;
 	var exportText = [];
 	
-	var container = $('#dialog [data-item-id="'+ id +'"] .text-container');
+	var item = $('#dialog [data-item-id="'+ id +'"]');
+	var isHidden = item.hasClass('sdb-hidden');
+	if ( isHidden ) item.removeClass('sdb-hidden');
+	var hiddenParents = item.parents('.sdb-hidden');
+	if ( hiddenParents.length > 0 ) {
+		hiddenParents.each(function() {
+			$(this).removeClass('sdb-hidden');
+		});
+	}
+	var container = item.find('.text-container');
 	// Had some extension adding extra classes in the <br> so I added this to protect against that
 	container.find('br').replaceWith('<br>');
 	var text = container.html();
@@ -338,5 +353,11 @@ function multilineCheck( id ) {
 	
 	container.width('');
 	container.html( text ); // Just to make super sure the dialog text stays the same...
+	if ( isHidden ) item.addClass('sdb-hidden');
+	if ( hiddenParents.length > 0 ) {
+		hiddenParents.each(function() {
+			$(this).addClass('sdb-hidden');
+		});
+	}
 	return [ isMultiline, exportText.join('').replace(/- /g, '-') ];
 }

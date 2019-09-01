@@ -25,6 +25,8 @@ item.funnel = {
 		
 		// var active = $('#dialog [data-item-id="'+ params.id +'"]');
 		
+		hideItem.onCreate( params.id );
+		
 		$("#dialog-section").backstretch("resize");
 		
 	},

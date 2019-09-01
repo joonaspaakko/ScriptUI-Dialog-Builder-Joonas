@@ -48,8 +48,13 @@ var contextMenu = {
 			top: e.pageY,
 			left: e.pageX
 		});
+		
+		var id = targetItem.data('item-id');
 		targetItem.addClass('context-menu-target');
-		menu.attr('data-context-id', targetItem.data('item-id'));
+		menu.attr('data-context-id', id);
+		
+		hideItem.contextMenu.onShow( targetItem.data('item-id') );
+		
 		menu.find('li').on("click", function() {
 			
 			var itemAction = $(this).data('action');
@@ -72,14 +77,17 @@ var contextMenu = {
 	
 	menuHTML:
 		'<ul id="context-menu" class="animated fadeInDown">' +
+			'<li class="item-hide" data-action="item" data-func="hide">' +
+				'Toggle visibility' + 	// ITEM 0
+			'</li>' +
 			'<li class="copy-find-element" data-action="get" data-func="findElement">' +
-				'Copy findElement()' + 	// ITEM 1
+				'<i class="far fa-clipboard"></i> Copy findElement()' + 	// ITEM 1
 			'</li>' +
 			'<li class="copy-variable-name" data-action="get" data-func="varName">' +
-				'Copy variable name' +  // ITEM 2
+				'<i class="far fa-clipboard"></i> Copy variable name' +  // ITEM 2
 			'</li>' +
 			'<li class="copy-path" data-action="get" data-func="path">'+
-				'Copy item path' + 			// ITEM 3
+				'<i class="far fa-clipboard"></i> Copy item path' + 			// ITEM 3
 			'</li>' +
 		'</ul>',
 	
@@ -113,7 +121,7 @@ var contextMenu = {
 					itemName;
 					
 					clipboardString += (firstLoop ? '' : '.') + itemName;
-					notificationString += (firstLoop ? '' : '<span class="fade">.</span>') + varName;
+					notificationString += (firstLoop ? '' : '<wbr><span class="fade">.</span>') + varName;
 					
 				});
 			}
@@ -148,7 +156,7 @@ var contextMenu = {
 			// Simply: dialog.findElement('targetItem');
 			else {
 				clipboardString = dialogVarName + '.findElement("'+ varName +'")';
-				notificationString = '<span class="highlight-3">' + dialogVarName + '</span><span class="fade">.</span>findElement("<span class="highlight">'+ varName +'</span>")';
+				notificationString = '<span class="highlight-3">' + dialogVarName + '</span><wbr><span class="fade">.</span>findElement("<span class="highlight">'+ varName +'</span>")';
 			}
 			
 			clipboard.set( clipboardString, function() {
@@ -203,20 +211,29 @@ var contextMenu = {
 				if ( type !== targetType ) {
 					var highlight = id === firstId ? ['<span class="highlight">','</span>'] : ['',''];
 					familyClipboard = '.' + 'items['+ item.index() +']' + familyClipboard;
-					familyNotification = '<span class="fade">.</span>' + highlight[0] + 'items['+ item.index() +']' + highlight[1] + familyNotification;
+					familyNotification = '<wbr><span class="fade">.</span>' + highlight[0] + 'items['+ item.index() +']' + highlight[1] + familyNotification;
 					// If current item is not the target ancestor, continue climbing up.
 					climbUpTo( targetType, item.data('item-parent-id') );
 				}
 				// Parent item with a name
 				else {
 					familyClipboard = customVar.names[ 0 ] + '.findElement("'+ customVar.names[ id ] +'")' + familyClipboard;
-					familyNotification = '<span class="highlight-3">' + customVar.names[ 0 ] + '</span>' + '<span class="fade">.</span>findElement("<span class="highlight-2">' + customVar.names[ id ] +'</span>")' + familyNotification;
+					familyNotification = '<span class="highlight-3">' + customVar.names[ 0 ] + '</span>' + '<wbr><span class="fade">.</span>findElement("<span class="highlight-2">' + customVar.names[ id ] +'</span>")' + familyNotification;
 				}
 				
 			}
 			
 		}
+	},
+	
+	item: {
+		hide: function( _this, item ) {
+			
+			hideItem.contextMenu.onClick( _this, item );
+			
+		}
 	}
+	
 };
 
 contextMenu.init();

@@ -899,6 +899,15 @@ $color-bg: #535353;
       }
     }
   }
+	
+	.sdb-hidden {
+		display: none !important;
+    // A tiny band-aid... sometimes the first visible item will still contain unnecessary padding (spacing).
+    &:first-of-type.sdb-hidden + [data-item-id] {
+      padding-top: 0px !important;
+    }
+	}
+  
 } // #dialog
 
 
