@@ -220,7 +220,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			// The reason why EditText is now in a stringy string format is
 			// that for some weird ass reason justify: "center/right" works
 			// more consistently if justify if fed in a resource string...
-			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add('+ "'" + 'EditText {'+ multilineSize + edittextJustify + 'properties: {'+ creationProps( false, true ) + multilineMultiline +'}}' + "'" +'); \n';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add('+ "'" + 'edittext {'+ multilineSize + edittextJustify + 'properties: {'+ creationProps( false, true ) + multilineMultiline +'}}' + "'" +'); \n';
 			break;
 		
 		case 'Image':
