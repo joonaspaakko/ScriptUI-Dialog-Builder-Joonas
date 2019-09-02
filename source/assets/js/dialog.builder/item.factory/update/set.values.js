@@ -145,9 +145,9 @@ item.update.set_values = function( params ) {
 		// SPACING
 		case 'spacing':
 			
-			var	element = active.find('> .padding-box');
+			// var	element = active.find('> .padding-box');
 			var paddingBoxClass = '> .padding-box';
-			element.find('> style.spacing').remove(); // Get rid of the old one.
+			active.find('> style.spacing').remove(); // Get rid of the old one.
 			
 			var extraPadding = 0;
 			var parentId = params.data.items['item-' + id].parentId;
@@ -163,20 +163,24 @@ item.update.set_values = function( params ) {
 			
 			$(
 			'<style class="spacing">' +
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div {' +
-					'padding-left: '+ val +'px;' +
-				'}\n' +
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div:first-of-type {' +
+				// ROW - First item reset
+				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div:not(.sdb-hidden) {' +
 					'padding-left: 0px;' +
 				'}\n' +
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div {' +
-					'padding-top: '+ val +'px;' +
+				// ROW - Spacing
+				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div:not(.sdb-hidden) ~ div:not(.sdb-hidden) {' +
+					'padding-left: '+ val +'px;' +
 				'}\n' +
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div:first-of-type {' +
+				// COLUMN - First item reset
+				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div:not(.sdb-hidden) {' +
 					'padding-top: 0px;' +
 				'}' +
+				// COLUMN - Spacing
+				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div:not(.sdb-hidden) ~ div:not(.sdb-hidden) {' +
+					'padding-top: '+ val +'px;' +
+				'}\n' +
 			'</style>'
-			).appendTo( element );
+		).appendTo( active );
 			break;
 		
 		// ALIGN CHILDREN
