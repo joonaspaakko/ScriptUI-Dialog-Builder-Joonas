@@ -5,7 +5,8 @@
 } // #panel-tree-view-wrap
 
 #tree-view-contents {
-  
+	position: relative;
+	
   // Adds a tiny vertical line coming from the Dialog item in the
   // situation where it is the only iteṁ. The idea here was to indicate
   // that this is sort of where the treeview beings, but I felt it

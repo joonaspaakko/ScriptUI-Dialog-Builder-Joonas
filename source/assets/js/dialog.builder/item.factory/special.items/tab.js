@@ -17,7 +17,7 @@ var tab = {
 			).appendTo( tabCont );
 			
 			tab.containerSort( tPanel.find('> .padding-box > .tab'), tabCont );
-			item.activate( params.id );
+			item.activate( params.id, 'dialog-preview' );
 			
 			// Build Item Properties panel
 			var data  = local_storage.get('dialog');

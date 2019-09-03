@@ -30,7 +30,7 @@ dialogElem.on("focus", "[contenteditable]", function() {
 						isTab && _this.data('tab-id') ||
 						_this.closest('[data-item-id]').data('item-id');
   
-  item.activate( id );
+  item.activate( id, 'dialog-preview' );
 
   // Build Item Properties panel
   var data  = local_storage.get('dialog');
@@ -63,7 +63,7 @@ dialogElem.on("click", '[data-item-type="EditText"]', function( e ) {
 dialogElem.on("click", '[data-item-type="Image"], [data-item-type="IconButton"]', function() {
 	
   var id = $(this).data('item-id');
-	item.activate( id );
+	item.activate( id, 'dialog-preview' );
 
   // Build Item Properties panel
   var data  = local_storage.get('dialog');

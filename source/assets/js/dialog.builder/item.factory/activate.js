@@ -1,5 +1,5 @@
 
-item.activate = function( id ) {
+item.activate = function( id, source ) {
 	
 	// droplist.hide();
 	
@@ -10,7 +10,8 @@ item.activate = function( id ) {
   
   // Change the active element in the treeview.
 	var treeView = $('#panel-tree-view-wrap');
-	treeView.find('.active').removeClass('active');
+	var previouslyActive = treeView.find('.active');
+	previouslyActive.removeClass('active');
 	var treeActive = treeView.find('[data-item-id="'+ id +'"]');
 	treeActive.addClass('active');
   
@@ -21,10 +22,31 @@ item.activate = function( id ) {
 	
 	tab.onActivate( id );
 	
+	if ( source === 'dialog-preview' ) structurePanelScroll( id, previouslyActive );
 	breadCrumbs( treeView, treeActive );
 	lightThePath( treeView, treeActive );
 	
 };
+
+function structurePanelScroll( id, previouslyActive ) {
+	
+	var treeviewPanel = $('[data-panel="treeview"]');
+	var overflowWrap = treeviewPanel.find(".overflow-wrap");
+	var newOffsetTop = treeviewPanel.find('[data-item-id="'+ id +'"]').position().top;
+	var oldOffsetTop = previouslyActive.position().top;
+	var newPosition = newOffsetTop + 9 - (overflowWrap.height() / 2);
+	// var oldPosition = overflowWrap.scrollTop();
+	
+	var speed = Math.abs( newOffsetTop - oldOffsetTop ); // Difference between new position and old position
+	speed = speed <= 300 && 300 ||
+					speed >= 1000 && 1000 ||
+					speed; // Limiter
+	
+	overflowWrap.animate({
+      scrollTop: newPosition
+  }, speed);
+	
+}
 
 function breadCrumbs( treeView, treeActive ) {
 	

@@ -26,7 +26,7 @@ var droplist = {
 			var id = listWrap.parent().data('item-id');
 			var data  = local_storage.get('dialog');
 			var itemData = data.items[ 'item-' + id ];
-			item.activate( id );
+			item.activate( id, 'dialog-preview' );
 			edit_style_panel.build( itemData.style );
 			
 			if ( !isOpen ) {
