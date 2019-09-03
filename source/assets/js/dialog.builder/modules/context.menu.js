@@ -229,6 +229,7 @@ var contextMenu = {
 	item: {
 		hide: function( _this, item ) {
 			
+			// hide.item.js
 			hideItem.contextMenu.onClick( _this, item );
 			
 		}

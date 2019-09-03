@@ -52,7 +52,7 @@ var hideItem = {
 				var isHidden = itemData.hidden;
 				
 				var dialogItem = $('#dialog [data-item-id="'+ id +'"]');
-				var treeItem = item;
+				var treeItem = $('[data-panel="treeview"] [data-item-id="'+ id +'"]');
 				if ( !isHidden ) {
 					itemData.hidden = true;
 					dialogItem.addClass( hideItem.hiddenClass );
