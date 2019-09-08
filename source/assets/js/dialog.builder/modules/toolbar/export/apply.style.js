@@ -102,7 +102,7 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 			// It's applied in make.item.js if needed.
 		}
 		// Right now button is the only item type that gets justify from here...
-		else if ( type === "Button" && style.justify !== 'center' ) {
+		else if ( (type === "Button" && style.justify !== 'center') || (type === 'StaticText' && !multilineText[0] && style.justify !== 'left') ) {
 			styleBlock += tabsies + commentOut + jsxVarName + '.justify = "' + style.justify + '"; \n';
 		}
 		// ORIENTATION
