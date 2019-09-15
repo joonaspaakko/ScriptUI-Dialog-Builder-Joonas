@@ -36,11 +36,17 @@ var settings = {
       label: 'Function wrapper',
       settingFor: 'SUI'
     },
-    compactCode: {
-      status: false,
-      label: '<s style="color: #bfbfbf;">Compact mode</s> <span title="Not released yet...">?</span>',
+    itemReferenceList: {
+      divider: false,
+      status: 'None',
+      label: 'Item reference list <span title="Places all the custom named items at the bottom of the code. If nothing shows up, you likely don&apos;t have any custom named items.">?</span>',
       settingFor: 'SUI'
     }
+    // compactCode: {
+    //   status: false,
+    //   label: '<s style="color: #bfbfbf;">Compact mode</s> <span title="Not released yet...">?</span>',
+    //   settingFor: 'SUI'
+    // }
 		// exportComments: {
 		//   status: true,
 		//   label: 'Include comments',
@@ -81,17 +87,28 @@ var settings = {
         '<ul class="settings-js-css-info">' +
           '<li>CSS and JS <a href="https://scriptui.joonas.me/docs/CEP-export/getting-started/#the-required-css-and-js-files" target="_blank">download links</a></li>' +
           '<li><a href="https://scriptui.joonas.me/docs/CEP-export/getting-started" target="_blank">Documentation</a></li>' +
-        '</ul>'
+        '</ul>';
+      }
+      var settingState = data.settings[ setting ];
+      switch ( setting ) {
+        case 'itemReferenceList':
+        shtml +=
+          '<section class="setting-reference-list-wrap setting-for-' + defaults.settingFor +'">' +
+            '<div class="setting-reference-list-dropdown" data-setting="'+ setting +'" id="scb-'+ setting +'">' +
+              '<div class="selected">'+ settingState +'</div>' +
+            '</div> <div class="label">'+ defaults.label +'</div>' +
+          '</section>';
+          break;
+        default:
+          shtml +=
+            '<section class="slider-checkbox'+ (disableSetting ? ' setting-disabled' : '') + ' setting-for-' + defaults.settingFor +'">' +
+              '<input '+ ( settingState ? 'checked="true"' : '' ) + (disableSetting ? 'disabled="true"' : '') +' data-setting="'+ setting +'" id="scb-'+ setting +'" type="checkbox" />' +
+              '<label class="label" for="scb-'+ setting +'">'+ defaults.label +'</label>' +
+              cssJSinfo +
+            '</section>';
       }
       
-      var settingState = data.settings[ setting ];
-      shtml +=
-        '<section class="slider-checkbox'+ (disableSetting ? ' setting-disabled' : '') + ' setting-for-' + defaults.settingFor +'">' +
-          '<input '+ ( settingState ? 'checked="true"' : '' ) + (disableSetting ? 'disabled="true"' : '') +' data-setting="'+ setting +'" id="scb-'+ setting +'" type="checkbox" />' +
-          '<label class="label" for="scb-'+ setting +'">'+ defaults.label +'</label>' +
-          cssJSinfo +
-        '</section>';
-
+      
     });
     
     shtml += '</div>';
@@ -99,56 +116,105 @@ var settings = {
 
   },
   
-  toggleEvent: function( _this ) {
+  referenceList: function( _this ) {
     
-    var settingsSpinner = _this.closest('.settings-group').find('.settings-spinner');
-    settingsSpinner.stop().show(function() {
+    $(
+      '<div class="options">' +
+        '<div data-value="none">None</div>' +
+        '<div data-value="var">Variable name</div>' +
+        '<div data-value="find">FindElement</div>' +
+        '<div data-value="path">Item path</div>' +
+      '</div>'
+    ).insertAfter( _this );
+    
+    _this.next('.options').children().on("click", function() {
       
-      var setting = _this.data("setting"),
-          status = _this.prop('checked');
+      var selection = $(this).data('value');
+      var selectionHTML = $(this).html();
+      _this.html( selectionHTML );
+      $(this).closest('.options').remove();
       
-      // Write to local storage
-      var data = local_storage.get('dialog');
-      data.settings[ setting ] = status;
-      local_storage.set('dialog', data);
-
-      // CEP export doesn't exactly disable any of the other settings, they just become obsolte when it's on.
-      if ( setting === 'cepExport' ) {
+      var settingsSpinner = _this.closest('.settings-group').find('.settings-spinner');
+      settingsSpinner.stop().show(function() {
         
-        $('html')[ status ? 'addClass' : 'removeClass' ]('cep-export-on');
+        var parent = _this.closest('[data-setting]'),
+            setting = parent.data("setting"),
+            value = selection;
         
-        // var sliderSection = _this.parent();
+        // Write to local storage
+        var data = local_storage.get('dialog');
+        data.settings[ setting ] = value;
+        local_storage.set('dialog', data);
         
-        // Enable
-        var siblingsEnable = $('.settings-window ' + (!status ? '.setting-for-SUI' : '.setting-for-CEP') );
-        if ( siblingsEnable.length > 0 ) {
-          var siblingEnableInputs = siblingsEnable.find('input');
-          siblingsEnable.removeClass('setting-disabled');
-          siblingEnableInputs.prop('disabled', false);
-        }
-        // Disable
-        var siblingsDisable = $('.settings-window ' + (status ? '.setting-for-SUI' : '.setting-for-CEP') );
-        if ( siblingsDisable.length > 0 ) {
-          var siblingsDisableInputs = siblingsDisable.find('input');
-          siblingsDisable.addClass('setting-disabled');
-          siblingsDisableInputs.prop('disabled', true);
-        }
         
-      }
-      
-    	sdbExport = getExportCode();
-      
-    	cmMode = (sdbExport.language === 'javascript') ? {
-    		name: sdbExport.language,
-    		json: true
-    	} : sdbExport.language;
-      
-      myCodeMirror.setOption("mode", cmMode );
-      myCodeMirror.setValue( getExportCode().code );
-      settingsSpinner.hide();
+        
+        sdbExport = getExportCode();
+        
+        cmMode = (sdbExport.language === 'javascript') ? {
+          name: sdbExport.language,
+          json: true
+        } : sdbExport.language;
+        
+        myCodeMirror.setOption("mode", cmMode );
+        myCodeMirror.setValue( getExportCode().code );
+        settingsSpinner.hide();
+      });
       
     });
-
+    
+  },
+  
+  toggleEvent: function( _this ) {
+    // To prevent other inputs from triggering the export rebuild
+    if ( _this.data('setting') ) {
+      var settingsSpinner = _this.closest('.settings-group').find('.settings-spinner');
+      settingsSpinner.stop().show(function() {
+        
+        var setting = _this.data("setting"),
+            status = _this.prop('checked');
+        
+        // Write to local storage
+        var data = local_storage.get('dialog');
+        data.settings[ setting ] = status;
+        local_storage.set('dialog', data);
+        
+        // CEP export doesn't exactly disable any of the other settings, they just become obsolte when it's on.
+        if ( setting === 'cepExport' ) {
+          
+          $('html')[ status ? 'addClass' : 'removeClass' ]('cep-export-on');
+          
+          // var sliderSection = _this.parent();
+          
+          // Enable
+          var siblingsEnable = $('.settings-window ' + (!status ? '.setting-for-SUI' : '.setting-for-CEP') );
+          if ( siblingsEnable.length > 0 ) {
+            var siblingEnableInputs = siblingsEnable.find('input');
+            siblingsEnable.removeClass('setting-disabled');
+            siblingEnableInputs.prop('disabled', false);
+          }
+          // Disable
+          var siblingsDisable = $('.settings-window ' + (status ? '.setting-for-SUI' : '.setting-for-CEP') );
+          if ( siblingsDisable.length > 0 ) {
+            var siblingsDisableInputs = siblingsDisable.find('input');
+            siblingsDisable.addClass('setting-disabled');
+            siblingsDisableInputs.prop('disabled', true);
+          }
+          
+        }
+        
+        sdbExport = getExportCode();
+        
+        cmMode = (sdbExport.language === 'javascript') ? {
+          name: sdbExport.language,
+          json: true
+        } : sdbExport.language;
+        
+        myCodeMirror.setOption("mode", cmMode );
+        myCodeMirror.setValue( getExportCode().code );
+        settingsSpinner.hide();
+        
+      });
+    }
   },
 
   // Basically just scoops up the default settings on load and puts them in the local storage...
@@ -162,15 +228,22 @@ var settings = {
         data.settings[ setting ] = defaults.status;
       });
       
-      local_storage.set('dialog', data);
     }
     else {
+      
+      $.each( settings.list, function( setting, defaults ) {
+        if ( !(setting in data.settings) ) {
+          data.settings[ setting ] = defaults.status;
+        }
+      });
       
       if ( data.settings.cepExport ) {
         $('html').addClass('cep-export-on');
       }
       
     }
+    
+    local_storage.set('dialog', data);
     
   },
   

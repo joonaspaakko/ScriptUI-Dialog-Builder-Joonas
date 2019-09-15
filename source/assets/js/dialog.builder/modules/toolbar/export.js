@@ -108,6 +108,11 @@ $('#toolbar .export').on("click", function() {
     settings.toggleEvent( $(this) );
   });
 	
+	exportBox.find('.settings-window .setting-reference-list-dropdown .selected').on("click", function() {
+    settings.referenceList( $(this) );
+  });
+	
+	
 });
 
 function getExportCode() {
@@ -147,7 +152,8 @@ function getExportCode() {
 		bundle.language = 'javascript';
 		bundle.filename = 'ScriptUI Dialog Builder - Export.jsx';
 		var showDialog = (data.settings.showDialog ? ( wrapperTabsies + customVar.names[ 0 ] + '.show();') : '');
-		var dialogBody = importJSON + jsxItems + showDialog;
+		var itemReferenceList = getItemReferenceList();
+		var dialogBody = importJSON + jsxItems + itemReferenceList + showDialog;
 		
 		if ( data.settings.functionWrapper ) {
 			bundle.code = 'var '+ customVar.names[ 0 ] +' = (function () {\n\n';
@@ -161,7 +167,46 @@ function getExportCode() {
 	}
 	
 	return bundle;
-
+	
+	function getItemReferenceList() {
+		
+		var setting = data.settings.itemReferenceList.toLowerCase();
+		if ( setting !== 'none' && !$.isEmptyObject( customVar.customNames ) ) {
+			var list = '';
+			
+			list += wrapperTabsies + '// ' + 'ITEM REFERENCE LIST ( Info: http://jongware.mit.edu/Sui/index_1.html ) \n';
+			
+			var index = 0;
+			var windowType = data.items['item-0'].style.windowType.toLowerCase();
+			$.each( customVar.customNames, function( id ) {
+				id = id.replace('item-', '');
+				var lastLoop = (customVar.customNames.length-1 === index);
+				var targetItem = $('[data-panel="treeview"] [data-item-id="'+ id +'"]');
+				list += wrapperTabsies;
+				var funcName = '';
+				switch ( setting ) {
+					case 'var':
+						funcName = 'varName'
+						break;
+					case 'find':
+						funcName = 'findElement'
+						break;
+					case 'path':
+						funcName = 'path'
+						break;
+				}
+				list += contextMenu.get[ funcName ]( false, targetItem, 'export' ) + ' // ' + (id == 0 ? windowType.toLowerCase() : targetItem.data('item-type').toLowerCase() );
+				list += (!lastLoop ? ' \n' : '');
+				++index;
+			});
+			
+			return list + '\n';
+		}
+		else {
+			return '';
+		}
+		
+	}
 }
 
 function getJSX( data, tabsies, wrapperTabsies ) {

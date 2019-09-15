@@ -92,7 +92,7 @@ var contextMenu = {
 		'</ul>',
 	
 	get: {
-		path: function( _this, targetItem ) {
+		path: function( _this, targetItem, source ) {
 			
 			customVar.init();
 			var clipboardString = '', notificationString = '';
@@ -126,12 +126,17 @@ var contextMenu = {
 				});
 			}
 			
-			clipboard.set( clipboardString, function() {
-				notification( 'clipboard', /*'<strong>Path:</strong> + '*/ notificationString, contextMenu.opt.notificationTimer( relatedItems.length ) );
-			});
+			if ( source === 'export' ) {
+				return clipboardString;
+			}
+			else {
+				clipboard.set( clipboardString, function() {
+					notification( 'clipboard', /*'<strong>Path:</strong> + '*/ notificationString, contextMenu.opt.notificationTimer( relatedItems.length ) );
+				});
+			}
 			
 		},
-		findElement: function( _this, targetItem ) {
+		findElement: function( _this, targetItem, source ) {
 		
 			customVar.init();
 			var clipboardString = '', notificationString = '';
@@ -159,21 +164,31 @@ var contextMenu = {
 				notificationString = '<span class="highlight-3">' + dialogVarName + '</span><wbr><span class="fade">.</span>findElement("<span class="highlight">'+ varName +'</span>")';
 			}
 			
-			clipboard.set( clipboardString, function() {
-				notification( 'clipboard', notificationString, contextMenu.opt.notificationTimer( familyTree[2] === undefined ? ( id === 0 ? 1 : 3 ) : familyTree[2] ) );
-			});
-		
+			if ( source === 'export' ) {
+				return clipboardString;
+			}
+			else {
+				clipboard.set( clipboardString, function() {
+					notification( 'clipboard', notificationString, contextMenu.opt.notificationTimer( familyTree[2] === undefined ? ( id === 0 ? 1 : 3 ) : familyTree[2] ) );
+				});
+			}
+			
 		},
-		varName: function( _this, targetItem ) {
+		varName: function( _this, targetItem, source ) {
 			
 			customVar.init();
 			var id = targetItem.data('item-id');
 			// var dialogVarName = customVar.names[ 0 ];
 			var varName = customVar.names[ id ];
 			var string = varName;
-			clipboard.set( string, function() {
-				notification( 'clipboard', ('<span class="highlight">'+ string +'</span>'), contextMenu.opt.notificationTimer( 1 ) );
-			});
+			if ( source === 'export' ) {
+				return string;
+			}
+			else {
+				clipboard.set( string, function() {
+					notification( 'clipboard', ('<span class="highlight">'+ string +'</span>'), contextMenu.opt.notificationTimer( 1 ) );
+				});
+			}
 			
 		},
 		familyTree: function( targetItem ) {

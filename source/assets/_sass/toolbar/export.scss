@@ -164,6 +164,55 @@
       .divider {
         border-bottom: 1px solid #f1f1f1;
       }
+			
+      .setting-reference-list-wrap {
+        display: flex;
+        flex-direction: row;
+        padding-top: 3px;
+        .label {
+          white-space: nowrap;
+          padding-top: 4px;
+          color: #555;
+        }
+      }
+			.setting-reference-list-dropdown {
+        padding-right: 6px;
+        position: relative;
+        z-index: 0;
+        flex-grow: 1;
+        width: 100px;
+        .selected {
+          color: #555;
+          background: #fff;
+          border: 1px solid #333;
+          border-radius: 3px;
+          padding: 3px 5px;
+          text-align: left;
+        }
+				.options {
+          text-align: left;
+          border-radius: 3px;
+          color: #333;
+          background: #fff;
+          border: 1px solid #333;
+          position: absolute;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 4px 15px rgba(#000, .4);
+          div {
+            padding: 3px 5px;
+            &:hover {
+              background: #f2aa33;
+              color: #fff;
+            }
+          }
+        }
+			}
+			
     }
   }
 	

@@ -5,6 +5,7 @@ var customVar = {
 		var data = local_storage.get('dialog');
 		customVar.counters = {};
 		customVar.names = {};
+		customVar.customNames = {};
 		this.populate.counters( data );
 		this.populate.names( data );
 	},
@@ -32,6 +33,10 @@ var customVar = {
 				var varNameCounter = customVar.counters[ varName ];
 				if ( varName ) {
 					customVar.names[ id ] = varName + (varNameCounter > 0 ? varNameCounter : '');
+					// The reason why this gets a prefix is to make sure the list stays
+					// in the loop order, rather than sorted based on the id...
+					// Custom names are used by reference list. This is also why this list contains named items only.
+					customVar.customNames[ 'item-' + id ] = customVar.names[ id ];
 				}
 				else {
 					var typeNameCounter = itemData.id == 0 ? '' : customVar.counters[ itemData.type ];
