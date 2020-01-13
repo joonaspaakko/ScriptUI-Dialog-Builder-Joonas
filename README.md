@@ -14,7 +14,7 @@ There's not much to write about in the SDB documentation, but I'm planning to pe
 
 SDB has a CEP export: `Export button (above dialog preview) > Gear icon (bottom right in the modal window) > CEP export (When this is turned on, the export comes out as html, css and js)`. It does not export you a fully functional extension, rather just a SUI style layout with some js helper functions to make it easier for you to work with it. You just paste the exported code into your CEP boilerplate's `index.html` and the rest is up to you writing the interaction logic. 
 
-This CEP documenation is in [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) → Look for CEP in the top menu.
+This CEP documentation is in [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) → Look for CEP in the top menu.
 
 > [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) is also included in the repo: `source/docs` and `build/docs`.
 
