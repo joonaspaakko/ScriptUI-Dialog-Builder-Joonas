@@ -326,7 +326,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			
 			if ( parentType === 'VerticalTabbedPanel' ) {
 				
-				var tpanelCommentOut = ( data.items[ 'item-' + parentId ].hidden ) ? '// ' : '';
+				var vtpanelCommentOut = ( data.items[ 'item-' + parentId ].hidden ) ? '// ' : '';
 				
 				var tabVarNames = [];
 				$('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab').each(function() {
@@ -334,31 +334,31 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 				});
 				
 				var vtTabssies = '  ' ;
-				block += wrapperTabsies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs = ['+ tabVarNames.join(',') +']; \n\n';
-				block += wrapperTabsies + tpanelCommentOut + 'for (var i = 0; i < '+ jsxParents[ parentId ] + '_tabs.length; i++) { \n';
-					// block += tabsies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].orientation = "column"; \n';
-					// block += tabsies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].alignChildren = "fill"; \n';
-					block += wrapperTabsies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].alignment = ["fill","fill"]; \n';
-					block += wrapperTabsies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].visible = false; \n';
-				block += wrapperTabsies + tpanelCommentOut + '} \n\n';
+				block += wrapperTabsies + vtpanelCommentOut + jsxParents[ parentId ] + '_tabs = ['+ tabVarNames.join(',') +']; \n\n';
+				block += wrapperTabsies + vtpanelCommentOut + 'for (var i = 0; i < '+ jsxParents[ parentId ] + '_tabs.length; i++) { \n';
+					// block += tabsies + vtpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].orientation = "column"; \n';
+					// block += tabsies + vtpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].alignChildren = "fill"; \n';
+					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].alignment = ["fill","fill"]; \n';
+					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].visible = false; \n';
+				block += wrapperTabsies + vtpanelCommentOut + '} \n\n';
 				
 				var showFunction = 'showTab_' + jsxParents[ parentId ];
-				block += wrapperTabsies + tpanelCommentOut + jsxParents[ parentId ] +'_nav.onChange = '+ showFunction +'; \n\n';
+				block += wrapperTabsies + vtpanelCommentOut + jsxParents[ parentId ] +'_nav.onChange = '+ showFunction +'; \n\n';
 				
-				block += wrapperTabsies + tpanelCommentOut + 'function '+ showFunction +'() { \n';
-					block += wrapperTabsies + vtTabssies + tpanelCommentOut + 'if ( '+ jsxParents[ parentId ] +'_nav.selection !== null ) { \n';
-						block += wrapperTabsies + vtTabssies + vtTabssies + tpanelCommentOut + 'for (var i = '+ jsxParents[ parentId ] +'_tabs.length-1; i >= 0; i--) { \n';
-							block += wrapperTabsies + vtTabssies + vtTabssies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] +'_tabs[i].visible = false; \n';
-						block += wrapperTabsies + vtTabssies + vtTabssies + tpanelCommentOut + '} \n';
-						block += wrapperTabsies + vtTabssies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] +'_tabs['+ jsxParents[ parentId ] +'_nav.selection.index].visible = true; \n';
-					block += wrapperTabsies + vtTabssies + tpanelCommentOut + '} \n';
-				block += wrapperTabsies + tpanelCommentOut + '} \n\n';
+				block += wrapperTabsies + vtpanelCommentOut + 'function '+ showFunction +'() { \n';
+					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + 'if ( '+ jsxParents[ parentId ] +'_nav.selection !== null ) { \n';
+						block += wrapperTabsies + vtTabssies + vtTabssies + vtpanelCommentOut + 'for (var i = '+ jsxParents[ parentId ] +'_tabs.length-1; i >= 0; i--) { \n';
+							block += wrapperTabsies + vtTabssies + vtTabssies + vtTabssies + vtpanelCommentOut + jsxParents[ parentId ] +'_tabs[i].visible = false; \n';
+						block += wrapperTabsies + vtTabssies + vtTabssies + vtpanelCommentOut + '} \n';
+						block += wrapperTabsies + vtTabssies + vtTabssies + vtpanelCommentOut + jsxParents[ parentId ] +'_tabs['+ jsxParents[ parentId ] +'_nav.selection.index].visible = true; \n';
+					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + '} \n';
+				block += wrapperTabsies + vtpanelCommentOut + '} \n\n';
 				
-				block += wrapperTabsies + tpanelCommentOut + customVar.names[ 0 ] +'.onShow = function () { \n';
+				block += wrapperTabsies + vtpanelCommentOut + customVar.names[ 0 ] +'.onShow = function () { \n';
 					var selectedTabIndex = $('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab.visible').index();
-					block += wrapperTabsies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] +'_nav.selection = '+ selectedTabIndex +'; \n';
-					block += wrapperTabsies + vtTabssies + tpanelCommentOut + showFunction + '; \n';
-				block += wrapperTabsies + tpanelCommentOut + '} \n\n';
+					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + jsxParents[ parentId ] +'_nav.selection = '+ selectedTabIndex +'; \n';
+					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + showFunction + '; \n';
+				block += wrapperTabsies + vtpanelCommentOut + '} \n\n';
 				
 			}
 			else {
@@ -423,5 +423,5 @@ function multilineCheck( id ) {
 			$(this).addClass('sdb-hidden');
 		});
 	}
-	return [ isMultiline, exportText.join('').replace(/- /g, '-') ];
+	return [ isMultiline, exportText.join('').replace(/- /g, '-').replace(/&nbsp;/g, ' ') ];
 }

@@ -574,7 +574,7 @@ item.list.treeitem = function( params ) {
 		parent: true,
 		addPanelDivider: 'below',
 		addPanelIconClass: 'fas fa-leaf',
-		editInfo: '<strong>Valid child item:</strong> <br> <i class="fas fa-leaf"></i> TreeItem. <br><br>You can expand or collapse these items in the dialog preview by clicking the arrows. <br><br> This item doesn&;apost have creation properties, so unfortunately the variable name can&apos;t be used to find this item in the dialog object.',
+		editInfo: '<strong>Valid child item:</strong> <br> <i class="fas fa-leaf"></i> TreeItem. <br><br>You can expand or collapse these items in the dialog preview by clicking the arrows. <br><br> This item doesn&apos;t have creation properties, so unfortunately the variable name can&apos;t be used to find this item in the dialog object.',
 		defaultStyle: {
 			// visible: true,
 			enabled: true,

@@ -10,7 +10,6 @@
 //
 // if ( isChrome ) {
 // 	customCursor();
-// 	console.log( 'asdfasfd' );
 // }
 //
 // function customCursor() {

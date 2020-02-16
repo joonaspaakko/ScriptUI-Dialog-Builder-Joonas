@@ -69,7 +69,7 @@ var treeView = {
 		
 		// ITEMS
 		var itemIs_TreeviewItem = clickedItem.hasClass('treeitem');
-		var itemIs_Treeview = clickedItem.hasClass('treeview');
+		// var itemIs_Treeview = clickedItem.hasClass('treeview');
 		
 		// TARGETS
 		var targetIs_Treeview = activeType === "TreeView";
@@ -80,7 +80,6 @@ var treeView = {
 			!itemIs_TreeviewItem && (  targetIs_Treeview ||  targetIs_TreeviewItem );
 			
 	    if ( result ) {
-				var addPanel = $('[data-panel="add"]');
 				
 				notification( 'error', "This item can't be placed inside the active item!", 1.8 );
 				
@@ -90,6 +89,7 @@ var treeView = {
 				setTimeout( function() {
 					clickedItem.removeClass( deClass );
 				}, 1950 );
+				
 	    }
 		
 		return result;

@@ -45,8 +45,7 @@ item.update.get_values = function( prop ) {
 			break;
 		
 		case "tabNavWidth":
-			var width = parseInt( editPanel.find('input.tabNavWidth').val(), 10);
-			data.tabNavWidth = width;
+			data.tabNavWidth = parseInt( editPanel.find('input.tabNavWidth').val(), 10);
 			break;
 		
 		case "spacing":

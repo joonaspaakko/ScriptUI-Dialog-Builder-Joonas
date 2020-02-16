@@ -40,14 +40,14 @@ var tab = {
 			// VERTICAL TABBED PANEL
 			else {
 				
-				var tabCont = parentPanel.find('> .tab-container > .inner-wrap > ul');
+				var vtabCont = parentPanel.find('> .tab-container > .inner-wrap > ul');
 				$(
 					'<li class="tab" data-tab-id="'+ params.id +'">' +
 						'<span contenteditable>'+ params.style.text +'</span>' +
 					'</li>'
-				).appendTo( tabCont );
+				).appendTo( vtabCont );
 				
-				tab.containerSort( parentPanel.find('> .padding-box > .tab'), tabCont );
+				tab.containerSort( parentPanel.find('> .padding-box > .tab'), vtabCont );
 			}
 			
 			item.activate( params.id, 'dialog-preview' );
@@ -88,8 +88,8 @@ var tab = {
 		
 		// ITEMS
 		var itemIsTab = clickedItem.hasClass('tab');
-		var itemIsTPanel = clickedItem.hasClass('tabbedpanel');
-		var itemIsVTPanel = clickedItem.hasClass('verticaltabbedpanel');
+		// var itemIsTPanel = clickedItem.hasClass('tabbedpanel');
+		// var itemIsVTPanel = clickedItem.hasClass('verticaltabbedpanel');
 		
 		// TARGETS
 		var targetIsTPanel  = activeType === "TabbedPanel";
@@ -102,7 +102,6 @@ var tab = {
 			!itemIsTab && ( targetIsTPanel ||  targetIsVTPanel);
 			
     if ( result ) {
-			var addPanel = $('[data-panel="add"]');
 			
 			notification( 'error', "This item can't be placed inside the active item!", 1.8 );
 			
@@ -112,6 +111,7 @@ var tab = {
 			setTimeout( function() {
 				clickedItem.removeClass( deClass );
 			}, 1950 );
+			
     }
 		
 		return result;
@@ -312,7 +312,7 @@ var tab = {
 		});
 	},
 	
-	onHideToggle: function( isHidden, hiddenClass, itemData, Data ) {
+	onHideToggle: function( isHidden, hiddenClass, itemData ) {
 		$('#dialog [data-tab-id="'+ itemData.id +'"]')[ !isHidden ? 'addClass' : 'removeClass' ]( hiddenClass );
 	}
 };

@@ -18,10 +18,11 @@
 			<div class="snapshots"></div>
 			
 			<div class="info">
-				Snapshot data doesn't travel with the rest of the code on export.
-				<br>
-				<br>
-				So when you import the code to a new incognito window or something, there won't be any snapshots.
+				When you take a new snapshot, the import JSON of the current dialog is stored as a separate data point in local storage. This data point is saved in the browser but you can’t export it with the dialog. The only way to export snapshots is to load and export them one by one.
+				<br><br>
+				When you load a snapshot, it overwrites the current dialog, so be sure to take a new snapshot before loading if you wanna keep any changes.
+				<br><br>
+				Snapshot data doesn't travel with the rest of the code on export. 
 			</div>
 			
 		</div>

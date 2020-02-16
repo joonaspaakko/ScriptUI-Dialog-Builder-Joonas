@@ -4,7 +4,7 @@
 <head>
   
   <meta charset="UTF-8">
-  <link href="http://gmpg.org/xfn/11?ckcachebust=603566975" rel="profile">
+  <link href="http://gmpg.org/xfn/11?ckcachebust=603568053" rel="profile">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -12,12 +12,12 @@
   
   <meta name="description" content="A web app for designing ScriptUI dialogs with ease and export it as javascript.">
   
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=xQdrX8olYR&ckcachebust=71811f8f0958a1d4f928716050f34069">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png?v=xQdrX8olYR&ckcachebust=11b47d9cb60ee41c41f74f38ef90cf88">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png?v=xQdrX8olYR&ckcachebust=622cc3f9bc6a0726412db14dc571af5c">
-  <link rel="manifest" href="favicon/site.webmanifest?v=xQdrX8olYR&ckcachebust=0c604d5c2a3b9150cf3afe890f1909d0">
-  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg?v=xQdrX8olYR&ckcachebust=036c405dace3f51372e8b98dfca554f4" color="#5bbad5">
-  <link rel="shortcut icon" href="favicon/favicon.ico?v=xQdrX8olYR&ckcachebust=51e8bc81064b74f191a9c7d51cb6c43d">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png?v=xQdrX8olYR&ckcachebust=4d0dcf4f5d032ac4b7304f271759f928">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png?v=xQdrX8olYR&ckcachebust=df3ec88c49ebfe875527fc16be5f973b">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png?v=xQdrX8olYR&ckcachebust=6cf1427ce6fa9157d3546a4018ff91e6">
+  <link rel="manifest" href="favicon/site.webmanifest?v=xQdrX8olYR&ckcachebust=567f82a94f3eaba0080ec3cc3255b032">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg?v=xQdrX8olYR&ckcachebust=6f0178ce853f815dc108501fcaa8488d" color="#5bbad5">
+  <link rel="shortcut icon" href="favicon/favicon.ico?v=xQdrX8olYR&ckcachebust=9d4f3c47279281ae0541dca88a18e5d9">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-config" content="favicon/browserconfig.xml?v=xQdrX8olYR">
   <meta name="theme-color" content="#ffffff">
@@ -129,10 +129,11 @@
 							<div class="snapshots"></div>
 							
 							<div class="info">
-								Snapshot data doesn't travel with the rest of the code on export.
-								<br>
-								<br>
-								So when you import the code to a new incognito window or something, there won't be any snapshots.
+								When you take a new snapshot, the import JSON of the current dialog is stored as a separate data point in local storage. This data point is saved in the browser but you can’t export it with the dialog. The only way to export snapshots is to load and export them one by one.
+								<br><br>
+								When you load a snapshot, it overwrites the current dialog, so be sure to take a new snapshot before loading if you wanna keep any changes.
+								<br><br>
+								Snapshot data doesn't travel with the rest of the code on export. 
 							</div>
 							
 						</div>
@@ -222,10 +223,6 @@
 									<i class="fab fa-github"></i>
 					      </a>
 					    </div>
-							
-					    <div class="chrome animated fadeInRight" style="cursor: help;" title="Browser support: Chrome">
-								<i class="fab fa-chrome"></i>
-					    </div>
 						</div>
 						
 						<div class="i-am-legend">
@@ -267,8 +264,8 @@
 </div>
 
 	
-	<link  href="assets/css/dialog.builder.css?ckcachebust=e27dca8e5ee2f22c3409c0d9a97944e7" rel="stylesheet">
-	<link  href="assets/css/libraries.css?ckcachebust=17c7f5c385758b44adc01815129f6236" rel="stylesheet">
+	<link  href="assets/css/dialog.builder.css?ckcachebust=b155a394cbbdb2434e9bde1104b7cc72" rel="stylesheet">
+	<link  href="assets/css/libraries.css?ckcachebust=9d92bb42d912bb2c5e2b4c561ab4c4ab" rel="stylesheet">
 	<script>
 	// Emergency services.
 	// Ctrl + Alt + L (4x) — Clears local_storage from dialog data refreshes the page.
@@ -287,8 +284,8 @@
 		
 	});
 </script>
-	<script src="assets/js/libraries.js?ckcachebust=9044f92f0e1d36bb0d2e3f85b8033567"></script>
-	<script src="assets/js/dialog.builder.js?ckcachebust=6962d0c0b5058a1faeb007bbbc9063fa"></script>
+	<script src="assets/js/libraries.js?ckcachebust=0cc5d896fbb387f71513914940de2549"></script>
+	<script src="assets/js/dialog.builder.js?ckcachebust=314e96940c29a415c147fe97ce72da1a"></script>
 
 </body>
 </html>

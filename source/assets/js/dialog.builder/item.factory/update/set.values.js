@@ -133,6 +133,24 @@ item.update.set_values = function( params ) {
 			var newHeight = val[1] == 0 ? 'auto' : val[1] + (type === 'Dialog' ? $('#dialog-title-bar').outerHeight() : 0);
 			active.css({ minWidth: newWidth, minHeight: newHeight });
 			
+			if ( item.list[ type.toLowerCase() ](false).parent ) {
+				active.find('> .soft-wrap-guard').remove(); // Get rid of the old one.
+				if ( val[0] > 0 ) {
+					$(
+						'<style class="soft-wrap-guard"> \n' +
+						'#dialog [data-item-id="'+ id +'"] .edit-text, \n' +
+						'#dialog [data-item-id="'+ id +'"] .static-text {' +
+							'max-width: '+ val[0] +'px;' +
+						'}\n' +
+						'#dialog [data-item-id="'+ id +'"] .edit-text.disable-soft-wrap, \n' +
+						'#dialog [data-item-id="'+ id +'"] .static-text.disable-soft-wrap {' +
+							'max-width: none;' +
+						'}\n' +
+						'</style>'
+					).prependTo( active );
+				}
+			}
+			
 			dangerZone.set( params, active );
 			droplist.set.size( active, val, style, type, newWidth, newHeight );
 			
@@ -141,9 +159,8 @@ item.update.set_values = function( params ) {
 		// TAB NAV WIDTH
 		case 'tabNavWidth':
 			
-			var newWidth  = val == 0 ? 'auto' : val;
 			var verticalTabCont = active.find('.tab-container');
-			verticalTabCont.css({ minWidth: newWidth });
+			verticalTabCont.css({ minWidth: val == 0 ? 'auto' : val });
 			dangerZone.set( params, verticalTabCont, '.number.tabNavWidth' );
 			
 			break;
@@ -177,25 +194,25 @@ item.update.set_values = function( params ) {
 			val = val + extraPadding;
 			
 			$(
-			'<style class="spacing">' +
-				// ROW - First item reset
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div:not(.sdb-hidden) {' +
-					'padding-left: 0px;' +
-				'}\n' +
-				// ROW - Spacing
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div:not(.sdb-hidden) ~ div:not(.sdb-hidden) {' +
-					'padding-left: '+ val +'px;' +
-				'}\n' +
-				// COLUMN - First item reset
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div:not(.sdb-hidden) {' +
-					'padding-top: 0px;' +
-				'}' +
-				// COLUMN - Spacing
-				'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div:not(.sdb-hidden) ~ div:not(.sdb-hidden) {' +
-					'padding-top: '+ val +'px;' +
-				'}\n' +
-			'</style>'
-		).appendTo( active );
+				'<style class="spacing">' +
+					// ROW - First item reset
+					'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div:not(.sdb-hidden) {' +
+						'padding-left: 0px;' +
+					'}\n' +
+					// ROW - Spacing
+					'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-row '+ paddingBoxClass +' > div:not(.sdb-hidden) ~ div:not(.sdb-hidden) {' +
+						'padding-left: '+ val +'px;' +
+					'}\n' +
+					// COLUMN - First item reset
+					'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div:not(.sdb-hidden) {' +
+						'padding-top: 0px;' +
+					'}' +
+					// COLUMN - Spacing
+					'#dialog [data-item-id="'+ active.data('item-id') +'"].orientation-column '+ paddingBoxClass +' > div:not(.sdb-hidden) ~ div:not(.sdb-hidden) {' +
+						'padding-top: '+ val +'px;' +
+					'}\n' +
+				'</style>'
+			).appendTo( active );
 			break;
 		
 		// ALIGN CHILDREN

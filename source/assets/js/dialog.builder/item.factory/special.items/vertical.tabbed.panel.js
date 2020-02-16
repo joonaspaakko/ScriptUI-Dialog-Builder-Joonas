@@ -17,7 +17,7 @@ var verticalTabbedPanel = {
 				type: 'Tab',
 				parentId: active.data('item-id'),
 				target: active.find('> ul'),
-				event: 'parent-propagation',
+				event: 'parent-propagation'
 			};
 
 			item.funnel.create( params ); // Filler tab N.1.
