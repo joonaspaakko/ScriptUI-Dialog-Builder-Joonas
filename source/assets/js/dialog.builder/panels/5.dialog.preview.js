@@ -61,9 +61,12 @@ dialogElem.on("click", '[data-item-type="EditText"]', function( e ) {
 });
 
 // Image click activate
-dialogElem.on("click", '[data-item-type="Image"], [data-item-type="IconButton"]', function() {
+dialogElem.on("click", '[data-item-type="Image"], [data-item-type="IconButton"] img', function() {
 	
-  var id = $(this).data('item-id');
+  var _this = $(this);
+  var iconButton = $(this).closest('[data-item-type]');
+  if ( iconButton.length > 0 ) _this = iconButton;
+  var id = _this.data('item-id');
 	item.activate( id, 'dialog-preview' );
 
   // Build Item Properties panel
