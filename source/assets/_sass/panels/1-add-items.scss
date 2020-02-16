@@ -17,6 +17,7 @@
     padding: 0px;
     .group,
     .panel,
+    .verticaltabbedpanel,
 		.tabbedpanel,
     .tab,
 		.treeview,
@@ -53,42 +54,20 @@
 
 		.failure-is-an-option {
 			display: none;
+      color: #ff8f28;
+      font-size: 12px;
       animation: fiao-cycle-colors 300ms infinite alternate;
       @keyframes fiao-cycle-colors {
-        0%   { color: #fff; }
-        100% { color: #ff6086; }
+        0%   { color: #ffb571; }
+        100% { color: #ff8f28; }
       }
-      animation-iteration-count: 6;
+      animation-iteration-count: infinite;
 		}
-
-    // .failure-info {
-    //   i {
-    //     font-size: 12px;
-    //     color: #fff;
-    //     position: absolute;
-    //     top: 6px;
-    //     left: -10px;
-    //     animation: fi-cycle-colors 300ms infinite alternate;
-    //     @keyframes fi-cycle-colors {
-    //       0%   { color: #fff; }
-    //       100% { color: #ff6086; }
-    //     }
-    //     animation-iteration-count: 6;
-    //   }
-    //   .description {
-    //     // display: none;
-    //     position: absolute;
-    //     top: 6px;
-    //     left: -10px;
-    //     padding: 3px 6px;
-    //     word-spacing: normal;
-    //     width: 100px;
-		//
-    //   }
-    //   &:hover .description {
-    //     display: block;
-    //   }
-    // }
+    &.failure-info {
+      .failure-is-an-option {
+        display: inline-block !important;
+      }
+    }
 		
   }
   

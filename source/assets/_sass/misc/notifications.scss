@@ -40,8 +40,8 @@
 	
 	&.error {
 		color: lighten(#e65300, 50);
-		background: rgba(#e65300,.8);
-		border: 1px solid rgba( darken(desaturate(#e65300,20),10), .8 );
+		background: rgba(#ff8200,.8);
+		border: 1px solid rgba( darken(desaturate(#ff8200,20),10), .8 );
 	}
 	&.success {
 		color: lighten(#01d54f, 50);

@@ -268,6 +268,21 @@ panel_edit_style_html.init = function( key, value, source, treeActive, lowerCase
 			);
 			break;
 			
+		case "tabNavWidth":
+			html = $(
+				'<h2 title="The preferred size, used by layout managers to determine the best size for each element. \n\nIf not explicitly set by a script, value is established by the UI framework in which ScriptUI is employed, and is based on such attributes of the element as its text, font, font size, icon size, and other UI framework-specific attributes. A script can explicitly set preferredSize before the layout manager is invoked in order to establish an element size other than the default.">' +
+					'Preferred width <small>(ListBox)</small>' +
+					// '<span class="preferred-size-auto" title="Reset to content size (0)"><i class="fas fa-compress"></i></span>' +
+				'</h2>' +
+
+				'<div class="dimensions-container linked">' +
+					'<input class="number" style="display: none;">' +
+					'<h4 class="width-heading">Width:</h4><input class="number tabNavWidth" data-edit="tabNavWidth" value="'+ value +'" min="0" max="2000" step="1" modifier-step="10">' +
+					'<input class="number" style="display: none;">' +
+				'</div>'
+			);
+			break;
+			
 		case "orientation":
 			// For future reference: I should've probably added a parent container
 			// for both orientation and spacing, so that I can then seat them

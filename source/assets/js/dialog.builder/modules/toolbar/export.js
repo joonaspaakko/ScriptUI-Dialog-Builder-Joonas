@@ -126,16 +126,17 @@ function getExportCode() {
 	var data = local_storage.get('dialog');
 	
 	var indentSize2 = data.settings.indentSize;
-	var tabsies = indentSize2 ? '  ' : '    ';
+	var variableTabs = (indentSize2 ? '  ' : '    ');
 	var wrapperTabsies = '';
+	var tabsies = variableTabs;
 	
-	// Double the indentation if function wrapper is on...
+	// SUI indents (first indentation is two spaces)
 	if ( !data.settings.cepExport && data.settings.functionWrapper ) {
 		wrapperTabsies = '  ';
 		tabsies = wrapperTabsies + tabsies;
 	}
 	
-	var jsxItems = getJSX( data, tabsies, wrapperTabsies );
+	var jsxItems = getJSX( data, variableTabs, tabsies, wrapperTabsies );
 	var importJSON = '\n'+ wrapperTabsies +'Code for Import https://scriptui.joonas.me — (Triple click to select): \n' + wrapperTabsies + JSON.stringify( data ) + '\n';
 	
 	var bundle = {};
@@ -209,7 +210,7 @@ function getExportCode() {
 	}
 }
 
-function getJSX( data, tabsies, wrapperTabsies ) {
+function getJSX( data, variableTabs, tabsies, wrapperTabsies ) {
 	
 	var cornucopia = '',
 			jsxParents = {},
@@ -238,8 +239,7 @@ function getJSX( data, tabsies, wrapperTabsies ) {
 		if ( i === ( itemsLength-1 ) ) {
 			lastLoop = true;
 		}
-		
-		cornucopia += makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop, tabsies, wrapperTabsies );
+		cornucopia += makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop, variableTabs, tabsies, wrapperTabsies );
 		
 	});
 	

@@ -22,12 +22,13 @@ var dialogElem = $('#dialog');
 
 // ACTIVATE ITEMS WHEN FOCUSED IN DIALOG PREVIEW
 dialogElem.on("focus", "[contenteditable]", function() {
-	
   var _this = $(this),
       isDialog = _this.parent().attr('id') === 'dialog-title-bar',
       isTab = _this.hasClass('tab'),
+      isvTab = _this.parent().hasClass('tab'),
       id = 	isDialog && 0 ||
 						isTab && _this.data('tab-id') ||
+            isvTab && _this.parent().data('tab-id') ||
 						_this.closest('[data-item-id]').data('item-id');
   
   item.activate( id, 'dialog-preview' );

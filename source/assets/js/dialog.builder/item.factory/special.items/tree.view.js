@@ -69,6 +69,7 @@ var treeView = {
 		
 		// ITEMS
 		var itemIs_TreeviewItem = clickedItem.hasClass('treeitem');
+		var itemIs_Treeview = clickedItem.hasClass('treeview');
 		
 		// TARGETS
 		var targetIs_Treeview = activeType === "TreeView";
@@ -77,14 +78,19 @@ var treeView = {
 		var result =
 			 itemIs_TreeviewItem && ( !targetIs_Treeview && !targetIs_TreeviewItem ) ||
 			!itemIs_TreeviewItem && (  targetIs_Treeview ||  targetIs_TreeviewItem );
-		
-    if ( result ) {
-			var editInfo = $('#panel-edit-style-wrap .edit-info');
-			editInfo.removeClass('highlight-animation'); // Reset so that the animation can run again if user tries to add another item with similar issues.
-			setTimeout( function() {
-				editInfo.addClass('highlight-animation');
-			}, 10 );
-    }
+			
+	    if ( result ) {
+				var addPanel = $('[data-panel="add"]');
+				
+				notification( 'error', "This item can't be placed inside the active item!", 1.8 );
+				
+				var deClass = 'failure-info';
+				clickedItem.removeClass( deClass ); // reset
+				clickedItem.addClass( deClass );
+				setTimeout( function() {
+					clickedItem.removeClass( deClass );
+				}, 1950 );
+	    }
 		
 		return result;
 		

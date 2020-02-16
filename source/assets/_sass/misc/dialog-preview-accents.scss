@@ -34,6 +34,7 @@
 		&.group > .padding-box,
 		&.list-box > .inner-wrap,
 		&.divider-line > .padding-box,
+		&.vertical-tabbed-panel,
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
 		&.edit-text > span,
@@ -45,6 +46,9 @@
 		&.edit-text > span > span {
 			color: #f1f1f1;
 		}
+		&.group.vertical-tabbed-panel > .padding-box {
+			border: none !important;
+		}
 	}
 
 	.active[type=range]::-moz-range-thumb {
@@ -55,6 +59,9 @@
 	}
 	.active[type=range]::-ms-thumb {
 		border-color: $color-accent;
+	}
+	.vertical-tabbed-panel > .padding-box > .active.tab > .padding-box {
+		border: 1px solid $color-accent;
 	}
 }
 
@@ -91,6 +98,8 @@
 		&.divider-line > .padding-box {
 			border-color: #464747;
 		}
+		&.panel.tab > .padding-box,
+		&.vertical-tabbed-panel,
 		&.image-item img,
 		&.group > .padding-box, {
 			border: none;
@@ -122,7 +131,7 @@
 		> span > .text-container,
 		&.tree-view-item > .item-wrap .text-container,
 		> label,
-		&.tab {
+		&[data-tab-id] {
 			color: $color-accent-2 !important;
 		}
 		>  #dialog-title-bar {
@@ -134,11 +143,13 @@
 				50% { box-shadow : 0 0 20px $color-accent-2 !important; }
 				100% { box-shadow: 0 0 3px $color-accent-2 !important; }
 			}
-
+			
 		}
 		&.group > .padding-box,
 		&.list-box > .inner-wrap,
 		&.divider-line > .padding-box,
+		&.vertical-tabbed-panel,
+		&.panel.tab > .padding-box,
 		&.tabbed-panel > .padding-box,
 		&.tree-view > .padding-box,
 		&.edit-text > span,
@@ -149,6 +160,9 @@
 		}
 		&.edit-text > span > span {
 			color: #f1f1f1 !important;
+		}
+		&.group.vertical-tabbed-panel > .padding-box {
+			border: none !important;
 		}
 	}
 	

@@ -11,6 +11,11 @@ $('#panel-tree-view-wrap').on("mouseenter mouseleave", ".item-text", function( e
   
   if ( parent.data('item-type') === 'Tab') {
     ghost = dialog.find('[data-tab-id="'+ id +'"]');
+    // If parent is VerticalTabbedPanel
+    var grampa = parent.parent('ul').parent('li');
+    if ( grampa.data('item-type') === 'VerticalTabbedPanel' ) {
+      ghost = ghost.add( dialog.find('[data-item-id="'+ id +'"]') );
+    }
   }
   
   if ( e.type === "mouseenter" ) {
@@ -94,11 +99,12 @@ treeRootUl.sortable({
   tolerance: -3,
   isValidTarget: function ($item, container ) {
     var result = true;
+    var tb  = tab.onDragValid( $item, container );
+    var tv  = treeView.onDragValid( $item, container );
     
-    var tp = tabbedPanel.onDragValid( $item, container );
-    var tv = treeView.onDragValid( $item, container );
-    
-    result = tp || tv ? false : true;
+    if ( tb || tv ) {
+      result = false;
+    }
     
     // Prevents dropping inside a collapsed parent
     if ( container.el.parent('li').hasClass('collapsed') ) {

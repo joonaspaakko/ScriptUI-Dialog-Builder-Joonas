@@ -1,8 +1,8 @@
 
 // TEXT INFO THAT IS USED FOR MULTIPLE ITEMS
 var reText = {
-	tabs: " <br><br>You can nest TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG).",
-  images: "Allowed formats: <code>jpg, png</code><br><br> Images are never uploaded to any server, they are stored locally in your browser.<br><br> Resize images before adding them to the dialog.<br><br> I would recommend small icon sizes. Any number of images will bump up the script file size quite a bit so you should use minimal amount of images. <br><br><strong class='warning'><span>Warning:</span> Photoshop CC 2015-219</strong> For some reason JPEG files don't work in some PS versions. PNG files seem to work fine.<br>"
+	tabs: " <br><br>You can nest VerticalTabbedPanels and TabbedPanels by inserting them inside a Tab item. <br><br>Visible tabs are selected on export (WYSIWYG).",
+  images: "Image formats: <code>jpg, png</code><br><br> Images are never uploaded to any server, they are stored locally in your browser.<br><br> Resize images before adding them to the dialog.<br><br> I would recommend small icon sizes. Any number of images will bump up the script file size quite a bit so you should use minimal amount of images. <br><br><strong class='warning'><span>Warning:</span> Photoshop CC 2015-219</strong> For some reason JPEG files don't work in some PS versions. PNG files seem to work fine.<br>"
 }
 
 var item = {};
@@ -453,12 +453,44 @@ item.list.iconbutton = function( params ) {
 	
 };
 
+item.list.verticaltabbedpanel = function( params ) {
+	
+	var obj = {
+		type: 'VerticalTabbedPanel',
+		parent: true,
+		addPanelDivider: 'above',
+		addPanelIconClass: 'fas fa-bars',
+		editInfo: '<strong>Valid child item:</strong> <br><i class="far fa-folder"></i> Tab.' + reText.tabs,
+		defaultStyle: {
+			// visible: true,
+			enabled: true,
+			varName: null,
+			preferredSize: [0,0],
+			tabNavWidth: 0,
+			margins: 0,
+			alignment: null
+		},
+		previewHtml:
+			'<div class="group vertical-tabbed-panel orientation-row align-children-horizontal-left align-children-vertical-top" data-parent="true" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
+				'<div class="tab-container">' +
+						'<div class="inner-wrap">' +
+							'<ul></ul>' +
+						'</div>' +
+				'</div>' +
+				'<div class="padding-box">' +
+				'</div>' +
+			'</div>'
+	};
+	
+	return obj;
+	
+};
+
 item.list.tabbedpanel = function( params ) {
 	
 	var obj = {
 		type: 'TabbedPanel',
 		parent: true,
-		addPanelDivider: 'above',
 		addPanelIconClass: 'fas fa-folder',
 		editInfo: '<strong>Valid child item:</strong> <br><i class="far fa-folder"></i> Tab.' + reText.tabs,
 		defaultStyle: {
@@ -488,7 +520,7 @@ item.list.tab = function( params ) {
 		parent: true,
 		addPanelDivider: 'below',
 		addPanelIconClass: 'far fa-folder',
-		editInfo: "Can only be placed inside <br><i class='fas fa-folder'></i> TabbedPanel." + reText.tabs,
+		editInfo: "Can be placed inside: <br><i class='fas fa-folder'></i> TabbedPanel, <br><i class='fas fa-bars'></i> VerticalTabbedPanel" + reText.tabs,
 		defaultStyle: {
 			// visible: true,
 			enabled: true,

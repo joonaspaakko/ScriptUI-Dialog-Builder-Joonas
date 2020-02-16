@@ -1,5 +1,5 @@
 
-function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies, commentOut ) {
+function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, variableTabs, tabsies, commentOut ) {
 	var styleBlock = '';
 
 	// ENABLED
@@ -119,7 +119,7 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 		}
 		// MARGINS
 		var marginsArray;
-		if ( style.margins !== undefined && type !== 'TabbedPanel' ) {
+		if ( style.margins !== undefined && type !== 'TabbedPanel' && type !== 'VerticalTabbedPanel' ) {
 			marginsArray = typeof style.margins === 'object';
 			styleBlock += tabsies + commentOut + jsxVarName + '.margins = ' + (marginsArray ? '['+ style.margins[3] +','+ style.margins[0] +','+ style.margins[1] +','+ style.margins[2] +']' : style.margins) + '; \n';
 		}

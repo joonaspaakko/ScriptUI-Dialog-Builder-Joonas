@@ -19,10 +19,9 @@ var addItemsPanel = {
 		    event: 'click'
 		  };
 			
-			var tp = tabbedPanel.onClick( $(this), active, params );
+			var t = tab.onClick( $(this), active, params );
 			var tv = treeView.onClick( $(this), active, params );
-			
-			if ( !tp && !tv ) {
+			if ( !t && !tv ) {
 				item.funnel.create( params );
 			}
 			
@@ -41,7 +40,7 @@ var addItemsPanel = {
 				if ( itemData.addPanelDivider === 'above' ) addItemsHTML += '<span class="gouping-divider"></span>';
 				addItemsHTML +=
 					'<li class="'+ name +'" data-item-type="'+ itemData.type +'">' +
-						'<i class="fas fa-info-circle failure-is-an-option"></i>' +
+						'<i class="fas fa-exclamation-triangle failure-is-an-option"></i>' +
 						'<i class="'+ itemData.addPanelIconClass +'"></i><span>'+ itemData.type +'</span>' +
 					'</li>';
 				if ( itemData.addPanelDivider === 'below' ) addItemsHTML += '<span class="gouping-divider"></span>';

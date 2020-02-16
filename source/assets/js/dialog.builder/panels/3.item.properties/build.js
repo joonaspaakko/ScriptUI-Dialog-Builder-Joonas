@@ -15,6 +15,7 @@ edit_style_panel.build = function( style, source ) {
 		'listItems',
 		'justify',
 		'typeName',
+		'tabNavWidth',
 		'preferredSize',
 		'margins',
 		'orientation',

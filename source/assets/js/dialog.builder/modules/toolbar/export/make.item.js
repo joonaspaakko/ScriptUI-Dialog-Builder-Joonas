@@ -1,5 +1,5 @@
 
-function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop, tabsies, wrapperTabsies ) {
+function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, style, previousItem, growTree, lastLoop, variableTabs, tabsies, wrapperTabsies ) {
 	
 	var commentOut = hideItem.onExport( data.items[ 'item-'+id ] );
 	
@@ -247,17 +247,42 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 		case 'Slider':
 			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'", undefined, undefined'+ creationProps( true ) +'); \n';
 			break;
+		
+		case 'VerticalTabbedPanel':
+			// WRAPPER
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group", undefined, undefined'+ creationProps() +'); \n';
+			block += tabsies + commentOut + jsxVarName +'.alignChildren = ["left","fill"]; \n';
+			// TABS NAV ( ListBox )
+			var tabNav = [];
+			$('#dialog [data-item-id="'+ id +'"] > .tab-container > .inner-wrap > ul > .tab').each(function() {
+				tabNav.push( "'" + $(this).find('span').text() + "'" );
+			});
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +'_nav = '+ jsxVarName +'.add ("listbox", undefined, ['+ tabNav.join(',') +']); \n';
+			if ( style.tabNavWidth > 0 ) block += tabsies + commentOut + jsxVarName + '_nav.preferredSize.width = '+ style.tabNavWidth +' \n';
+			// INNER WRAP
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName + '_innerwrap = '+ jsxVarName +'.add("group") \n';
+			block += tabsies + commentOut + jsxVarName + '_innerwrap.alignment = ["fill","fill"]; \n';
+			block += tabsies + commentOut + jsxVarName + '_innerwrap.orientation = ["stack"]; \n';
+			break;
+			
+		case 'Tab':
+			if ( parentType === 'VerticalTabbedPanel' ) {
+	      block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'_innerwrap.add("group", undefined'+ creationProps() +'); \n';
+			}
+			else {
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
+			}
+			break;
 			
 		default:
 			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ lowerCaseType +'"'+ creationProps( true ) +'); \n';
-    
 	}
 	
 	previousItem.name = jsxVarName;
 	previousItem.parent = jsxParents[ parentId ];
 	
 	var lb = /*type === 'TreeView' ||*/ type === 'TreeItem' && !lastLoop ? '' : '\n';
-	block += (styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, tabsies, commentOut )) + lb;
+	block += (styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, jsxVarName, growTree, multilineText, variableTabs, tabsies, commentOut )) + lb;
 	
 	// Add in treeItem expanded properties if this is the last of treeItems in this group
 	var nextItemId = data.order[ index + 1 ];
@@ -294,13 +319,52 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 		// If the current tab is the last of its siblings → Generate the parent tpanel selection here.
 		var lastTabId = $('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab:last').data('tab-id');
 		if ( id === lastTabId ) {
-			block += '// '+ jsxParentName.toUpperCase() +'\n';
-			block += '// '+ Array(jsxParentName.length+1).join("=") +'\n';
+			block += wrapperTabsies + '// '+ jsxParentName.toUpperCase() +'\n';
+			block += wrapperTabsies + '// '+ Array(jsxParentName.length+1).join("=") +'\n';
 			var selectionId = data.items[ 'item-' + parentId ].style.selection;
 			var selectionItem = data.items[ 'item-' + selectionId ];
-			var tpanelCommentOut = (selectionItem.hidden || $('[data-panel="treeview"] [data-item-id="'+ selectionId  +'"]').closest('.sdb-hidden').length > 0 ) ? '// ' : '';
-			// console.log( selectionItem.hidden );
-			block += wrapperTabsies + tpanelCommentOut + jsxParents[ parentId ] +'.selection = '+ jsxParents[ selectionId ] +'; \n\n';
+			
+			if ( parentType === 'VerticalTabbedPanel' ) {
+				
+				var tpanelCommentOut = ( data.items[ 'item-' + parentId ].hidden ) ? '// ' : '';
+				
+				var tabVarNames = [];
+				$('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab').each(function() {
+					tabVarNames.push( customVar.names[ $(this).data('tab-id') ] );
+				});
+				
+				var vtTabssies = '  ' ;
+				block += wrapperTabsies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs = ['+ tabVarNames.join(',') +']; \n\n';
+				block += wrapperTabsies + tpanelCommentOut + 'for (var i = 0; i < '+ jsxParents[ parentId ] + '_tabs.length; i++) { \n';
+					// block += tabsies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].orientation = "column"; \n';
+					// block += tabsies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].alignChildren = "fill"; \n';
+					block += wrapperTabsies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].alignment = ["fill","fill"]; \n';
+					block += wrapperTabsies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] + '_tabs[i].visible = false; \n';
+				block += wrapperTabsies + tpanelCommentOut + '} \n\n';
+				
+				var showFunction = 'showTab_' + jsxParents[ parentId ];
+				block += wrapperTabsies + tpanelCommentOut + jsxParents[ parentId ] +'_nav.onChange = '+ showFunction +'; \n\n';
+				
+				block += wrapperTabsies + tpanelCommentOut + 'function '+ showFunction +'() { \n';
+					block += wrapperTabsies + vtTabssies + tpanelCommentOut + 'if ( '+ jsxParents[ parentId ] +'_nav.selection !== null ) { \n';
+						block += wrapperTabsies + vtTabssies + vtTabssies + tpanelCommentOut + 'for (var i = '+ jsxParents[ parentId ] +'_tabs.length-1; i >= 0; i--) { \n';
+							block += wrapperTabsies + vtTabssies + vtTabssies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] +'_tabs[i].visible = false; \n';
+						block += wrapperTabsies + vtTabssies + vtTabssies + tpanelCommentOut + '} \n';
+						block += wrapperTabsies + vtTabssies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] +'_tabs['+ jsxParents[ parentId ] +'_nav.selection.index].visible = true; \n';
+					block += wrapperTabsies + vtTabssies + tpanelCommentOut + '} \n';
+				block += wrapperTabsies + tpanelCommentOut + '} \n\n';
+				
+				block += wrapperTabsies + tpanelCommentOut + customVar.names[ 0 ] +'.onShow = function () { \n';
+					var selectedTabIndex = $('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab.visible').index();
+					block += wrapperTabsies + vtTabssies + tpanelCommentOut + jsxParents[ parentId ] +'_nav.selection = '+ selectedTabIndex +'; \n';
+					block += wrapperTabsies + vtTabssies + tpanelCommentOut + showFunction + '; \n';
+				block += wrapperTabsies + tpanelCommentOut + '} \n\n';
+				
+			}
+			else {
+				var tpanelCommentOut = (selectionItem.hidden || $('[data-panel="treeview"] [data-item-id="'+ selectionId  +'"]').closest('.sdb-hidden').length > 0 ) ? '// ' : '';
+				block += wrapperTabsies + tpanelCommentOut + jsxParents[ parentId ] +'.selection = '+ jsxParents[ selectionId ] +'; \n\n';
+			}
 		}
 		
 	}

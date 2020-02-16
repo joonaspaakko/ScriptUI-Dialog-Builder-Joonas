@@ -3,6 +3,8 @@
 item.funnel = {
 	create: function( params ) {
 		
+		params = tab.preCreate( params );
+		
 		params.style = item.create.localStorage( params );
 		item.create.treeView( params );
 		
@@ -20,6 +22,8 @@ item.funnel = {
 		
 		var isTPanel = params.type === 'TabbedPanel';
 		if ( isTPanel ) tabbedPanel.onCreate( params.event );
+		var isVTPanel = params.type === 'VerticalTabbedPanel';
+		if ( isVTPanel ) verticalTabbedPanel.onCreate( params.event );
 		var isTreeView = params.type === 'TreeView';
 		if ( isTreeView ) treeView.onCreate( params.event );
 		

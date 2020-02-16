@@ -35,7 +35,7 @@ item.create = {
 			}
 			// Add default style
 			else {
-				itemData.style = item.list[ params.type.toLowerCase() ]( params ).defaultStyle;
+				itemData.style = params.defaultStyle || item.list[ params.type.toLowerCase() ]( params ).defaultStyle;
 			}
 			
 		}

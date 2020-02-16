@@ -44,6 +44,11 @@ item.update.get_values = function( prop ) {
 			data.preferredSize = [ width, height ];
 			break;
 		
+		case "tabNavWidth":
+			var width = parseInt( editPanel.find('input.tabNavWidth').val(), 10);
+			data.tabNavWidth = width;
+			break;
+		
 		case "spacing":
 			data.spacing = parseInt(_this.val(), 10);
 			break;

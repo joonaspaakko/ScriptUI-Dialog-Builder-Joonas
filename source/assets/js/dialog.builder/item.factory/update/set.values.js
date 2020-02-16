@@ -33,7 +33,15 @@ item.update.set_values = function( params ) {
 				active.find('label').text( val );
 			}
 			else if ( type === 'Tab' ) {
-				active.parent().parent().find('> .tab-container [data-tab-id="'+ id +'"]').text( val );
+				var parent = active.parent().parent();
+				var parentType = parent.data('item-type');
+				var tab = parent.find('> .tab-container [data-tab-id="'+ id +'"]');
+				if ( parentType === 'TabbedPanel' ) {
+					tab.text( val );
+				}
+				else if ( parentType === 'VerticalTabbedPanel' ) {
+					tab.find('span').text( val );
+				}
 			}
 			else if ( type === 'TreeItem' ) {
 				active.find('> .item-wrap .text-container').text( val );
@@ -104,10 +112,8 @@ item.update.set_values = function( params ) {
 					paddingLeft: left <= 3 ? 3 : left
 				});
 			}
-			else if ( type === 'TabbedPanel' ) {
-				
+			else if ( type === 'TabbedPanel' || type === 'VerticalTabbedPanel' ) {
 				tabbedPanel.set.margins( top, right, bottom, left, id, paddingBox );
-				
 			}
 			else {
 				paddingBox.css({
@@ -127,9 +133,18 @@ item.update.set_values = function( params ) {
 			var newHeight = val[1] == 0 ? 'auto' : val[1] + (type === 'Dialog' ? $('#dialog-title-bar').outerHeight() : 0);
 			active.css({ minWidth: newWidth, minHeight: newHeight });
 			
-			dangerZone.set( params, active, paddingBox );
-			
+			dangerZone.set( params, active );
 			droplist.set.size( active, val, style, type, newWidth, newHeight );
+			
+			break;
+			
+		// TAB NAV WIDTH
+		case 'tabNavWidth':
+			
+			var newWidth  = val == 0 ? 'auto' : val;
+			var verticalTabCont = active.find('.tab-container');
+			verticalTabCont.css({ minWidth: newWidth });
+			dangerZone.set( params, verticalTabCont, '.number.tabNavWidth' );
 			
 			break;
 		

@@ -14,6 +14,7 @@
 // ITEMS THAT NEED SOME EXTRA ATTENTION
 // ************************************
 // @codekit-prepend "dialog.builder/item.factory/special.items/tabbed.panel.js";
+// @codekit-prepend "dialog.builder/item.factory/special.items/vertical.tabbed.panel.js";
 // @codekit-prepend "dialog.builder/item.factory/special.items/tab.js";
 // @codekit-prepend "dialog.builder/item.factory/special.items/tree.view.js";
 // @codekit-prepend "dialog.builder/item.factory/special.items/tree.view.item.js";

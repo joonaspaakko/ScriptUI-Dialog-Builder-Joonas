@@ -2,21 +2,54 @@
 
 var tab = {
 	
+	preCreate: function( params ) {
+		
+		// Tab of a vertical tabbed panel...
+		if ( params.type === 'Tab' && $('[data-panel="treeview"] [data-item-id="'+ params.parentId +'"]').data('item-type') === 'VerticalTabbedPanel' ) {
+			
+			var style = item.list[ 'tab' ](false).defaultStyle;
+			style.alignChildren = ['fill', 'top'];
+			params.defaultStyle = style;
+			
+		}
+		
+		return params;
+		
+	},
+	
 	onCreate: function( params  ) {
 		var isTab = params.type === 'Tab';
 		if ( isTab ) {
 			
-			var tPanel  = $('#dialog [data-item-id="'+ params.parentId +'"]');
-			var tabCont = tPanel.find('> .tab-container');
-			// var tabItem = $('#dialog [data-item-id="'+ params.id +'"]');
+			var parentPanel  = $('#dialog [data-item-id="'+ params.parentId +'"]');
+			var parentType = parentPanel.data('item-type');
 			
-			$(
-				'<div class="tab" data-tab-id="'+ params.id +'" contenteditable>'+
-					params.style.text +
-				'</div>'
-			).appendTo( tabCont );
+			// TABBED PANEL
+			if ( parentType === 'TabbedPanel' ) {
+				
+				var tabCont = parentPanel.find('> .tab-container');
+				$(
+					'<div class="tab" data-tab-id="'+ params.id +'" contenteditable>' +
+						params.style.text +
+					'</div>'
+				).appendTo( tabCont );
+				
+				tab.containerSort( parentPanel.find('> .padding-box > .tab'), tabCont );
+				
+			}
+			// VERTICAL TABBED PANEL
+			else {
+				
+				var tabCont = parentPanel.find('> .tab-container > .inner-wrap > ul');
+				$(
+					'<li class="tab" data-tab-id="'+ params.id +'">' +
+						'<span contenteditable>'+ params.style.text +'</span>' +
+					'</li>'
+				).appendTo( tabCont );
+				
+				tab.containerSort( parentPanel.find('> .padding-box > .tab'), tabCont );
+			}
 			
-			tab.containerSort( tPanel.find('> .padding-box > .tab'), tabCont );
 			item.activate( params.id, 'dialog-preview' );
 			
 			// Build Item Properties panel
@@ -24,6 +57,65 @@ var tab = {
 		  edit_style_panel.build( data.items[ 'item-' + params.id ].style );
 			
 		}
+	},
+	
+	// Prevents dragging items to specific containers...
+	// True = Prevent dropping
+	onDragValid: function( $item, container ) {
+		
+		var contItem = container.target.parent('li');
+		
+		// ITEMS
+		var itemIsTab      = $item.hasClass('tab');
+		// TARGETS
+		var targetIsTPanel = contItem.hasClass('tabbedpanel');
+		var targetIsVTPanel = contItem.hasClass('verticaltabbedpanel');
+		
+		// True = Prevent dropping
+		// DRAGGING: tab  + Target container != TPanel or VTPanel = NO DROPSIES
+		// DRAGGING: !tab + Target container == TPanel or VTPanel = NO DROPSIES
+		var result =
+				itemIsTab && (!targetIsTPanel && !targetIsVTPanel) ||
+			 !itemIsTab && ( targetIsTPanel ||  targetIsVTPanel);
+		return result;
+		
+	},
+	
+	// Just a little reminder for people trying to add anything but tabs inside tabbed panel or a tab outside of tabbed panels.
+	onClick: function( clickedItem, active ) {
+		
+		var activeType = active.data('item-type');
+		
+		// ITEMS
+		var itemIsTab = clickedItem.hasClass('tab');
+		var itemIsTPanel = clickedItem.hasClass('tabbedpanel');
+		var itemIsVTPanel = clickedItem.hasClass('verticaltabbedpanel');
+		
+		// TARGETS
+		var targetIsTPanel  = activeType === "TabbedPanel";
+		var targetIsVTPanel = activeType === "VerticalTabbedPanel";
+		
+		// FALSE = Item is created...
+		// TRUE = warning flash...
+		var result =
+			 itemIsTab && (!targetIsTPanel && !targetIsVTPanel)  ||
+			!itemIsTab && ( targetIsTPanel ||  targetIsVTPanel);
+			
+    if ( result ) {
+			var addPanel = $('[data-panel="add"]');
+			
+			notification( 'error', "This item can't be placed inside the active item!", 1.8 );
+			
+			var deClass = 'failure-info';
+			clickedItem.removeClass( deClass ); // reset
+			clickedItem.addClass( deClass );
+			setTimeout( function() {
+				clickedItem.removeClass( deClass );
+			}, 1950 );
+    }
+		
+		return result;
+		
 	},
 	
 	onActivate: function( id ) {
@@ -35,7 +127,7 @@ var tab = {
 		$('#dialog .currently-active-tab').removeClass('currently-active-tab');
 		currentTab.addClass('currently-active-tab');
 		
-		if ( currentItem.closest('.tabbedpanel').length > 0 ) {
+		if ( currentItem.closest('.tabbedpanel').length > 0 || currentItem.closest('.verticaltabbedpanel').length > 0 ) {
 			var data          = local_storage.get('dialog');
 			var allParentTabs = currentItem.parentsUntil('.dialog').filter('.tab');
 			
@@ -68,8 +160,9 @@ var tab = {
 				vtClass = 'visible-tab';
 		
 		active.addClass('tab-width-auto');
-		var activeW = active.width(),
-				activeH = active.height();
+		var activePB = active.find('> .padding-box');
+		var activeW = activePB.innerWidth(),
+				activeH = activePB.innerHeight();
 		active.removeClass('tab-width-auto');
 		
 		var maxWidth = 0,
@@ -79,8 +172,11 @@ var tab = {
 		active.siblings('.tab').each(function() {
 			
 			$(this).addClass( vtClass + ' tab-width-auto');
-			if ( $(this).width()  > maxWidth )  maxWidth = $(this).width();
-			if ( $(this).height() > maxHeight ) maxHeight = $(this).height();
+			var tabPB = $(this).find('> .padding-box');
+			var tabWidth = tabPB.innerWidth();
+			var tabHeight = tabPB.innerHeight();
+			if ( tabWidth  > maxWidth )  maxWidth = tabWidth;
+			if ( tabHeight > maxHeight ) maxHeight = tabHeight;
 			$(this).removeClass( vtClass + ' tab-width-auto');
 			
 			$(this).css({ minWidth: '', minHeight: '' });
@@ -118,7 +214,7 @@ var tab = {
 				
 		if ( type === "Tab" ) {
 			tabId = id;
-			$('#dialog div[data-tab-id="'+ tabId +'"]').remove();
+			$('#dialog [data-tab-id="'+ tabId +'"]').remove();
 			var dataItem = data.items['item-'+ id ];
 			var anotherTab = $('#panel-tree-view-wrap [data-item-id="'+ dataItem.parentId +'"] > ul > li:first');
 			tabId = anotherTab.data('item-id');
@@ -169,10 +265,12 @@ var tab = {
 		
 		var itemIsTab = $item.hasClass('tab');
 		var itemIsTPanel = $item.hasClass('tabbedpanel');
+		var itemIsVTPanel = $item.hasClass('verticaltabbedpanel');
 		
     if (
 			itemIsTab ||
 			itemIsTPanel ||
+			itemIsVTPanel ||
 			$('#dialog [data-item-id="'+ $item.data('item-id') +'"]').closest('.tab').length > 0
 		) {
 			
@@ -212,6 +310,9 @@ var tab = {
 			var itemId = $(this).data('item-id');
 			tabShelf.find('[data-tab-id="'+ itemId +'"]').appendTo( tabShelf );
 		});
+	},
+	
+	onHideToggle: function( isHidden, hiddenClass, itemData, Data ) {
+		$('#dialog [data-tab-id="'+ itemData.id +'"]')[ !isHidden ? 'addClass' : 'removeClass' ]( hiddenClass );
 	}
-
 };
