@@ -9,7 +9,7 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 	
 	// HELP TIP
 	if ( style.helpTip !== undefined && style.helpTip !== null ) {
-		if ( style.helpTip.length > 0 ) styleBlock += tabsies + commentOut + jsxVarName +'.helpTip = "' + style.helpTip.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\\n') + '"; \n';
+		if ( style.helpTip.length > 0 ) styleBlock += tabsies + commentOut + jsxVarName +'.helpTip = "' + style.helpTip.replace(/(\s\\n\s|\\n\s|\s\\n|\\n)/g,'\\n').replace(/\"/g, '\\u0022') + '"; \n';
 	}
 	
 	if ( type === "TreeItem" ) {
@@ -69,6 +69,7 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 		}
 		if ( addText ) {
 			var text = type === 'EditText' && multilineText[0] ? style.text.split('\n').join('\\r') : style.text;
+			text = text.replace(/\"/g, '\\u0022');
 			styleBlock += tabsies + commentOut + jsxVarName +'.text = "' + text + '"; \n';
 		}
 		// CHECKED

@@ -98,7 +98,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			if ( style.listItems.trim() ) {
 				var list = style.listItems.split('\n').join('').split(',');
 				$.each( list, function( i ) {
-					list[ i ] = list[ i ].trim();
+					list[ i ] = list[ i ].trim().replace(/\"/g, '\\u0022');
 				});
 				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +'_array = ["' + list.join('","') + '"]; \n';
 			}
@@ -120,7 +120,8 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 		case 'TreeItem':
 			var dialogTreeItem = dialog.find('[data-item-id="'+ id +'"]');
 			var itemName = dialogTreeItem.hasClass('tree-node') ? 'node' : 'item';
-			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ itemName +'", "'+ style.text +'"); \n';
+			var treeItemText = style.text.replace(/\"/g, '\\u0022');
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("'+ itemName +'", "'+ treeItemText +'"); \n';
 			break;
 			
 		case 'StaticText':
@@ -195,6 +196,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 				// All softwrapped lines have been converted into forced linebreaks
 				var lines = multilineText[1].split('<br>');
 				$.each( lines, function( i, line ) {
+					line = line.replace(/\"/g, '\\u0022');
 					// ADD EACH LINE AS SEPARATE STATIC TEXT ITEM
 					block += tabsies + commentOut + jsxVarName +'.add("statictext", undefined, "'+ line +'"'+ creationProps() +'); \n';
 				});
