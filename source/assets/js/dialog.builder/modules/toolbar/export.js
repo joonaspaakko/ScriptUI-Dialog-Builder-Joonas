@@ -149,22 +149,34 @@ function getExportCode() {
 	}
 	// JAVASCRIPT
 	else {
+		
+		bundle.code = '';
 		importJSON = data.settings.importJSON ? (wrapperTabsies + '/*' + importJSON + wrapperTabsies + '*/ \n\n') : '';
 		bundle.language = 'javascript';
 		bundle.filename = 'ScriptUI Dialog Builder - Export.jsx';
-		var showDialog = (data.settings.showDialog ? ( wrapperTabsies + customVar.names[ 0 ] + '.show();') : '');
+		var aePanelGlobal = data.settings.afterEffectsDockable ? 'var panelGlobal = this;\n' : '';
+		var aeDockableResize = data.settings.afterEffectsDockable ? (wrapperTabsies + customVar.names[ 0 ] +'.layout.layout(true);\n'+ wrapperTabsies + customVar.names[ 0 ] +'.layout.resize();\n'+ wrapperTabsies + customVar.names[ 0 ] +'.onResizing = '+ customVar.names[ 0 ] +'.onResize = function () { this.layout.resize(); }\n\n') : '';
+		
+		
+		var aeShow = data.settings.afterEffectsDockable ? 'if ( '+ customVar.names[ 0 ] +' instanceof Window ) ' : '';
+		var showDialog = (data.settings.showDialog ? ( wrapperTabsies + aeShow + customVar.names[ 0 ] + '.show();') : '');
 		var itemReferenceList = getItemReferenceList();
-		var dialogBody = importJSON + jsxItems + itemReferenceList + showDialog;
+		var dialogBody = jsxItems + itemReferenceList + aeDockableResize + showDialog + (data.settings.showDialog ? '\n\n' : '');
 		
 		if ( data.settings.functionWrapper ) {
-			bundle.code = 'var '+ customVar.names[ 0 ] +' = (function () {\n\n';
-			bundle.code += dialogBody + (data.settings.showDialog ? '\n\n' : '');
+			bundle.code += aePanelGlobal;
+			bundle.code += 'var '+ customVar.names[ 0 ] +' = (function () {\n\n';
+			aePanelGlobal = '';
+		}
+		else { aePanelGlobal = aePanelGlobal + '\n' }
+		
+		bundle.code += aePanelGlobal + importJSON + dialogBody;
+			
+		if ( data.settings.functionWrapper ) {
 			bundle.code += wrapperTabsies + 'return '+ customVar.names[ 0 ] +';';
 			bundle.code += '\n\n}());';
 		}
-		else {
-			bundle.code = dialogBody;
-		}
+		
 	}
 	
 	return bundle;

@@ -4,6 +4,8 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 	var commentOut = hideItem.onExport( data.items[ 'item-'+id ] );
 	
 	var windowType = data.items['item-0'].style.windowType.toLowerCase();
+	if ( data.settings.afterEffectsDockable ) windowType = 'palette';
+	
 	var multilineText = [false];
 	var block = '';
 	var lowerCaseType = type.toLowerCase();
@@ -87,7 +89,8 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 	switch ( type ) {
 		
 		case 'Dialog':
-			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = new Window("'+ windowType +'"'+ creationProps( true ) +'); \n';
+			var aeDockable = data.settings.afterEffectsDockable ? '(panelGlobal instanceof Panel) ? panelGlobal : ' : '';
+			block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ aeDockable +'new Window("'+ windowType +'"'+ creationProps( true ) +'); \n';
 			break;
 			
 		case 'ListBox':
@@ -354,11 +357,9 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + '} \n';
 				block += wrapperTabsies + vtpanelCommentOut + '} \n\n';
 				
-				block += wrapperTabsies + vtpanelCommentOut + customVar.names[ 0 ] +'.onShow = function () { \n';
-					var selectedTabIndex = $('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab.visible').index();
-					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + jsxParents[ parentId ] +'_nav.selection = '+ selectedTabIndex +'; \n';
-					block += wrapperTabsies + vtTabssies + vtpanelCommentOut + showFunction + '; \n';
-				block += wrapperTabsies + vtpanelCommentOut + '} \n\n';
+				var selectedTabIndex = $('#dialog [data-item-id="'+ parentId +'"] > .tab-container .tab.visible').index();
+				block += wrapperTabsies + vtpanelCommentOut + jsxParents[ parentId ] +'_nav.selection = '+ selectedTabIndex +'; \n';
+				block += wrapperTabsies + vtpanelCommentOut + showFunction + '() \n\n';
 				
 			}
 			else {

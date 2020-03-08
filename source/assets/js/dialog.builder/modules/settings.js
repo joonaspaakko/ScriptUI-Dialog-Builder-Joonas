@@ -36,6 +36,11 @@ var settings = {
       label: 'Function wrapper',
       settingFor: 'SUI'
     },
+    afterEffectsDockable: {
+      divider: false,
+      status: false,
+      label: 'Dockable panel in After Effects <span title="If the script is put in the &quot;Scripts/ScriptUI Panels&quot; folder, the dialog will behave similar to native panels. Inside the regular scripts folder the window type &quot;palette&quot; is enforced as well.">?</span>'
+    },
     itemReferenceList: {
       divider: false,
       status: 'None',
