@@ -161,7 +161,7 @@ function getExportCode() {
 		var aeShow = data.settings.afterEffectsDockable ? 'if ( '+ customVar.names[ 0 ] +' instanceof Window ) ' : '';
 		var showDialog = (data.settings.showDialog ? ( wrapperTabsies + aeShow + customVar.names[ 0 ] + '.show();') : '');
 		var itemReferenceList = getItemReferenceList();
-		var dialogBody = jsxItems + itemReferenceList + aeDockableResize + showDialog + (data.settings.showDialog ? '\n\n' : '');
+		var dialogBody = jsxItems + aeDockableResize + itemReferenceList + showDialog + (data.settings.showDialog ? '\n\n' : '');
 		
 		if ( data.settings.functionWrapper ) {
 			bundle.code += aePanelGlobal;
@@ -185,17 +185,20 @@ function getExportCode() {
 		
 		var setting = data.settings.itemReferenceList.toLowerCase();
 		if ( setting !== 'none' && !$.isEmptyObject( customVar.customNames ) ) {
-			var list = '';
+			var list = '',
+					listArray = [];
 			
 			list += wrapperTabsies + '// ' + 'ITEM REFERENCE LIST ( Info: http://jongware.mit.edu/Sui/index_1.html ) \n';
+			list += wrapperTabsies + customVar.names[ 0 ] + '.items = { \n';
 			
 			var index = 0;
 			var windowType = data.items['item-0'].style.windowType.toLowerCase();
-			$.each( customVar.customNames, function( id ) {
+			$.each( customVar.customNames, function( id, name ) {
 				id = id.replace('item-', '');
-				var lastLoop = (customVar.customNames.length-1 === index);
+				
+				var lastLoop = (Object.keys( customVar.customNames ).length-1 === index);
 				var targetItem = $('[data-panel="treeview"] [data-item-id="'+ id +'"]');
-				list += wrapperTabsies;
+				list += wrapperTabsies + '  ' + name + ': ';
 				var funcName = '';
 				switch ( setting ) {
 					case 'var':
@@ -208,10 +211,14 @@ function getExportCode() {
 						funcName = 'path'
 						break;
 				}
-				list += contextMenu.get[ funcName ]( false, targetItem, 'export' ) + ' // ' + (id == 0 ? windowType.toLowerCase() : targetItem.data('item-type').toLowerCase() );
-				list += (!lastLoop ? ' \n' : '');
+				var refItem = contextMenu.get[ funcName ]( false, targetItem, 'export' );
+				list += refItem + (!lastLoop ? ',' : '') + ' // ' + (id == 0 ? windowType.toLowerCase() : targetItem.data('item-type').toLowerCase() );
+				listArray.push( name );
+				list += '\n';
 				++index;
 			});
+			list += wrapperTabsies + '};\n';
+			list += wrapperTabsies + customVar.names[ 0 ] + '.items.array = [' + listArray.join(', ') + '];\n';
 			
 			return list + '\n';
 		}

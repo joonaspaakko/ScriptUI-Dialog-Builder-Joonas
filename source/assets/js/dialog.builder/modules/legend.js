@@ -14,9 +14,17 @@ $(document).on("keydown", function( e ) {
   // Export code
   var keycode = e.keyCode ? e.keyCode : e.which;
   var alt_e = keycode == 69 && e.altKey;
-  if ( alt_e && $('#export-box').length < 1 ) {
+  if ( alt_e ) {
     e.preventDefault();
-    exportToClipboard( 'shortcut' );
+    
+    if ( $('#export-box').length < 1 ) {
+      exportToClipboard( 'shortcut' );
+    }
+    else {
+      modal.remove(function() {
+  			exportToClipboard( 'export-window' );
+  		});
+    }
   }
   
 });
