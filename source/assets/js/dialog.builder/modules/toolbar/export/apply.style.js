@@ -70,7 +70,8 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 		if ( addText ) {
 			var text = type === 'EditText' && multilineText[0] ? style.text.split('\n').join('\\r') : style.text;
 			text = text.replace(/\"/g, '\\u0022');
-			styleBlock += tabsies + commentOut + jsxVarName +'.text = "' + text + '"; \n';
+			var aeDockableConditional = data.settings.afterEffectsDockable ? 'if ( !(panelGlobal instanceof Panel) ) ' : '';
+			styleBlock += tabsies + commentOut + aeDockableConditional +jsxVarName +'.text = "' + text + '"; \n';
 		}
 		// CHECKED
 		if ( style.checked === true ) {
