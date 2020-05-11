@@ -284,8 +284,19 @@ var tab = {
 			// Move tab to the new tab-container
 			var dialog  = $('#dialog');
 			var tPanel  = dialog.find('[data-item-id="'+ parentId +'"]');
-			var tabShelf = tPanel.find('> .tab-container');
-			var mTab    = dialog.find('.tab-container [data-tab-id="'+ id +'"]');
+			var parentData = data.items[ 'item-' + parentId ];
+			var parentType = parentData.type;
+			var parentIsVertical = parentType === 'VerticalTabbedPanel';
+			
+			var tabShelf, mTab;
+			if ( parentIsVertical ) {
+				tabShelf = tPanel.find('> .tab-container > .inner-wrap > ul');
+				mTab     = dialog.find('.tab-container [data-tab-id="'+ id +'"]').parent('li');
+			}
+			else {
+				tabShelf = tPanel.find('> .tab-container');
+				mTab     = dialog.find('.tab-container [data-tab-id="'+ id +'"]');
+			}
 			mTab.appendTo( tabShelf );
 			
 			// Sort the shelf
