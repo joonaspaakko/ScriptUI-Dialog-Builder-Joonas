@@ -1,8 +1,29 @@
 [![](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/blob/master/source/wiki-images/github-cover.png?raw=true)](https://scriptui.joonas.me)
 
-## Website (web app) 
+## Website (web app)
 
 ScriptUI Dialog Builder (SDB) - [scriptui.joonas.me](https://scriptui.joonas.me)
+
+### Offline use
+
+This repository includes a build folder that contains the same files as the website. So if the URL doesn't work for some reason, you should be able to download the repo and use it locally (offline). Everything it needs to run is in the build folder. Just open the `build\index.html` in Chrome.
+
+### Desktop applications
+
+<details><summary>Read more...</summary>
+  
+The desktop apps won't work offline since each version of the app is only loading up the website and not a full fledged desktop app. The desktop applications are only trying to fill a small slot of convenience.
+
+[**Download desktop applications** (Dropbox link)](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
+
+> The desktop apps were created using an online tool that converts websites into desktop applications: [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium. Also, I believe they inject their own google analytics. SDB by itself doesn't gather any data.
+
+**Chrome App**
+
+The download folder also includes a Chrome App. The great thing about it is that you can sync it to other computers. The downside is that it's tied to Chrome.
+
+[**Download desktop applications** (Dropbox link)](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
+
 
 ## Documentation
 
@@ -12,32 +33,11 @@ There's not much to write about in the SDB documentation, but I'm planning to pe
 
 ## CEP Documentation
 
-SDB has a CEP export: `Export button (above dialog preview) > Gear icon (bottom right in the modal window) > CEP export (When this is turned on, the export comes out as html, css and js)`. It does not export you a fully functional extension, rather just a SUI style layout with some js helper functions to make it easier for you to work with it. You just paste the exported code into your CEP boilerplate's `index.html` and the rest is up to you writing the interaction logic. 
+SDB has a CEP export: `Export button (above dialog preview) > Gear icon (bottom right in the modal window) > CEP export (When this is turned on, the export comes out as html, css and js)`. It does not export you a fully functional extension, rather just a SUI style layout with some js helper functions to make it easier for you to work with it. You just paste the exported code into your CEP boilerplate's `index.html` and the rest is up to you writing the interaction logic.
 
 This CEP documentation is in [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) → Look for CEP in the top menu.
 
 > [scriptui.joonas.me/docs](https://scriptui.joonas.me/docs) is also included in the repo: `source/docs` and `build/docs`.
-
-### Offline use
-
-This repository includes a build folder that contains the same files as the website. So if the URL doesn't work for some reason, you should be able to download the repo and use it locally (offline). Everything it needs to run is in the build folder. Just open the `build\index.html` in Chrome.
-
-### Desktop applications / Chrome app
-
-<details><summary>Read more...</summary>
-  
-The desktop apps won't work offline since each version of the app is only loading up the website and not a full fledged desktop app. The desktop applications are only trying to fill a small slot of convenience.
-
-[**Download desktop applications** (Dropbox link)](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
-
-> The desktop apps were created using an online tool that converts websites into desktop applications: [Web2Desk](https://desktop.appmaker.xyz/). They don’t seem to mention it anywhere as far as I know, but I believe Web2Desk uses [Electron](https://electronjs.org/) to create the desktop app that simply displays the chosen website (`https://scriptui.joonas.me`) using Chromium. Also, I believe they inject their own google analytics. SDB by itself doesn't gather any data. 
-
-**Chrome App**
-
-The download folder also includes a Chrome App. The great thing about it is that you can sync it to other computers. The downside is that it's tied to Chrome.
-
-[**Download desktop applications** (Dropbox link)](https://www.dropbox.com/sh/4wy71qv8e08deh1/AADJYT4BJRQQuJvVjl5CaYgUa?dl=0).
-
 
 **Desktop app pros**
 
@@ -80,11 +80,11 @@ Dropbox download link: [ScriptUI Dialog Builder PSD files](https://www.dropbox.c
 
 ## Usage
 
-A good rule of thumb is to use width and height sparingly. Sometimes `Align children: Fill` or `Alignment: Fill` can be used to get the desired result without setting a static width. You can easily make the dialog hard to work with if you have to keep adjusting the width and/or height values every time you add new items or make other changes that would affect the size. 
+A good rule of thumb is to use width and height sparingly. Sometimes `Align children: Fill` or `Alignment: Fill` can be used to get the desired result without setting a static width. You can easily make the dialog hard to work with if you have to keep adjusting the width and/or height values every time you add new items or make other changes that would affect the size.
 
 There's also the fact that while SDB gets fairly close in imitating SUI, it's not perfect and therefore things may end up shifting around, but the width or height you've set wont. There's a good example of this in the sample dialog. The two bottom panels are given the same height, but the bottom left panel ends up being tad bigger in Indesign CC, because the children end up taking more room than they do in SDB.
 
-For example, the sample dialog only uses width and height for various EditText fields to basically leave room for characters and the 4 panels so that they have equal height. That said, if [this issue](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/issues/26) gets implemented, it would be a way to get around the issue, by making sure items that are supposed to be the same size actually end up that way. 
+For example, the sample dialog only uses width and height for various EditText fields to basically leave room for characters and the 4 panels so that they have equal height. That said, if [this issue](https://github.com/joonaspaakko/ScriptUI-Dialog-Builder-Joonas/issues/26) gets implemented, it would be a way to get around the issue, by making sure items that are supposed to be the same size actually end up that way.
 
 ## Browser support
 
