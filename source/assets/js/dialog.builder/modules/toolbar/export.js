@@ -218,7 +218,7 @@ function getExportCode() {
 				++index;
 			});
 			list += wrapperTabsies + '};\n';
-			list += wrapperTabsies + customVar.names[ 0 ] + '.items.array = [' + listArray.join(', ') + '];\n';
+			list += wrapperTabsies + customVar.names[ 0 ] + '.itemsArray = [' + listArray.join(', ') + '];\n';
 			
 			return list + '\n';
 		}

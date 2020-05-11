@@ -7,7 +7,7 @@
 		"uuidString": "9213C40B-0B87-469E-84C6-B065A93AF7EB"
 		}
 	],
-"creatorBuild": "31934",
+"creatorBuild": "32147",
 "files": {
 	"/.atomignore": {
 		"cB": 0,
@@ -102,365 +102,365 @@
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 1,
 		"oA": 0,
 		"oAP": "/build/assets/css/dialog.builder.css",
 		"oF": 3,
 		"oS": 3,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/libraries.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 0,
 		"oAP": "/build/assets/css/libraries.css",
 		"oF": 3,
 		"oS": 3,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/libraries/animate.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/libraries/animate.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/libraries/fontawesome-all.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/libraries/fontawesome-all.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/bottom-left-toolbar.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/bottom-left-toolbar.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/cep-mode.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/cep-mode.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/context-menu.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/context-menu.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/custom-cursor.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/custom-cursor.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/dialog-preview-accents.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/dialog-preview-accents.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/drop-list.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/drop-list.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/google-fonts.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/google-fonts.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/legend.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/legend.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/loading-screen.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/loading-screen.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/modal-window.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/modal-window.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/notifications.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/notifications.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/number-input.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/number-input.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/radiocheck.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/radiocheck.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/misc/sui-interface-colors.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/misc/sui-interface-colors.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/panels/0-panels.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/panels/0-panels.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/panels/1-add-items.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/panels/1-add-items.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/panels/2-structure-treeview.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/panels/2-structure-treeview.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/panels/3-item-properties.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/panels/3-item-properties.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/panels/4-snapshot.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/panels/4-snapshot.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/panels/5-dialog-preview.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 0,
 		"oAP": "/build/assets/css/sdb.cep.css",
 		"oF": 3,
 		"oS": 3,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/toolbar/export.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/toolbar/export.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/toolbar/import.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/toolbar/import.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/toolbar/reset.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/toolbar/reset.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/_sass/toolbar/toolbar.scss": {
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/_sass/toolbar/toolbar.css",
 		"oF": 0,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/fonts/font-awesome/fa-brands-400.eot": {
 		"cB": 0,
@@ -2456,14 +2456,14 @@
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/codemirror-5.39.2/lib/codemirror.css",
 		"oF": 1,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/js/_libraries/codemirror-5.39.2/LICENSE": {
 		"cB": 0,
@@ -7031,14 +7031,14 @@
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/codemirror-5.39.2/theme/monokai.css",
 		"oF": 1,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/js/_libraries/codemirror-5.39.2/theme/mreq.css": {
 		"aP": 1,
@@ -7794,14 +7794,14 @@
 		"aP": 1,
 		"bl": 1,
 		"dP": 10,
-		"dS": 0,
+		"ec": 1,
 		"ft": 4,
 		"ma": 0,
 		"oA": 1,
 		"oAP": "/build/assets/js/_libraries/pretty-dropdowns/css/prettydropdowns.css",
 		"oF": 1,
 		"oS": 0,
-		"uL": 1
+		"sct": 1
 		},
 	"/source/assets/js/_libraries/pretty-dropdowns/demo.html": {
 		"cB": 0,
@@ -9153,6 +9153,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"grouped-accessor-pairs": {
+			"active": 0,
+			"optionString": "'anyOrder'"
+			},
 		"guard-for-in": {
 			"active": 0,
 			"optionString": ""
@@ -9329,6 +9333,10 @@
 			"active": 1,
 			"optionString": "{'checkLoops': true}"
 			},
+		"no-constructor-return": {
+			"active": 0,
+			"optionString": ""
+			},
 		"no-continue": {
 			"active": 0,
 			"optionString": ""
@@ -9354,6 +9362,10 @@
 			"optionString": ""
 			},
 		"no-dupe-class-members": {
+			"active": 1,
+			"optionString": ""
+			},
+		"no-dupe-else-if": {
 			"active": 1,
 			"optionString": ""
 			},
@@ -9657,6 +9669,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"no-setter-return": {
+			"active": 1,
+			"optionString": ""
+			},
 		"no-shadow": {
 			"active": 0,
 			"optionString": "{'builtinGlobals': false, 'hoist': 'functions', 'allow': []}"
@@ -9860,6 +9876,10 @@
 		"prefer-destructuring": {
 			"active": 0,
 			"optionString": "{'array': true, 'object': true}, {'enforceForRenamedProperties': false}"
+			},
+		"prefer-exponentiation-operator": {
+			"active": 0,
+			"optionString": ""
 			},
 		"prefer-named-capture-group": {
 			"active": 0,
@@ -10557,13 +10577,13 @@
 		"autoOutputPathReplace1": "sass",
 		"autoOutputPathReplace2": "css",
 		"autoOutputPathStyle": 0,
+		"compilerType": 1,
 		"createSourceMap": 0,
-		"debugStyle": 0,
 		"decimalPrecision": 10,
+		"emitCharset": 1,
 		"outputStyle": 0,
 		"shouldRunAutoprefixer": 1,
-		"shouldRunBless": 1,
-		"useLibsass": 1
+		"shouldRunBless": 1
 		},
 	"languageDefaultsSLIM": {
 		"autoOutputAction": 0,
