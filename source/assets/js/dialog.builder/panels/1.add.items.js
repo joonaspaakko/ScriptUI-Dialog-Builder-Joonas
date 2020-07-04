@@ -35,7 +35,7 @@ var addItemsPanel = {
 
 		$.each( item.list, function( name ) {
 			var itemData = item.list[ name ](false);
-			if ( itemData.addPanelIconClass ) {
+			if ( itemData.addPanelIconClass && itemData.type !== 'Dialog' ) {
 				
 				if ( itemData.addPanelDivider === 'above' ) addItemsHTML += '<span class="gouping-divider"></span>';
 				addItemsHTML +=

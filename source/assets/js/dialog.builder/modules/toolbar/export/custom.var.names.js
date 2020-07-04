@@ -15,7 +15,7 @@ var customVar = {
 			
 			$.each(data.items, function( k, itemData ) {
 				if ( itemData.style.varName ) {
-					customVar.counters[ itemData.style.varName ] = -1
+					customVar.counters[ itemData.style.varName ] = -1;
 				}
 				else {
 					customVar.counters[ itemData.type ] = 0;
@@ -28,11 +28,10 @@ var customVar = {
 				
 				var itemData = data.items['item-' + id];
 				customVar.update( itemData );
-				
 				var varName = itemData.style.varName;
 				var varNameCounter = customVar.counters[ varName ];
 				if ( varName ) {
-					customVar.names[ id ] = varName + (varNameCounter > 0 ? varNameCounter : '');
+					customVar.names[ id ] = customVar.incrementNumbering( varName, varNameCounter );
 					// The reason why this gets a prefix is to make sure the list stays
 					// in the loop order, rather than sorted based on the id...
 					// Custom names are used by reference list. This is also why this list contains named items only.
@@ -47,6 +46,31 @@ var customVar = {
 			});
 			
 		}
+	},
+	
+	incrementNumbering: function( varName, varNameCounter ) {
+		
+		var newName = '';
+		var regex = varName.match(/\d+$/);
+		if ( regex ) {
+			var numberStr = regex[0];
+		  var numberStrLength = numberStr.length;
+		  var number = parseFloat( numberStr );
+			newName = varName.replace(/\d+$/, '') + pad( number + varNameCounter, numberStrLength );
+		}
+		else {
+			newName = varName + (varNameCounter > 0 ? varNameCounter : '');
+		}
+		
+		return newName;
+
+		function pad(n, width, z) {
+		  z = z || '0';
+		  n = n + '';
+		  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+		}
+
+		
 	},
 	
 	// Automatic naming is based on item types.

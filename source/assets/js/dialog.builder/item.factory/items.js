@@ -13,6 +13,7 @@ item.list.dialog = function( params ) {
 	var obj = {
 		type: 'Dialog',
 		parent: true,
+		addPanelIconClass: 'fas fa-comment-alt',
 		defaultStyle: {
 			// visible: true,
 			enabled: true,

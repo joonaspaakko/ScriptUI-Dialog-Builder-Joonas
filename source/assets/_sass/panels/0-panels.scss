@@ -139,6 +139,8 @@
 		height: 100%;
 		overflow: auto;
 		overflow-x: hidden;
+		position: relative;
+		z-index: 0;
 	}
 	.contents {
 		padding: 15px 17px 120px 17px;

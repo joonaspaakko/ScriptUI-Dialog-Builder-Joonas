@@ -6,7 +6,7 @@ var contextMenu = {
 		// copied string. Because this notification is more of a confirmation,
 		// you're not supposed to read it and why would you... so the timer
 		// tries to kinda balance between too fast and too slow... maybe leaning
-		// towards too fast, becasue again... there's no need to read it here...
+		// towards too fast, because again... there's no need to read it here...
 		notificationTimer: function( words ) {
 			var seconds = 0.50 // seconds per "word"
 			var timer = (seconds * words);

@@ -6,6 +6,16 @@ var edit_style_panel = {};
 edit_style_panel.build = function( style, source ) {
 	
 	var edit_style_container = $('#edit-style-inner-container');
+	
+	var treeActive = $('#panel-tree-view-wrap .active');
+	var type = treeActive.data('item-type');
+	var lowerCaseType = type.toLowerCase();
+	
+	var iconClass = item.list[ lowerCaseType ](false).addPanelIconClass;
+	var itemPropHeadingIcon = $('[data-panel="edit"] .item-prop-icon');
+	itemPropHeadingIcon.html('');
+	$('<i class="'+ iconClass +'"></i>').appendTo( itemPropHeadingIcon );
+	
 	var styleContainer = [
 		'varName',
 		'image',
@@ -27,21 +37,22 @@ edit_style_panel.build = function( style, source ) {
 		'enabled',
 		'creationProps'
 	];
-	var styleTargetContainers = ''
+	var styleTargetContainers = '';
+	
+	styleTargetContainers += '<span class="target-item-type">'+ lowerCaseType +'</span>';
+	
 	$.each( styleContainer, function( key, value ) {
 		styleTargetContainers += '<span class="target-'+ value +'"></span>';
 	});
 	
 	edit_style_container.html( styleTargetContainers );
 	
-	var treeActive = $('#panel-tree-view-wrap .active');
-	var lowerCaseType = treeActive.data('item-type').toLowerCase();
 	var typeData = item.list[ lowerCaseType ](false);
+	
 	if ( style === false ) {
 		$("<div class='no-properties'>"+ typeData.stylePropInfo +"</div>").appendTo( edit_style_container );
 	}
 	else {
-		
 		// Generate edit panel structure
 		$.each( style, function( key, val ) {
 			

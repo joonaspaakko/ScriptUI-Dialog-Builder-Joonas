@@ -55,6 +55,11 @@
 // @codekit-prepend "dialog.builder/item.factory/special.logic/hide.item.js";
 
 
+if ( window.location.href.lastIndexOf('load=sample') > -1 ) {
+  local_storage.remove('dialog');
+  local_storage.set('dialog', JSON.parse( sampleDialogData ) );
+}
+
 var data = local_storage.get('dialog');
 
 // START FROM NOTHING...

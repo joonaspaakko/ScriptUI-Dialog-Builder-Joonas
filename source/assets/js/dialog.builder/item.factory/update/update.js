@@ -7,12 +7,12 @@ item.update.style = {};
 
 item.update.style.localStorage = function( prop, data ) {
 	
-	var val = item.update.get_values( prop );
+	var val = item.update.get_values( data.items['item-' + data.activeId], prop );
 	
 	// Not super proud of how I handled this...
 	var editPanel = $('#panel-edit-style-wrap');
 	var _this = editPanel.find('[data-edit^="'+ prop +'"]');
-	if ( _this.closest('.creation-props-inner-wrap').length > 0 ) { 
+	if ( _this.closest('.creation-props-inner-wrap').length > 0 ) {
 		data.items[ 'item-' + data.activeId ].style.creationProps[ prop ] = val[ prop ];
 	}
 	else {
@@ -26,14 +26,39 @@ item.update.style.localStorage = function( prop, data ) {
 
 item.update.style.treeView = function( prop, data, dataItem ) {
 	
-	if ( prop === 'text' || prop === 'all' ) {
+	if ( prop === 'varName' || prop === 'text' || prop === 'all' ) {
 		var text   = dataItem.style.text;
 		var textItem = $('#panel-tree-view-wrap [data-item-id="'+ dataItem.id +'"] > .item-text');
 		var type = dataItem.type;
 		var trimmedText = text === undefined ? type : text.trim();
-		textItem.html( (type.toLowerCase() === trimmedText.toLowerCase() ) ? type : '<span class="type">' + type + ':</span> ' + '<span class="txt">' + text + '</span>' );
+		customVar.init();
+		
+		var customName = customVar.names[ dataItem.id ];
+		if ( customName ) {
+			var customCompare = customName.toLowerCase();
+			if ( !customName ) {
+				customCompare = customCompare.replace(/\d+$/, '');
+			}
+			textItem.html( (customCompare === trimmedText.toLowerCase() ) ? customName : '<span class="type">' + customName + (text ? ':' : '') + '</span> ' + (text ? '<span class="txt">' + text + '</span>' : '') );
+		}
+		else {
+			textItem.html( (type.toLowerCase() === trimmedText.toLowerCase() ) ? type : '<span class="type">' + type + ':</span> ' + '<span class="txt">' + text + '</span>' );
+		}
+		
+		// Structure panel item icons
+		// var iconClass = item.list[ type.toLowerCase() ](false).addPanelIconClass;
+		// $('<i class="structure-item-icon '+ iconClass +'"></i>').prependTo( textItem );
+		
 	}
 		
+};
+
+item.update.style.treeViewAll = function( data ) {
+	
+	$.each(data.order, function( i, id ) {
+		item.update.style.treeView( 'varName', data, data.items[ 'item-' + id ] );
+	});
+	
 };
 
 item.update.style.dialogPreview = function( prop, data, dataItem, event ) {

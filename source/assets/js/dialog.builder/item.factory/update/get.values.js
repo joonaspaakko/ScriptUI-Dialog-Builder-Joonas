@@ -1,5 +1,5 @@
 
-item.update.get_values = function( prop ) {
+item.update.get_values = function( itemData, prop ) {
 	
 	var data = {};
 	var editPanel = $('#panel-edit-style-wrap');
@@ -63,7 +63,6 @@ item.update.get_values = function( prop ) {
 			break;
 			
 		case "alignment":
-			
 			if ( _this.prop('disabled') === false  ) {
 				data.alignment = _this.find('option:selected').val();
 			}
@@ -80,7 +79,7 @@ item.update.get_values = function( prop ) {
 				data[ prop ] = _this.val();
 			}
 	}
-	// console.table( data );
+	
 	return data;
 	
 };

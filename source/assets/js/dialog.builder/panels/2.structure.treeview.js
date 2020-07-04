@@ -220,6 +220,8 @@ item.drag.sort = function( $item ) {
   item.activate( id );
   // Build Item Properties panel
   var data = local_storage.get('dialog');
+  
+  item.update.style.treeViewAll( data );
   edit_style_panel.build( data.items[ 'item-' + id ].style );
   
   tab.onSort( $item );
@@ -316,6 +318,8 @@ item.drag.duplicate = function( $item, container ) {
   
   // Build Item Properties panel
   data = local_storage.get('dialog');
+  
+  item.update.style.treeViewAll( data );
   var newItem = data.items[ 'item-' + dupRootId ];
   edit_style_panel.build( newItem.style );
   

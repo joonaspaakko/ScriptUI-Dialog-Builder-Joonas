@@ -46,6 +46,9 @@ item.funnel = {
 		item.remove.dialogPreview( id, removedType );
 		item.remove.localStorage();
 		
+		var data = local_storage.get('dialog');
+		item.update.style.treeViewAll( data );
+		
 		// If the removed item was active, figure out which element to activate next.
 		if ( $('#panel-tree-view-wrap .active').length < 1 ) {
 			
@@ -62,7 +65,6 @@ item.funnel = {
 			item.activate( id );
 			
 			// Build Item Properties panel
-			var data  = local_storage.get('dialog');
 		  edit_style_panel.build( data.items[ 'item-' + id ].style );
 		}
 		
@@ -83,7 +85,8 @@ item.funnel = {
 		
 		// TREE VIEW PANEL
 		item.update.style.treeView( prop, data, dataItem );
-		
+		item.update.style.treeViewAll( data );
+			
 		// DIALOG PREVIEW
 		if ( ignore !== "dialog" ) item.update.style.dialogPreview( prop, data, dataItem );
 		
