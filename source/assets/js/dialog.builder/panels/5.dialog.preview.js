@@ -61,7 +61,7 @@ dialogElem.on("click", '[data-item-type="EditText"]', function( e ) {
 });
 
 // Image click activate
-dialogElem.on("click", '[data-item-type="Image"], [data-item-type="IconButton"] img, [data-item-type="Slider"]', function() {
+dialogElem.on("click", '[data-item-type="Image"], [data-item-type="IconButton"] img, [data-item-type="Slider"], [data-item-type="Progressbar"]', function() {
 	
   var _this = $(this);
   var iconButton = $(this).closest('[data-item-type]');

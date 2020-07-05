@@ -935,6 +935,24 @@ $color-bg: #535353;
 		display: none !important;
 	}
   
+	.progress-bar {
+    display: flex;
+    min-width: 1px;
+    min-height: 1px;
+    > div {
+      flex-grow: 1;
+      overflow: hidden;
+  		border-radius: 99999999px;
+  		background: darken($color-bg, 4);
+  		.progress-indicator {
+  			background: #46a0f5;
+  			float: left;
+  			width: 50%;
+  			height: 100%;
+  		}
+    }
+	}
+	
 } // #dialog
 
 

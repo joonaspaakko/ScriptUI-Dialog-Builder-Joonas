@@ -33,13 +33,17 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 	else if ( type === "Divider" ) {
 		styleBlock += tabsies + commentOut + jsxVarName + '.alignment = "fill"; \n';
 	}
-	else if ( type === "Slider" ) {
-		styleBlock += tabsies + commentOut + jsxVarName + '.minvalue = 0; \n';
-		styleBlock += tabsies + commentOut + jsxVarName + '.maxvalue = 100; \n';
-		styleBlock += tabsies + commentOut + jsxVarName + '.value = 50; \n';
-	}
 	else {
 		
+		if ( type === "Slider" ) {
+			styleBlock += tabsies + commentOut + jsxVarName + '.minvalue = 0; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.maxvalue = 100; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.value = 50; \n';
+		}
+		else if ( type === 'Progressbar' ) {
+			styleBlock += tabsies + commentOut + jsxVarName + '.maxvalue = 100; \n';
+			styleBlock += tabsies + commentOut + jsxVarName + '.value = 50; \n';
+		}
 		// DROP LIST SELECTION
 		if ( type === "DropDownList" && style.selection !== undefined ) {
 			styleBlock += tabsies + commentOut + jsxVarName +'.selection = '+ style.selection +'; \n';

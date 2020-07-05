@@ -454,6 +454,33 @@ item.list.iconbutton = function( params ) {
 	
 };
 
+item.list.progressbar = function( params ) {
+	
+	var obj = {
+		type: 'Progressbar',
+		addPanelIconClass: 'fas fa-percentage',
+		defaultStyle: {
+			// visible: true,
+			enabled: true,
+			varName: null,
+			preferredSize: [50,4],
+			alignment: null,
+			helpTip: null
+		},
+		stylePropInfo: "This item doesn't have any adjustable properties.",
+		editInfo: "Export outputs a static value.",
+		previewHtml:
+			'<div class="progress-bar" data-item-type="'+ params.type +'" data-item-id="'+ params.id +'" data-item-parent-id="'+ params.parentId +'">' +
+				'<div>' +
+					'<div class="progress-indicator"></div>' +
+				'</div>' +
+			'</div>'
+	};
+	
+	return obj;
+	
+};
+
 item.list.verticaltabbedpanel = function( params ) {
 	
 	var obj = {
