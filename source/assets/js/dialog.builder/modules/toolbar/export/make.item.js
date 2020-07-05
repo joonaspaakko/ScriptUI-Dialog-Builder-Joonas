@@ -230,18 +230,22 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 		
 		case 'Image':
 		case 'IconButton':
-			var imageString = encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) );
-			imageString = imageDuplicateCheck.init( jsxVarName, imageString );
-			if ( imageString.length === 2 ) {
-				block += wrapperTabsies + commentOut + 'var '+ jsxVarName + '_imgString = "'+ imageString[1] +'"; \n';
+			if ( style.image[0] ) {
+				var imageString = encodeURIComponent( atob( style.image[0].split(',')[1].replace(/=$/, "").replace(/=$/, "") ) );
+				imageString = imageDuplicateCheck.init( jsxVarName, imageString );
+				if ( imageString.length === 2 ) {
+					block += wrapperTabsies + commentOut + 'var '+ jsxVarName + '_imgString = "'+ imageString[1] +'"; \n';
+				}
 			}
+			
+			var imageDecode = style.image[0] ? 'File.decode('+ imageString[0] + '_imgString' +')' : 'undefined';
 			
 			if ( lowerCaseType === 'image' ) {
 				
-				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, File.decode('+ imageString[0] + '_imgString' +')'+ creationProps() +'); \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("image", undefined, ' + imageDecode + creationProps() +'); \n';
 			}
 			else {
-				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, File.decode('+ imageString[0] + '_imgString' +')' + creationProps() +'); \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("iconbutton", undefined, ' + imageDecode + creationProps() +'); \n';
 			}
 			break;
 

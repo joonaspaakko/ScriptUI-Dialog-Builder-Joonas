@@ -369,7 +369,12 @@ panel_edit_style_html.init = function( key, value, source, treeActive, lowerCase
 						'<img class="base64-bin" src="'+ value[0] +'" alt="" />' +
 					'</div>' +
 					'<div class="custom-file-input">' +
-						'<i class="fas fa-upload"></i>' + 'Choose file...' +
+						'<div class="add">' +
+							'<i class="fas fa-upload"></i>' + 'Choose file...' +
+						'</div>' +
+						'<div class="remove">' +
+							'<i class="fas fa-times"></i>' + 
+						'</div>' +
 					'</div>' +
 					'<input data-edit="image" type="file" accept="image/jpeg, image/png">' +
 				'</div>'

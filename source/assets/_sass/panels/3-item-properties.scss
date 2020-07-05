@@ -620,14 +620,26 @@ body.update-styles .saving-icon {
       cursor: pointer;
       // border: 2px solid #fff;
       // background: rgba( #fff, .1 );
-      background: $color-accent;
-      padding: 7px;
-      width: 150px;
+			overflow: hidden;
       color: #fff;
       border-radius: 3px;
-      i {
-        padding-right: 5px;
+      display: flex;
+      flex-direction: row;
+			div {
+	      padding: 7px;
+			}
+      .add {
+        flex-grow: 1;
+        background: $color-accent;
+        i { padding-right: 5px; }
       }
+			.remove {
+        background: darken( $color-bg, 10);
+        &:hover {
+          background: #ea4749;
+        }
+        i { padding: 0 5px; }
+			}
     }
     input {
       display: none;

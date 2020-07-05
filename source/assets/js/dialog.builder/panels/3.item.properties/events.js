@@ -185,8 +185,15 @@ propsPanel.on("change", 'select[data-edit]', function() {
   
 });
 
-propsPanel.on("click", '.custom-file-input', function() {
-	propsPanel.find('[data-edit="image"]').trigger("click");
+propsPanel.on("click", '.custom-file-input > div', function() {
+  var remove = $(this).hasClass('remove');
+  if ( remove ) {
+    propsPanel.find('.base64-bin').attr('src', '');
+    item.funnel.update( 'image' );
+  }
+  else {
+  	propsPanel.find('[data-edit="image"]').trigger("click");
+  }
 });
 
 propsPanel.on("change", '[data-edit="image"]', function() {
