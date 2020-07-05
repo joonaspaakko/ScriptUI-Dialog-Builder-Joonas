@@ -139,16 +139,13 @@ var tab = {
 				tab.show( dataTab, dataTPanel );
 				
 				$(this).css({ minWidth: '', minHeight: '' });
+				tab.resizeActive( dataTab.id );
 				
 				// Write back to local storage
 				dataTPanel.style.selection = dataTab.id;
 				local_storage.set('dialog', data);
 			
 			});
-		}
-		
-		if ( currentItem.data('item-type') === 'Tab' ) {
-			tab.resizeActive( id );
 		}
 		
 	},
