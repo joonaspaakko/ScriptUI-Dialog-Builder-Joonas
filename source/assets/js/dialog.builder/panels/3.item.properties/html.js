@@ -69,6 +69,7 @@ panel_edit_style_html.init = function( key, value, source, treeActive, lowerCase
 				switch ( typeof value ) {
 					case 'string':
 					case 'number':
+						value = value.replace(/\"/g, '&quot;');
 						values_HTML +=
 						'<div class="creation-prop prop-'+ key +'">' +
 							'<span title="'+ creationProptitle[ key ] +'">'+ key +': </span>' +
