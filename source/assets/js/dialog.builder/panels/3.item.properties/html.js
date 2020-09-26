@@ -8,9 +8,10 @@ var panel_edit_style_html = {};
 // and I never could be arsed to make it in a sensible way after I had
 // decided what I wanted from it. Once a lazy boy, always a lazy boy.
 panel_edit_style_html.init = function( key, value, source, treeActive, lowerCaseType, typeData ) {
-
 	// Order is specified by the premade containers in 'build.js'
 
+	value = value == null ? '' : (typeof value === 'string' ? value.replace(/\"/g, '&quot;') : value );
+	
 	var html;
 	switch ( key ) {
 		
