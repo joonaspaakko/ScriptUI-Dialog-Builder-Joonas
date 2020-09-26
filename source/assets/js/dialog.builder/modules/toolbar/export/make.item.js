@@ -53,7 +53,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			var defaultValue = defaultCreationProps[ prop ];
 			if ( defaultValue != value ) {
 				var isString = typeof value == 'string';
-				var doubleQuotes = (isString && prop !== 'numberOfColumns' && prop !== 'columnTitles' && prop !== 'columnWidths') ? '"' : '';
+				var doubleQuotes = (isString && prop !== 'numberOfColumns' && prop !== 'columnTitles' && prop !== 'columnWidths') ? '"' : '';
 				userCProps += ', ' + prop + ': ' + doubleQuotes + value + doubleQuotes;
 			}
 		});
