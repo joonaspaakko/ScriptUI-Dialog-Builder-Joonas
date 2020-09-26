@@ -9,8 +9,10 @@ var panel_edit_style_html = {};
 // decided what I wanted from it. Once a lazy boy, always a lazy boy.
 panel_edit_style_html.init = function( key, value, source, treeActive, lowerCaseType, typeData ) {
 	// Order is specified by the premade containers in 'build.js'
-
-	value = value == null ? '' : (typeof value === 'string' ? value.replace(/\"/g, '&quot;') : value );
+	
+	if ( key !== 'creationProps' && key !== 'alignment' ) {
+		value = value == null ? '' : (typeof value === 'string' ? value.replace(/\"/g, '&quot;') : value );
+	}
 	
 	var html;
 	switch ( key ) {
@@ -66,11 +68,12 @@ panel_edit_style_html.init = function( key, value, source, treeActive, lowerCase
 				toggle: "For a button-style control, a value of true causes it to get a button-pressed appearance the first time it is clicked, and alternate with the unpressed appearance each time it is clicked. The toggle state is reflected in the control’s value property."
 			};
 			$.each(value, function( key, value ) {
-				
+
+				value = value == null ? '' : (typeof value === 'string' ? value.replace(/\"/g, '&quot;') : value );
+
 				switch ( typeof value ) {
 					case 'string':
 					case 'number':
-						value = value.replace(/\"/g, '&quot;');
 						values_HTML +=
 						'<div class="creation-prop prop-'+ key +'">' +
 							'<span title="'+ creationProptitle[ key ] +'">'+ key +': </span>' +
@@ -395,6 +398,7 @@ panel_edit_style_html.init = function( key, value, source, treeActive, lowerCase
 			
 			var opt = '';
 			$.each(options, function( i, v ) {
+				v = v == null ? '' : (typeof v === 'string' ? v.replace(/\"/g, '&quot;') : v );
 				opt += '<option value="'+ v +'">'+ v +'</option>';
 			});
 			
