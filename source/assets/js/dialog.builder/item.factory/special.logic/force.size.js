@@ -16,13 +16,10 @@ forceSize.onUpdate = function( prop, data ) {
 		
 		var active   = $(this);
 		var id       = active.data('item-id');
-		var parentId = active.data('item-parent-id');
-		// var parent   = $('#dialog [data-item-id="'+ parentId +'"]');
 		
-		var d = {
-			active: data.items[ 'item-' + id ],
-			parent: data.items[ 'item-' + parentId ]
-		};
+		var d = {};
+		d.active = data.items[ 'item-' + id ];
+		d.parent = data.items[ 'item-' + d.active.parentId ];
 		
 		var xNotParentFill = d.parent.style.alignChildren[0] !== 'fill',
 				yNotParentFill = d.parent.style.alignChildren[1] !== 'fill';
