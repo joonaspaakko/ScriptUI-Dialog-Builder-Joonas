@@ -19,6 +19,11 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 		var defaultCreationProps = item.list[ lowerCaseType ](false).defaultStyle.creationProps;
 		var props = '';
 		
+		var multilineStaticTextGroup = lowerCaseType === 'statictext' && multilineText[0];
+		if ( multilineStaticTextGroup ) {
+			style.creationProps = {};
+		}
+		
 		switch ( lowerCaseType ) {
 			case 'iconbutton':
 				// Use old iconbutton style if the data exists... as long as the new creation property is not set.
@@ -150,7 +155,10 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 			if ( multilineText[0] ) {
 				
 				// ADD PARENT GROUP
-				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group"); \n';
+				block += wrapperTabsies + commentOut + 'var '+ jsxVarName +' = '+ jsxParents[ parentId ] +'.add("group", undefined '+ creationProps() +'); \n';
+				// Helper function for getting text
+				block += tabsies + commentOut + jsxVarName +".getText = function() { var t=[]; for ( var n=0; n<"+jsxVarName+".children.length; n++ ) { var text = "+ jsxVarName +".children[n].text || ''; if ( text === '' ) text = ' '; t.push( text ); } return t.join('\\n'); }; \n";
+				
 				// PREFERRED SIZE
 				if ( style.preferredSize !== undefined  ) {
 					if ( style.preferredSize[0] > 0 ) {
@@ -198,7 +206,7 @@ function makeJSXitem( index, data, jsxParents, type, id, parentId, parentType, s
 				$.each( lines, function( i, line ) {
 					line = line.replace(/\"/g, '\\u0022');
 					// ADD EACH LINE AS SEPARATE STATIC TEXT ITEM
-					block += tabsies + commentOut + jsxVarName +'.add("statictext", undefined, "'+ line +'"'+ creationProps() +'); \n';
+					block += tabsies + commentOut + jsxVarName +'.add("statictext", undefined, "'+ line +'"); \n';
 				});
 			
 			}

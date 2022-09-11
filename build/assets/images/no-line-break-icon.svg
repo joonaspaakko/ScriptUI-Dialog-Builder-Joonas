@@ -4,11 +4,9 @@
             .cls-1{fill:#fff}.cls-2{fill:none;stroke:red;stroke-miterlimit:10;stroke-width:4.18px}
         </style>
     </defs>
-    <title>
-        no-line-break-icon
-    </title>
+    <title>no-line-break-icon</title>
     <g id="Layer_1-2" data-name="Layer 1-2">
         <path class="cls-1" d="M36.2 0h-4.38v16.2H9.81V8.66L0 18.42l9.81 9.77v-7.61H36.2V0z"/>
-        <path class="cls-2" d="M8.84 2.53L34.5 28.18"/>
+        <path class="cls-2" d="M8.84 2.53 34.5 28.18"/>
     </g>
 </svg>

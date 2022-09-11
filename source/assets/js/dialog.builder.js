@@ -163,7 +163,7 @@ var cep = {
       jQuery.ajax({
         // async: false,
         cache: ajaxOpt.cache,
-        url: 'https://joonas.me/scriptui/assets/css/sdb.cep.css?v=' + ajaxOpt.version,
+        url: 'https://scriptui.joonas.me/assets/css/sdb.cep.css?v=' + ajaxOpt.version,
         success: function( css ) {
           
           var styleElement = $('<style/>');
@@ -191,7 +191,7 @@ var cep = {
       jQuery.ajax({
         // async: false,
         cache: ajaxOpt.cache,
-        url: 'https://joonas.me/scriptui/assets/js/sdb.cep.js?v=' + ajaxOpt.version,
+        url: 'https://scriptui.joonas.me/assets/js/sdb.cep.js?v=' + ajaxOpt.version,
         success: function( js ) {
           
           scriptElement.text( js );
