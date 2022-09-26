@@ -87,7 +87,7 @@ function styleJSXitem( data, jsxParents, type, id, parentId, parentType, style, 
 			// styleBlock += tabsies + jsxVarName + '.preferredSize.width = 1; /\/\ A trick for != Photoshop \n';
 			styleBlock += tabsies + commentOut + jsxVarName + '.preferredSize.width = '+ $('#dialog [data-item-id="'+ id +'"]').outerWidth() +'; \n';
 		}
-		else if ( style.preferredSize !== undefined && type !== 'TreeView' && ( type !== 'StaticText' && multilineText[0] ) ) {
+		else if ( style.preferredSize !== undefined && type !== 'TreeView' && !( type === 'StaticText' && multilineText[0] ) ) {
 			var width = style.preferredSize[0];
 			var height = style.preferredSize[1];
 			
